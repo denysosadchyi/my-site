@@ -121,8 +121,7 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
 /* cover mockup: capped like the flat shots, closed by a full-bleed hairline.
    Negative margin equals the wrap padding, so the rule reaches the real viewport
    edge without 100vw (which would overflow by the scrollbar width). */
-main>.cimg>img{display:block;max-width:min(860px,100%);margin-inline:auto}
-main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
+main>main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
 @media(max-width:600px){main>.cimg::after{margin:0 -24px}}
 /* native scrollbar hidden; paging is driven by the buttons below */
 .strip{scrollbar-width:none;-ms-overflow-style:none}
@@ -143,8 +142,10 @@ main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:
 @media(max-width:600px){.strip{margin-right:-24px;padding-right:24px}}
 /* flat screen mockups: capped measure, retina source, hairline frame.
    Device mockups (the covers, outside .cbody) stay full-bleed. */
-.cbody .cimg:has(>img),.cbody .cimg:has(>video){max-width:860px;margin-inline:auto}
-.cbody .cimg>img,.cbody .cimg>video{width:100%;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1)}
+.cbody /* one screen or one video in a block: 860 wide, centred, on a band that spans the page */
+.cbody .cimg{padding-block:24px}
+.cbody .cbody .cimg>img,.cimg>video,.cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
+.cbody .cimg>figcaption{max-width:860px;margin-inline:auto}
 /* the one ornament: Charis SIL italic marks the words carrying the argument */
 .foot h2 em,.ia-role{font-family:'Charis SIL',serif;font-style:italic}
 .cnav{justify-content:space-between;padding-top:24px;border-top:1px solid #e2ddd6}
@@ -174,7 +175,7 @@ a:hover{text-decoration:underline}
 <main class="wrap">
 <section class="chero">
 <p class="meta"><span>2022–2026</span> <span><b>Senior Product Designer</b></span> <span>DevOps / Infrastructure-as-Code</span></p>
-<h1><span data-l="uk" lang="uk">Scalr: продуктові задачі і дизайн-система</span></h1>
+<h1><span data-l="uk" lang="uk">Scalr: розробка і підтримка дизайн системи, продуктові задачі&nbsp;</span></h1>
 <div class="sec-cols">
 <p class="sec-lead"><span data-l="uk" lang="uk">Вів продуктовий дизайн end-to-end і будував <i>дизайн-систему з нуля</i> чотири роки.</span></p>
 <div class="sec-body">
