@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Denys Osadchyi · I build products, not mockups</title>
+<meta content="Senior Product Designer with 15+ years in B2B SaaS, developer tools and fintech. Ships design as working product; builds AI pipelines that cut design-to-production from weeks to hours." name="description"/>
+<meta content="website" property="og:type"/>
+<meta content="Denys Osadchyi · Senior Product Designer" property="og:title"/>
+<meta content="15+ years in complex B2B products. Designs the product, then ships it as working code. Open to senior roles, remote." property="og:description"/>
+<meta content="https://denys-osadchyi.vercel.app/og.png" property="og:image"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..900&family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+<style>/*font*/
+body{font-family:'Onest',sans-serif}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Denys Osadchyi","jobTitle":"Senior Product Designer","email":"mailto:theslowcolours@gmail.com","url":"https://denys-osadchyi.vercel.app","sameAs":["https://linkedin.com/in/denys-osadchyi","https://github.com/denysosadchyi","https://md-academy.design"],"knowsLanguage":["en","uk"],"address":{"@type":"PostalAddress","addressCountry":"UA"}}
+</script>
+<style>/*herocenter*/
+.hero3,.hero3 .hleft,.hero3 h1,.hero3 .sub{text-align:center;width:100%;max-width:none}
+.hero3{margin-top:88px}
+.ledger{margin-top:56px;margin-bottom:128px}
+.hero3 h1,.hero3 h1 *{font-weight:400}
+.hero3 h1{font-size:clamp(3.3rem,9.3vw,8rem);font-weight:400;line-height:100%}
+.hero3 h1 .y{color:#0000EE;font-style:italic;font-family:'Charis SIL',serif}
+.hero3 h1 .line1{font-size:1.5em}
+.hero3 h1 .gray{color:#8a8a8a}
+.hero3 h1 .di{font-weight:400;font-style:italic;font-family:'Charis SIL',serif}
+.roleline{display:inline-block;padding-bottom:2px;white-space:nowrap}
+.rolewrap{position:relative;display:inline-block}
+.rolewrap .roletext{position:absolute;top:100%;left:50%;transform:translateX(-50%);display:block;margin-top:-6px;font-size:19px;line-height:1.5;font-weight:400;white-space:nowrap;text-align:center}
+.rolewrap.rw-left .roletext{top:auto;bottom:100%;margin-top:0;margin-bottom:-42px;transform:translateX(calc(-50% - 128px));color:#fff;background:#8a8a8a;padding:0 12px}
+.rolewrap.rw-right .roletext{margin-top:-22px;transform:translateX(calc(-50% + 72px));color:#fff;background:#000;padding:0 12px}
+.hero3 .sub.chain{font-size:22px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.hero3 .sub.chain span:not(:first-child)::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#9b918a;margin-right:16px;vertical-align:middle}
+.cta.hcta{font-size:24px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px;margin-top:48px}
+.cta.hcta .btn,.cta.hcta .ghost{border:1px solid currentColor;border-radius:999px;padding:0 24px;background:transparent;height:47px;display:inline-flex;align-items:center;justify-content:center;font-size:18px;transition:background .15s,color .15s}
+.cta.hcta .btn:hover,.cta.hcta .ghost:hover{text-decoration:none;background:#0000EE;color:#fff}
+main{position:relative}
+.langbar{position:absolute;top:24px;right:24px}
+.ledger .wrap.grid{display:flex;justify-content:center;flex-wrap:wrap;gap:96px;text-align:center}
+.ledger .fig,.ledger .fig *{white-space:nowrap}
+.ledger .fig .n{font-size:40px;font-style:italic;font-family:'Charis SIL',serif}
+.ledger .fig .d{font-size:14px}
+</style>
+<style>
+body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+.workgrid{position:relative}
+.workgrid .pv{position:absolute;top:0;margin:0}
+.pv .thumb{display:block;margin-bottom:0}
+.pv .thumb img,.pv .thumb video{width:100%;height:auto;display:block}
+.pv>div{background:rgba(255,255,255,.5);padding:24px}
+.pv h3{font-size:32px;margin:12px 0;font-weight:400}
+.pv .nums span{display:flex;flex-wrap:wrap;gap:12px}
+.pv .nums .chip:not(:first-child)::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#9b918a;margin-right:12px;vertical-align:middle}
+.pv .thumb.mock{position:relative;aspect-ratio:3840/2160;overflow:hidden}
+.pv .thumb.mock .mockscreen{position:absolute;left:20.29%;top:21.71%;width:59.4%;height:68.56%;overflow:hidden}
+.pv .thumb.mock .mockscreen video{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:left;display:block;transform-origin:18% 55%;animation:llzoom 16.983s ease-in-out infinite}
+.pv .thumb.mock img{position:absolute;left:0;top:0;width:100%;height:100%;display:block;pointer-events:none}
+.pv .toolicon{display:block;height:144px;width:auto;margin-bottom:12px}
+.pv:has(.toolicon)>div{background:transparent}
+@keyframes llzoom{0%{transform:scale(1)}7.6%{transform:scale(1)}10.6%{transform:scale(1.38) translate(7%,-3%)}100%{transform:scale(1.38) translate(7%,-3%)}}
+</style>
+<style>/*wrappad*/
+.wrap{padding-left:48px;padding-right:48px;box-sizing:border-box}
+</style>
+<style>/*typescale*/
+/* Onest type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
+:root{
+--t-caption:.9375rem;
+--t-body:1.125rem;
+--t-lede:clamp(1.25rem,.21vw + 1.19rem,1.375rem);
+--t-h3:clamp(1.5rem,.42vw + 1.38rem,1.75rem);
+--t-h2:clamp(1.75rem,1.25vw + 1.38rem,2.5rem);
+--t-h1:clamp(2.25rem,2.08vw + 1.63rem,3.5rem);
+--t-muted:#555;
+--measure:52ch}
+body{font-size:var(--t-body);line-height:1.6;letter-spacing:-.005em;font-kerning:normal}
+.hero3,.ledger,.hcta,.langbar{font-size:1rem;line-height:normal;letter-spacing:normal}
+p{margin:0 0 1.1em;text-wrap:pretty}
+b,strong{font-weight:600}
+figure{margin:0}
+h2,h3{margin:0;font-weight:400;text-wrap:balance}
+h2{font-size:var(--t-h2);line-height:1.1;letter-spacing:-.02em}
+h3{font-size:var(--t-h3);line-height:1.2;letter-spacing:-.015em}
+/* header / nav */
+header .bar{padding-block:24px}
+header nav,.cnav,.cta{display:flex;flex-wrap:wrap;align-items:center;gap:24px}
+.cnav{gap:32px}
+.wordmark{font-size:1.0625rem;font-weight:500;letter-spacing:-.01em}
+header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:0}
+.langbar .langswitch{font-size:1rem}/* hero-area switcher stays as it was */
+.open,.wordmark{font-weight:500}
+/* case hero */
+.chero{padding-top:56px}
+.chero .meta{margin:0 0 20px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.chero h1{margin:0 0 24px;max-width:24ch;font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
+.lede{margin:0 0 20px;max-width:48ch;font-size:var(--t-lede);line-height:1.45;letter-spacing:-.01em}
+.facts{margin:0;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
+.outcomes .n{font-size:var(--t-h3);font-weight:600;line-height:1.1;letter-spacing:-.02em}
+.outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+/* case body */
+.cbody p,.cbody ul{max-width:var(--measure)}
+.cbody h2.marker{margin:96px 0 24px;max-width:22ch}
+.cbody h2.marker:first-child{margin-top:64px}
+.cbody p{margin:0 0 20px}
+.cbody ul{margin:0 0 20px;padding-left:1.2em}
+.cbody li{margin:0 0 10px}
+.cres .r{font-weight:600}
+.cimg{margin:0 0 28px}
+figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.cnav{margin:96px 0 64px}
+/* work cards */
+.pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.pv h3{margin:0 0 12px;font-size:var(--t-h3);font-weight:400;line-height:1.2;letter-spacing:-.015em}
+.pv .nums{margin:0 0 12px}
+.pv .nums .chip{font-style:normal;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
+.pv p{max-width:44ch;margin:0 0 16px}
+/* section headings, experience, teaching */
+.block{padding-block:64px}
+.block h2.marker{margin:0 0 32px}
+.foot{padding-block:96px 64px}
+.foot h2{margin:0 0 20px;max-width:20ch}
+.xp,.list{margin:0;padding:0;list-style:none}
+.xp li,.list li{margin:0 0 32px}
+.yrs{font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted);font-variant-numeric:tabular-nums}
+.xrole,.list .t{margin:0 0 8px;font-size:1.5rem;font-weight:500;line-height:1.35;letter-spacing:-.01em}
+.xco,.tag{font-weight:400;color:var(--t-muted)}
+.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:0}
+.xnote{margin:0;max-width:46ch}
+.list .s{max-width:48ch}
+.foot h2 em{font-family:'Charis SIL',serif;font-style:italic}
+@media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
+</style>
+<style>/*xp*/
+/* Experience: year | role over company | what I did. First baselines aligned. */
+#xp h2.marker{margin-bottom:48px}
+.xp{border-top:1px solid #e2ddd6}
+.xp li{display:grid;grid-template-columns:minmax(0,108px) minmax(0,1.15fr) minmax(0,1fr);gap:8px 56px;align-items:baseline;margin:0;padding:32px 0;border-bottom:1px solid #e2ddd6}
+.xp>li>.yrs{margin:0;font-size:1.0625rem;line-height:1.45;color:var(--t-muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.xrole{margin:0 0 6px;max-width:32ch;font-size:var(--t-h3);font-weight:400;line-height:1.25;letter-spacing:-.02em;text-wrap:balance}
+.xco{margin:0;font-size:1.0625rem;font-weight:500;line-height:1.45;color:inherit}
+.xnote{margin:0;max-width:44ch;color:var(--t-muted)}
+@media(max-width:900px){
+.xp li{grid-template-columns:1fr;gap:6px;padding:28px 0;align-items:start}
+.xp>li>.yrs{order:-1}
+.xnote{margin-top:10px}
+}
+</style>
+<style>/*drawer*/
+.cd-ov{position:fixed;inset:0;z-index:80;background:rgba(17,17,17,.42);opacity:0;transition:opacity .3s ease-out}
+.cd-ov.on{opacity:1}
+.cd{position:fixed;inset:8px;z-index:90;display:flex;flex-direction:column;background:#fbfaf8;border:1px solid #e2ddd6;border-radius:32px;overflow:hidden;opacity:0;transform:scale(.985);transition:opacity .24s ease-out,transform .32s cubic-bezier(.22,1,.36,1)}
+.cd.on{opacity:1;transform:none}
+.cd-body{flex:1;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(17,17,17,.25) transparent}
+/* the 3px transparent border is what gives the thumb its inset pill shape;
+   background-clip keeps the paint inside that border */
+.cd-body::-webkit-scrollbar{width:12px}
+.cd-body::-webkit-scrollbar-track{background:transparent}
+.cd-body::-webkit-scrollbar-thumb{background:rgba(17,17,17,.22);background-clip:content-box;border:3px solid transparent;border-radius:999px}
+.cd-body::-webkit-scrollbar-thumb:hover{background:rgba(17,17,17,.42);background-clip:content-box}
+.cd-x{position:absolute;top:20px;right:24px;z-index:95;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:22px;line-height:1;color:#111;background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:999px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.1);transition:background .15s,color .15s,border-color .15s}
+.cd-x:hover{background:#0000EE;border-color:#0000EE;color:#fff}
+.cd-x:focus-visible{outline:2px solid #0000EE;outline-offset:3px}
+.cd .chero{padding-top:88px}
+/* section headings run to the popup's own left edge; the panel is square
+   on that side so the type and the container share one vertical line */
+.cd .cbody h2.marker,.cd .cbody .sec h2.marker{margin-left:-48px}
+.cd main{padding-bottom:64px}
+.cd-load{padding:88px 48px;color:#555}
+body.cd-lock{overflow:hidden}
+@media(max-width:600px){.cd{border-radius:24px}.cd-x{top:12px;right:16px}.cd .chero{padding-top:72px}.cd .cbody h2.marker,.cd .cbody .sec h2.marker{margin-left:-24px}}
+@media(prefers-reduced-motion:reduce){.cd,.cd-ov{transition:opacity .01s}.cd{transform:none}.cd.on{transform:none}}
+</style>
+<style>/*oss*/
+/* Teaching list on the same ruled-row mechanic as #xp: title (+label) left, description right. */
+#oss h2.marker{margin-bottom:48px}
+.list{border-top:1px solid #e2ddd6}
+.list li{display:grid;grid-template-columns:minmax(0,108px) minmax(0,1.15fr) minmax(0,1fr);gap:8px 56px;align-items:baseline;margin:0;padding:32px 0;border-bottom:1px solid #e2ddd6}
+.list .t{grid-column:1/3}
+.list .s{grid-column:3}
+.list .t{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0;max-width:26ch;font-size:var(--t-h3);font-weight:400;line-height:1.25;letter-spacing:-.02em}
+.list .tag{margin:0;padding:3px 12px;font-size:var(--t-caption);line-height:1.4;font-weight:400;color:var(--t-muted);background:rgba(17,17,17,.05);border:1px solid #e2ddd6;border-radius:999px;white-space:nowrap}
+.list .s{margin:0;max-width:46ch;color:var(--t-muted)}
+@media(max-width:900px){
+.list li{grid-template-columns:1fr;gap:10px;padding:28px 0}
+.list .t,.list .s{grid-column:auto}
+.list .t{max-width:none}
+}
+</style>
+<style>/*linkstyle*/
+a{color:#0000EE;text-decoration:none}
+a:visited{color:#0000EE}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<main>
+<div class="cta hcta">
+<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><span data-l="en">Message me</span></a>
+<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank">Download CV</a>
+
+<a aria-label="LinkedIn" class="ic" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"></a>
+<a aria-label="GitHub" class="ic" href="https://github.com/denysosadchyi" rel="noopener" target="_blank"></a>
+</div>
+<div class="dark herowrap">
+<div class="langbar">
+<a class="langswitch" href="index-ua.html">Українською</a>
+</div>
+<section class="wrap hero3">
+<div class="hleft">
+<h1>
+<span class="fitlines">
+<span class="line1" data-l="en">Hi, I'm Denys,</span><br/>
+<span class="roleline" data-l="en">a <span class="rolewrap rw-left"><span class="gray">product designer</span></span> & <span class="rolewrap rw-right"><span class="di">design engineer</span></span>,</span><br/>
+<span data-l="en">and I <i class="y">build products,</i> not mockups</span>
+</span>
+</h1>
+<div class="sub chain" data-l="en"><span>Research</span><span>UX</span><span>Design systems</span><span>Production-ready code</span></div>
+
+</div>
+</section>
+<div class="ledger">
+<div class="wrap grid">
+<div class="fig rv"><div class="n">15+</div><div class="d"><span data-l="en">years of experience<br/>in product design</span></div></div>
+<div class="fig rv"><div class="n">5</div><div class="d"><span data-l="en">built <a href="https://github.com/denysosadchyi" rel="noopener" target="_blank">tools</a><br/>for designers</span></div></div>
+<div class="fig rv"><div class="n">10+</div><div class="d"><span data-l="en">products built<br/>from zero</span></div></div>
+</div>
+</div>
+</div>
+<section class="wrap block" id="work">
+<div class="workgrid"><article class="pv rv">
+<a class="thumb mock" href="case-layoutlab.html"><div class="mockscreen"><video autoplay="" loop="" muted="" playsinline="" poster="" preload="metadata" src="vid/ll-demo5.mp4?v=2"></video></div><img alt="" src="img/ll-mockup.webp"/></a>
+<div>
+<p class="meta"><b><span data-l="en">Product Designer + Design Engineer, contract</span></b></p>
+<h3><a href="case-layoutlab.html"><span data-l="en">LayoutLab: a tool for generating production-ready mockups</span></a></h3>
+<p class="nums"><span data-l="en"><i class="chip">a week → hours</i><i class="chip">263 screens in 2 months</i></span></p>
+<p><span data-l="en">I designed and built it solo. A brief goes in; editable screens built on the company's real production components come out, so what stakeholders approve is what ships.</span></p>
+<a class="open" href="case-layoutlab.html"><span data-l="en">View details</span></a>
+</div>
+</article>
+<article class="pv rv">
+<a class="thumb" href="case-splitmart.html"><img alt="SplitMart client landing, shipped" height="2160" loading="lazy" src="img/sm-cover.webp" width="3840"/></a>
+<div>
+<p class="meta"><b>Product Designer + Design Engineer</b></p>
+<h3><a href="case-splitmart.html"><span data-l="en">SplitMart: a redesign in code after a UX audit</span></a></h3>
+<p class="nums"><span data-l="en"><i class="chip">38 audit findings</i><i class="chip">303 screens</i></span></p>
+<p><span data-l="en">A fitness marketplace where clients pay per session. I started with a UX audit that showed where bookings leak, then redesigned web and native iOS and built the production React version. I designed everything directly in code.</span></p>
+<a class="open" href="case-splitmart.html"><span data-l="en">View details</span></a>
+</div>
+</article>
+<article class="pv rv">
+<a class="thumb" href="case-scalr.html"><img alt="Scalr product screens" height="2160" loading="lazy" src="img/sc-cover.webp" width="3840"/></a>
+<div>
+<p class="meta"><b>Senior Product Designer</b></p>
+<h3><a href="case-scalr.html"><span data-l="en">Scalr: product work and the design system</span></a></h3>
+<p class="nums"><span data-l="en"><i class="chip">design system from scratch</i><i class="chip">1,499→72 tokens</i><i class="chip">metrics from zero</i></span></p>
+<p><span data-l="en">I worked on staff at a DevOps automation platform. I ran product tasks across the platform — dashboards, observability, access, run detail — and assembled the design system from scratch alongside engineers.</span></p>
+<a class="open" href="case-scalr.html"><span data-l="en">View details</span></a>
+</div>
+</article>
+<article class="pv rv">
+<a class="thumb" href="case-aethra.html"><img alt="AETHRA Wire product screens" height="2080" loading="lazy" src="img/ae-cover.webp" width="2600"/></a>
+<div>
+<p class="meta"><b>Senior Product Designer</b></p>
+<h3><a href="case-aethra.html"><span data-l="en">AETHRA Wire: I designed an HR platform from scratch</span></a></h3>
+<p class="nums"><span data-l="en"><i class="chip">2 roles</i><i class="chip">0→1</i><i class="chip">Tailwind-ready design system</i></span></p>
+<p><span data-l="en">I got a stack of business requirements and turned it into a working product: mapped the information architecture, built the design system and designed every screen for both roles.</span></p>
+<a class="open" href="case-aethra.html"><span data-l="en">View details</span></a>
+</div>
+</article>
+<article class="pv rv">
+<a class="thumb" href="case-cosmediate.html"><img alt="Cosmediate product screens" height="2160" loading="lazy" src="img/co-cover.webp" width="3840"/></a>
+<div>
+<p class="meta"><b>Senior Product Designer</b></p>
+<h3><a href="case-cosmediate.html"><span data-l="en">Cosmediate: marketplace audit and redesign</span></a></h3>
+<p class="nums"><span data-l="en"><i class="chip">3 roles</i><i class="chip">full redesign</i><i class="chip">booking flow</i></span></p>
+<p><span data-l="en">I fully reworked a clinic-booking marketplace. Three roles lived like three different products, so I brought them onto one design system and rebuilt the booking flow to earn the patient's trust.</span></p>
+<a class="open" href="case-cosmediate.html"><span data-l="en">View details</span></a>
+</div>
+</article>
+<article class="pv rv">
+<div>
+<img alt="" class="toolicon" height="72" loading="lazy" src="img/figmosha-icon.webp"/>
+<p class="meta"><span data-l="en">I built this</span></p>
+<h3><a href="https://github.com/denysosadchyi/figmosha2" rel="noopener" target="_blank">figmosha2</a></h3>
+<p class="nums"><span data-l="en"><i class="chip">Python</i><i class="chip">CLI</i><i class="chip">WebSocket bridge</i></span></p>
+<p><span data-l="en">Drives Figma from the CLI / Claude Code via a local WebSocket bridge to a custom plugin — the Claude Code ↔ Figma bridge that powers MD Academy's courses and is used by designers across every cohort.</span></p>
+<a class="open" href="https://github.com/denysosadchyi/figmosha2" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
+</div>
+</article>
+<article class="pv rv">
+<div>
+<img alt="" class="toolicon" height="72" loading="lazy" src="img/ux-auditor-icon.webp"/>
+<p class="meta"><span data-l="en">I built this</span></p>
+<h3><a href="https://github.com/denysosadchyi/ux-auditor" rel="noopener" target="_blank">ux-auditor</a></h3>
+<p class="nums"><span data-l="en"><i class="chip">Claude Code skills</i><i class="chip">Playwright</i></span></p>
+<p><span data-l="en">A repeatable UX-audit toolkit: a bilingual playbook, Claude Code skills, and Playwright-driven capture — turning UX review into a reproducible, AI-assisted process.</span></p>
+<a class="open" href="https://github.com/denysosadchyi/ux-auditor" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
+</div>
+</article>
+<article class="pv rv">
+<div>
+<img alt="" class="toolicon" height="72" loading="lazy" src="img/styles-to-token-migration-icon.webp"/>
+<p class="meta"><span data-l="en">I built this</span></p>
+<h3><a href="https://github.com/denysosadchyi/styles-to-token-migration" rel="noopener" target="_blank">styles-to-token-migration</a></h3>
+<p class="nums"><span data-l="en"><i class="chip">Figma API</i><i class="chip">Variables</i></span></p>
+<p><span data-l="en">A pipeline for migrating Figma components from Paint Styles to semantic Variables — automating one of the most tedious, error-prone steps of design-system modernization.</span></p>
+<a class="open" href="https://github.com/denysosadchyi/styles-to-token-migration" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
+</div>
+</article>
+<article class="pv rv">
+<div>
+<img alt="" class="toolicon" height="72" loading="lazy" src="img/yamleer-icon.webp"/>
+<p class="meta"><span data-l="en">I built this</span></p>
+<h3><a href="https://github.com/denysosadchyi/yamleer" rel="noopener" target="_blank">yamleer</a></h3>
+<p class="nums"><span data-l="en"><i class="chip">YAML</i><i class="chip">no build step</i></span></p>
+<p><span data-l="en">A YAML-first design pipeline — tokens, blocks, primitives, and screens compile into standalone HTML and a storyboard. A layout/screen generator that turns a spec into rendered pages with no build step.</span></p>
+<a class="open" href="https://github.com/denysosadchyi/yamleer" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
+</div>
+</article>
+<article class="pv rv">
+<div>
+<img alt="" class="toolicon" height="72" loading="lazy" src="img/job-searcher-icon.webp"/>
+<p class="meta"><span data-l="en">I built this</span></p>
+<h3><a href="https://github.com/denysosadchyi/job-searcher" rel="noopener" target="_blank">job-searcher</a></h3>
+<p class="nums"><span data-l="en"><i class="chip">Python</i><i class="chip">Flask</i><i class="chip">autonomous agent</i></span></p>
+<p><span data-l="en">Automated job-board monitoring (Djinni, DOU, Work.ua) where AI scores each vacancy 1–10 against the user profile and surfaces results in a Flask dashboard. Claude Code runs as an autonomous agent that adds features overnight — I code-review every change before merge.</span></p>
+<a class="open" href="https://github.com/denysosadchyi/job-searcher" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
+</div>
+</article>
+</div>
+</section>
+<div aria-hidden="true" class="fullrule"></div>
+<section class="wrap block" id="xp">
+<div class="split">
+<h2 class="marker"><span data-l="en">Experience</span></h2>
+<ul class="xp rv">
+<li>
+<p class="yrs">2026</p>
+<div class="xr">
+<p class="xrole">Product Designer + Design Engineer</p>
+<p class="xco">Records Marine</p>
+</div>
+<p class="xnote"><span data-l="en">A 3-month contract: I built a mockup-generation tool and improved design processes in the design team.</span></p>
+</li>
+<li>
+<p class="yrs">2022–2026</p>
+<div class="xr">
+<p class="xrole">Senior Product Designer</p>
+<p class="xco">Scalr</p>
+</div>
+<p class="xnote"><span data-l="en">Staff, full-time. I held the design system of a Terraform automation platform for four years: I built it from scratch in Figma on tokens, moved it from a custom framework to Ant Design, wrote the documentation and supported frontend engineers through integration. I designed product features end-to-end in a team of 2–3 designers: from JTBD analysis and user feedback to concepts for complex DevOps workflows (workspaces, run pipelines, policies, environment structures).</span></p>
+</li>
+<li>
+<p class="yrs">2018–2023</p>
+<div class="xr">
+<p class="xrole"><span data-l="en">Founder &amp; Design Director</span></p>
+<p class="xco">Nerdfox Design</p>
+</div>
+<p class="xnote"><span data-l="en">My own agency: a team of 5 shipped 10+ products from zero for clients across the EU, UK and UAE. I closed it myself in 2023: I want to design products, not run a vendor.</span></p>
+</li>
+</ul>
+</div>
+</section>
+<div aria-hidden="true" class="fullrule"></div>
+<section class="wrap block" id="oss">
+<div class="split">
+<h2 class="marker"><span data-l="en">I teach designers</span></h2>
+<ul class="list">
+<li><div class="t"><a href="https://md-academy.design" rel="noopener" target="_blank">MD Academy</a><span class="tag"><span data-l="en">founder</span></span></div><div class="s"><span data-l="en">Live cohort courses that train experienced designers to run the full product pipeline with AI. Two sold-out cohorts; the Pro Max course is on its second run. The format is fixed, a set number of live lessons per cohort: it runs alongside a full-time role, not instead of one.</span></div></li>
+<li><div class="t"><span class="tt"><span data-l="en">Corporate mentoring</span></span></div><div class="s"><span data-l="en">I train the in-house design team of a large Ukrainian retailer 1:1 in AI-assisted design engineering.</span></div></li>
+<li><div class="t"><span class="tt"><span data-l="en">Conference talks</span></span></div><div class="s"><span data-l="en">I gave ~5 talks on design systems and AI-assisted development: UNIED / Planet of Design, SHIFT'26, TIRED community.</span></div></li>
+<li><div class="t"><span class="tt"><span data-l="en">Press</span></span></div><div class="s"><span data-l="en"><a href="https://dev.ua/news/vaibkodynh-1753770208" rel="noopener" target="_blank">dev.ua interviewed me</a> about AI-assisted development, and <a href="https://activecollab.com/blog/customer-stories/wonderful-software-solution-nerdfox-design" rel="noopener" target="_blank">ActiveCollab wrote a case study</a> about my agency's workflow.</span></div></li>
+</ul>
+</div>
+</section>
+</main>
+<footer class="dark foot" id="contact">
+<div class="wrap">
+<h2><span data-l="en">Hiring? <em>Let's talk.</em></span></h2>
+<p class="lede"><span data-l="en">I'm looking for a Senior Product Designer role in a product company.<br/>If you call it Design Engineer, that's me too.<br/>Remote · full-time · I answer fast.</span></p>
+<div class="cta">
+<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><span data-l="en">Message me</span></a>
+<a class="ghost" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank">LinkedIn</a>
+<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank">CV (PDF)</a>
+
+</div>
+</div>
+</footer>
+<script>
+(function(){
+var h1=document.querySelector('.hero3 h1');
+if(!h1)return;
+var fitlines=h1.querySelector('.fitlines')||h1;
+var roleline=h1.querySelector('.roleline');
+function fit(){
+h1.style.fontSize='';
+var cs=getComputedStyle(h1),lh=parseFloat(cs.lineHeight)||parseFloat(cs.fontSize)*1.2;
+var maxH=lh*3+2,size=parseFloat(cs.fontSize),guard=0;
+var reserved=2,maxW=h1.parentElement.clientWidth;
+function overflows(){
+return (fitlines.scrollHeight-reserved)>maxH||(roleline&&roleline.scrollWidth>maxW)||fitlines.scrollWidth>maxW;
+}
+while(overflows()&&size>16&&guard<80){size-=1;h1.style.fontSize=size+'px';guard++}
+}
+fit();
+window.addEventListener('resize',fit);
+})();
+(function(){
+var grid=document.querySelector('.workgrid');
+if(!grid)return;
+function masonry(){
+var items=Array.prototype.slice.call(grid.children);
+var gapX=32,gapY=96,cols=window.innerWidth<720?1:2;
+var colW=(grid.clientWidth-gapX*(cols-1))/cols;
+var colH=new Array(cols).fill(0);
+items.forEach(function(item){
+item.style.width=colW+'px';
+var c=colH.indexOf(Math.min.apply(null,colH));
+item.style.left=(c*(colW+gapX))+'px';
+item.style.top=colH[c]+'px';
+colH[c]+=item.offsetHeight+gapY;
+});
+grid.style.height=(Math.max.apply(null,colH)-gapY)+'px';
+}
+masonry();
+window.addEventListener('resize',masonry);
+window.addEventListener('load',masonry);
+})();
+</script>
+<script type="module" src="agentation.js"></script>
+<div class="cd-ov" hidden id="cdOv"></div>
+<aside aria-label="Case study" aria-modal="true" class="cd" hidden id="cd" role="dialog" tabindex="-1">
+<button class="cd-x" id="cdX" type="button"><span aria-hidden="true">×</span><span class="vh" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Close</span></button>
+<div class="cd-body" id="cdBody"></div>
+</aside>
+<script>
+(function(){
+var ov=document.getElementById('cdOv'),cd=document.getElementById('cd'),
+    box=document.getElementById('cdBody'),x=document.getElementById('cdX'),
+    seen=null,last=null,cur=null,home=location.pathname;
+var FOCUS='a[href],button,[tabindex]:not([tabindex="-1"])';
+
+function styles(doc){                       // pull in style blocks the host page lacks
+  if(!seen){seen={};[].forEach.call(document.querySelectorAll('style'),function(s){seen[s.textContent]=1})}
+  [].forEach.call(doc.querySelectorAll('head style'),function(s){
+    if(seen[s.textContent])return;
+    seen[s.textContent]=1;
+    document.head.appendChild(s.cloneNode(true));
+  });
+}
+
+function show(){
+  if(cur)return;
+  cur=1;last=document.activeElement;
+  var sb=window.innerWidth-document.documentElement.clientWidth;
+  if(sb>0)document.body.style.paddingRight=sb+'px';
+  document.body.classList.add('cd-lock');
+  ov.hidden=cd.hidden=false;
+  requestAnimationFrame(function(){ov.classList.add('on');cd.classList.add('on')});
+}
+
+function hide(pop){
+  if(!cur)return;
+  cur=null;
+  ov.classList.remove('on');cd.classList.remove('on');
+  setTimeout(function(){
+    ov.hidden=cd.hidden=true;box.innerHTML='';
+    document.body.classList.remove('cd-lock');document.body.style.paddingRight='';
+  },380);
+  if(last&&last.focus)last.focus();
+  if(!pop&&location.hash)history.pushState({cd:0},'',home);
+}
+
+function load(url,push){
+  show();
+  box.innerHTML='<div class="cd-load">…</div>';
+  box.scrollTop=0;
+  fetch(url).then(function(r){
+    if(!r.ok)throw 0;
+    return r.text();
+  }).then(function(html){
+    var doc=new DOMParser().parseFromString(html,'text/html'),main=doc.querySelector('main');
+    if(!main)throw 0;
+    styles(doc);
+    box.innerHTML='';box.appendChild(document.importNode(main,true));
+    box.setAttribute('data-src',url);
+    box.scrollTop=0;
+    if(doc.title)document.title=doc.title;
+    if(push)history.pushState({cd:url},'',home+'#case='+url);
+    x.focus();
+  })['catch'](function(){location.href=url});
+}
+
+document.addEventListener('click',function(e){
+  var a=e.target.closest?e.target.closest('a[href]'):null;
+  if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
+  var href=a.getAttribute('href')||'';
+  if(/^case-[\w-]+\.html$/.test(href)){e.preventDefault();load(href,1);return}
+  if(cur&&/^index(-ua)?\.html(#.*)?$/.test(href)){e.preventDefault();hide();}
+});
+
+x.addEventListener('click',function(){hide()});
+ov.addEventListener('click',function(){hide()});
+document.addEventListener('keydown',function(e){
+  if(!cur)return;
+  if(e.key==='Escape'){hide();return}
+  if(e.key!=='Tab')return;
+  var f=[].filter.call(cd.querySelectorAll(FOCUS),function(n){return n.offsetParent!==null});
+  if(!f.length)return;
+  var first=f[0],lastf=f[f.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();lastf.focus()}
+  else if(!e.shiftKey&&document.activeElement===lastf){e.preventDefault();first.focus()}
+});
+function fromHash(){
+  var m=location.hash.match(/^#case=(case-[\w-]+\.html)$/);
+  return m?m[1]:null;
+}
+window.addEventListener('popstate',function(){
+  var u=fromHash();
+  if(u)load(u,0);else hide(1);
+});
+window.openCase=function(u){load(u,1)};
+if(fromHash())load(fromHash(),0);
+})();
+</script>
+<script>
+/* The drawer injects case markup with innerHTML, so inline <script> tags inside
+   that markup never run. Initialise the strip paging here instead, and watch
+   the drawer body so it also covers cases loaded later. */
+(function(){
+var calm = matchMedia('(prefers-reduced-motion: reduce)');
+function init(strip){
+  if (strip.dataset.nav) return;
+  strip.dataset.nav = '1';
+  var uk = document.documentElement.lang === 'uk';
+  var L = uk ? ['Попередні екрани','Наступні екрани'] : ['Previous screens','Next screens'];
+  var nav = document.createElement('div');
+  nav.className = 'stripnav';
+  function make(dir, label, glyph){
+    var b = document.createElement('button');
+    b.type='button'; b.className='stripbtn'; b.innerHTML=glyph;
+    b.setAttribute('aria-label', label);
+    b.addEventListener('click', function(){
+      strip.scrollBy({left: dir*strip.clientWidth*0.8, behavior: calm.matches?'auto':'smooth'});
+    });
+    return b;
+  }
+  var prev=make(-1,L[0],'&#8592;'), next=make(1,L[1],'&#8594;');
+  nav.appendChild(prev); nav.appendChild(next);
+  strip.parentNode.insertBefore(nav, strip);
+  function sync(){
+    var max = strip.scrollWidth - strip.clientWidth - 1;
+    nav.hidden = max <= 0;
+    prev.disabled = strip.scrollLeft <= 0;
+    next.disabled = strip.scrollLeft >= max;
+  }
+  strip.addEventListener('scroll', sync, {passive:true});
+  addEventListener('resize', sync);
+  strip.querySelectorAll('img,video').forEach(function(m){
+    m.addEventListener('load', sync); m.addEventListener('loadedmetadata', sync);
+  });
+  sync();
+}
+function scan(){ document.querySelectorAll('.strip').forEach(init); }
+new MutationObserver(scan).observe(document.body, {childList:true, subtree:true});
+scan();
+})();
+</script>
+</body>
+</html>
