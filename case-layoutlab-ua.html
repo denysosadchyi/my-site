@@ -28,10 +28,14 @@ body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg
 <style>/*media*/
 /* one photo or video in a block: 860 wide, centred on a grey band that
    spans the page and keeps the same 48px inset as the text */
-.cimg,.shots,.strip-fig{margin:0 -48px 28px;padding:24px 48px;background:transparent;border-radius:0}
-.cimg>img,.cimg>video,.cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
-.cimg>figcaption{max-width:860px;margin-inline:auto}
-@media(max-width:600px){.cimg,.shots,.strip-fig{margin-inline:-24px;padding-inline:24px}}
+.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:rgba(17,17,17,.05)}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
+.cbody .cimg>figcaption{max-width:860px;margin-inline:auto}
+@media(max-width:600px){.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin-inline:-24px;padding-inline:24px}}
+/* the cover keeps the treatment it always had: noise band, full bleed, no 860 cap */
+main>.cimg{margin:0 0 28px}
+main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
+@media(max-width:600px){main>.cimg::after{margin:0 -24px}}
 </style>
 <style>/*sec*/
 /* Case section: heading, then lead left, expansion + fine print right. */
@@ -125,9 +129,9 @@ figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height
 /* everything above the hairline reads as one field: header + hero + cover.
    Negative inline margin equals the wrap padding, so the tint reaches the
    viewport edge without 100vw and its scrollbar overflow. */
-header,.chero{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
-.chero{margin-inline:-48px;padding-inline:48px}
-@media(max-width:600px){.chero{margin-inline:-24px;padding-inline:24px}}
+header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+.chero,main>.cimg{margin-inline:-48px;padding-inline:48px}
+@media(max-width:600px){.chero,main>.cimg{margin-inline:-24px;padding-inline:24px}}
 /* cover mockup: capped like the flat shots, closed by a full-bleed hairline.
    Negative margin equals the wrap padding, so the rule reaches the real viewport
    edge without 100vw (which would overflow by the scrollbar width). */
@@ -228,7 +232,7 @@ a:hover{text-decoration:underline}
 </figure>
 <h2 class="marker"><span data-l="uk" lang="uk">Пайплайн, а не промпт</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Білдер <i>ніколи не оцінює власну роботу</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk">Генератор макетів&nbsp;<i>ніколи не оцінює власну роботу</i>. Тому і не допускає помилок в роботі&nbsp;</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Я перетворив генерацію на дисциплінований процес із двома блокуючими людськими гейтами по краях автоматики.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Полишена сама на себе, модель оптимізує будь-який видимий їй проксі, тобто «рендериться 200» чи «typecheck зелений», і тихо будує з уяви. Бриф нормалізується в README як єдине джерело правди, проходить перевірку покриття і людський Flow-гейт; далі кожен екран іде через Plan, Build, Verify, незалежну критику і 14 детермінованих гейтів, і завершується вирішальним людським Visual-гейтом.</span></p>
