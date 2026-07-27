@@ -122,8 +122,7 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
 /* cover mockup: capped like the flat shots, closed by a full-bleed hairline.
    Negative margin equals the wrap padding, so the rule reaches the real viewport
    edge without 100vw (which would overflow by the scrollbar width). */
-main>.cimg>img{display:block;max-width:min(860px,100%);margin-inline:auto}
-main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
+main>main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
 @media(max-width:600px){main>.cimg::after{margin:0 -24px}}
 /* native scrollbar hidden; paging is driven by the buttons below */
 .strip{scrollbar-width:none;-ms-overflow-style:none}
@@ -137,6 +136,13 @@ main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:
 @media(prefers-reduced-motion:reduce){.stripbtn{transition:none}}
 /* horizontal mockup strips: bleed past the right gutter so the row visibly
    continues off-screen instead of pretending it ended */
+/* iPad shell drawn in CSS: bezel, screen, camera. No image asset, so it
+   scales with the video and stays crisp at any density. */
+.ipad{display:block;max-width:860px;margin-inline:auto;padding:2.1% 1.6%;box-sizing:border-box;background:linear-gradient(160deg,#3a3d42,#1b1d20 42%,#26282c);border-radius:34px;box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 18px 40px rgba(0,0,0,.18)}
+.ipad-screen{position:relative;overflow:hidden;line-height:0;background:#000;border-radius:18px;box-shadow:0 0 0 1px rgba(0,0,0,.55) inset}
+.ipad-screen>video,.ipad-screen>img{display:block;width:100%;height:auto;border:0;border-radius:0}
+.ipad::before{content:"";position:absolute;top:1.05%;left:50%;width:7px;height:7px;margin-left:-3.5px;background:#0d0e10;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,.09)}
+@media(max-width:600px){.ipad{border-radius:22px}.ipad-screen{border-radius:12px}}
 .strip-fig{position:relative;margin:0 0 28px}
 .strip{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;margin-right:-48px;padding:0 48px 6px 0}
 .strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:24px;scroll-snap-align:start}
@@ -144,8 +150,10 @@ main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:
 @media(max-width:600px){.strip{margin-right:-24px;padding-right:24px}}
 /* flat screen mockups: capped measure, retina source, hairline frame.
    Device mockups (the covers, outside .cbody) stay full-bleed. */
-.cbody .cimg:has(>img),.cbody .cimg:has(>video){max-width:860px;margin-inline:auto}
-.cbody .cimg>img,.cbody .cimg>video{width:100%;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1)}
+.cbody /* one screen or one video in a block: 860 wide, centred, on a band that spans the page */
+.cbody .cimg{padding-block:24px}
+.cbody .cbody .cimg>img,.cimg>video,.cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
+.cbody .cimg>figcaption{max-width:860px;margin-inline:auto}
 /* the one ornament: Charis SIL italic marks the words carrying the argument */
 .foot h2 em,.ia-role{font-family:'Charis SIL',serif;font-style:italic}
 .cnav{justify-content:space-between;padding-top:24px;border-top:1px solid #e2ddd6}
@@ -190,12 +198,16 @@ a:hover{text-decoration:underline}
 <div class="o"><div class="n"><span data-l="uk" lang="uk">Соло</span></div><p class="t"><span data-l="uk" lang="uk">Спроєктував і збудував інструмент сам за 2 місяці — продукт, дизайн-систему, архітектуру і код.</span></p></div>
 </div>
 </section>
-<figure class="cimg"><video src="vid/ll-demo1.mp4?v=2" autoplay muted loop playsinline preload="metadata"></video><figcaption>LayoutLab: панель задач і згенеровані екрани Records Marine поруч.</figcaption></figure>
+<figure class="cimg"><div class="ipad">
+<div class="ipad-screen">
+<video src="vid/ll-demo1.mp4?v=2" autoplay muted loop playsinline preload="metadata"></video>
+</div>
+</div><figcaption>LayoutLab: панель задач і згенеровані екрани Records Marine поруч.</figcaption></figure>
 <div class="cbody">
 <section class="sec">
 <h2 class="marker"><span data-l="uk" lang="uk">Головна ставка</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Цикл макетів скоротився <i>з тижня до годин</i>: 263 екрани у 33 задачах, зібрані з 1 293 реальних компонентів продукту.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk">Цикл макетів скоротився <i>з тижня до годин</i>: Протестовано на 263 екранах у 15 задачах</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Я зробив макет справжньою річчю: кожен екран це жива Next.js-сторінка, яка імпортує реальні компоненти продукту з read-only продакшн-джерела і рендерить їх на реальній темі.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Бізнесу були потрібні макети швидко й дешева ітерація, коли вимоги змінюються, а чекати тиждень на намальовані вручну екрани було вузьким місцем. AI-згенеровані макети мали власну пастку: вони виглядали добре, поки розробник не перезбирав їх у коді й не отримував щось інше. Тепер точність не питання старанності, а властивість конструкції, і ітерація йде промптом замість перемальовування.</span></p>
