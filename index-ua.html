@@ -26,7 +26,7 @@ body{font-family:'Onest',sans-serif}
 .ledger{margin-top:56px;margin-bottom:128px}
 .hero3 h1,.hero3 h1 *{font-weight:400}
 .hero3 h1{font-size:clamp(3.3rem,9.3vw,8rem);font-weight:400;line-height:100%}
-.hero3 h1 .y{color:#0000EE;font-style:italic;font-family:'Charis SIL',serif}
+.hero3 h1 .y{color:#145ae0;font-style:italic;font-family:'Charis SIL',serif}
 .hero3 h1 .line1{font-size:1.5em}
 .hero3 h1 .gray{color:#8a8a8a}
 .hero3 h1 .di{font-weight:400;font-style:italic;font-family:'Charis SIL',serif}
@@ -39,9 +39,9 @@ body{font-family:'Onest',sans-serif}
 .hero3 .sub.chain span:not(:first-child)::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#9b918a;margin-right:16px;vertical-align:middle}
 .cta.hcta{font-size:24px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px;margin-top:48px}
 .cta.hcta .btn,.cta.hcta .ghost{border:1px solid currentColor;border-radius:999px;padding:0 24px;background:transparent;height:47px;display:inline-flex;align-items:center;justify-content:center;font-size:18px;transition:background .15s,color .15s}
-.cta.hcta .btn:hover,.cta.hcta .ghost:hover{text-decoration:none;background:#0000EE;color:#fff}
-main{position:relative}
-.langbar{position:absolute;top:24px;right:24px}
+.cta.hcta .btn:hover,.cta.hcta .ghost:hover{text-decoration:none;background:#145ae0;color:#fff}
+main{position:static}
+.langbar{position:absolute;top:16px;right:16px;z-index:40}
 .ledger .wrap.grid{display:flex;justify-content:center;flex-wrap:wrap;gap:96px;text-align:center}
 .ledger .fig,.ledger .fig *{white-space:nowrap}
 .ledger .fig .n{font-size:40px;font-style:italic;font-family:'Charis SIL',serif}
@@ -53,7 +53,9 @@ body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg
 .workgrid .pv{position:absolute;top:0;margin:0}
 .pv .thumb{display:block;margin-bottom:0}
 .pv .thumb img,.pv .thumb video{width:100%;height:auto;display:block}
-.pv>div{background:rgba(255,255,255,.5);padding:24px}
+.pv>div{background:rgba(255,255,255,.5);padding:24px;border-radius:24px;transition:background .2s ease-out}
+.pv:hover>div{background:#fff}
+@media(prefers-reduced-motion:reduce){.pv>div{transition:none}}
 .pv h3{font-size:32px;margin:12px 0;font-weight:400}
 .pv .nums span{display:flex;flex-wrap:wrap;gap:12px}
 .pv .nums .chip:not(:first-child)::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#9b918a;margin-right:12px;vertical-align:middle}
@@ -93,7 +95,13 @@ header nav,.cnav,.cta{display:flex;flex-wrap:wrap;align-items:center;gap:24px}
 .cnav{gap:32px}
 .wordmark{font-size:1.0625rem;font-weight:500;letter-spacing:-.01em}
 header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:0}
-.langbar .langswitch{font-size:1rem}/* hero-area switcher stays as it was */
+/* small outlined button, same idiom as the hero buttons at a smaller size */
+.pv .open{display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border:1px solid currentColor;border-radius:999px;transition:background .15s,color .15s,border-color .15s}
+.pv .open:hover{background:#145ae0;border-color:#145ae0;color:#fff;text-decoration:none}
+@media(prefers-reduced-motion:reduce){.pv .open{transition:none}}
+.langswitch{display:inline-block;line-height:0}
+.langswitch img{display:block;width:24px;height:auto}
+/* hero-area switcher stays as it was */
 .open,.wordmark{font-weight:500}
 /* case hero */
 .chero{padding-top:56px}
@@ -155,20 +163,27 @@ figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height
 .cd-ov{position:fixed;inset:0;z-index:80;background:rgba(17,17,17,.42);opacity:0;transition:opacity .3s ease-out}
 .cd-ov.on{opacity:1}
 .cd{position:fixed;inset:8px;z-index:90;display:flex;flex-direction:column;background:#fbfaf8;border:1px solid #e2ddd6;border-radius:32px;overflow:hidden;opacity:0;transform:scale(.985);transition:opacity .24s ease-out,transform .32s cubic-bezier(.22,1,.36,1)}
-.cd.on{opacity:1;transform:none}
+.cd.on{opacity:1;transform:none;pointer-events:auto}
+/* .cd{display:flex} beats the UA [hidden]{display:none}, so the invisible
+   panel used to sit over the page and swallow every click */
+.cd[hidden]{display:none}
+.cd:not(.on){pointer-events:none}
+.cd-ov[hidden]{display:none}
 .cd-body{flex:1;overflow-y:auto;overscroll-behavior:contain}
 /* Chrome ignores ::-webkit-scrollbar as soon as scrollbar-width is set,
    so the standard properties are fenced off for engines without the pseudo */
-@supports not selector(::-webkit-scrollbar){.cd-body{scrollbar-width:thin;scrollbar-color:rgba(17,17,17,.25) transparent}}
+/* the native bar would take layout width, so it is hidden and a thumb is
+   drawn over the panel instead: it floats, the content keeps the full width */
+.cd-body{scrollbar-width:none;-ms-overflow-style:none}
+.cd-sb{position:absolute;top:10px;right:6px;bottom:10px;width:6px;z-index:3;pointer-events:none;opacity:0;transition:opacity .3s ease-out}
+.cd-sb.on{opacity:1}
+.cd-sb>i{position:absolute;left:0;width:100%;min-height:32px;background:rgba(17,17,17,.28);border-radius:999px}
+@media(prefers-reduced-motion:reduce){.cd-sb{transition:none}}
 /* the 3px transparent border is what gives the thumb its inset pill shape;
    background-clip keeps the paint inside that border */
-.cd-body::-webkit-scrollbar{width:12px}
-.cd-body::-webkit-scrollbar-track{background:transparent}
-.cd-body::-webkit-scrollbar-thumb{background:rgba(17,17,17,.22);background-clip:content-box;border:3px solid transparent;border-radius:999px}
-.cd-body::-webkit-scrollbar-thumb:hover{background:rgba(17,17,17,.42);background-clip:content-box}
 .cd-x{position:absolute;top:20px;right:24px;z-index:95;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:22px;line-height:1;color:#111;background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:999px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.1);transition:background .15s,color .15s,border-color .15s}
-.cd-x:hover{background:#0000EE;border-color:#0000EE;color:#fff}
-.cd-x:focus-visible{outline:2px solid #0000EE;outline-offset:3px}
+.cd-x:hover{background:#145ae0;border-color:#145ae0;color:#fff}
+.cd-x:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
 .cd .chero{padding-top:88px}
 /* section headings run to the popup's own left edge; the panel is square
    on that side so the type and the container share one vertical line */
@@ -195,10 +210,33 @@ body.cd-lock{overflow:hidden}
 .list .t{max-width:none}
 }
 </style>
+<style>/*chrome*/
+/* section separators, previously empty divs */
+.fullrule{height:1px;margin:0;background:#e2ddd6}
+/* the two social links carried an aria-label but no content, so nothing rendered */
+.ic{display:inline-flex;align-items:center;justify-content:center;width:47px;height:47px;color:inherit;border:1px solid currentColor;border-radius:999px;transition:background .15s,color .15s,border-color .15s}
+.ic:hover{background:#145ae0;border-color:#145ae0;color:#fff;text-decoration:none}
+.ic svg{width:20px;height:20px}
+/* closing band: the markup always carried .dark, it just never had a rule */
+.foot{background:#111;color:#fbfaf8}
+.foot h2{color:#fbfaf8}
+.foot .lede{color:rgba(251,250,248,.72)}
+.foot a,.foot a:visited{color:#fbfaf8}
+.foot .cta{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.foot .cta .btn,.foot .cta .ghost{display:inline-flex;align-items:center;justify-content:center;height:47px;padding:0 24px;font-size:18px;border:1px solid #fbfaf8;border-radius:999px;transition:background .15s,color .15s}
+.foot .cta .btn{background:#fbfaf8;color:#111}
+.foot .cta .btn:hover{background:transparent;color:#fbfaf8;text-decoration:none}
+.foot .cta .ghost:hover{background:#fbfaf8;color:#111;text-decoration:none}
+@media(prefers-reduced-motion:reduce){.ic,.foot .cta .btn,.foot .cta .ghost{transition:none}}
+</style>
+<style>/*lang*/
+/* language switch is an icon button; the language name stays for screen readers */
+.langswitch .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
 <style>/*linkstyle*/
-a{color:#0000EE;text-decoration:none}
-a:visited{color:#0000EE}
-a:hover{text-decoration:underline}
+a{color:#145ae0;text-decoration:none}
+a:visited{color:#145ae0}
+a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(20,90,224,.5);text-underline-offset:3px}
 </style>
 </head>
 <body>
@@ -207,12 +245,12 @@ a:hover{text-decoration:underline}
 <a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><span data-l="uk" lang="uk">Написати</span></a>
 
 <a class="ghost" data-l="uk" href="cv-ua.pdf" lang="uk" rel="noopener" target="_blank">Скачати CV</a>
-<a aria-label="LinkedIn" class="ic" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"></a>
-<a aria-label="GitHub" class="ic" href="https://github.com/denysosadchyi" rel="noopener" target="_blank"></a>
+<a aria-label="LinkedIn" class="ic" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 5a2 2 0 1 1-4-.002a2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg></a>
+<a aria-label="GitHub" class="ic" href="https://github.com/denysosadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg></a>
 </div>
 <div class="dark herowrap">
 <div class="langbar">
-<a class="langswitch" href="index.html">English</a>
+<a class="langswitch" href="index.html" hreflang="en" aria-label="English" title="English"><img alt="English" src="img/flag-us.svg" width="24" height="18"/></a>
 </div>
 <section class="wrap hero3">
 <div class="hleft">
@@ -240,7 +278,7 @@ a:hover{text-decoration:underline}
 <a class="thumb mock" href="case-layoutlab-ua.html"><div class="mockscreen"><video autoplay="" loop="" muted="" playsinline="" poster="" preload="metadata" src="vid/ll-demo5.mp4?v=2"></video></div><img alt="" src="img/ll-mockup.webp"/></a>
 <div>
 <p class="meta"><b><span data-l="uk" lang="uk">Product Designer + Design Engineer, контракт</span></b></p>
-<h3><a href="case-layoutlab-ua.html"><span data-l="uk" lang="uk">LayoutLab: тулза для генерації продакшн-реді макетів</span></a></h3>
+<h3><a href="case-layoutlab-ua.html"><span data-l="uk" lang="uk">LayoutLab: зробив генератор макетів, який пришвидшив дизайн в 7 раз</span></a></h3>
 <p class="nums"><span data-l="uk" lang="uk"><i class="chip">тиждень → години</i><i class="chip">263 екрани за 2 місяці</i></span></p>
 <p><span data-l="uk" lang="uk">Спроєктував і збудував її самостійно. На вході бриф, на виході редаговані екрани на реальних продакшн-компонентах компанії: що погодили, те і йде в продакшн.</span></p>
 <a class="open" href="case-layoutlab-ua.html"><span data-l="uk" lang="uk">Дивитися деталі</span></a>
@@ -260,7 +298,7 @@ a:hover{text-decoration:underline}
 <a class="thumb" href="case-scalr-ua.html"><img alt="Scalr product screens" height="2160" loading="lazy" src="img/sc-cover.webp" width="3840"/></a>
 <div>
 <p class="meta"><b>Senior Product Designer</b></p>
-<h3><a href="case-scalr-ua.html"><span data-l="uk" lang="uk">Scalr: продуктові задачі і дизайн-система</span></a></h3>
+<h3><a href="case-scalr-ua.html"><span data-l="uk" lang="uk">Scalr: дизайн система, продуктові задачі</span></a></h3>
 <p class="nums"><span data-l="uk" lang="uk"><i class="chip">дизайн-система з нуля</i><i class="chip">1,499→72 токени</i><i class="chip">метрики з нуля</i></span></p>
 <p><span data-l="uk" lang="uk">Працював у штаті платформи автоматизації DevOps. Вів продуктові задачі по всій платформі — дашборди, спостережуваність, доступи, деталі запусків — і зібрав дизайн-систему з нуля поруч з інженерами.</span></p>
 <a class="open" href="case-scalr-ua.html"><span data-l="uk" lang="uk">Дивитися деталі</span></a>
@@ -292,7 +330,7 @@ a:hover{text-decoration:underline}
 <p class="meta"><span data-l="uk" lang="uk">Я зробив</span></p>
 <h3><a href="https://github.com/denysosadchyi/figmosha2" rel="noopener" target="_blank">figmosha2</a></h3>
 <p class="nums"><span data-l="uk" lang="uk"><i class="chip">Python</i><i class="chip">CLI</i><i class="chip">WebSocket-міст</i></span></p>
-<p><span data-l="uk" lang="uk">Керує Figma з CLI / Claude Code через локальний WebSocket-міст до кастомного плагіна — той самий міст Claude Code ↔ Figma, на якому тримаються курси MD Academy, і яким користуються дизайнери в кожному потоці.</span></p>
+<p><span data-l="uk" lang="uk">Дизайнер може будувати напряму із АІ агента дизайн в Figma: компоненти, дизайн система, сторінки. Також може робити аудит дизайн-систем, вносити зміни на готові макети</span></p>
 <a class="open" href="https://github.com/denysosadchyi/figmosha2" rel="noopener" target="_blank"><span data-l="uk" lang="uk">Дивитися на GitHub</span></a>
 </div>
 </article>
@@ -441,10 +479,11 @@ window.addEventListener('load',masonry);
 <aside aria-label="Кейс" aria-modal="true" class="cd" hidden id="cd" role="dialog" tabindex="-1">
 <button class="cd-x" id="cdX" type="button"><span aria-hidden="true">×</span><span class="vh" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Закрити</span></button>
 <div class="cd-body" id="cdBody"></div>
+<div aria-hidden="true" class="cd-sb" id="cdSb"><i></i></div>
 </aside>
 <script>
 (function(){
-var ov=document.getElementById('cdOv'),cd=document.getElementById('cd'),
+var ov=document.getElementById('cdOv'),cd=document.getElementById('cd'),sb=document.getElementById('cdSb'),
     box=document.getElementById('cdBody'),x=document.getElementById('cdX'),
     seen=null,last=null,cur=null,home=location.pathname;
 var FOCUS='a[href],button,[tabindex]:not([tabindex="-1"])';
@@ -493,7 +532,7 @@ function load(url,push){
     styles(doc);
     box.innerHTML='';box.appendChild(document.importNode(main,true));
     box.setAttribute('data-src',url);
-    box.scrollTop=0;
+    box.scrollTop=0;sync();
     if(doc.title)document.title=doc.title;
     if(push)history.pushState({cd:url},'',home+'#case='+url);
     x.focus();
@@ -528,6 +567,22 @@ window.addEventListener('popstate',function(){
   var u=fromHash();
   if(u)load(u,0);else hide(1);
 });
+
+var sbHide;
+function sync(){
+  if(!sb)return;
+  var h=box.clientHeight, sh=box.scrollHeight;
+  if(sh<=h+1){sb.classList.remove('on');return}
+  var track=sb.clientHeight, thumb=Math.max(32,track*h/sh);
+  var top=(track-thumb)*(box.scrollTop/(sh-h));
+  var i=sb.firstElementChild;
+  i.style.height=thumb+'px'; i.style.top=top+'px';
+  sb.classList.add('on');
+  clearTimeout(sbHide);
+  sbHide=setTimeout(function(){sb.classList.remove('on')},900);
+}
+box.addEventListener('scroll',sync,{passive:true});
+window.addEventListener('resize',sync);
 window.openCase=function(u){load(u,1)};
 if(fromHash())load(fromHash(),0);
 })();
