@@ -9,6 +9,7 @@ editor lives in the site files and nothing can be deployed by accident.
 import json
 import os
 import re
+import subprocess
 import sys
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
@@ -92,7 +93,21 @@ class Handler(SimpleHTTPRequestHandler):
             open(os.path.join(BACKUPS, name), "w", encoding="utf-8").write(
                 open(path, encoding="utf-8").read())
             open(path, "w", encoding="utf-8").write(src)
+            commit(name, applied)
         return {"ok": not skipped, "file": name, "applied": applied, "skipped": skipped}
+
+
+def commit(name, applied):
+    """One commit per save, so every inline edit is a named, revertable step."""
+    if not os.path.isdir(os.path.join(ROOT, ".git")):
+        return
+    word = "fragment" if applied == 1 else "fragments"
+    try:
+        subprocess.run(["git", "-C", ROOT, "add", "--", name], check=True, capture_output=True)
+        subprocess.run(["git", "-C", ROOT, "commit", "-q", "-m",
+                        f"edit {name}: {applied} {word}"], check=True, capture_output=True)
+    except Exception as exc:                                      # noqa: BLE001
+        print("git commit failed:", exc)
 
 
 EDIT_JS = r"""

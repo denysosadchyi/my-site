@@ -156,7 +156,10 @@ figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height
 .cd-ov.on{opacity:1}
 .cd{position:fixed;inset:8px;z-index:90;display:flex;flex-direction:column;background:#fbfaf8;border:1px solid #e2ddd6;border-radius:32px;overflow:hidden;opacity:0;transform:scale(.985);transition:opacity .24s ease-out,transform .32s cubic-bezier(.22,1,.36,1)}
 .cd.on{opacity:1;transform:none}
-.cd-body{flex:1;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(17,17,17,.25) transparent}
+.cd-body{flex:1;overflow-y:auto;overscroll-behavior:contain}
+/* Chrome ignores ::-webkit-scrollbar as soon as scrollbar-width is set,
+   so the standard properties are fenced off for engines without the pseudo */
+@supports not selector(::-webkit-scrollbar){.cd-body{scrollbar-width:thin;scrollbar-color:rgba(17,17,17,.25) transparent}}
 /* the 3px transparent border is what gives the thumb its inset pill shape;
    background-clip keeps the paint inside that border */
 .cd-body::-webkit-scrollbar{width:12px}
