@@ -15,7 +15,8 @@ body{font-family:'Onest',sans-serif}
 </style>
 <style>/*compare*/
 .cmp{position:relative;display:block;margin:0 0 28px;--cmp:50%}
-.cmp-imgs{position:relative;display:block;overflow:hidden;line-height:0}
+.cimg.cmp{max-width:860px;margin-inline:auto}
+.cmp-imgs{position:relative;display:block;overflow:hidden;line-height:0;box-sizing:border-box;border:1px solid rgba(0,0,0,.1);border-radius:24px}
 .cmp-imgs img{display:block;width:100%;height:auto}
 .cmp-imgs .cmp-top{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;clip-path:inset(0 calc(100% - var(--cmp)) 0 0)}
 .cmp-line{position:absolute;top:0;bottom:0;left:var(--cmp);width:2px;margin-left:-1px;background:#fbfaf8;pointer-events:none}
@@ -26,7 +27,7 @@ body{font-family:'Onest',sans-serif}
 .cmp-r:focus-visible{outline:2px solid #0000EE;outline-offset:3px}
 </style>
 <style>/*shots*/
-.shots{display:grid;gap:16px;margin:0 0 28px}
+.shots{display:grid;gap:16px}
 .shots-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .shots-3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
 .shots-4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
@@ -38,6 +39,19 @@ body{font-family:'Onest',sans-serif}
 </style>
 <style>/*pagebg*/
 body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+</style>
+<style>/*media*/
+/* one photo or video in a block: 860 wide, centred on a grey band that
+   spans the page and keeps the same 48px inset as the text */
+.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:rgba(17,17,17,.05)}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
+.cbody .cimg>figcaption{max-width:860px;margin-inline:auto;text-align:center}
+.strip-fig:has(.strip>:only-child)>figcaption{max-width:860px;margin-inline:auto;text-align:center}
+@media(max-width:600px){.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin-inline:-24px;padding-inline:24px}}
+/* the cover keeps the treatment it always had: noise band, full bleed, no 860 cap */
+main>.cimg{margin:0 0 28px}
+main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
+@media(max-width:600px){main>.cimg::after{margin:0 -24px}}
 </style>
 <style>/*sec*/
 /* Case section: heading, then lead left, expansion + fine print right. */
@@ -113,7 +127,6 @@ header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing
 .cbody ul{margin:0 0 20px;padding-left:1.2em}
 .cbody li{margin:0 0 10px}
 .cres .r{font-weight:600}
-.cimg{margin:0 0 28px}
 .iagrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px 72px;align-items:start;margin:0 0 8px;padding:clamp(24px,3vw,44px);background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");border-radius:24px}
 .ia-role{margin:0 0 18px;font-size:1.375rem;font-weight:400;line-height:1.2;letter-spacing:0;color:#0000EE}
 .cbody .ia-list{margin:0;padding:0 0 0 22px;list-style:none}
@@ -154,8 +167,6 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
 /* cover mockup: capped like the flat shots, closed by a full-bleed hairline.
    Negative margin equals the wrap padding, so the rule reaches the real viewport
    edge without 100vw (which would overflow by the scrollbar width). */
-main>.cimg>img{display:block;max-width:min(860px,100%);margin-inline:auto}
-main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
 @media(max-width:600px){main>.cimg::after{margin:0 -24px}}
 /* native scrollbar hidden; paging is driven by the buttons below */
 .strip{scrollbar-width:none;-ms-overflow-style:none}
@@ -169,15 +180,14 @@ main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:
 @media(prefers-reduced-motion:reduce){.stripbtn{transition:none}}
 /* horizontal mockup strips: bleed past the right gutter so the row visibly
    continues off-screen instead of pretending it ended */
-.strip-fig{position:relative;margin:0 0 28px}
+.strip-fig{position:relative}
 .strip{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;margin-right:-48px;padding:0 48px 6px 0}
 .strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:24px;scroll-snap-align:start}
 .strip:focus-visible{outline:2px solid #0000EE;outline-offset:4px}
 @media(max-width:600px){.strip{margin-right:-24px;padding-right:24px}}
 /* flat screen mockups: capped measure, retina source, hairline frame.
    Device mockups (the covers, outside .cbody) stay full-bleed. */
-.cbody .cimg:has(>img),.cbody .cimg:has(>video){max-width:860px;margin-inline:auto}
-.cbody .cimg>img,.cbody .cimg>video{width:100%;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1)}
+.cbody /* one screen or one video in a block: 860 wide, centred, on a band that spans the page */
 /* the one ornament: Charis SIL italic marks the words carrying the argument */
 .foot h2 em,.ia-role{font-family:'Charis SIL',serif;font-style:italic}
 .cnav{justify-content:space-between;padding-top:24px;border-top:1px solid #e2ddd6}
@@ -297,7 +307,7 @@ a:hover{text-decoration:underline}
 </figure>
 <h2 class="marker"><span data-l="uk" lang="uk">Роль Worker</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Worker має знати, що попереду, і <i>повідомити, коли щось пішло не так</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk">Робітник має знати, що розпорядок дня на сьогодні, і <i>повідомити, коли щось пішло не так</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Найбільш процесна частина це репортинг відсутності, і він тягне за собою реальні комплаєнс-наслідки.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">48-годинний таймер на завантаження медичних документів лишається видимим і постійним, щоб його неможливо було пропустити, терміновий, але не тривожний. Решта потреб вужчі: побачити графік, керувати документами, тримати профіль в порядку.</span></p>
