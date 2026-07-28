@@ -164,6 +164,16 @@ figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height
 .cd-ov.on{opacity:1}
 .cd{position:fixed;inset:8px;z-index:90;display:flex;flex-direction:column;background:#fbfaf8;border:1px solid #e2ddd6;border-radius:32px;overflow:hidden;opacity:0;transform:scale(.985);transition:opacity .24s ease-out,transform .32s cubic-bezier(.22,1,.36,1)}
 .cd.on{opacity:1;transform:none;pointer-events:auto}
+/* opening from a card: the panel is clipped to that card's rectangle and
+   unfolds to full size, so the case grows out of the thing you clicked */
+.cd.grow{animation:cdgrow .58s cubic-bezier(.16,1,.3,1) both}
+@keyframes cdgrow{
+from{clip-path:inset(var(--gt,40%) var(--gr,40%) var(--gb,40%) var(--gl,40%) round 24px)}
+to{clip-path:inset(0 round 32px)}}
+.cd.grow .cd-body>*{animation:cdrise .5s .12s cubic-bezier(.16,1,.3,1) both}
+@keyframes cdrise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+.cd.grow,.cd.grow .cd-body>*{animation:none}}
 /* .cd{display:flex} beats the UA [hidden]{display:none}, so the invisible
    panel used to sit over the page and swallow every click */
 .cd[hidden]{display:none}
@@ -238,13 +248,62 @@ a{color:#145ae0;text-decoration:none}
 a:visited{color:#145ae0}
 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(20,90,224,.5);text-underline-offset:3px}
 </style>
+<style>/*candy*/
+/* candy gloss (vengenceui) on our own geometry: heights, 999px pills and
+   paddings all stay as they were, only the surface changes.
+   Black is the default; the CV links are the blue one. */
+.cta.hcta .btn,.cta.hcta .ghost,.cta.hcta .ic,.foot .cta .btn,.foot .cta .ghost,.pv .open{
+position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+color:#fff;font-weight:600;letter-spacing:.02em;
+border:1px solid #5a5a5a;
+background:radial-gradient(95% 60% at 50% 75%,#000 0%,#3d3d3d 100%);
+box-shadow:inset 0 1px 8px -4px #fff;
+transition:background .2s ease-out,filter .2s ease-out,transform .2s ease-out}
+/* the glassy reflection across the top edge */
+.cta.hcta .btn::after,.cta.hcta .ghost::after,.cta.hcta .ic::after,.foot .cta .btn::after,.foot .cta .ghost::after,.pv .open::after{
+content:"";position:absolute;top:1px;right:10%;width:60%;height:1px;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent)}
+/* brightness() cannot lift pure black, so the black hover swaps the ramp */
+.cta.hcta .btn:hover,.cta.hcta .ghost:hover,.cta.hcta .ic:hover,.foot .cta .btn:hover,.foot .cta .ghost:hover,.pv .open:hover{
+color:#fff;text-decoration:none;border-color:#6e6e6e;
+background:radial-gradient(95% 60% at 50% 75%,#1c1c1c 0%,#565656 100%)}
+.cta.hcta .btn:active,.cta.hcta .ghost:active,.cta.hcta .ic:active,.foot .cta .btn:active,.foot .cta .ghost:active,.pv .open:active{transform:scale(.95) rotate(1deg)}
+.cta.hcta .btn:focus-visible,.cta.hcta .ghost:focus-visible,.cta.hcta .ic:focus-visible,.foot .cta .btn:focus-visible,.foot .cta .ghost:focus-visible,.pv .open:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
+/* only the telegram button is blue; everything else stays black */
+.cta.hcta .btn,.foot .cta .btn{border-color:#54a1fd;
+background:radial-gradient(95% 60% at 50% 75%,#005fd6 0%,#209bff 100%);
+box-shadow:inset 0 1px 8px -4px #fff}
+.cta.hcta .btn:hover,.foot .cta .btn:hover{border-color:#54a1fd;filter:brightness(1.1);
+background:radial-gradient(95% 60% at 50% 75%,#005fd6 0%,#209bff 100%)}
+.cta .btn svg,.cta .ghost svg{width:18px;height:18px;flex:none}
+@media(prefers-reduced-motion:reduce){
+.cta.hcta .btn,.cta.hcta .ghost,.cta.hcta .ic,.foot .cta .btn,.foot .cta .ghost,.pv .open{transition:none}
+.cta.hcta .btn:active,.cta.hcta .ghost:active,.cta.hcta .ic:active,.foot .cta .btn:active,.foot .cta .ghost:active,.pv .open:active{transform:none}}
+</style>
+<style>/*liquid*/
+/* liquid text on hover over the blue phrase in the hero.
+   ponytail: the original is a three.js shader that renders the words into a
+   canvas texture and bends a mesh toward the pointer. That would mean a WebGL
+   dependency plus replacing real text with a canvas, which kills the font
+   fitting, selection and SEO. Same wobble here from an SVG displacement map,
+   no dependency, the text stays text. Tune with scale= on feDisplacementMap. */
+.hero3 h1 .y{display:inline-block}
+@media(hover:hover){.hero3 h1 .y:hover{filter:url(#liquid)}}
+</style>
+<style>/*footcenter*/
+/* closing band centred: the two measures keep their max-width, they just get
+   auto margins so the ragged edges sit either side of the middle */
+.foot .wrap{text-align:center}
+.foot h2,.foot .lede{margin-left:auto;margin-right:auto}
+.foot .cta{justify-content:center}
+</style>
 </head>
 <body>
 <main>
 <div class="cta hcta">
-<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><span data-l="uk" lang="uk">Написати</span></a>
+<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.42 15.18l-.4 5.58c.57 0 .82-.24 1.11-.53l2.66-2.55l5.52 4.04c1.01.56 1.73.27 2-.93L23.93 3.82c.32-1.5-.54-2.08-1.53-1.71L1.11 10.26c-1.45.56-1.43 1.37-.25 1.74l5.44 1.69L18.56 5.79c.59-.39 1.12-.17.68.22z" fill="currentColor"/></svg><span data-l="uk" lang="uk">Написати</span></a>
 
-<a class="ghost" data-l="uk" href="cv-ua.pdf" lang="uk" rel="noopener" target="_blank">Скачати CV</a>
+<a class="ghost" data-l="uk" href="cv-ua.pdf" lang="uk" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Скачати CV</a>
 <a aria-label="LinkedIn" class="ic" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 5a2 2 0 1 1-4-.002a2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg></a>
 <a aria-label="GitHub" class="ic" href="https://github.com/denysosadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg></a>
 </div>
@@ -289,7 +348,7 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 <div>
 <p class="meta"><b>Product Designer + Design Engineer</b></p>
 <h3><a href="case-splitmart-ua.html"><span data-l="uk" lang="uk">SplitMart: редизайн у коді після UX-аудиту</span></a></h3>
-<p class="nums"><span data-l="uk" lang="uk"><i class="chip">38 знахідок аудиту</i><i class="chip">303 екрани</i></span></p>
+<p class="nums"><span data-l="uk" lang="uk"><i class="chip">37 знахідок аудиту</i><i class="chip">303 екрани</i></span></p>
 <p><span data-l="uk" lang="uk">Фітнес-маркетплейс з оплатою за сесію. Почав з UX-аудиту, який показав, де губляться бронювання. Потім переробив web і нативний iOS та зібрав продакшн-версію на React. Усе спроєктував прямо в коді.</span></p>
 <a class="open" href="case-splitmart-ua.html"><span data-l="uk" lang="uk">Дивитися деталі</span></a>
 </div>
@@ -423,13 +482,12 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 </main>
 <footer class="dark foot" id="contact">
 <div class="wrap">
-<h2><span data-l="uk" lang="uk">Наймаєте? <em>Напишіть.</em></span></h2>
+<h2><span data-l="uk" lang="uk">Наймаєте? <em>Напишіть мені!</em></span></h2>
 <p class="lede"><span data-l="uk" lang="uk">Шукаю роль Senior Product Designer у продуктовій компанії.<br/>Якщо у вас це називається Design Engineer, це теж я.<br/>Remote · full-time · відповідаю швидко.</span></p>
 <div class="cta">
-<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><span data-l="uk" lang="uk">Написати</span></a>
-<a class="ghost" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank">LinkedIn</a>
+<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.42 15.18l-.4 5.58c.57 0 .82-.24 1.11-.53l2.66-2.55l5.52 4.04c1.01.56 1.73.27 2-.93L23.93 3.82c.32-1.5-.54-2.08-1.53-1.71L1.11 10.26c-1.45.56-1.43 1.37-.25 1.74l5.44 1.69L18.56 5.79c.59-.39 1.12-.17.68.22z" fill="currentColor"/></svg><span data-l="uk" lang="uk">Написати</span></a>
 
-<a class="ghost" data-l="uk" href="cv-ua.pdf" lang="uk" rel="noopener" target="_blank">CV (PDF)</a>
+<a class="ghost" data-l="uk" href="cv-ua.pdf" lang="uk" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>CV (PDF)</a>
 </div>
 </div>
 </footer>
@@ -497,20 +555,38 @@ function styles(doc){                       // pull in style blocks the host pag
   });
 }
 
-function show(){
+function origin(el){
+  if(!el||!el.getBoundingClientRect)return;
+  var r=el.getBoundingClientRect(),W=innerWidth,H=innerHeight,pad=8;
+  if(!r.width||!r.height)return;
+  // an off-screen origin would unfold from nowhere, so fall back to a plain fade
+  if(r.bottom<40||r.top>H-40||r.right<40||r.left>W-40)return;
+  cd.style.setProperty('--gt',Math.max(0,r.top-pad)+'px');
+  cd.style.setProperty('--gl',Math.max(0,r.left-pad)+'px');
+  cd.style.setProperty('--gr',Math.max(0,(W-pad)-r.right)+'px');
+  cd.style.setProperty('--gb',Math.max(0,(H-pad)-r.bottom)+'px');
+  return 1;
+}
+
+function show(from){
   if(cur)return;
   cur=1;last=document.activeElement;
+  cd.classList.remove('grow');
+  var grow=origin(from);
   var sb=window.innerWidth-document.documentElement.clientWidth;
   if(sb>0)document.body.style.paddingRight=sb+'px';
   document.body.classList.add('cd-lock');
   ov.hidden=cd.hidden=false;
-  requestAnimationFrame(function(){ov.classList.add('on');cd.classList.add('on')});
+  requestAnimationFrame(function(){
+    ov.classList.add('on');cd.classList.add('on');
+    if(grow){void cd.offsetWidth;cd.classList.add('grow')}
+  });
 }
 
 function hide(pop){
   if(!cur)return;
   cur=null;
-  ov.classList.remove('on');cd.classList.remove('on');
+  ov.classList.remove('on');cd.classList.remove('on');cd.classList.remove('grow');
   setTimeout(function(){
     ov.hidden=cd.hidden=true;box.innerHTML='';
     document.body.classList.remove('cd-lock');document.body.style.paddingRight='';
@@ -519,8 +595,8 @@ function hide(pop){
   if(!pop&&location.hash)history.pushState({cd:0},'',home);
 }
 
-function load(url,push){
-  show();
+function load(url,push,from){
+  show(from);
   box.innerHTML='<div class="cd-load">…</div>';
   box.scrollTop=0;
   fetch(url).then(function(r){
@@ -543,7 +619,7 @@ document.addEventListener('click',function(e){
   var a=e.target.closest?e.target.closest('a[href]'):null;
   if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
   var href=a.getAttribute('href')||'';
-  if(/^case-[\w-]+\.html$/.test(href)){e.preventDefault();load(href,1);return}
+  if(/^case-[\w-]+\.html$/.test(href)){e.preventDefault();load(href,1,a.closest('.pv')||a);return}
   if(cur&&/^index(-ua)?\.html(#.*)?$/.test(href)){e.preventDefault();hide();}
 });
 
@@ -630,5 +706,13 @@ new MutationObserver(scan).observe(document.body, {childList:true, subtree:true}
 scan();
 })();
 </script>
+<svg aria-hidden="true" focusable="false" height="0" style="position:absolute" width="0">
+<filter color-interpolation-filters="sRGB" height="140%" id="liquid" width="140%" x="-20%" y="-20%">
+<feTurbulence baseFrequency="0.04 0.06" numOctaves="3" result="noise" seed="7" type="fractalNoise">
+<animate attributeName="baseFrequency" dur="3s" repeatCount="indefinite" values="0.04 0.06;0.07 0.03;0.04 0.06"/>
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="noise" scale="26" xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+</svg>
 </body>
 </html>
