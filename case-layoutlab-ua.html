@@ -198,28 +198,33 @@ a:visited{color:#145ae0}
 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(20,90,224,.5);text-underline-offset:3px}
 </style>
 <style>/*architecture diagram*/
-.cbd{--ink:#111;--acc:#145ae0}
+.cbd{--acc:#145ae0}
 .cbd .cbd-scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
 .cbd .cbd-scroll::-webkit-scrollbar{display:none}
 .cbd .cbd-scroll:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
-.cbd svg{display:block;width:100%;min-width:820px;max-width:920px;margin-inline:auto}
+.cbd svg{display:block;width:100%;min-width:900px;max-width:920px;margin-inline:auto}
 .cbd .grid{fill:rgba(17,17,17,.14)}
 .cbd .box{fill:#fdfcfc;stroke:rgba(17,17,17,.85);stroke-width:1}
 .cbd .box-ink{fill:#111}
+.cbd .vol{fill:none;stroke:rgba(17,17,17,.55);stroke-width:1;stroke-dasharray:5 4}
 .cbd .t{fill:none;stroke:rgba(17,17,17,.3);stroke-width:1}
-.cbd .f{fill:none;stroke:var(--acc);stroke-width:2;stroke-linecap:round;stroke-dasharray:26 118;animation:cbd-flow 1.9s linear infinite}
-.cbd .f2{animation-delay:-.55s}
-.cbd .f3{animation-delay:-1.1s}
-@keyframes cbd-flow{to{stroke-dashoffset:-144}}
-.cbd .j{fill:var(--acc)}
+.cbd .rule{stroke:rgba(17,17,17,.45)}
+.cbd .f{fill:none;stroke:var(--acc);stroke-width:2;stroke-linecap:round;stroke-dasharray:14 26;animation:cbd-flow 1.1s linear infinite}
+.cbd .f2{animation-delay:-.36s}
+.cbd .f3{animation-delay:-.72s}
+.cbd .fl{stroke-dasharray:26 150;animation-duration:2.6s}
+@keyframes cbd-flow{to{stroke-dashoffset:-40}}
+.cbd .fl{animation-name:cbd-flow-l}
+@keyframes cbd-flow-l{to{stroke-dashoffset:-176}}
 .cbd text{font-family:'Onest',sans-serif;fill:#111}
 .cbd .h{font-size:14px;font-weight:700;letter-spacing:-.01em}
 .cbd .s{font-size:12px;fill:#4a4a4a}
 .cbd .lbl{font-size:11px;fill:#555}
 .cbd .on-ink{fill:#fff}
 .cbd .on-ink-s{font-size:12px;fill:rgba(255,255,255,.82)}
+.cbd .mid{text-anchor:middle}
 .cbd figcaption{max-width:920px;margin-inline:auto}
-@media(prefers-reduced-motion:reduce){.cbd .f{animation:none;stroke-dasharray:none;opacity:.55}}
+@media(prefers-reduced-motion:reduce){.cbd .f{animation:none;stroke-dasharray:none;opacity:.5}}
 </style>
 </head>
 <body>
@@ -266,55 +271,56 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 </div>
 </div>
 <figure class="strip-fig cbd">
-<div class="cbd-scroll" role="region" tabindex="0" aria-label="Схема генератора: чат у продукті та CLI живлять генератор, той пише в render-host на Next.js 14 з реальними компонентами, помилки повертаються через sidecar.">
-<svg viewBox="0 0 920 340" role="img" aria-label="Схема генератора: чат у продукті та CLI живлять генератор, той пише в render-host на Next.js 14 з реальними компонентами, помилки повертаються через sidecar." xmlns="http://www.w3.org/2000/svg">
+<div class="cbd-scroll" role="region" tabindex="0" aria-label="Архітектура: браузер заходить тільки через workbench, той пише page.tsx у спільний том task-data, render-host рендерить ці файли на реальних компонентах продукту, а error sidecar повертає помилки назад у workbench.">
+<svg viewBox="0 0 920 360" role="img" aria-label="Архітектура: браузер заходить тільки через workbench, той пише page.tsx у спільний том task-data, render-host рендерить ці файли на реальних компонентах продукту, а error sidecar повертає помилки назад у workbench." xmlns="http://www.w3.org/2000/svg">
 <defs>
 <pattern id="cbd-dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle class="grid" cx="1" cy="1" r=".9"/></pattern>
 <marker id="cbd-a" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="rgba(17,17,17,.45)"/></marker>
 </defs>
-<rect width="920" height="340" fill="url(#cbd-dots)"/>
+<rect width="920" height="360" fill="url(#cbd-dots)"/>
 
-<path class="t" d="M190 70 H222 V114 H245" marker-end="url(#cbd-a)"/>
-<path class="t" d="M190 150 H222 V114 H245" marker-end="url(#cbd-a)"/>
-<path class="t" d="M456 114 H553" marker-end="url(#cbd-a)"/>
-<path class="t" d="M354 164 V247" marker-end="url(#cbd-a)"/>
-<path class="t" d="M732 196 V247" marker-end="url(#cbd-a)"/>
-<path class="f" d="M190 70 H222 V114 H250"/>
-<path class="f f2" d="M190 150 H222 V114 H250"/>
-<path class="f f3" d="M456 114 H558"/>
-<path class="f f2" d="M354 164 V252"/>
-<path class="f" d="M732 196 V252"/>
-<circle class="j" cx="222" cy="114" r="3.5"/>
+<text class="h" x="24" y="134">браузер · SPA + iframe</text>
+<path class="t rule" d="M24 146 H176"/>
+<text class="lbl" x="24" y="172">єдиний вхід · один порт назовні</text>
 
-<text class="h" x="24" y="74">in-app AI chat</text>
-<path class="t" d="M24 86 H190"/>
-<text class="h" x="24" y="154">CLI pipeline</text>
-<path class="t" d="M24 166 H190"/>
-<text class="lbl" x="24" y="200">бриф ▸ README-специфікація ▸ перевірка покриття</text>
+<path class="t" d="M176 146 H225" marker-end="url(#cbd-a)"/>
+<path class="t" d="M438 146 H487" marker-end="url(#cbd-a)"/>
+<path class="t" d="M606 146 H655" marker-end="url(#cbd-a)"/>
+<path class="t" d="M783 252 V300 H342 V259" marker-end="url(#cbd-a)"/>
+<path class="f" d="M176 146 H230"/>
+<path class="f f2" d="M438 146 H492"/>
+<path class="f f3" d="M606 146 H660"/>
+<path class="f fl" d="M783 252 V300 H342 V264"/>
 
-<rect class="box" x="252" y="64" width="204" height="100" rx="14"/>
-<text class="h" x="274" y="96">generator engine</text>
-<text class="s" x="274" y="120">plan &#9656; build &#9656; verify</text>
-<text class="s" x="274" y="140">14 gates &#183; 2 human</text>
+<rect class="box" x="232" y="40" width="206" height="212" rx="14"/>
+<text class="h" x="254" y="74">workbench</text>
+<text class="s" x="254" y="96">Express + SPA · auth</text>
+<path class="t" d="M254 112 H416"/>
+<text class="s" x="254" y="134">чат у продукті · CLI</text>
+<text class="s" x="254" y="156">plan ▸ build ▸ verify</text>
+<text class="s" x="254" y="178">14 гейтів · 2 людські</text>
+<text class="s" x="254" y="200">/render/* проксі + WS</text>
+<text class="s" x="254" y="222">пише page.tsx</text>
 
-<rect class="box-ink" x="560" y="28" width="344" height="168" rx="14"/>
-<text class="h on-ink" x="584" y="64">render-host &#183; next.js 14</text>
-<text class="on-ink-s" x="584" y="96">page.tsx mockups &#160;(data, mounted)</text>
-<text class="on-ink-s" x="584" y="120">@/ webpack alias &#8594; rm_fe_v2</text>
-<text class="on-ink-s" x="584" y="144">read-only mount &#183; 1,293 real</text>
-<text class="on-ink-s" x="584" y="168">stub runtime &#183; tailwind mirror</text>
+<rect class="vol" x="494" y="110" width="112" height="72" rx="10"/>
+<text class="h mid" x="550" y="142">task-data</text>
+<text class="s mid" x="550" y="164">спільний том</text>
 
-<rect class="box" x="252" y="254" width="228" height="64" rx="14"/>
-<text class="h" x="274" y="284">single write contract</text>
-<text class="s" x="274" y="304">AST scan + registry</text>
+<rect class="box-ink" x="662" y="40" width="242" height="212" rx="14"/>
+<text class="h on-ink" x="684" y="74">render-host</text>
+<path class="t" d="M684 112 H882" stroke="rgba(255,255,255,.35)"/>
+<text class="on-ink-s" x="684" y="96">next dev :3000 · тільки внутрішньо</text>
+<text class="on-ink-s" x="684" y="134">мокапи = маршрути з тому</text>
+<text class="on-ink-s" x="684" y="156">@/ alias → /source (read-only)</text>
+<text class="on-ink-s" x="684" y="178">1 293 реальні компоненти</text>
+<text class="on-ink-s" x="684" y="200">error sidecar :3001 поза Next</text>
+<text class="on-ink-s" x="684" y="222">HMR + stdout → помилки</text>
 
-<rect class="box" x="620" y="254" width="284" height="64" rx="14"/>
-<text class="h" x="642" y="284">error sidecar :3001</text>
-<text class="s" x="642" y="304">typecheck &#183; screenshots</text>
-<text class="lbl" x="744" y="228">помилки компіляції та рантайму</text>
+<text class="lbl" x="440" y="291">помилки компіляції та рантайму</text>
+<text class="lbl" x="24" y="338">мокап — це дані: один каталог task-data змонтований у два контейнери, тому запис одразу рендериться</text>
 </svg>
 </div>
-<figcaption><span data-l="uk" lang="uk">Архітектура генератора: єдиний контракт запису, read-only продакшн-джерело, помилки повертаються в цикл.</span></figcaption>
+<figcaption><span data-l="uk" lang="uk">Архітектура: єдиний вхід через workbench, мокапи як дані, read-only продакшн-джерело, помилки повертаються в цикл.</span></figcaption>
 </figure>
 </section>
 <section class="sec">
