@@ -43,7 +43,7 @@ body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg
 <style>/*media*/
 /* one photo or video in a block: 860 wide, centred on a grey band that
    spans the page and keeps the same 48px inset as the text */
-.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:rgba(17,17,17,.05)}
+.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:linear-gradient(rgba(17,17,17,0),rgba(17,17,17,.05))}
 .cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
 .cbody .cimg>figcaption{max-width:860px;margin-inline:auto;text-align:center}
 .strip-fig:has(.strip>:only-child)>figcaption{max-width:860px;margin-inline:auto;text-align:center}
@@ -84,7 +84,7 @@ img,video{max-width:100%;height:auto}
 .outcomes .o{padding:32px 28px;background:#fff;border-radius:24px}
 .outcomes .n{margin:0 0 12px}
 .outcomes .t{margin:0}
-.outcomes .oi{display:block;width:28px;height:28px;margin:0 0 24px;color:#145ae0}
+.outcomes .oi{display:block;width:28px;height:28px;margin:0 0 24px;color:#145ae0;box-sizing:content-box;padding:12px;background:rgba(20,90,224,.05);border-radius:14px}
 .wrap{padding-left:48px;padding-right:48px;box-sizing:border-box}
 </style>
 <style>/*typescale*/
@@ -226,6 +226,17 @@ a{color:#145ae0;text-decoration:none}
 a:visited{color:#145ae0}
 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(20,90,224,.5);text-underline-offset:3px}
 </style>
+<style>/*mobile-type*/
+@media(max-width:600px){
+.chero h1{font-size:1.75rem}
+.cbody .sec-lead,.chero .sec-lead{font-size:1.375rem}
+.cbody{font-size:1.0625rem}
+.outcomes .n{font-size:1.25rem}
+.outcomes .o{border-radius:16px}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:16px}
+header .bar{border-radius:20px}
+}
+</style>
 </head>
 <body>
 <header>
@@ -243,7 +254,7 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 <h1><span data-l="uk" lang="uk">AETHRA Wire: спроєктував з нуля HR-платформу</span></h1>
 <div class="orn" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Я отримав простий бриф про продукт як набір вимог, без чіткого ТЗ і <i>спроєктував продукт із нуля</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk">Я отримав простий бриф про продукт, як набір вимог, без чіткого ТЗ і <i>спроєктував продукт із нуля</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">AETHRA Wire це B2B-платформа, що з'єднує аутсорсингові компанії з партнерами для управління персоналом.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Розробив бізнес-вимоги, user stories й функціональні специфікації. Запроектував інформаційну архітектуру, дизайн-систему і всі екрани для обох ролей: Provider, який керує працівниками по клієнтах, і Worker, який керує власним графіком.</span></p>
