@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://denys-osadchyi.vercel.app/sitemap.xml
+Sitemap: https://denys-make-design.dev/sitemap.xml

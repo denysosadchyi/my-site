@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    { "source": "/index-ua.html", "destination": "/", "permanent": true },
+    { "source": "/case-aethra-ua.html", "destination": "/case-aethra.html", "permanent": true },
+    { "source": "/case-cosmediate-ua.html", "destination": "/case-cosmediate.html", "permanent": true },
+    { "source": "/case-layoutlab-ua.html", "destination": "/case-layoutlab.html", "permanent": true },
+    { "source": "/case-scalr-ua.html", "destination": "/case-scalr.html", "permanent": true },
+    { "source": "/case-splitmart-ua.html", "destination": "/case-splitmart.html", "permanent": true }
+  ]
+}

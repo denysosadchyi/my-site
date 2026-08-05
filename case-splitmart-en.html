@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>SplitMart — from UX audit to a shipped redesign in code · Denys Osadchyi</title>
+<meta content="A pay-per-session fitness marketplace taken from UX audit to shipped product: full redesign across web and native iOS plus a production React build." name="description"/>
+<link href="https://denys-make-design.dev/case-splitmart-en.html" rel="canonical"/>
+<link href="https://denys-make-design.dev/case-splitmart-en.html" hreflang="en" rel="alternate"/>
+<link href="https://denys-make-design.dev/case-splitmart.html" hreflang="uk" rel="alternate"/>
+<link href="https://denys-make-design.dev/case-splitmart.html" hreflang="x-default" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="SplitMart — from UX audit to a shipped redesign in code · Denys Osadchyi" property="og:title"/>
+<meta content="A pay-per-session fitness marketplace taken from UX audit to shipped product: full redesign across web and native iOS plus a production React build." property="og:description"/>
+<meta content="https://denys-make-design.dev/case-splitmart-en.html" property="og:url"/>
+<meta content="https://denys-make-design.dev/og.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="fonts/fonts.css" rel="stylesheet"/>
+<link href="tokens.css" rel="stylesheet"/>
+<style>/*font*/
+body{font-family:var(--font-sans)}
+</style>
+<style>/*outcomes*/
+.outcomes{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 28px;margin:26px 0 0;padding-top:22px;border-top:1px solid #e2ddd6}
+.outcomes .oi{display:block;width:26px;height:26px;margin:0 0 14px;color:#145ae0;box-sizing:content-box;padding:12px;background:rgba(20,90,224,.05);border-radius:14px}
+.outcomes .t{margin:7px 0 0;max-width:22ch}
+</style>
+<style>/*pagebg*/
+body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
+</style>
+<style>/*media*/
+/* one photo or video in a block: 860 wide, centred on a grey band that
+   spans the page and keeps the same 48px inset as the text */
+.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:linear-gradient(rgba(17,17,17,0),rgba(17,17,17,.05))}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
+.cbody .cimg>figcaption{max-width:860px;margin-inline:auto;text-align:center}
+.strip-fig:has(.strip>:only-child)>figcaption{max-width:860px;margin-inline:auto;text-align:center}
+@media(max-width:600px){.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin-inline:-24px;padding-inline:24px}}
+/* the cover keeps the treatment it always had: noise band, full bleed, no 860 cap */
+main>.cimg{margin:0 0 28px}
+main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
+@media(max-width:600px){main>.cimg::after{margin:0 -24px}}
+</style>
+<style>/*single*/
+/* one photo or video on its own: 860 wide, centred */
+.strip:has(>:only-child){justify-content:center}
+.strip:has(>:only-child)>img,.strip:has(>:only-child)>video{height:auto;width:min(860px,100%);max-width:min(860px,100%)}
+.shots:has(>:only-child){justify-items:center}
+.shots:has(>:only-child) .shot{width:min(860px,100%)}
+</style>
+<style>/*sec*/
+/* Case section: heading, then lead left, expansion + fine print right. */
+.cbody .sec{margin:96px 0 0}
+.cbody .sec:first-child{margin-top:64px}
+.cbody .sec h2.marker,.block h2.marker{display:inline-block;margin:0 0 28px;max-width:34ch;padding:8px 36px 8px 22px;font-size:var(--t-marker);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 50%,100% 100%,0 100%);position:sticky;top:16px;z-index:5}
+.cbody .sec-cols,.chero .sec-cols{margin-top:8px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 56px;align-items:start;margin:0 0 28px}
+.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:var(--font-lead);font-weight:400;font-size:var(--t-lead);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
+.cbody .sec-lead i,.chero .sec-lead i{color:var(--t-accent);font-style:normal}
+.cbody .sec-body>p,.chero .sec-body>p{margin:0 0 14px;max-width:35rem}
+.cbody .sec-body>p:last-child,.chero .sec-body>p:last-child{margin-bottom:0}
+.cbody .sec-body ul{margin:10px 0 0;padding-left:1.2em;max-width:35rem;font-size:var(--t-caption);line-height:var(--lh-fine);color:var(--t-muted)}
+.cbody .sec-body li{margin:0 0 8px}
+.cbody .sec-body a{overflow-wrap:anywhere}
+.cbody .sec-fine,.chero .sec-fine{margin:0;max-width:35rem;font-size:var(--t-caption);line-height:var(--lh-fine);letter-spacing:var(--ls-caption);color:var(--t-muted)}
+@media(max-width:900px){
+.cbody .sec-cols,.chero .sec-cols{grid-template-columns:1fr;gap:12px}
+.cbody .sec-lead,.chero .sec-lead{max-width:none}
+}
+</style>
+<style>/*wrappad*/
+img,video{max-width:100%;height:auto}
+.wrap{padding-left:48px;padding-right:48px;box-sizing:border-box}
+</style>
+<style>/*typescale*/
+/* e-Ukraine type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
+:root{--measure:72ch}
+body{font-size:var(--t-body);line-height:var(--lh-body);letter-spacing:var(--ls-body);font-kerning:normal}
+.hero3,.ledger,.hcta,.langbar{font-size:1rem;line-height:normal;letter-spacing:normal}
+p{margin:0 0 1.1em;text-wrap:pretty}
+b,strong{font-weight:600}
+figure{margin:0}
+h2,h3{margin:0;font-weight:400;text-wrap:balance}
+h2{font-size:var(--t-h2);line-height:1.1;letter-spacing:-.02em}
+h3{font-size:var(--t-h3);line-height:1.2;letter-spacing:-.015em}
+/* header / nav */
+header .bar{padding-block:24px}
+header nav,.cnav,.cta{display:flex;flex-wrap:wrap;align-items:center;gap:24px}
+.cnav{gap:32px}
+.wordmark{font-size:var(--t-ui);font-weight:500;letter-spacing:-.01em}
+header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
+.langswitch{display:inline-block;line-height:0}
+.langswitch img{display:block;width:24px;height:auto}
+/* hero-area switcher stays as it was */
+.open,.wordmark{font-weight:500}
+/* case hero */
+.chero{padding-top:28px}
+.chero .meta{margin:0 0 20px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.chero .meta>span{padding:2px 10px;font-size:var(--t-chip);line-height:1.5;background:rgba(17,17,17,.05);border-radius:999px}
+.chero h1{margin:0 auto 20px;max-width:30ch;text-align:center;font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
+.orn{display:flex;align-items:center;justify-content:center;gap:7px;margin:0 auto}
+.chero .orn{margin-bottom:32px;max-width:30ch}
+.orn-b{margin:96px 0 0}
+.orn::before,.orn::after{content:"";flex:1;height:1px;background:rgba(17,17,17,.18);margin-inline:6px}
+.orn span{width:6px;height:6px;background:rgba(17,17,17,.5);transform:rotate(45deg)}
+.lede{margin:0 0 28px;max-width:none;font-size:var(--t-lede-xl);line-height:1.25;letter-spacing:-.02em;text-wrap:pretty}
+.facts{margin:0;display:flex;flex-wrap:wrap;gap:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.facts>span{display:inline-flex;align-items:center;gap:.5em;padding:5px 14px;border:1px solid rgba(0,0,0,.12);border-radius:999px;line-height:1.4}
+.facts .fi{width:auto;height:1.05em;max-width:2em;flex:0 0 auto}
+.outcomes .n{font-size:var(--t-h3);font-weight:600;line-height:1.1;letter-spacing:-.02em}
+.outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
+/* case body */
+.cbody p,.cbody ul{max-width:none}
+.cbody{font-size:var(--t-case);line-height:var(--lh-case)}
+.cbody h2.marker{margin:96px 0 24px;max-width:32ch}
+.cbody h2.marker:first-child{margin-top:64px}
+.cbody p{margin:0 0 20px}
+.cbody ul{margin:0 0 20px;padding-left:1.2em}
+.cbody li{margin:0 0 10px}
+.cres .r{font-weight:600}
+figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.cnav{margin:0 0 64px}
+/* work cards */
+.pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.pv h3{margin:0 0 12px;font-size:var(--t-h3);font-weight:400;line-height:1.2;letter-spacing:-.015em}
+.pv .nums{margin:0 0 12px}
+.pv .nums .chip{font-style:normal;font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.pv p{max-width:44ch;margin:0 0 16px}
+/* section headings, experience, teaching */
+.block{padding-block:64px}
+.block h2.marker{margin:0 0 32px}
+.foot{padding-block:96px 64px}
+.foot h2{margin:0 0 20px;max-width:20ch}
+.xp,.list{margin:0;padding:0;list-style:none}
+.xp li,.list li{margin:0 0 32px}
+.yrs{font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted);font-variant-numeric:tabular-nums}
+.xrole,.list .t{margin:0 0 8px;font-size:1.5rem;font-weight:500;line-height:1.35;letter-spacing:-.01em}
+.xco,.tag{font-weight:400;color:var(--t-muted)}
+.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
+.xnote{margin:0;max-width:46ch}
+.list .s{max-width:48ch}
+/* everything above the hairline reads as one field: header + hero + cover.
+   Negative inline margin equals the wrap padding, so the tint reaches the
+   viewport edge without 100vw and its scrollbar overflow. */
+header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
+.chero,main>.cimg{margin-inline:-48px;padding-inline:48px}
+@media(max-width:600px){.chero,main>.cimg{margin-inline:-24px;padding-inline:24px}}
+/* cover mockup: capped like the flat shots, closed by a full-bleed hairline.
+   Negative margin equals the wrap padding, so the rule reaches the real viewport
+   edge without 100vw (which would overflow by the scrollbar width). */
+@media(max-width:600px){main>.cimg::after{margin:0 -24px}}
+/* native scrollbar hidden; paging is driven by the buttons below */
+.strip{scrollbar-width:none;-ms-overflow-style:none}
+.strip::-webkit-scrollbar{display:none}
+.stripnav{position:absolute;z-index:2;left:16px;right:16px;top:calc(clamp(220px,30vw,460px)/2);transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none}
+.stripnav[hidden]{display:none}
+.stripbtn{pointer-events:auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:1.25rem;line-height:1;color:#111;background:#fff;border:none;border-radius:50%;cursor:pointer;transition:background .15s ease-out,color .15s ease-out,opacity .15s ease-out}
+.stripbtn:hover:not(:disabled){background:#145ae0;color:#fff}
+.stripbtn:disabled{opacity:0;pointer-events:none}
+.stripbtn:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.stripbtn{transition:none}}
+/* horizontal mockup strips: bleed past the right gutter so the row visibly
+   continues off-screen instead of pretending it ended */
+.strip-fig{position:relative}
+.strip{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;margin-right:-48px;padding:0 48px 6px 0}
+.strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:24px;scroll-snap-align:start}
+.strip:focus-visible{outline:2px solid #145ae0;outline-offset:4px}
+@media(max-width:600px){.strip{margin-right:-24px;padding-right:24px}}
+/* flat screen mockups: capped measure, retina source, hairline frame.
+   Device mockups (the covers, outside .cbody) stay full-bleed. */
+.cbody /* one screen or one video in a block: 860 wide, centred, on a band that spans the page */
+/* the one ornament: Arial italic marks the words carrying the argument */
+.ia-role{font-family:var(--font-italic);font-style:normal}
+.foot h2 em{font-style:normal}
+.cnav{justify-content:space-between;padding-top:24px}
+@media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
+</style>
+<style>/*hdr*/
+header{padding:16px 24px 0}
+header .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding:16px 32px;background:rgba(17,17,17,.05);border-radius:999px}
+@media(max-width:600px){header{padding:12px 12px 0}header .bar{padding:14px 20px;border-radius:28px}}
+</style>
+<style>/*lang*/
+/* language switch is an icon button; the language name stays for screen readers */
+.langswitch .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+<style>/*navicon*/
+/* navigation arrows are drawn, not typed, so they align with the text baseline */
+.nav-i{width:1em;height:1em;flex:0 0 auto}
+header nav a,.cnav a{display:inline-flex;align-items:center;gap:6px}
+</style>
+<style>/*linkstyle*/
+a{color:var(--t-accent);text-decoration:none}
+a:visited{color:var(--t-accent)}
+a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(20,90,224,.5);text-underline-offset:3px}
+</style>
+<style>/*audit figure*/
+.aud-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:28px 56px;max-width:920px;margin-inline:auto}
+.aud-h{margin:0 0 16px;font-size:var(--t-chip);font-weight:600;color:#111}
+.aud-row{display:grid;grid-template-columns:9.5rem minmax(60px,1fr) 2rem;align-items:center;gap:14px;margin:0 0 12px}
+.aud-k{font-size:.875rem;line-height:1.3;color:var(--t-muted)}
+.aud-v{font-size:.9375rem;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.aud-dots{display:flex;flex-wrap:wrap;gap:5px}
+.aud-dots i{width:9px;height:9px;border-radius:1px;transform:rotate(45deg);background:rgba(20,90,224,.32)}
+.aud-dots.c i{background:#111}
+.aud-dots.m i{background:#145ae0}
+.aud-bar{height:10px;border-radius:5px;background:rgba(17,17,17,.1)}
+.aud-bar i{display:block;height:100%;border-radius:5px;background:rgba(17,17,17,.45)}
+.aud-bar.hi i{background:#145ae0}
+@media(max-width:600px){.aud-row{grid-template-columns:7.5rem minmax(50px,1fr) 1.8rem;gap:10px}}
+</style>
+<style>/*mobile-type*/
+@media(max-width:600px){
+.chero h1{font-size:1.75rem}
+.cbody .sec-lead,.chero .sec-lead{font-size:1.375rem}
+.cbody{font-size:.9375rem}
+.outcomes .n{font-size:1.25rem}
+.outcomes .o{border-radius:16px}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:16px}
+header .bar{border-radius:20px}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap bar">
+<a class="wordmark" href="index-en.html">Denys Osadchyi</a>
+<nav>
+<a href="index-en.html#work"><span data-l="en"><svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M14.5 6.5 9 12l5.5 5.5"/></svg>All cases</span></a>
+<a class="langswitch" href="case-splitmart.html" hreflang="uk" aria-label="Українською" title="Українською"><img alt="Українською" src="img/flag-ua.svg" width="24" height="18"/></a>
+</nav>
+</div>
+</header>
+<main class="wrap">
+<section class="chero">
+<p class="meta"><span><b>Product Designer + Design Engineer</b></span> <span><span data-l="en">Fitness marketplace</span> <span>Multi-platform</span></span></p>
+<h1><span data-l="en">SplitMart: a redesign in code after a UX audit</span></h1>
+<div class="orn" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="sec-cols">
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>I redesigned the product <i>from audit to production-ready code</i>, which the client's developers used.</span></p>
+<div class="sec-body">
+<p><span data-l="en">SplitMart is a two-sided fitness marketplace: clients book local training sessions pay-per-session, trainers list services and get paid.</span></p>
+<p class="sec-fine"><span data-l="en">That means a UX audit that found the leaks costing bookings, a full redesign of the screen system, a brand landing, a documented design system, and the production build itself across React and native iOS. All of it was designed in a real browser, at real breakpoints.</span></p>
+</div>
+</div>
+<p class="facts"><span><svg class="fi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1.13em" height="1em" viewBox="0 0 256 228"><path fill="#00d8ff" d="M210.483 73.824a172 172 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171 171 0 0 0-6.375 5.848a156 156 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a171 171 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a146 146 0 0 0 6.921 2.165a168 168 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a146 146 0 0 0 5.342-4.923a168 168 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145 145 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844m-6.365 70.984q-2.102.694-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14m-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a157 157 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345q.785 3.162 1.386 6.193M87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a157 157 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a135 135 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94M50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a135 135 0 0 1-6.318-1.979m12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144 144 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160 160 0 0 1-1.76-7.887m110.427 27.268a348 348 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381 381 0 0 0-7.365-13.322m-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322 322 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18M82.802 87.83a323 323 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a322 322 0 0 0-7.848 12.897m8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321 321 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147m37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486m52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382 382 0 0 0 7.859-13.026a347 347 0 0 0 7.425-13.565m-16.898 8.101a359 359 0 0 1-12.281 19.815a329 329 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310 310 0 0 1-12.513-19.846h.001a307 307 0 0 1-10.923-20.627a310 310 0 0 1 10.89-20.637l-.001.001a307 307 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329 329 0 0 1 12.335 19.695a359 359 0 0 1 11.036 20.54a330 330 0 0 1-11 20.722m22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026q-.518 2.504-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a161 161 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3M128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86"/></svg>React 19</span><span><svg class="fi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1.67em" height="1em" viewBox="0 0 256 154"><defs><linearGradient id="twSVGJSB7ld0l" x1="-2.778%" x2="100%" y1="32%" y2="67.556%"><stop offset="0%" stop-color="#2298bd"/><stop offset="100%" stop-color="#0ed7b5"/></linearGradient></defs><path fill="url(#twSVGJSB7ld0l)" d="M128 0Q76.8 0 64 51.2Q83.2 25.6 108.8 32c9.737 2.434 16.697 9.499 24.401 17.318C145.751 62.057 160.275 76.8 192 76.8q51.2 0 64-51.2q-19.2 25.6-44.8 19.2c-9.737-2.434-16.697-9.499-24.401-17.318C174.249 14.743 159.725 0 128 0M64 76.8q-51.2 0-64 51.2q19.2-25.6 44.8-19.2c9.737 2.434 16.697 9.499 24.401 17.318C81.751 138.857 96.275 153.6 128 153.6q51.2 0 64-51.2q-19.2 25.6-44.8 19.2c-9.737-2.434-16.697-9.499-24.401-17.318C110.249 91.543 95.725 76.8 64 76.8"/></svg>Tailwind</span><span><svg class="fi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><defs><linearGradient id="adSVGLtho8dDK" x1="62.102%" x2="108.197%" y1="0%" y2="37.864%"><stop offset="0%" stop-color="#4285eb"/><stop offset="100%" stop-color="#2ec7ff"/></linearGradient><linearGradient id="adSVGN6GESbiL" x1="69.644%" x2="54.043%" y1="0%" y2="108.457%"><stop offset="0%" stop-color="#29cdff"/><stop offset="37.86%" stop-color="#148eff"/><stop offset="100%" stop-color="#0a60ff"/></linearGradient><linearGradient id="adSVGAM3vtM4q" x1="69.691%" x2="16.723%" y1="-12.974%" y2="117.391%"><stop offset="0%" stop-color="#fa816e"/><stop offset="41.473%" stop-color="#f74a5c"/><stop offset="100%" stop-color="#f51d2c"/></linearGradient><linearGradient id="adSVGcuaZ2bVd" x1="68.128%" x2="30.44%" y1="-35.691%" y2="114.943%"><stop offset="0%" stop-color="#fa8e7d"/><stop offset="51.264%" stop-color="#f74a5c"/><stop offset="100%" stop-color="#f51d2c"/></linearGradient></defs><g fill="none"><path fill="url(#adSVGLtho8dDK)" d="M116.85 4.545L4.53 116.775a15.396 15.396 0 0 0 0 21.812l112.32 112.229c6.039 6.033 15.792 6.033 21.83 0l47.095-47.056c5.408-5.404 5.408-14.165 0-19.568s-14.176-5.404-19.584 0l-35.702 35.672c-1.503 1.502-3.784 1.502-5.287 0l-89.696-89.622c-1.503-1.502-1.503-3.781 0-5.283l89.696-89.623c1.503-1.501 3.784-1.501 5.287 0l35.702 35.673c5.408 5.404 14.176 5.404 19.584 0s5.408-14.164 0-19.568l-47.09-47.05c-6.063-5.904-15.82-5.856-21.835.154"/><path fill="url(#adSVGN6GESbiL)" d="M116.85 4.545L4.53 116.775a15.396 15.396 0 0 0 0 21.812l112.32 112.229c6.039 6.033 15.792 6.033 21.83 0l47.095-47.056c5.408-5.404 5.408-14.165 0-19.568s-14.176-5.404-19.584 0l-35.702 35.672c-1.503 1.502-3.784 1.502-5.287 0l-89.696-89.622c-1.503-1.502-1.503-3.781 0-5.283l89.696-89.623c3.742-3.226 9.849-9.76 18.815-11.29q9.996-1.703 21.857 7.5L138.686 4.39c-6.064-5.903-15.82-5.855-21.836.155"/><path fill="url(#adSVGAM3vtM4q)" d="M196.647 173.754c5.408 5.404 14.176 5.404 19.584 0l34.739-34.71a15.396 15.396 0 0 0 0-21.812l-35.041-34.89c-5.421-5.397-14.192-5.389-19.603.018c-5.408 5.404-5.408 14.164 0 19.568l23.667 23.648c1.503 1.502 1.503 3.781 0 5.283l-23.346 23.327c-5.408 5.404-5.408 14.165 0 19.568"/><ellipse cx="128.327" cy="128.242" fill="url(#adSVGcuaZ2bVd)" rx="30.327" ry="30.302"/></g></svg>Ant Design</span><span><svg class="fi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04c-2.04.027-3.91 1.183-4.961 3.014c-2.117 3.675-.546 9.103 1.519 12.09c1.013 1.454 2.208 3.09 3.792 3.039c1.52-.065 2.09-.987 3.935-.987c1.831 0 2.35.987 3.96.948c1.637-.026 2.676-1.48 3.676-2.948c1.156-1.688 1.636-3.325 1.662-3.415c-.039-.013-3.182-1.221-3.22-4.857c-.026-3.04 2.48-4.494 2.597-4.559c-1.429-2.09-3.623-2.324-4.39-2.376c-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83c-1.207.052-2.662.805-3.532 1.818c-.78.896-1.454 2.338-1.273 3.714c1.338.104 2.715-.688 3.559-1.701"/></svg>iOS</span></p>
+<div class="outcomes">
+<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7.5" fill="currentColor" opacity=".5"/><path d="M16.3 16.3 21 21" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><div class="n">37</div><p class="t"><span data-l="en">Walked the product as a client and as a trainer, found 37 problems. Three of them were leaking bookings directly, so I fixed them first.</span></p></div>
+<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" opacity=".5" d="M12 5c-5.1 0-8.7 4.3-9.9 6.1a1.7 1.7 0 0 0 0 1.8C3.3 14.7 6.9 19 12 19s8.7-4.3 9.9-6.1a1.7 1.7 0 0 0 0-1.8C20.7 9.3 17.1 5 12 5"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg><div class="n"><span data-l="en">Flow improvements</span></div><p class="t"><span data-l="en">Rebuilt booking: the price and open slots are visible before sign-up, not after. Fewer reasons to leave the page.</span></p></div>
+<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><rect x="2" y="4" width="13.5" height="10" rx="2" fill="currentColor" opacity=".5"/><rect x="6" y="16.4" width="5.5" height="1.8" rx=".9" fill="currentColor" opacity=".5"/><rect x="16.6" y="8.5" width="5.4" height="11.5" rx="1.6" fill="currentColor"/></svg><div class="n"><span data-l="en">Web + iOS</span></div><p class="t"><span data-l="en">Took it from audit to a live product: a React build and native iOS, both deployed and public.</span></p></div>
+</div>
+</section>
+<figure class="cimg"><img alt="SplitMart client landing, shipped" height="2160" src="img/sm-cover.webp" width="3840"/></figure>
+<div class="cbody">
+<section class="sec">
+<h2 class="marker"><span data-l="en">UX audit</span></h2>
+<div class="sec-cols">
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>The product audit returned 37 findings, and three of them <i>directly caused clients to drop off during booking</i>.</span></p>
+<div class="sec-body">
+<p><span data-l="en">I walked the end-to-end flows as both a client and a trainer, on desktop and mobile, then ran a heuristic pass and assembled a prioritized report with severity and effort.</span></p>
+<p class="sec-fine"><span data-l="en">The pass covered navigation, hierarchy, friction, empty and error states, forms and accessibility. The three critical findings:</span></p>
+<ul>
+<li><span data-l="en"><b>A premature auth wall.</b> "Book Now" threw the user to Sign In before they had picked a slot or seen a price.</span></li>
+<li><span data-l="en"><b>The mobile detail page hid the title and price.</b> The highest-intent screen showed a video and a button, but no session name and no dollar amount above the fold.</span></li>
+<li><span data-l="en"><b>Broken mobile navigation.</b> The primary entry points disappeared at the mobile breakpoint with no hamburger.</span></li>
+</ul>
+</div>
+</div>
+<figure class="strip-fig aud">
+<div class="aud-grid">
+<div><p class="aud-h"><span data-l="en">Severity</span></p>
+<div class="aud-row"><span class="aud-k"><span data-l="en">Critical</span></span><span class="aud-dots c"><i></i><i></i><i></i><i></i></span><b class="aud-v">4</b></div>
+<div class="aud-row"><span class="aud-k"><span data-l="en">Major</span></span><span class="aud-dots m"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><b class="aud-v">16</b></div>
+<div class="aud-row"><span class="aud-k"><span data-l="en">Minor</span></span><span class="aud-dots "><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><b class="aud-v">17</b></div></div>
+<div><p class="aud-h"><span data-l="en">Where</span></p>
+<div class="aud-row"><span class="aud-k"><span data-l="en">Booking</span></span><span class="aud-bar hi"><i style="width:100%"></i></span><b class="aud-v">11</b></div>
+<div class="aud-row"><span class="aud-k"><span data-l="en">Search</span></span><span class="aud-bar"><i style="width:82%"></i></span><b class="aud-v">9</b></div>
+<div class="aud-row"><span class="aud-k"><span data-l="en">Landing pages</span></span><span class="aud-bar"><i style="width:82%"></i></span><b class="aud-v">9</b></div>
+<div class="aud-row"><span class="aud-k"><span data-l="en">Auth</span></span><span class="aud-bar"><i style="width:36%"></i></span><b class="aud-v">4</b></div>
+<div class="aud-row"><span class="aud-k"><span data-l="en">Trainer dashboard</span></span><span class="aud-bar"><i style="width:36%"></i></span><b class="aud-v">4</b></div></div>
+</div>
+<figcaption><span data-l="en">37 prioritised findings: 27 of them small fixes, 10 medium. The leaks cluster in booking — the session page, its mobile version and the slot wizard.</span></figcaption>
+</figure>
+</section>
+<section class="sec">
+<h2 class="marker"><span data-l="en">Redesign</span></h2>
+<div class="sec-cols">
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>I rebuilt the booking flow so price and open slots come <i>before sign-up, not after it</i>.</span></p>
+<div class="sec-body">
+<p><span data-l="en">I rendered about 303 screens in a real browser through a role-aware shell: booking, search, listings, the session page, settings, chat, the listing wizard, earnings and both dashboards.</span></p>
+<p class="sec-fine"><span data-l="en">The design system carries its own guardrails: an anti-slop set of 37 banned patterns plus canonical patterns, a type system and a mobile adaptation playbook, so "good" became measurable rather than subjective.</span></p>
+</div>
+</div>
+</section>
+<section class="sec">
+<figure class="strip-fig">
+<div class="strip" role="region" tabindex="0" aria-label="Section screens: Redesign">
+<img alt="Session search: filters by category, time and location" loading="lazy" src="img/sm-search.webp" width="1720" height="1075"/>
+<img alt="Session page: title, price and slots above the fold" loading="lazy" src="img/sm-session.webp" width="1720" height="1075"/>
+<img alt="Booking wizard: date, time and price breakdown before signup" loading="lazy" src="img/sm-wizard.webp" width="1720" height="1075"/>
+<img alt="Booking confirmation with details and receipt" loading="lazy" src="img/sm-confirm.webp" width="1720" height="1075"/>
+</div>
+</figure>
+<h2 class="marker"><span data-l="en">Production build</span></h2>
+<div class="sec-cols">
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>I shipped <i>both builds publicly</i>: React across ~103 routes and a native iOS app.</span></p>
+<div class="sec-body">
+<p><span data-l="en">These are production-quality builds with demo data, not a product with a live audience, and every screen in them is real.</span></p>
+<p class="sec-fine"><span data-l="en">React 19, Vite, Tailwind v4 and Ant Design 6, with design tokens instead of hardcoded values. iOS is assembled only from my own iOS components and tokens: web and iOS share the user flow, not the code, so the app feels native rather than a wrapped web view. The trainer MVP scope dropped from six features to three after a live audit of what the product already did.</span></p>
+<ul>
+<li><a href="https://splitmart-react.vercel.app" rel="noopener" target="_blank">splitmart-react.vercel.app</a> — <span data-l="en">production React build</span></li>
+<li><a href="https://splitmart-ios.vercel.app" rel="noopener" target="_blank">splitmart-ios.vercel.app</a> — <span data-l="en">native iOS app</span></li>
+<li><a href="https://redesign-scope.vercel.app" rel="noopener" target="_blank">redesign-scope.vercel.app</a> — <span data-l="en">web prototype</span></li>
+<li><a href="https://github.com/denysosadchyi/splitmart-react" rel="noopener" target="_blank">github.com/denysosadchyi/splitmart-react</a> — <span data-l="en">the code</span></li>
+</ul>
+</div>
+</div>
+<figure class="strip-fig">
+<div class="strip" role="region" tabindex="0" aria-label="Section screens: Production build">
+<img alt="Client cabinet: upcoming, completed and cancelled sessions" loading="lazy" src="img/sm-cabinet.webp" width="1720" height="1075"/>
+<img alt="Listing wizard: pricing, packages and discounts" loading="lazy" src="img/sm-listing.webp" width="1720" height="1075"/>
+<img alt="Trainer earnings: balance, payouts and transactions" loading="lazy" src="img/sm-earnings.webp" width="1720" height="1075"/>
+<img alt="Trainer chat with an offer sent inside the thread" loading="lazy" src="img/sm-chat.webp" width="1720" height="1075"/>
+</div>
+</figure>
+</section>
+</div>
+<div class="orn orn-b" aria-hidden="true"><span></span><span></span><span></span></div>
+<nav class="cnav">
+<a href="case-layoutlab-en.html"><svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M14.5 6.5 9 12l5.5 5.5"/></svg>LayoutLab</a>
+<a href="case-aethra-en.html"><span data-l="en">Next: AETHRA Wire<svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M9.5 6.5 15 12l-5.5 5.5"/></svg></span></a>
+</nav>
+</main>
+<footer class="dark foot">
+<div class="wrap">
+<h2><span data-l="en">Hiring? <em>Let's talk.</em></span></h2>
+<p class="lede"><span data-l="en">I'm looking for a Senior Product Designer role in a product company.<br/>If you call it Design Engineer, that's me too.<br/>Remote · full-time · I answer fast.</span></p>
+<div class="cta">
+<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><span data-l="en">Message on Telegram</span></a>
+<a class="ghost" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank">LinkedIn</a>
+<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank">CV (PDF)</a>
+
+</div>
+</div>
+</footer>
+<script type="module" src="agentation.js"></script>
+<script>
+/* Paging controls for the mockup strips. Built in JS so a no-JS reader still
+   gets a plain scrollable row rather than dead buttons. */
+(function(){
+var uk = document.documentElement.lang === 'uk';
+var L = uk ? ['Попередні екрани','Наступні екрани'] : ['Previous screens','Next screens'];
+var calm = matchMedia('(prefers-reduced-motion: reduce)');
+document.querySelectorAll('.strip').forEach(function(strip){
+  var nav = document.createElement('div');
+  nav.className = 'stripnav';
+  function make(dir, label, glyph){
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'stripbtn'; b.innerHTML = glyph;
+    b.setAttribute('aria-label', label);
+    b.addEventListener('click', function(){
+      strip.scrollBy({left: dir * strip.clientWidth * 0.8,
+                      behavior: calm.matches ? 'auto' : 'smooth'});
+    });
+    return b;
+  }
+  var prev = make(-1, L[0], '&#8592;'), next = make(1, L[1], '&#8594;');
+  nav.appendChild(prev); nav.appendChild(next);
+  strip.parentNode.insertBefore(nav, strip);
+  function sync(){
+    var max = strip.scrollWidth - strip.clientWidth - 1;
+    nav.hidden = max <= 0;                 /* nothing to page through */
+    prev.disabled = strip.scrollLeft <= 0;
+    next.disabled = strip.scrollLeft >= max;
+  }
+  strip.addEventListener('scroll', sync, {passive:true});
+  addEventListener('resize', sync);
+  /* lazy images change scrollWidth long after DOMContentLoaded */
+  strip.querySelectorAll('img,video').forEach(function(m){
+    m.addEventListener('load', sync); m.addEventListener('loadedmetadata', sync);
+  });
+  sync();
+});
+})();
+</script>
+<script>
+(function(){
+var f=location.pathname.split('/').pop();
+if(!/^case-[\w-]+\.html$/.test(f))return;
+location.replace((document.documentElement.lang==='uk'?'index.html':'index-en.html')+'#case='+f);
+})();
+</script>
+</body>
+</html>

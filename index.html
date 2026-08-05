@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="uk">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Denys Osadchyi — Senior Product Designer</title>
-<meta content="Senior Product Designer with 15+ years in B2B SaaS, developer tools and fintech. Designs the product, then ships it as working code." name="description"/>
-<link href="https://denys-osadchyi.vercel.app/" rel="canonical"/>
-<link href="https://denys-osadchyi.vercel.app/" hreflang="en" rel="alternate"/>
-<link href="https://denys-osadchyi.vercel.app/index-ua.html" hreflang="uk" rel="alternate"/>
-<link href="https://denys-osadchyi.vercel.app/" hreflang="x-default" rel="alternate"/>
+<title>Денис Осадчий — Senior Product Designer</title>
+<meta content="Senior Product Designer, 15+ років у B2B SaaS, інструментах для розробників і фінтеху. Проєктує продукт і сам доводить його до робочого коду." name="description"/>
+<link href="https://denys-make-design.dev/" rel="canonical"/>
+<link href="https://denys-make-design.dev/index-en.html" hreflang="en" rel="alternate"/>
+<link href="https://denys-make-design.dev/" hreflang="uk" rel="alternate"/>
+<link href="https://denys-make-design.dev/" hreflang="x-default" rel="alternate"/>
 <meta content="website" property="og:type"/>
-<meta content="Denys Osadchyi — Senior Product Designer" property="og:title"/>
-<meta content="Senior Product Designer with 15+ years in B2B SaaS, developer tools and fintech. Designs the product, then ships it as working code." property="og:description"/>
-<meta content="https://denys-osadchyi.vercel.app/" property="og:url"/>
-<meta content="https://denys-osadchyi.vercel.app/og.png" property="og:image"/>
+<meta content="Денис Осадчий — Senior Product Designer" property="og:title"/>
+<meta content="Senior Product Designer, 15+ років у B2B SaaS, інструментах для розробників і фінтеху. Проєктує продукт і сам доводить його до робочого коду." property="og:description"/>
+<meta content="https://denys-make-design.dev/" property="og:url"/>
+<meta content="https://denys-make-design.dev/og.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="fonts/fonts.css" rel="stylesheet"/>
@@ -23,7 +23,7 @@
 body{font-family:var(--font-sans)}
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Denys Osadchyi","jobTitle":"Senior Product Designer","email":"mailto:theslowcolours@gmail.com","url":"https://denys-osadchyi.vercel.app","sameAs":["https://linkedin.com/in/denys-osadchyi","https://github.com/denysosadchyi","https://md-academy.design"],"knowsLanguage":["en","uk"],"address":{"@type":"PostalAddress","addressCountry":"UA"}}
+{"@context":"https://schema.org","@type":"Person","name":"Denys Osadchyi","jobTitle":"Senior Product Designer","email":"mailto:theslowcolours@gmail.com","url":"https://denys-make-design.dev","sameAs":["https://linkedin.com/in/denys-osadchyi","https://github.com/denysosadchyi","https://md-academy.design"],"knowsLanguage":["en","uk"],"address":{"@type":"PostalAddress","addressCountry":"UA"}}
 </script>
 <style>/*herocenter*/
 .hero3,.hero3 .hleft,.hero3 h1,.hero3 .sub{text-align:center;width:100%;max-width:none}
@@ -169,9 +169,13 @@ figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height
 /* Experience: year | role over company | what I did. First baselines aligned. */
 /* #xp and #oss sit in white cards, same surface idiom as the .pv work cards */
 #xp .split,#oss .split{background:#fff;border-radius:32px;padding:48px}
-#xp h2.marker{margin-bottom:48px}
-.xp{border-top:1px solid #e2ddd6}
+/* the two white cards sit 8px apart */
+#xp{padding-bottom:4px}
+#oss{padding-top:4px}
+/* marker flag starts flush at the card's left edge */
+#xp h2.marker{margin-bottom:48px;margin-left:-48px}
 .xp li{display:grid;grid-template-columns:minmax(0,108px) minmax(0,1.15fr) minmax(0,1fr);gap:8px 56px;align-items:baseline;margin:0;padding:32px 0;border-bottom:1px solid #e2ddd6}
+.xp li:last-child{border-bottom:0}
 .xp>li>.yrs{margin:0;font-size:var(--t-ui);line-height:1.45;color:var(--t-muted);font-variant-numeric:tabular-nums;white-space:nowrap}
 .xrole{margin:0 0 6px;max-width:32ch;font-size:var(--t-h3);font-weight:400;line-height:1.25;letter-spacing:-.02em;text-wrap:balance}
 .xco{margin:0;font-size:var(--t-ui);font-weight:500;line-height:1.45;color:inherit}
@@ -236,9 +240,9 @@ body.cd-lock{overflow:hidden}
 </style>
 <style>/*oss*/
 /* Teaching list on the same ruled-row mechanic as #xp: title (+label) left, description right. */
-#oss h2.marker{margin-bottom:48px}
-.list{border-top:1px solid #e2ddd6}
+#oss h2.marker{margin-bottom:48px;margin-left:-48px}
 .list li{display:grid;grid-template-columns:minmax(0,108px) minmax(0,1.15fr) minmax(0,1fr);gap:8px 56px;align-items:baseline;margin:0;padding:32px 0;border-bottom:1px solid #e2ddd6}
+.list li:last-child{border-bottom:0}
 .list .t{grid-column:1/3}
 .list .s{grid-column:3}
 .list .t{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0;max-width:26ch;font-size:var(--t-h3);font-weight:400;line-height:1.25;letter-spacing:-.02em}
@@ -293,6 +297,12 @@ background:#3d3d3d}
 /* only the telegram button is blue; everything else stays black */
 .cta.hcta .btn,.foot .cta .btn{background:#145ae0}
 .cta.hcta .btn:hover,.foot .cta .btn:hover{background:#005fd6}
+/* footer ghost buttons are white on the dark band */
+.foot .cta .ghost{background:#fff;color:#111}
+.foot .cta .ghost:hover{background:#e6e3de;color:#111}
+/* view-details is a quiet blue outline pill, not a candy button */
+.pv .open{height:32px;padding:0 14px;font-size:var(--t-chip);color:var(--t-accent);background:transparent;border:1px solid var(--t-accent)}
+.pv .open:hover{background:var(--t-accent);color:#fff}
 .cta .btn svg,.cta .ghost svg{width:18px;height:18px;flex:none}
 @media(prefers-reduced-motion:reduce){
 .cta.hcta .btn,.cta.hcta .ghost,.foot .cta .btn,.foot .cta .ghost,.pv .open{transition:none}
@@ -326,6 +336,7 @@ background:#3d3d3d}
 header .bar{border-radius:20px}
 .pv>div,.outcomes .o{border-radius:16px}
 #xp .split,#oss .split{border-radius:16px;padding:32px 24px}
+#xp h2.marker,#oss h2.marker{margin-left:-24px}
 .cd{border-radius:16px}
 .cta.hcta .btn,.cta.hcta .ghost,.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:16px}
 .hero3 .sub.chain{font-size:15px;gap:10px 14px}
@@ -340,33 +351,33 @@ header .bar{border-radius:20px}
 <body>
 <main>
 <div class="cta hcta">
-<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.42 15.18l-.4 5.58c.57 0 .82-.24 1.11-.53l2.66-2.55l5.52 4.04c1.01.56 1.73.27 2-.93L23.93 3.82c.32-1.5-.54-2.08-1.53-1.71L1.11 10.26c-1.45.56-1.43 1.37-.25 1.74l5.44 1.69L18.56 5.79c.59-.39 1.12-.17.68.22z" fill="currentColor"/></svg><span data-l="en">Message me</span></a>
-<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Download CV</a>
+<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.42 15.18l-.4 5.58c.57 0 .82-.24 1.11-.53l2.66-2.55l5.52 4.04c1.01.56 1.73.27 2-.93L23.93 3.82c.32-1.5-.54-2.08-1.53-1.71L1.11 10.26c-1.45.56-1.43 1.37-.25 1.74l5.44 1.69L18.56 5.79c.59-.39 1.12-.17.68.22z" fill="currentColor"/></svg><span data-l="uk" lang="uk">Написати</span></a>
 
+<a class="ghost" data-l="uk" href="cv-ua.pdf" lang="uk" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Скачати CV</a>
 </div>
 <div class="dark herowrap">
 <div class="langbar">
-<a class="langswitch" href="index-ua.html" hreflang="uk" aria-label="Українською" title="Українською"><img alt="Українською" src="img/flag-ua.svg" width="24" height="18"/></a>
+<a class="langswitch" href="index-en.html" hreflang="en" aria-label="English" title="English"><img alt="English" src="img/flag-us.svg" width="24" height="18"/></a>
 </div>
 <section class="wrap hero3">
 <div class="hleft">
 <h1>
 <span class="fitlines">
-<span data-l="en"><span class="think" aria-hidden="true"></span>Hi, I'm <img class="hero-ava" src="img/denys.webp" alt=""/>Denys,</span><br/>
-<span data-l="en">a product designer</span><br/>
-<span data-l="en">and design engineer,</span><br/>
-<span class="hand" data-l="en">and I <span class="hand-u">build products</span>, not mockups!</span>
+<span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Привіт, я <img class="hero-ava" src="img/denys.webp" alt=""/>Денис,</span><br/>
+<span data-l="uk" lang="uk">продуктовий дизайнер</span><br/>
+<span data-l="uk" lang="uk">і дизайн-інженер,</span><br/>
+<span class="hand" data-l="uk" lang="uk">і я <span class="hand-u">роблю продукти</span>, а не макети!</span>
 </span>
 </h1>
-<div class="sub chain" data-l="en"><span>Research</span><span>UX</span><span>Design systems</span><span>Production-ready code</span></div>
 
+<div class="sub chain" data-l="uk" lang="uk"><span>Дослідження</span><span>UX</span><span>Дизайн системи</span><span>Продакшн реді код</span></div>
 </div>
 </section>
 <div class="ledger">
 <div class="wrap grid">
-<div class="fig rv"><div class="n">15+</div><div class="d"><span data-l="en">years of experience<br/>in product design</span></div></div>
-<div class="fig rv"><div class="n">5</div><div class="d"><span data-l="en">built <a href="https://github.com/denysosadchyi" rel="noopener" target="_blank">tools</a><br/>for designers</span></div></div>
-<div class="fig rv"><div class="n">10+</div><div class="d"><span data-l="en">products built<br/>from zero</span></div></div>
+<div class="fig rv"><div class="n">15+</div><div class="d"><span data-l="uk" lang="uk">років досвіду<br/>у продуктовому дизайні</span></div></div>
+<div class="fig rv"><div class="n">5</div><div class="d"><span data-l="uk" lang="uk">зробив <a href="https://github.com/denysosadchyi" rel="noopener" target="_blank">тулзів</a><br/>для дизайнерів</span></div></div>
+<div class="fig rv"><div class="n">10+</div><div class="d"><span data-l="uk" lang="uk">побудував продуктів<br/>із нуля</span></div></div>
 </div>
 </div>
 </div>
@@ -374,108 +385,108 @@ header .bar{border-radius:20px}
 <div class="workgrid"><article class="pv rv">
 <a class="thumb mock" href="case-layoutlab.html"><div class="mockscreen"><video autoplay="" loop="" muted="" playsinline="" poster="" preload="metadata" src="vid/ll-demo5.mp4?v=2"></video></div><img alt="" src="img/ll-mockup.webp"/></a>
 <div>
-<p class="meta pills"><span data-l="en"><span class="tag">Product Designer</span><span class="tag">Design Engineer</span><span class="tag">contract</span></span></p>
-<h3><a href="case-layoutlab.html"><span data-l="en">LayoutLab: I built a mockup generator that made design 7&#215; faster</span></a></h3>
-<p class="nums"><span data-l="en"><i class="chip">a week → hours</i><i class="chip">263 screens in 2 months</i></span></p>
-<p><span data-l="en">I designed and built it solo. A brief goes in; editable screens built on the company's real production components come out, so what stakeholders approve is what ships.</span></p>
-<a class="open" href="case-layoutlab.html"><span data-l="en">View details</span></a>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Product Designer</span><span class="tag">Design Engineer</span><span class="tag">контракт</span></span></p>
+<h3><a href="case-layoutlab.html"><span data-l="uk" lang="uk">LayoutLab: зробив генератор макетів, який пришвидшив дизайн в 7 раз</span></a></h3>
+<p class="nums"><span data-l="uk" lang="uk"><i class="chip">тиждень → години</i><i class="chip">263 екрани за 2 місяці</i></span></p>
+<p><span data-l="uk" lang="uk">Спроєктував і збудував її самостійно. На вході бриф, на виході редаговані екрани на реальних продакшн-компонентах компанії: що погодили, те і йде в продакшн.</span></p>
+<a class="open" href="case-layoutlab.html"><span data-l="uk" lang="uk">Дивитися деталі</span></a>
 </div>
 </article>
 <article class="pv rv">
 <a class="thumb" href="case-splitmart.html"><img alt="SplitMart client landing, shipped" height="2160" loading="lazy" src="img/sm-cover.webp" width="3840"/></a>
 <div>
-<p class="meta pills"><span data-l="en"><span class="tag">Product Designer</span><span class="tag">Design Engineer</span></span></p>
-<h3><a href="case-splitmart.html"><span data-l="en">SplitMart: a redesign in code after a UX audit</span></a></h3>
-<p class="nums"><span data-l="en"><i class="chip">37 audit findings</i><i class="chip">303 screens</i></span></p>
-<p><span data-l="en">A fitness marketplace where clients pay per session. I started with a UX audit that showed where bookings leak, then redesigned web and native iOS and built the production React version. I designed everything directly in code.</span></p>
-<a class="open" href="case-splitmart.html"><span data-l="en">View details</span></a>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Product Designer</span><span class="tag">Design Engineer</span></span></p>
+<h3><a href="case-splitmart.html"><span data-l="uk" lang="uk">SplitMart: редизайн у коді після UX-аудиту</span></a></h3>
+<p class="nums"><span data-l="uk" lang="uk"><i class="chip">37 знахідок аудиту</i><i class="chip">303 екрани</i></span></p>
+<p><span data-l="uk" lang="uk">Фітнес-маркетплейс з оплатою за сесію. Почав з UX-аудиту, який показав, де губляться бронювання. Потім переробив web і нативний iOS та зібрав продакшн-версію на React. Усе спроєктував прямо в коді.</span></p>
+<a class="open" href="case-splitmart.html"><span data-l="uk" lang="uk">Дивитися деталі</span></a>
 </div>
 </article>
 <article class="pv rv">
 <a class="thumb" href="case-scalr.html"><img alt="Scalr product screens" height="2160" loading="lazy" src="img/sc-cover.webp" width="3840"/></a>
 <div>
-<p class="meta pills"><span data-l="en"><span class="tag">Senior Product Designer</span></span></p>
-<h3><a href="case-scalr.html"><span data-l="en">Scalr: design system, product work</span></a></h3>
-<p class="nums"><span data-l="en"><i class="chip">design system from scratch</i><i class="chip">1,499→72 tokens</i><i class="chip">metrics from zero</i></span></p>
-<p><span data-l="en">I worked on staff at a DevOps automation platform. I ran product tasks across the platform — dashboards, observability, access, run detail — and assembled the design system from scratch alongside engineers.</span></p>
-<a class="open" href="case-scalr.html"><span data-l="en">View details</span></a>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Senior Product Designer</span></span></p>
+<h3><a href="case-scalr.html"><span data-l="uk" lang="uk">Scalr: дизайн система, продуктові задачі</span></a></h3>
+<p class="nums"><span data-l="uk" lang="uk"><i class="chip">дизайн-система з нуля</i><i class="chip">1,499→72 токени</i><i class="chip">метрики з нуля</i></span></p>
+<p><span data-l="uk" lang="uk">Працював у штаті платформи автоматизації DevOps. Вів продуктові задачі по всій платформі — дашборди, спостережуваність, доступи, деталі запусків — і зібрав дизайн-систему з нуля поруч з інженерами.</span></p>
+<a class="open" href="case-scalr.html"><span data-l="uk" lang="uk">Дивитися деталі</span></a>
 </div>
 </article>
 <article class="pv rv">
 <a class="thumb" href="case-aethra.html"><img alt="AETHRA Wire product screens" height="2080" loading="lazy" src="img/ae-cover.webp" width="2600"/></a>
 <div>
-<p class="meta pills"><span data-l="en"><span class="tag">Senior Product Designer</span></span></p>
-<h3><a href="case-aethra.html"><span data-l="en">AETHRA Wire: I designed an HR platform from scratch</span></a></h3>
-<p class="nums"><span data-l="en"><i class="chip">2 roles</i><i class="chip">0→1</i><i class="chip">Tailwind-ready design system</i></span></p>
-<p><span data-l="en">I got a stack of business requirements and turned it into a working product: mapped the information architecture, built the design system and designed every screen for both roles.</span></p>
-<a class="open" href="case-aethra.html"><span data-l="en">View details</span></a>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Senior Product Designer</span></span></p>
+<h3><a href="case-aethra.html"><span data-l="uk" lang="uk">AETHRA Wire: спроєктував з нуля HR-платформу</span></a></h3>
+<p class="nums"><span data-l="uk" lang="uk"><i class="chip">2 ролі</i><i class="chip">0→1</i><i class="chip">дизайн-система під Tailwind</i></span></p>
+<p><span data-l="uk" lang="uk">Отримав стос документів з бізнес-вимогами і перетворив їх на робочий продукт: змапив інформаційну архітектуру, зібрав дизайн-систему і намалював усі екрани для обох ролей.</span></p>
+<a class="open" href="case-aethra.html"><span data-l="uk" lang="uk">Дивитися деталі</span></a>
 </div>
 </article>
 <article class="pv rv">
 <a class="thumb" href="case-cosmediate.html"><img alt="Cosmediate product screens" height="2160" loading="lazy" src="img/co-cover.webp" width="3840"/></a>
 <div>
-<p class="meta pills"><span data-l="en"><span class="tag">Senior Product Designer</span></span></p>
-<h3><a href="case-cosmediate.html"><span data-l="en">Cosmediate: marketplace audit and redesign</span></a></h3>
-<p class="nums"><span data-l="en"><i class="chip">3 roles</i><i class="chip">full redesign</i><i class="chip">booking flow</i></span></p>
-<p><span data-l="en">I fully reworked a clinic-booking marketplace. Three roles lived like three different products, so I brought them onto one design system and rebuilt the booking flow to earn the patient's trust.</span></p>
-<a class="open" href="case-cosmediate.html"><span data-l="en">View details</span></a>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Senior Product Designer</span></span></p>
+<h3><a href="case-cosmediate.html"><span data-l="uk" lang="uk">Cosmediate: аудит і редизайн маркетплейсу</span></a></h3>
+<p class="nums"><span data-l="uk" lang="uk"><i class="chip">3 ролі</i><i class="chip">повний редизайн</i><i class="chip">booking-флоу</i></span></p>
+<p><span data-l="uk" lang="uk">Повністю переробив маркетплейс запису до клінік. Три ролі жили як три різні продукти, тож я звів їх на одну дизайн-систему і перебудував booking-флоу так, щоб він заробляв довіру пацієнта.</span></p>
+<a class="open" href="case-cosmediate.html"><span data-l="uk" lang="uk">Дивитися деталі</span></a>
 </div>
 </article>
 <article class="pv rv">
 <div>
 <img alt="" class="toolicon" height="72" loading="lazy" src="img/figmosha-icon.webp"/>
-<p class="meta pills"><span data-l="en"><span class="tag">I built this</span></span></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Я зробив</span></span></p>
 <h3><a href="https://github.com/denysosadchyi/figmosha2" rel="noopener" target="_blank">figmosha2</a></h3>
-<p class="nums"><span data-l="en"><i class="chip">Python</i><i class="chip">CLI</i><i class="chip">WebSocket bridge</i></span></p>
-<p><span data-l="en">A tool that lets you build design in Figma straight from an AI agent: components, design system, pages. It can also audit design systems and change finished mockups.</span></p>
-<a class="open" href="https://github.com/denysosadchyi/figmosha2" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
+<p class="nums"><span data-l="uk" lang="uk"><i class="chip">Python</i><i class="chip">CLI</i><i class="chip">WebSocket-міст</i></span></p>
+<p><span data-l="uk" lang="uk">Тулза, що дозволяє будувати напряму із АІ агента дизайн в Figma: компоненти, дизайн система, сторінки. Також може робити аудит дизайн-систем, вносити зміни на готові макети</span></p>
+<a class="open" href="https://github.com/denysosadchyi/figmosha2" rel="noopener" target="_blank"><span data-l="uk" lang="uk">Дивитися на GitHub</span></a>
 </div>
 </article>
 <article class="pv rv">
 <div>
 <img alt="" class="toolicon" height="72" loading="lazy" src="img/ux-auditor-icon.webp"/>
-<p class="meta pills"><span data-l="en"><span class="tag">I built this</span></span></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Я зробив</span></span></p>
 <h3><a href="https://github.com/denysosadchyi/ux-auditor" rel="noopener" target="_blank">ux-auditor</a></h3>
-<p class="nums"><span data-l="en"><i class="chip">Claude Code skills</i><i class="chip">Playwright</i></span></p>
-<p><span data-l="en">A repeatable UX-audit toolkit: a bilingual playbook, Claude Code skills, and Playwright-driven capture — turning UX review into a reproducible, AI-assisted process.</span></p>
-<a class="open" href="https://github.com/denysosadchyi/ux-auditor" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
+<p class="nums"><span data-l="uk" lang="uk"><i class="chip">Claude Code skills</i><i class="chip">Playwright</i></span></p>
+<p><span data-l="uk" lang="uk">Відтворюваний тулкіт для UX-аудиту: двомовний плейбук, скіли Claude Code і захоплення екранів через Playwright — перетворює UX-рев'ю на відтворюваний, AI-асистований процес.</span></p>
+<a class="open" href="https://github.com/denysosadchyi/ux-auditor" rel="noopener" target="_blank"><span data-l="uk" lang="uk">Дивитися на GitHub</span></a>
 </div>
 </article>
 <article class="pv rv">
 <div>
 <img alt="" class="toolicon" height="72" loading="lazy" src="img/styles-to-token-migration-icon.webp"/>
-<p class="meta pills"><span data-l="en"><span class="tag">I built this</span></span></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Я зробив</span></span></p>
 <h3><a href="https://github.com/denysosadchyi/styles-to-token-migration" rel="noopener" target="_blank">styles-to-token-migration</a></h3>
-<p class="nums"><span data-l="en"><i class="chip">Figma API</i><i class="chip">Variables</i></span></p>
-<p><span data-l="en">A pipeline for migrating Figma components from Paint Styles to semantic Variables. It automates one of the most tedious and error-prone steps of design-system modernization.</span></p>
-<a class="open" href="https://github.com/denysosadchyi/styles-to-token-migration" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
+<p class="nums"><span data-l="uk" lang="uk"><i class="chip">Figma API</i><i class="chip">Variables</i></span></p>
+<p><span data-l="uk" lang="uk">Пайплайн для міграції компонентів Figma з Paint Styles на семантичні Variables. Автоматизує один із найнудніших і найризикованіших кроків модернізації дизайн-системи.</span></p>
+<a class="open" href="https://github.com/denysosadchyi/styles-to-token-migration" rel="noopener" target="_blank"><span data-l="uk" lang="uk">Дивитися на GitHub</span></a>
 </div>
 </article>
 <article class="pv rv">
 <div>
 <img alt="" class="toolicon" height="72" loading="lazy" src="img/yamleer-icon.webp"/>
-<p class="meta pills"><span data-l="en"><span class="tag">I built this</span></span></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Я зробив</span></span></p>
 <h3><a href="https://github.com/denysosadchyi/yamleer" rel="noopener" target="_blank">yamleer</a></h3>
-<p class="nums"><span data-l="en"><i class="chip">YAML</i><i class="chip">no build step</i></span></p>
-<p><span data-l="en">An SDD design pipeline: tokens, blocks, primitives and screens compile into standalone HTML and a storyboard. A mockup generator that turns a spec into finished pages</span></p>
-<a class="open" href="https://github.com/denysosadchyi/yamleer" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
+<p class="nums"><span data-l="uk" lang="uk"><i class="chip">YAML</i><i class="chip">без білда</i></span></p>
+<p><span data-l="uk" lang="uk">SDD дизайн-пайплайн: токени, блоки, примітиви й екрани компілюються у самодостатній HTML і сторіборд. Генератор макетів, що перетворює специфікацію на готові сторінки</span></p>
+<a class="open" href="https://github.com/denysosadchyi/yamleer" rel="noopener" target="_blank"><span data-l="uk" lang="uk">Дивитися на GitHub</span></a>
 </div>
 </article>
 <article class="pv rv">
 <div>
 <img alt="" class="toolicon" height="72" loading="lazy" src="img/job-searcher-icon.webp"/>
-<p class="meta pills"><span data-l="en"><span class="tag">I built this</span></span></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Я зробив</span></span></p>
 <h3><a href="https://github.com/denysosadchyi/job-searcher" rel="noopener" target="_blank">job-searcher</a></h3>
-<p class="nums"><span data-l="en"><i class="chip">Python</i><i class="chip">Flask</i><i class="chip">autonomous agent</i></span></p>
-<p><span data-l="en">Automated job-board monitoring (Djinni, DOU, Work.ua): AI scores each vacancy 1 to 10 against the user profile and shows the result in a dashboard.</span></p>
-<a class="open" href="https://github.com/denysosadchyi/job-searcher" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
+<p class="nums"><span data-l="uk" lang="uk"><i class="chip">Python</i><i class="chip">Flask</i><i class="chip">автономний агент</i></span></p>
+<p><span data-l="uk" lang="uk">Автоматичний моніторинг job-бордів (Djinni, DOU, Work.ua): AI оцінює кожну вакансію від 1 до 10 під профіль користувача і показує результат у дашборді.&nbsp;</span></p>
+<a class="open" href="https://github.com/denysosadchyi/job-searcher" rel="noopener" target="_blank"><span data-l="uk" lang="uk">Дивитися на GitHub</span></a>
 </div>
 </article>
 </div>
 </section>
 <section class="wrap block" id="xp">
 <div class="split">
-<h2 class="marker"><span data-l="en">Experience</span></h2>
+<h2 class="marker"><span data-l="uk" lang="uk">Досвід</span></h2>
 <ul class="xp rv">
 <li>
 <p class="yrs">2026</p>
@@ -483,7 +494,7 @@ header .bar{border-radius:20px}
 <p class="xrole">Product Designer + Design Engineer</p>
 <p class="xco">Records Marine</p>
 </div>
-<p class="xnote"><span data-l="en">A 3-month contract: I built a mockup-generation tool and improved design processes in the design team.</span></p>
+<p class="xnote"><span data-l="uk" lang="uk">Контракт на 3 місяці: будував інструмент для генерації макетів і покращував дизайн-процеси в команді дизайнерів.</span></p>
 </li>
 <li>
 <p class="yrs">2022–2026</p>
@@ -491,41 +502,41 @@ header .bar{border-radius:20px}
 <p class="xrole">Senior Product Designer</p>
 <p class="xco">Scalr</p>
 </div>
-<p class="xnote"><span data-l="en">Staff, full-time. I held the design system of a Terraform automation platform for four years: I built it from scratch in Figma on tokens, moved it from a custom framework to Ant Design, wrote the documentation and supported frontend engineers through integration. I designed product features end-to-end in a team of 2–3 designers: from JTBD analysis and user feedback to concepts for complex DevOps workflows (workspaces, run pipelines, policies, environment structures).</span></p>
+<p class="xnote"><span data-l="uk" lang="uk">Штат, full-time. Чотири роки підтримував дизайн-систему платформи Terraform-автоматизації: зібрав її з нуля у Figma на токенах.<br/><br/>Пилив продуктові фічі складних DevOps-флоу (воркспейси, пайплайни запусків, політики, структура середовищ).</span></p>
 </li>
 <li>
 <p class="yrs">2018–2023</p>
 <div class="xr">
-<p class="xrole"><span data-l="en">Founder &amp; Design Director</span></p>
+<p class="xrole"><span data-l="uk" lang="uk">Засновник і дизайн-директор</span></p>
 <p class="xco">Nerdfox Design</p>
 </div>
-<p class="xnote"><span data-l="en">My own agency: a team of 5 shipped 10+ products from zero for clients across the EU, UK and UAE. I closed it myself in 2023: I want to design products, not run a vendor.</span></p>
+<p class="xnote"><span data-l="uk" lang="uk">Моя агенція: команда з 5 запустила 10+ продуктів з нуля для клієнтів у ЄС, Британії та ОАЕ. Закрив її сам у 2023: хочу проєктувати продукти, а не керувати підрядником.</span></p>
 </li>
 </ul>
 </div>
 </section>
 <section class="wrap block" id="oss">
 <div class="split">
-<h2 class="marker"><span data-l="en">I teach designers</span></h2>
+<h2 class="marker"><span data-l="uk" lang="uk">Вчу дизайнерів і виступаю</span></h2>
 <ul class="list">
-<li><div class="t"><a href="https://md-academy.design" rel="noopener" target="_blank">MD Academy</a><span class="tag"><span data-l="en">founder</span></span></div><div class="s"><span data-l="en">Live cohort courses that train experienced designers to run the full product pipeline with AI. Two sold-out cohorts; the Pro Max course is on its second run. The format is fixed, a set number of live lessons per cohort: it runs alongside a full-time role, not instead of one.</span></div></li>
-<li><div class="t"><span class="tt"><span data-l="en">Corporate mentoring</span></span></div><div class="s"><span data-l="en">I train the in-house design team of a large Ukrainian retailer 1:1 in AI-assisted design engineering.</span></div></li>
-<li><div class="t"><span class="tt"><span data-l="en">Conference talks</span></span></div><div class="s"><span data-l="en">I gave ~5 talks on design systems and AI-assisted development: UNIED / Planet of Design, SHIFT'26, TIRED community.</span></div></li>
-<li><div class="t"><span class="tt"><span data-l="en">Press</span></span></div><div class="s"><span data-l="en"><a href="https://dev.ua/news/vaibkodynh-1753770208" rel="noopener" target="_blank">dev.ua interviewed me</a> about AI-assisted development, and <a href="https://activecollab.com/blog/customer-stories/wonderful-software-solution-nerdfox-design" rel="noopener" target="_blank">ActiveCollab wrote a case study</a> about my agency's workflow.</span></div></li>
+<li><div class="t"><a href="https://md-academy.design" rel="noopener" target="_blank">MD Academy</a><span class="tag"><span data-l="uk" lang="uk">засновник</span></span></div><div class="s"><span data-l="uk" lang="uk">Живі когортні курси, що вчать досвідчених дизайнерів вести повний продуктовий цикл з AI. Дві розпродані когорти; курс Pro Max іде другим потоком. Формат фіксований, визначена кількість живих занять на когорту: академія існує поряд із full-time роллю, а не замість неї.</span></div></li>
+<li><div class="t"><span class="tt"><span data-l="uk" lang="uk">Корпоративне менторство</span></span></div><div class="s"><span data-l="uk" lang="uk">Навчаю 1:1 внутрішню дизайн-команду великого українського рітейлера AI-процесам у дизайні.</span></div></li>
+<li><div class="t"><span class="tt"><span data-l="uk" lang="uk">Виступи на конференціях</span></span></div><div class="s"><span data-l="uk" lang="uk">Виступив з ~5 доповідями про дизайн-системи та AI-розробку: UNIED / Planet of Design, SHIFT'26, спільнота TIRED.</span></div></li>
+<li><div class="t"><span class="tt"><span data-l="uk" lang="uk">Преса</span></span></div><div class="s"><span data-l="uk" lang="uk"><a href="https://dev.ua/news/vaibkodynh-1753770208" rel="noopener" target="_blank">dev.ua взяв у мене інтерв'ю</a> про AI-розробку, а <a href="https://activecollab.com/blog/customer-stories/wonderful-software-solution-nerdfox-design" rel="noopener" target="_blank">ActiveCollab написав кейс-стаді</a> про воркфлоу моєї агенції.</span></div></li>
 </ul>
 </div>
 </section>
 </main>
 <footer class="dark foot" id="contact">
 <div class="wrap">
-<h2><span data-l="en">Hiring? <em>Message me!</em></span></h2>
-<p class="lede"><span data-l="en">I'm looking for a Senior Product Designer role in a product company.<br/>If you call it Design Engineer, that's me too.<br/>Remote · full-time · I answer fast.</span></p>
+<h2><span data-l="uk" lang="uk">Наймаєте? <em>Напишіть мені!</em></span></h2>
+<p class="lede"><span data-l="uk" lang="uk">Шукаю роль Senior Product Designer у продуктовій компанії.<br/>Якщо у вас це називається Design Engineer, це теж я.<br/>Remote · full-time · відповідаю швидко.</span></p>
 <div class="cta">
-<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.42 15.18l-.4 5.58c.57 0 .82-.24 1.11-.53l2.66-2.55l5.52 4.04c1.01.56 1.73.27 2-.93L23.93 3.82c.32-1.5-.54-2.08-1.53-1.71L1.11 10.26c-1.45.56-1.43 1.37-.25 1.74l5.44 1.69L18.56 5.79c.59-.39 1.12-.17.68.22z" fill="currentColor"/></svg><span data-l="en">Message me</span></a>
-<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>CV (PDF)</a>
+<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.42 15.18l-.4 5.58c.57 0 .82-.24 1.11-.53l2.66-2.55l5.52 4.04c1.01.56 1.73.27 2-.93L23.93 3.82c.32-1.5-.54-2.08-1.53-1.71L1.11 10.26c-1.45.56-1.43 1.37-.25 1.74l5.44 1.69L18.56 5.79c.59-.39 1.12-.17.68.22z" fill="currentColor"/></svg><span data-l="uk" lang="uk">Написати</span></a>
+
+<a class="ghost" data-l="uk" href="cv-ua.pdf" lang="uk" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>CV (PDF)</a>
 <a class="ghost" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank">LinkedIn</a>
 <a class="ghost" href="https://github.com/denysosadchyi" rel="noopener" target="_blank">GitHub</a>
-
 </div>
 </div>
 </footer>
@@ -573,8 +584,8 @@ window.addEventListener('load',masonry);
 </script>
 <script type="module" src="agentation.js"></script>
 <div class="cd-ov" hidden id="cdOv"></div>
-<aside aria-label="Case study" aria-modal="true" class="cd" hidden id="cd" role="dialog" tabindex="-1">
-<button class="cd-x" id="cdX" type="button"><span aria-hidden="true">×</span><span class="vh" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Close</span></button>
+<aside aria-label="Кейс" aria-modal="true" class="cd" hidden id="cd" role="dialog" tabindex="-1">
+<button class="cd-x" id="cdX" type="button"><span aria-hidden="true">×</span><span class="vh" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Закрити</span></button>
 <div class="cd-body" id="cdBody"></div>
 <div aria-hidden="true" class="cd-sb" id="cdSb"><i></i></div>
 </aside>

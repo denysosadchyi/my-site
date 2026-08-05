@@ -6,6 +6,7 @@ editor lives in the site files and nothing can be deployed by accident.
 
     python3 editor.py [port]
 """
+import html as htmllib
 import json
 import os
 import re
@@ -16,7 +17,34 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 ROOT = os.path.dirname(os.path.abspath(__file__))
 BACKUPS = os.path.join(os.path.dirname(ROOT), "my-site-backups")
 INJECT = b'<script src="/_edit.js"></script>\n</body>'
-ALLOWED = re.compile(r"^(index(-ua)?|case-[a-z-]+)\.html$")
+ALLOWED = re.compile(r"^(index(-en)?|case-[a-z-]+)\.html$")
+ENTITY = re.compile(r"&(?:#\d+|#x[0-9a-fA-F]+|[a-zA-Z][a-zA-Z0-9]*);")
+
+
+def canon(s):
+    """Map HTML to the form a browser's innerHTML gives back: character
+    entities decoded (&#215; -> ×), self-closing slashes dropped (<br/> -> <br>).
+    Returns (canonical string, canonical-index -> source-offset map)."""
+    out, cmap, i = [], [], 0
+    while i < len(s):
+        m = ENTITY.match(s, i)
+        if m:
+            for ch in htmllib.unescape(m.group(0)):
+                out.append(ch)
+                cmap.append(i)
+            i = m.end()
+            continue
+        if s[i] == "/" and s[i + 1:i + 2] == ">":
+            i += 1
+            continue
+        if s[i] in " \t" and s[i + 1:i + 3] == "/>":
+            i += 1
+            continue
+        out.append(s[i])
+        cmap.append(i)
+        i += 1
+    cmap.append(len(s))
+    return "".join(out), cmap
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -82,11 +110,22 @@ class Handler(SimpleHTTPRequestHandler):
             if not old or old == new:
                 continue
             hits = src.count(old)
-            if hits != 1:                       # 0 = stale, >1 = ambiguous; never guess
-                skipped.append({"old": old[:70], "hits": hits})
+            if hits == 1:
+                src = src.replace(old, new, 1)
+                applied += 1
                 continue
-            src = src.replace(old, new, 1)
-            applied += 1
+            # The browser sends innerHTML, which need not match the file bytes
+            # (entities decoded, <br/> serialized as <br>). Retry the match on
+            # canonicalized text and splice by mapped source offsets.
+            c_old = canon(old)[0]
+            c_src, cmap = canon(src)
+            if c_old and c_src.count(c_old) == 1:
+                i0 = c_src.index(c_old)
+                src = src[:cmap[i0]] + new + src[cmap[i0 + len(c_old)]:]
+                applied += 1
+                continue
+            # 0 = stale, >1 = ambiguous; never guess
+            skipped.append({"old": old[:70], "hits": hits})
 
         if applied:
             os.makedirs(BACKUPS, exist_ok=True)
@@ -154,6 +193,7 @@ function clean(html){
   d.innerHTML=html;
   (function walk(node){
     [].slice.call(node.children).forEach(function(c){
+      if(/^(img|svg)$/i.test(c.tagName))return; /* keep media subtrees intact */
       walk(c);
       if(!/^(I|B|EM|STRONG|A|BR|SPAN)$/.test(c.tagName)){
         while(c.firstChild)c.parentNode.insertBefore(c.firstChild,c);
