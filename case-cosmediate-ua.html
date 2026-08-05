@@ -58,8 +58,8 @@ main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:
 .cbody .sec:first-child{margin-top:64px}
 .cbody .sec h2.marker,.block h2.marker{display:inline-block;margin:0 0 28px;max-width:34ch;padding:8px 36px 8px 22px;position:sticky;top:16px;z-index:5;font-size:var(--t-marker);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 50%,100% 100%,0 100%)}
 .cbody .sec-cols,.chero .sec-cols{margin-top:8px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 56px;align-items:start;margin:0 0 28px}
-.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:var(--font-lead);font-style:italic;font-weight:400;font-size:var(--t-lead);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
-.cbody .sec-lead i,.chero .sec-lead i{color:var(--t-accent);font-style:italic}
+.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:var(--font-lead);font-weight:400;font-size:var(--t-lead);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
+.cbody .sec-lead i,.chero .sec-lead i{color:var(--t-accent);font-style:normal}
 .cbody .sec-body>p,.chero .sec-body>p{margin:0 0 14px;max-width:35rem}
 .cbody .sec-body>p:last-child,.chero .sec-body>p:last-child{margin-bottom:0}
 .cbody .sec-body ul{margin:10px 0 0;padding-left:1.2em;max-width:35rem;font-size:var(--t-caption);line-height:var(--lh-fine);color:var(--t-muted)}
@@ -157,8 +157,8 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
 .strip::-webkit-scrollbar{display:none}
 .stripnav{position:absolute;z-index:2;left:16px;right:16px;top:calc(clamp(220px,30vw,460px)/2);transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none}
 .stripnav[hidden]{display:none}
-.stripbtn{pointer-events:auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:1.25rem;line-height:1;color:#111;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:50%;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.12);transition:background .15s ease-out,color .15s ease-out,border-color .15s ease-out,opacity .15s ease-out}
-.stripbtn:hover:not(:disabled){background:#145ae0;border-color:#145ae0;color:#fff}
+.stripbtn{pointer-events:auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:1.25rem;line-height:1;color:#111;background:#fff;border:none;border-radius:50%;cursor:pointer;transition:background .15s ease-out,color .15s ease-out,opacity .15s ease-out}
+.stripbtn:hover:not(:disabled){background:#145ae0;color:#fff}
 .stripbtn:disabled{opacity:0;pointer-events:none}
 .stripbtn:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.stripbtn{transition:none}}
@@ -173,7 +173,7 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
    Device mockups (the covers, outside .cbody) stay full-bleed. */
 .cbody /* one screen or one video in a block: 860 wide, centred, on a band that spans the page */
 /* the one ornament: Arial italic marks the words carrying the argument */
-.foot h2 em,.ia-role{font-family:var(--font-italic);font-style:italic}
+.foot h2 em,.ia-role{font-family:var(--font-italic);font-style:normal}
 .foot h2 em{font-weight:700;font-size:1.1em}
 .cnav{justify-content:space-between;padding-top:24px}
 @media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
@@ -296,7 +296,7 @@ header .bar{border-radius:20px}
 </div>
 <h2 class="marker"><span data-l="uk" lang="uk">Admin: черга, а не дашборд</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Адмінка це внутрішній інструмент: <i>щільність замість декору</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Адмінка це внутрішній інструмент: <i>має бути зручною в користуванні</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Погодження клінік, верифікацію сертифікатів, модерацію відгуків і управління користувачами я спроєктував як черги, які адмін проходить зверху вниз.</span></p>
 </div>
@@ -311,9 +311,9 @@ header .bar{border-radius:20px}
 <img alt="Clinic settings: appointment acceptance rules" loading="lazy" src="img/co-set-appointments.webp"/>
 </div>
 </div>
-<h2 class="marker"><span data-l="uk" lang="uk">Чого вимагав проєкт</span></h2>
+<h2 class="marker"><span data-l="uk" lang="uk">Висновок</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Трирольові продукти складні тим, що кожне рішення <i>відгукується в інших ролях</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Такі продукти складні тим, що кожне рішення <i>пов'язане між собою і перетинається на різних ролях</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Тримати цю зв'язність з нуля, без продуктової команди, означало тримати всю систему в голові на кожному кроці.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Зміна в управлінні доступністю клініки змінює те, що пацієнт бачить у бронюванні. Дизайн-система тримала ці зв'язки вкупі.</span></p>
