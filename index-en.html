@@ -544,16 +544,24 @@ setTimeout(function(){document.documentElement.classList.add('intro-done')},5300
 (function(){
 var h1=document.querySelector('.hero3 h1');
 if(!h1)return;
-/* measure h1, not .fitlines: .fitlines is an inline span, its scroll* are always 0.
-   width check only — every line is nowrap at every viewport, so it's always exactly 4 lines tall */
+/* measure the line spans, not h1.scrollWidth: scrollWidth is floored at clientWidth (can't see near-misses)
+   and ignores transforms — the .hand rect DOES include its -3deg rotation, whose painted extent is what a real
+   iPhone clips. width check only — every line is nowrap at every viewport, so it's always exactly 4 lines tall */
+var spans=h1.querySelectorAll('.fitlines>span');
+function widest(){var w=0,i,b;for(i=0;i<spans.length;i++){b=spans[i].getBoundingClientRect().width;if(b>w)w=b}return w}
 function fit(){
 h1.style.fontSize='';
 var size=parseFloat(getComputedStyle(h1).fontSize),guard=0;
-var maxW=h1.parentElement.clientWidth;
-while(h1.scrollWidth>maxW&&size>16&&guard<80){size-=1;h1.style.fontSize=size+'px';guard++}
+/* -8px slack: rounding + iOS vs desktop font-metric drift; desktop lines sit 100px+ inside, so it's a no-op there */
+var maxW=h1.parentElement.clientWidth-8;
+while(widest()>maxW&&size>16&&guard<80){size-=1;h1.style.fontSize=size+'px';guard++}
 }
 fit();
-if(document.fonts)document.fonts.ready.then(fit);
+/* iOS Safari can resolve fonts.ready before the woffs actually apply (WebKit 217047): the fit then keeps
+   fallback metrics and Caveat swaps in wider, pushing the "!" off-screen. Re-fit on every real signal. */
+if(document.fonts){document.fonts.ready.then(fit);document.fonts.addEventListener('loadingdone',fit)}
+window.addEventListener('load',fit);
+setTimeout(fit,1000);
 window.addEventListener('resize',fit);
 })();
 (function(){
