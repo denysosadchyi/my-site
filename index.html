@@ -32,6 +32,9 @@ body{font-family:var(--font-sans)}
 .hero3 h1,.hero3 h1 *{font-weight:300}
 .hero3 h1{font-size:clamp(2.2rem,5.7vw,4.9rem);font-weight:300;line-height:100%}
 .hero3 h1 .hero-ava{width:1.05em;height:1.05em;border-radius:50%;object-fit:cover;vertical-align:-.12em;margin:0 .12em}
+/* coin flip: one full turn around the vertical axis in the first 1.2s of a 3s cycle, then 1.8s still — a beat, not a spinner. perspective() inside the transform so h1 keeps its own 2D animations. starts after the entrance chain settles (CTA ends ~4.4s) */
+.hero3 h1 .hero-ava{animation:coinflip 3s ease-in-out 4.6s infinite}
+@keyframes coinflip{0%{transform:perspective(600px) rotateY(0)}40%,100%{transform:perspective(600px) rotateY(360deg)}}
 /* handwritten last line: Caveat runs small next to e-Ukraine, 1.25em compensates; line-height .8 keeps the line box at 1em of h1 so the fit script's 4-line budget holds */
 .hero3 h1 .hand{font-family:'Caveat',cursive;font-weight:600;font-size:1.25em;line-height:.8;display:inline-block;transform:rotate(-3deg);clip-path:inset(-60% 100% -60% 0);animation:handwrite 1.6s ease-out 1.9s forwards}
 /* -60% vertical: lh .8 leaves the box only .07em below baseline, Caveat descenders reach .22em; -60% of the .8em box clears them plus the underline */
@@ -39,13 +42,15 @@ body{font-family:var(--font-sans)}
 .hero3 h1 .hand-u{position:relative;display:inline-block;color:var(--t-accent)}
 /* inline-block: same lh-.8 box as .hand (bottom ~.07em under baseline), so bottom:-.08em puts the line ~.09-.15em below baseline — clearly under the letters, still inside the -60% clip zone */
 .hero3 h1 .hand-u::after{content:"";position:absolute;left:0;right:0;bottom:-.08em;height:.06em;background:var(--t-accent);transform:rotate(-1.5deg) scaleX(0);transform-origin:left;animation:handline .4s ease-out 3.6s forwards}
-@media(min-width:601px){.hero3 .fitlines>span{white-space:nowrap}} /* one line each; fit script shrinks font via scrollWidth check; phones (<601) wrap by design */
+.hero3 .fitlines>span{white-space:nowrap} /* one line each at every width; fit script shrinks font via scrollWidth check, phones included */
 /* staged entrance: lines 1-3 type in (0/.65/1.3s), hand writes 1.9-3.5s, underline 3.6-4s, CTA fades 4-4.4s */
 .hero3 .fitlines>span:not(.hand){display:inline-block;clip-path:inset(-15% 100% -15% 0);animation:typeline .6s steps(14,end) forwards}
 .hero3 .fitlines>span:nth-of-type(2){animation-delay:.65s}
 .hero3 .fitlines>span:nth-of-type(3){animation-delay:1.3s}
 @keyframes typeline{to{clip-path:inset(-15% -2% -15% 0)}}
 .cta.hcta{opacity:0;animation:fadein .4s ease-out 4s forwards}
+/* everything below the hero waits for the entrance chain (CTA fade ends ~4.4s) */
+#work,.foot{opacity:0;animation:fadein .5s ease-out 4.5s forwards}
 @keyframes fadein{to{opacity:1}}
 @keyframes handline{to{transform:rotate(-1.5deg) scaleX(1)}}
 .hero3 .sub.chain>span,.ledger .fig{opacity:0;animation:rise .5s ease-out forwards}
@@ -57,11 +62,11 @@ body{font-family:var(--font-sans)}
 .ledger .fig:nth-child(2){animation-delay:4.55s}
 .ledger .fig:nth-child(3){animation-delay:4.65s}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){.hero3 h1 .hand{animation:none;clip-path:none}.hero3 h1 .hand-u::after{animation:none;transform:rotate(-1.5deg)}.hero3 .fitlines>span{animation:none;clip-path:none}.cta.hcta{animation:none;opacity:1}.hero3 .sub.chain>span,.ledger .fig{animation:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){.hero3 h1 .hero-ava{animation:none;transform:none}.hero3 h1 .hand{animation:none;clip-path:none}.hero3 h1 .hand-u::after{animation:none;transform:rotate(-1.5deg)}.hero3 .fitlines>span{animation:none;clip-path:none}.cta.hcta{animation:none;opacity:1}.hero3 .sub.chain>span,.ledger .fig{animation:none;opacity:1}#work,.foot{animation:none;opacity:1}}
 .hero3 .sub.chain{font-size:20px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
 .hero3 .sub.chain span:not(:first-child)::before{content:"";display:inline-block;width:8px;height:8px;transform:rotate(45deg);background:#9b918a;margin-right:16px;vertical-align:middle}
 .cta.hcta{font-size:24px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px;margin-top:48px}
-.cta.hcta .btn,.cta.hcta .ghost{border:1px solid currentColor;border-radius:999px;padding:0 24px;background:transparent;height:47px;display:inline-flex;align-items:center;justify-content:center;font-size:18px;transition:background .15s,color .15s}
+.cta.hcta .btn,.cta.hcta .ghost{border:1px solid currentColor;border-radius:999px;padding:0 21px;background:transparent;height:42px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;transition:background .15s,color .15s}
 .cta.hcta .btn:hover,.cta.hcta .ghost:hover{text-decoration:none;background:#145ae0;color:#fff}
 main{position:static}
 .langbar{position:absolute;top:16px;right:16px;z-index:40}
@@ -86,6 +91,9 @@ body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg
 .pv .thumb.mock .mockscreen{position:absolute;left:20.29%;top:21.71%;width:59.4%;height:68.56%;overflow:hidden}
 .pv .thumb.mock .mockscreen video{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:left;display:block;transform-origin:18% 55%;animation:llzoom 16.983s ease-in-out infinite}
 .pv .thumb.mock img{position:absolute;left:0;top:0;width:100%;height:100%;display:block;pointer-events:none}
+.pv .thumb.locked{position:relative}
+.pv .thumb.locked::before{content:"";position:absolute;left:20.29%;top:21.71%;width:59.4%;height:68.56%;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.pv .thumb.locked::after{content:"";position:absolute;top:56%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:rgba(255,255,255,.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23111'%3E%3Cpath d='M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 5a3 3 0 0 1 6 0v3H9V7z'/%3E%3C/svg%3E") center/22px no-repeat;box-shadow:0 4px 16px rgba(0,0,0,.25)}
 .pv .toolicon{display:block;height:144px;width:auto;margin-bottom:12px}
 .pv:has(.toolicon)>div{background:transparent}
 .pv:has(.toolicon):hover>div{background:rgba(0,0,0,.03)}
@@ -233,10 +241,13 @@ body.cd-lock{overflow:hidden}
 .foot .cta .btn{background:#fbfaf8;color:#111}
 .foot .cta .btn:hover{background:transparent;color:#fbfaf8;text-decoration:none}
 .foot .cta .ghost:hover{background:#fbfaf8;color:#111;text-decoration:none}
-/* LinkedIn and GitHub are logo-only, so their pills turn into circles */
+/* LinkedIn and GitHub are logo-only, so their pills turn into circles.
+   .gis only groups them so a mobile flex line-break can't split the pair;
+   display:contents keeps the desktop row exactly as it was. */
+.foot .cta .gis{display:contents}
 .foot .cta a.gi{width:47px;padding:0}
 .foot .cta a.gi svg{width:20px;height:20px;flex:none}
-@media(max-width:600px){.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:16px}.foot .cta a.gi{width:42px;padding:0}}
+/* mobile sizing for these lives in the mobile block below, one place only */
 @media(prefers-reduced-motion:reduce){.foot .cta .btn,.foot .cta .ghost{transition:none}}
 </style>
 <style>/*lang*/
@@ -299,9 +310,16 @@ background:#3d3d3d}
 /* 390px pass: the desktop air between hero figures and around the CTA row is
    dead scroll on a phone; tighten rhythm, keep the type scale intact */
 @media(max-width:600px){
-.cta.hcta{gap:12px;margin-top:36px}
+/* the UA default body{margin:8px} was never reset, so every "16px" .wrap
+   gutter landed 24px from the screen edge. Zeroed here only — desktop keeps
+   its shipped 8+48=56px inset. */
+body{margin:0}
+.cta.hcta{gap:12px;margin-top:60px} /* clears the corner flag (bottom ~34px) by ~26px */
 .hero3{margin-top:56px}
-.hero3 h1{font-size:clamp(22px,6.6vw,28px);line-height:1.14}
+/* display size that owns the small viewport; fit script shrinks per-viewport if the widest line overflows */
+.hero3 h1{font-size:clamp(23px,7.4vw,30px);line-height:1.08}
+/* 1.15em (not desktop 1.25em): the Caveat line then matches line 2's width, so neither alone drags the fit size down */
+.hero3 h1 .hand{font-size:1.15em}
 header .bar{border-radius:20px}
 .pv>div,.outcomes .o{border-radius:16px}
 .pv>div{padding:16px}
@@ -309,13 +327,36 @@ header .bar{border-radius:20px}
 .cd{inset:0;border:none;border-radius:0}
 .cd.grow{animation-name:cdgrowflat}
 .cd-load{padding:72px 16px}
-.foot{margin:16px;padding-block:64px 48px}
-.cta.hcta .btn,.cta.hcta .ghost,.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:16px}
-.hero3 .sub.chain{font-size:15px;gap:10px 14px}
-.hero3 .sub.chain span:not(:first-child)::before{width:6px;height:6px;margin-right:14px}
-.ledger{margin-top:44px;margin-bottom:72px}
-.ledger .wrap.grid{gap:36px}
-.ledger .fig .n{font-size:34px}
+.cta.hcta .btn,.cta.hcta .ghost{height:44px;padding:0 18px;font-size:15px} /* >=44px tap target */
+/* closing band on a phone: 24px of inner gutter inside the 16px card inset, a
+   headline that stops shouting, a lede that wraps on its own, and a CTA that
+   composes into two flush rows instead of wrapping wherever it lands */
+.foot{margin:16px;padding-block:56px 40px}
+.foot .wrap{padding-left:24px;padding-right:24px}
+.foot h2{font-size:clamp(1.75rem,7.4vw,2.125rem);line-height:1.08;letter-spacing:-.02em;max-width:none;margin-bottom:16px}
+.foot .lede{max-width:32ch;margin-inline:auto;text-wrap:pretty}
+.foot .lede br{display:none} /* the hard breaks were measured for desktop */
+.foot .cta{margin-top:24px;gap:10px;align-items:stretch}
+.foot .cta .btn{flex:1 1 100%}
+.foot .cta .ghost:not(.gi){flex:1 1 auto}
+.foot .cta .btn,.foot .cta .ghost{height:48px;padding:0 12px;font-size:15px} /* >=44px tap target */
+.foot .cta .gis{display:flex;gap:10px;flex:0 0 auto}
+.foot .cta a.gi{width:48px;padding:0}
+/* one step down from 15px, and pushed off the headline: h1's own 18px bottom
+   margin collapses with this one, so 24px is the resulting gap, not 18+24 */
+.hero3 .sub.chain{font-size:13px;gap:8px 12px;margin-top:24px}
+.hero3 .sub.chain span:not(:first-child)::before{width:4px;height:4px;margin-right:10px}
+.ledger{margin-top:24px;margin-bottom:16px}
+#work{padding-top:8px} /* with ledger's 16px: ~24px visual gap to the cards */
+/* stats stacked: one per row, number over its two-line caption, everything centred.
+   line-height:1 on the number kills the ~6px of default half-leading; the 2px
+   margin puts a sliver back so the caption doesn't touch the digits. Caption
+   line-height stays default — this face already renders 12px at 14px lines. */
+.ledger .wrap.grid{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.ledger .fig{display:block}
+.ledger .fig .n{font-size:26px;line-height:1;margin-bottom:2px}
+.ledger .fig .d{font-size:12px}
+.pv p{font-size:.8125rem}
 .block{padding-block:48px}
 }
 </style>
@@ -387,7 +428,7 @@ header .bar{border-radius:20px}
 </div>
 </article>
 <article class="pv rv">
-<a class="thumb" href="case-scalr.html"><img alt="Scalr product screens" height="2160" loading="lazy" src="img/sc-cover.webp" width="3840"/></a>
+<a class="thumb locked" href="case-scalr.html"><img alt="Scalr product screens" height="2160" loading="lazy" src="img/sc-cover.webp" width="3840"/></a>
 <div>
 <p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Senior Product Designer</span></span></p>
 <h3><a href="case-scalr.html"><span data-l="uk" lang="uk">Scalr: дизайн система, продуктові задачі</span></a></h3>
@@ -472,13 +513,12 @@ header .bar{border-radius:20px}
 <footer class="dark foot" id="contact">
 <div class="wrap">
 <h2><span data-l="uk" lang="uk">Наймаєте? <em>Напишіть мені!</em></span></h2>
-<p class="lede"><span data-l="uk" lang="uk">Шукаю роль Senior Product Designer у продуктовій компанії.<br/>Якщо у вас це називається Design Engineer, це теж я.<br/>Remote · full-time · відповідаю швидко.</span></p>
+<p class="lede"><span data-l="uk" lang="uk">Шукаю роль Senior Product Designer у продуктовій компанії.<br/> Якщо у вас це називається Design Engineer, це теж я.<br/> Remote · full-time · відповідаю швидко.</span></p>
 <div class="cta">
 <a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.42 15.18l-.4 5.58c.57 0 .82-.24 1.11-.53l2.66-2.55l5.52 4.04c1.01.56 1.73.27 2-.93L23.93 3.82c.32-1.5-.54-2.08-1.53-1.71L1.11 10.26c-1.45.56-1.43 1.37-.25 1.74l5.44 1.69L18.56 5.79c.59-.39 1.12-.17.68.22z" fill="currentColor"/></svg><span data-l="uk" lang="uk">Написати</span></a>
 
 <a class="ghost" data-l="uk" href="cv-ua.pdf" lang="uk" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Завантажити CV</a>
-<a aria-label="LinkedIn" class="ghost gi" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" fill="currentColor"/></svg></a>
-<a aria-label="GitHub" class="ghost gi" href="https://github.com/denysosadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" fill="currentColor"/></svg></a>
+<span class="gis"><a aria-label="LinkedIn" class="ghost gi" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" fill="currentColor"/></svg></a><a aria-label="GitHub" class="ghost gi" href="https://github.com/denysosadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" fill="currentColor"/></svg></a></span>
 </div>
 </div>
 </footer>
@@ -486,17 +526,13 @@ header .bar{border-radius:20px}
 (function(){
 var h1=document.querySelector('.hero3 h1');
 if(!h1)return;
-var fitlines=h1.querySelector('.fitlines')||h1;
+/* measure h1, not .fitlines: .fitlines is an inline span, its scroll* are always 0.
+   width check only — every line is nowrap at every viewport, so it's always exactly 4 lines tall */
 function fit(){
 h1.style.fontSize='';
-if(innerWidth<601)return; /* phones: CSS sizes the hero, lines may wrap */
-var cs=getComputedStyle(h1),lh=parseFloat(cs.lineHeight)||parseFloat(cs.fontSize)*1.2;
-var maxH=lh*4+2,size=parseFloat(cs.fontSize),guard=0;
-var reserved=2,maxW=h1.parentElement.clientWidth;
-function overflows(){
-return (fitlines.scrollHeight-reserved)>maxH||fitlines.scrollWidth>maxW;
-}
-while(overflows()&&size>16&&guard<80){size-=1;h1.style.fontSize=size+'px';guard++}
+var size=parseFloat(getComputedStyle(h1).fontSize),guard=0;
+var maxW=h1.parentElement.clientWidth;
+while(h1.scrollWidth>maxW&&size>16&&guard<80){size-=1;h1.style.fontSize=size+'px';guard++}
 }
 fit();
 if(document.fonts)document.fonts.ready.then(fit);
@@ -524,7 +560,6 @@ window.addEventListener('resize',masonry);
 window.addEventListener('load',masonry);
 })();
 </script>
-<script type="module" src="agentation.js"></script>
 <div class="cd-ov" hidden id="cdOv"></div>
 <aside aria-label="Кейс" aria-modal="true" class="cd" hidden id="cd" role="dialog" tabindex="-1">
 <button class="cd-x" id="cdX" type="button"><span aria-hidden="true">×</span><span class="vh" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Закрити</span></button>

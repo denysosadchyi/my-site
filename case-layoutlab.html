@@ -29,7 +29,7 @@ img,video{max-width:100%;height:auto}
 .outcomes .o{padding:32px 28px;background:#fff;border-radius:24px}
 .outcomes .oi{display:block;width:28px;height:28px;margin:0 0 24px;color:#145ae0;box-sizing:content-box;padding:12px;background:rgba(20,90,224,.05);border-radius:14px}
 .outcomes .n{margin:0 0 12px}
-.outcomes .t{margin:0;max-width:none}
+.outcomes .t{margin:0}
 </style>
 <style>/*pagebg*/
 body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
@@ -38,7 +38,7 @@ body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg
 /* one photo or video in a block: 860 wide, centred on a grey band that
    spans the page and keeps the same 48px inset as the text */
 .cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:linear-gradient(rgba(17,17,17,0),rgba(17,17,17,.05))}
-.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:16px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
 .cbody .cimg>figcaption{max-width:860px;margin-inline:auto;text-align:center}
 .strip-fig:has(.strip>:only-child)>figcaption{max-width:860px;margin-inline:auto;text-align:center}
 @media(max-width:600px){.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin-inline:-16px;padding-inline:16px}}
@@ -167,14 +167,14 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
    continues off-screen instead of pretending it ended */
 /* iPad shell drawn in CSS: bezel, screen, camera. No image asset, so it
    scales with the video and stays crisp at any density. */
-.ipad{position:relative;display:block;max-width:860px;margin:0 auto clamp(32px,4vw,56px);padding:1.8%;box-sizing:border-box;background:linear-gradient(160deg,#3a3d42,#1b1d20 42%,#26282c);border-radius:34px;box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 18px 40px rgba(0,0,0,.18)}
-.ipad-screen{position:relative;overflow:hidden;line-height:0;background:#000;border-radius:18px;box-shadow:0 0 0 1px rgba(0,0,0,.55) inset}
+.ipad{position:relative;display:block;max-width:860px;margin:0 auto clamp(32px,4vw,56px);padding:1.8%;box-sizing:border-box;background:linear-gradient(160deg,#3a3d42,#1b1d20 42%,#26282c);border-radius:26px;box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 18px 40px rgba(0,0,0,.18)}
+.ipad-screen{position:relative;overflow:hidden;line-height:0;background:#000;border-radius:10px;box-shadow:0 0 0 1px rgba(0,0,0,.55) inset}
 .ipad-screen>video,.ipad-screen>img{display:block;width:100%;height:auto;border:0;border-radius:0}
 .ipad::before{content:"";position:absolute;top:1.05%;left:50%;width:7px;height:7px;margin-left:-3.5px;background:#0d0e10;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,.09)}
-@media(max-width:600px){.ipad{border-radius:22px}.ipad-screen{border-radius:12px}}
+@media(max-width:600px){.ipad{border-radius:14px}.ipad-screen{border-radius:4px}}
 .strip-fig{position:relative}
 .strip{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;margin-right:-48px;padding:0 48px 6px 0}
-.strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:24px;scroll-snap-align:start}
+.strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:16px;scroll-snap-align:start}
 .strip:focus-visible{outline:2px solid #145ae0;outline-offset:4px}
 @media(max-width:600px){.strip{margin-right:-16px;padding-right:16px}}
 /* flat screen mockups: capped measure, retina source, hairline frame.
@@ -257,10 +257,22 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 <style>/*mobile-type*/
 @media(max-width:600px){
 .stripbtn{font-size:1.125rem}
-.outcomes .o{border-radius:16px}
-.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:16px}
+.outcomes .o{border-radius:16px;padding:20px 18px}
+.outcomes{grid-template-columns:1fr;gap:10px}
+.outcomes .oi{width:24px;height:24px;padding:10px;margin:0 0 14px}
+.outcomes .n{margin:0 0 8px}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:8px}
 header .bar{border-radius:20px}
-.foot{margin:16px;padding-block:64px 48px}
+.foot{margin:16px;padding-block:56px 40px}
+.foot .wrap{padding-left:24px;padding-right:24px}
+.foot .lede{font-size:1rem;line-height:1.4;max-width:34ch;text-wrap:pretty}
+.foot .lede br{display:none}
+.foot .cta{margin-top:24px;gap:10px;align-items:stretch}
+.foot .cta .btn{flex:1 1 100%}
+/* tighter side padding buys the CV label enough room to stay on one row with the round LinkedIn at 320px; the button still stretches, so nothing looks cramped */
+.foot .cta .ghost:not(.gi){flex:1 1 auto;padding:0 12px}
+.foot .cta a.gi{flex:0 0 auto;order:1;width:48px}
+.foot .cta .btn,.foot .cta .ghost{height:48px}
 .cbody .sec{margin-top:56px}
 .cbody .sec:first-child{margin-top:40px}
 .cbody .sec h2.marker{margin-bottom:20px}
@@ -292,7 +304,7 @@ header .bar{border-radius:20px}
 </header>
 <main class="wrap">
 <section class="chero">
-<p class="meta"><span>2026</span> <span><b><span data-l="uk" lang="uk">Product Designer + Design Engineer, контракт</span></b></span> <span>AI Design Tooling</span></p>
+<p class="meta"><span>2026</span> <span><b><span data-l="uk" lang="uk">Product Designer</span></b></span> <span><b><span data-l="uk" lang="uk">Design Engineer</span></b></span> <span><b><span data-l="uk" lang="uk">контракт</span></b></span> <span>AI Design Tooling</span></p>
 <h1><span data-l="uk" lang="uk">LayoutLab: зробив генератор макетів, який пришвидшив дизайн в 7 раз</span></h1>
 <div class="orn" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="sec-cols">
@@ -326,7 +338,7 @@ header .bar{border-radius:20px}
 </div>
 <figure class="strip-fig cbd">
 <div class="cbd-scroll" role="region" tabindex="0" aria-label="Архітектура: браузер заходить тільки через workbench, той пише page.tsx у спільний том task-data, render-host рендерить ці файли на реальних компонентах продукту, а error sidecar повертає помилки назад у workbench.">
-<svg viewBox="0 0 920 360" role="img" aria-label="Архітектура: браузер заходить тільки через workbench, той пише page.tsx у спільний том task-data, render-host рендерить ці файли на реальних компонентах продукту, а error sidecar повертає помилки назад у workbench." xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 920 382" role="img" aria-label="Архітектура: браузер заходить тільки через workbench, той пише page.tsx у спільний том task-data, render-host рендерить ці файли на реальних компонентах продукту, а error sidecar повертає помилки назад у workbench." xmlns="http://www.w3.org/2000/svg">
 <defs>
 <marker id="cbd-a" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="rgba(17,17,17,.45)"/></marker>
 </defs>
@@ -338,11 +350,11 @@ header .bar{border-radius:20px}
 <path class="t" d="M176 146 H225" marker-end="url(#cbd-a)"/>
 <path class="t" d="M438 146 H487" marker-end="url(#cbd-a)"/>
 <path class="t" d="M606 146 H655" marker-end="url(#cbd-a)"/>
-<path class="t" d="M783 252 V300 H342 V259" marker-end="url(#cbd-a)"/>
+<path class="t" d="M783 300 V322 H342 V259" marker-end="url(#cbd-a)"/>
 <path class="f" d="M176 146 H230"/>
 <path class="f f2" d="M438 146 H492"/>
 <path class="f f3" d="M606 146 H660"/>
-<path class="f fl" d="M783 252 V300 H342 V264"/>
+<path class="f fl" d="M783 300 V322 H342 V264"/>
 
 <rect class="box" x="232" y="40" width="206" height="212" rx="14"/>
 <text class="h" x="254" y="74">workbench</text>
@@ -358,18 +370,18 @@ header .bar{border-radius:20px}
 <text class="h mid" x="550" y="142">task-data</text>
 <text class="s mid" x="550" y="164">спільний том</text>
 
-<rect class="box-ink" x="662" y="40" width="242" height="212" rx="14"/>
+<rect class="box-ink" x="662" y="40" width="242" height="260" rx="14"/>
 <text class="h on-ink" x="684" y="74">render-host</text>
-<path class="t" d="M684 112 H882" stroke="rgba(255,255,255,.35)"/>
-<text class="on-ink-s" x="684" y="96">next dev :3000 · тільки внутрішньо</text>
-<text class="on-ink-s" x="684" y="134">мокапи = маршрути з тому</text>
-<text class="on-ink-s" x="684" y="156">@/ alias → /source (read-only)</text>
-<text class="on-ink-s" x="684" y="178">1 293 реальні компоненти</text>
-<text class="on-ink-s" x="684" y="200">error sidecar :3001 поза Next</text>
-<text class="on-ink-s" x="684" y="222">HMR + stdout → помилки</text>
+<path class="t" d="M684 128 H882" stroke="rgba(255,255,255,.35)"/>
+<text class="on-ink-s" x="684" y="96">next dev :3000<tspan x="684" dy="16">тільки внутрішньо</tspan></text>
+<text class="on-ink-s" x="684" y="150">мокапи = маршрути<tspan x="684" dy="16">з тому</tspan></text>
+<text class="on-ink-s" x="684" y="188">@/ alias → /source (read-only)</text>
+<text class="on-ink-s" x="684" y="210">1 293 реальні компоненти</text>
+<text class="on-ink-s" x="684" y="232">error sidecar :3001<tspan x="684" dy="16">поза Next</tspan></text>
+<text class="on-ink-s" x="684" y="270">HMR + stdout → помилки</text>
 
-<text class="lbl" x="440" y="291">помилки компіляції та рантайму</text>
-<text class="lbl" x="24" y="338">мокап — це дані: один каталог task-data змонтований у два контейнери, тому запис одразу рендериться</text>
+<text class="lbl" x="440" y="313">помилки компіляції та рантайму</text>
+<text class="lbl" x="24" y="360">мокап — це дані: один каталог task-data змонтований у два контейнери, тому запис одразу рендериться</text>
 </svg>
 </div>
 <figcaption><span data-l="uk" lang="uk">Архітектура: єдиний вхід через workbench, мокапи як дані, read-only продакшн-джерело, помилки повертаються в цикл.</span></figcaption>
@@ -435,7 +447,7 @@ header .bar{border-radius:20px}
 <footer class="dark foot">
 <div class="wrap">
 <h2><span data-l="uk" lang="uk">Наймаєте? <em>Напишіть.</em></span></h2>
-<p class="lede"><span data-l="uk" lang="uk">Шукаю роль Senior Product Designer у продуктовій компанії.<br/>Якщо у вас це називається Design Engineer, це теж я.<br/>Remote · full-time · відповідаю швидко.</span></p>
+<p class="lede"><span data-l="uk" lang="uk">Шукаю роль Senior Product Designer у продуктовій компанії. <br/>Якщо у вас це називається Design Engineer, це теж я. <br/>Remote · full-time · відповідаю швидко.</span></p>
 <div class="cta">
 <a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><span data-l="uk" lang="uk">Написати в Telegram</span></a>
 <a aria-label="LinkedIn" class="ghost gi" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" fill="currentColor"/></svg></a>
@@ -444,7 +456,6 @@ header .bar{border-radius:20px}
 </div>
 </div>
 </footer>
-<script type="module" src="agentation.js"></script>
 <script>
 /* Paging controls for the mockup strips. Built in JS so a no-JS reader still
    gets a plain scrollable row rather than dead buttons. */

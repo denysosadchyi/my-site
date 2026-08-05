@@ -6,6 +6,7 @@ editor lives in the site files and nothing can be deployed by accident.
 
     python3 editor.py [port]
 """
+import base64
 import html as htmllib
 import json
 import os
@@ -47,6 +48,23 @@ def canon(s):
     return "".join(out), cmap
 
 
+def find_span(src, frag):
+    """(start, end) of frag's unique occurrence in src — exact bytes first, then
+    canonical form (the browser sends innerHTML: entities decoded, <br/> -> <br>).
+    None when absent or ambiguous."""
+    if not frag:
+        return None
+    if src.count(frag) == 1:
+        i = src.index(frag)
+        return i, i + len(frag)
+    c_frag = canon(frag)[0]
+    c_src, cmap = canon(src)
+    if c_frag and c_src.count(c_frag) == 1:
+        i = c_src.index(c_frag)
+        return cmap[i], cmap[i + len(c_frag)]
+    return None
+
+
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *a, **k):
         super().__init__(*a, directory=ROOT, **k)
@@ -56,10 +74,41 @@ class Handler(SimpleHTTPRequestHandler):
             super().log_message(fmt, *args)
 
     # -- serve ---------------------------------------------------------------
+    PROTECTED = {"/case-scalr.html", "/case-scalr-en.html"}
+    PASSWORD = "admin99"
+
+    def _authed(self):
+        auth = self.headers.get("Authorization", "")
+        if not auth.startswith("Basic "):
+            return False
+        try:  # ponytail: any username accepted, only the password is checked
+            return base64.b64decode(auth[6:]).decode("utf-8").split(":", 1)[1] == self.PASSWORD
+        except Exception:                                         # noqa: BLE001
+            return False
+
+    def _guard(self):
+        """True (and 401 sent) when the path is protected and auth is missing/wrong."""
+        if self.path.split("?", 1)[0] not in self.PROTECTED or self._authed():
+            return False
+        self.send_response(401)
+        self.send_header("WWW-Authenticate", 'Basic realm="Scalr case"')
+        self.send_header("Content-Length", "0")
+        self.end_headers()
+        return True
+
+    def do_HEAD(self):
+        if self._guard():
+            return
+        super().do_HEAD()
+
     def do_GET(self):
+        if self._guard():
+            return
         if self.path == "/_edit.js":
             return self._send(EDIT_JS.encode("utf-8"), "application/javascript")
         path = self.translate_path(self.path)
+        if os.path.isdir(path):                 # "/" serves index.html, with injection
+            path = os.path.join(path, "index.html")
         if path.endswith(".html") and os.path.isfile(path):
             with open(path, "rb") as fh:
                 body = fh.read()
@@ -88,6 +137,8 @@ class Handler(SimpleHTTPRequestHandler):
         except Exception as exc:                                  # noqa: BLE001
             result, code = {"ok": False, "error": str(exc)}, 400
         body = json.dumps(result, ensure_ascii=False).encode("utf-8")
+        # one line per save in the log, so failed saves are debuggable after the fact
+        print(f"save {self.client_address[0]}: {body.decode('utf-8')[:400]}", flush=True)
         self.send_response(code)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
@@ -106,26 +157,25 @@ class Handler(SimpleHTTPRequestHandler):
         src = open(path, encoding="utf-8").read()
         applied, skipped = 0, []
         for e in edits:
-            old, new = e.get("old", ""), e.get("new", "")
+            old, new, ctx = e.get("old", ""), e.get("new", ""), e.get("ctx", "")
             if not old or old == new:
                 continue
-            hits = src.count(old)
-            if hits == 1:
-                src = src.replace(old, new, 1)
-                applied += 1
+            span = find_span(src, old)
+            if span is None and ctx:
+                # Fragment not unique in the file (e.g. heading text repeated in
+                # an aria-label). Narrow to the element's outerHTML, then match
+                # the fragment inside that region only.
+                outer = find_span(src, ctx)
+                if outer:
+                    inner = find_span(src[outer[0]:outer[1]], old)
+                    if inner:
+                        span = (outer[0] + inner[0], outer[0] + inner[1])
+            if span is None:
+                # 0 = stale, >1 = ambiguous; never guess
+                skipped.append({"old": old[:70], "hits": src.count(old)})
                 continue
-            # The browser sends innerHTML, which need not match the file bytes
-            # (entities decoded, <br/> serialized as <br>). Retry the match on
-            # canonicalized text and splice by mapped source offsets.
-            c_old = canon(old)[0]
-            c_src, cmap = canon(src)
-            if c_old and c_src.count(c_old) == 1:
-                i0 = c_src.index(c_old)
-                src = src[:cmap[i0]] + new + src[cmap[i0 + len(c_old)]:]
-                applied += 1
-                continue
-            # 0 = stale, >1 = ambiguous; never guess
-            skipped.append({"old": old[:70], "hits": hits})
+            src = src[:span[0]] + new + src[span[1]:]
+            applied += 1
 
         if applied:
             os.makedirs(BACKUPS, exist_ok=True)
@@ -185,8 +235,10 @@ function key(el){return srcOf(el)+'|'+(el.dataset.edOld||'');}
 
 function arm(el){
   if(el.dataset.edArmed)return;
+  var ctx=el.outerHTML;            /* before dataset writes add data-ed-* attrs */
   el.dataset.edArmed='1';
   el.dataset.edOld=el.innerHTML;
+  el.dataset.edCtx=ctx;
 }
 function clean(html){
   var d=document.createElement('div');
@@ -220,7 +272,7 @@ document.addEventListener('focusout',function(e){
   el.contentEditable='false';
   var now=clean(el.innerHTML);
   if(now!==el.dataset.edOld){
-    dirty[key(el)]={file:srcOf(el),old:el.dataset.edOld,'new':now};
+    dirty[key(el)]={file:srcOf(el),old:el.dataset.edOld,'new':now,ctx:el.dataset.edCtx||''};
     el.classList.add('ed-dirty');
   }else{
     delete dirty[key(el)];
@@ -243,10 +295,10 @@ bSave.addEventListener('click',function(){
   var byFile={};
   Object.keys(dirty).forEach(function(k){
     var d=dirty[k];
-    (byFile[d.file]=byFile[d.file]||[]).push({old:d.old,'new':d['new']});
+    (byFile[d.file]=byFile[d.file]||[]).push({old:d.old,'new':d['new'],ctx:d.ctx});
   });
   var names=Object.keys(byFile);
-  bSave.disabled=true; msg.textContent='Зберігаю…';
+  bSave.disabled=true; msg.textContent='Зберігаю…'; msg.style.color=''; msg.style.fontWeight='';
   Promise.all(names.map(function(f){
     return fetch('/_save',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({file:f,edits:byFile[f]})}).then(function(r){return r.json()});
@@ -256,16 +308,18 @@ bSave.addEventListener('click',function(){
     if(ok){
       dirty=Object.create(null);
       [].forEach.call(document.querySelectorAll('.ed-dirty'),function(el){
-        el.classList.remove('ed-dirty'); el.dataset.edOld=el.innerHTML;
+        el.classList.remove('ed-dirty');
+        if(el.dataset.edCtx)el.dataset.edCtx=el.dataset.edCtx.replace(el.dataset.edOld,el.innerHTML);
+        el.dataset.edOld=el.innerHTML;
       });
       msg.textContent='Збережено: '+applied+' у '+names.join(', ');
     }else{
-      var bad=res.filter(function(r){return !r.ok});
-      msg.textContent='Частково: '+applied+' збережено, не знайшло '+
-        bad.map(function(r){return r.skipped.length}).reduce(function(a,b){return a+b},0)+' фрагментів';
+      var miss=res.reduce(function(a,r){return a+((r.skipped||[]).length||(r.ok?0:1))},0);
+      msg.textContent='НЕ ЗБЕРЕЖЕНО '+miss+' фрагм. ('+applied+' ок). Сторінка застаріла — перезавантаж і повтори правку';
+      msg.style.color='#c00'; msg.style.fontWeight='600';
       bSave.disabled=false;
     }
-  })['catch'](function(err){msg.textContent='Помилка: '+err; bSave.disabled=false});
+  })['catch'](function(err){msg.textContent='Помилка: '+err; msg.style.color='#c00'; bSave.disabled=false});
 });
 })();
 """

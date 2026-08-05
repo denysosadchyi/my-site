@@ -35,3 +35,27 @@
 @keyframes think-glyph{0%{content:"·"}20%{content:"✢"}40%{content:"✳"}60%{content:"✻"}80%{content:"✽"}}
 @keyframes think-pulse{0%,100%{opacity:.4}50%{opacity:1}}
 .sec-lead:has(.think),.x-lead:has(.think){padding-left:1.2em;text-indent:-1.2em}
+/* мобайл: спінер по центру зверху, текст по центру знизу */
+@media(max-width:600px){
+  p.sec-lead:has(.think),p.x-lead:has(.think){padding-left:0;text-indent:0;text-align:center;text-wrap:balance}
+  .sec-lead .think,.x-lead .think{display:block;margin:0 0 10px}
+}
+
+/* Мобільна шкала: на телефоні вся типографіка на крок менша.
+   Перевизначає ті самі токени, що й :root — список один в один. */
+@media(max-width:600px){
+  :root{
+    --t-h1:1.625rem;      /* H1 — заголовок кейса */
+    --t-h2:1.5rem;        /* H2 — заголовок футера */
+    --t-h3:1.25rem;       /* H3 — цифри outcomes, назви карток */
+    --t-marker:1rem;      /* Marker — чорний прапорець секції */
+    --t-lead:1.25rem;     /* Lead — великий лід */
+    --t-lede-xl:1.25rem;  /* Lede XL — лід футера на кейсах */
+    --t-lede:1rem;        /* Lede — лід футера на головній */
+    --t-case:.875rem;     /* Case body — основний текст кейса */
+    --t-body:.9375rem;    /* Body — базовий текст */
+    --t-ui:1rem;          /* UI — вордмарк, роки, компанії */
+    --t-caption:.8125rem; /* Caption — підписи, fine print, нав */
+    --t-chip:.75rem;      /* Chip — чіпси мета-рядка */
+  }
+}

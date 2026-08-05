@@ -37,7 +37,7 @@ body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg
 /* one photo or video in a block: 860 wide, centred on a grey band that
    spans the page and keeps the same 48px inset as the text */
 .cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:linear-gradient(rgba(17,17,17,0),rgba(17,17,17,.05))}
-.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:16px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
 .cbody .cimg>figcaption{max-width:860px;margin-inline:auto;text-align:center}
 .strip-fig:has(.strip>:only-child)>figcaption{max-width:860px;margin-inline:auto;text-align:center}
 @media(max-width:600px){.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin-inline:-16px;padding-inline:16px}}
@@ -166,7 +166,7 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
    continues off-screen instead of pretending it ended */
 .strip-fig{position:relative}
 .strip{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;margin-right:-48px;padding:0 48px 6px 0}
-.strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:24px;scroll-snap-align:start}
+.strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:16px;scroll-snap-align:start}
 .strip:focus-visible{outline:2px solid #145ae0;outline-offset:4px}
 @media(max-width:600px){.strip{margin-right:-16px;padding-right:16px}}
 /* flat screen mockups: capped measure, retina source, hairline frame.
@@ -213,19 +213,28 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 /* LinkedIn and GitHub are logo-only, so their pills turn into circles */
 .foot .cta a.gi{width:47px;padding:0}
 .foot .cta a.gi svg{width:20px;height:20px;flex:none}
-@media(max-width:600px){.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:16px}.foot .cta a.gi{width:42px;padding:0}}
+@media(max-width:600px){.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:15px}.foot .cta a.gi{width:42px;padding:0}}
 @media(prefers-reduced-motion:reduce){.foot .cta .btn,.foot .cta .ghost{transition:none}}
 </style>
 <style>/*mobile-type*/
 @media(max-width:600px){
-.chero h1{font-size:1.75rem}
-.cbody .sec-lead,.chero .sec-lead{font-size:1.375rem}
-.cbody{font-size:.9375rem}
-.outcomes .n{font-size:1.25rem}
-.outcomes .o{border-radius:16px}
-.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:16px}
+.stripbtn{font-size:1.125rem}
+.outcomes .o{border-radius:16px;padding:20px 18px}
+.outcomes{grid-template-columns:1fr;gap:10px}
+.outcomes .oi{width:24px;height:24px;padding:10px;margin:0 0 14px}
+.outcomes .n{margin:0 0 8px}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:8px}
 header .bar{border-radius:20px}
-.foot{margin:16px;padding-block:64px 48px}
+.foot{margin:16px;padding-block:56px 40px}
+.foot .wrap{padding-left:24px;padding-right:24px}
+.foot .lede{font-size:1rem;line-height:1.4;max-width:34ch;text-wrap:pretty}
+.foot .lede br{display:none}
+.foot .cta{margin-top:24px;gap:10px;align-items:stretch}
+.foot .cta .btn{flex:1 1 100%}
+/* tighter side padding buys the CV label enough room to stay on one row with the round LinkedIn at 320px; the button still stretches, so nothing looks cramped */
+.foot .cta .ghost:not(.gi){flex:1 1 auto;padding:0 12px}
+.foot .cta a.gi{flex:0 0 auto;order:1;width:48px}
+.foot .cta .btn,.foot .cta .ghost{height:48px}
 .cbody .sec{margin-top:56px}
 .cbody .sec:first-child{margin-top:40px}
 .cbody .sec h2.marker{margin-bottom:20px}
@@ -294,7 +303,7 @@ header .bar{border-radius:20px}
 <img alt="Scalr workspace dashboard v2 pipeline-centric" loading="lazy" src="img/scalr-dashboard-v2.png"/>
 </div>
 </div>
-<h2 class="marker"><span data-l="en">Metrics v2: RUM × velocity bubble chart</span></h2>
+<h2 class="marker"><span data-l="en">Metrics v2: RUM bubble chart<br/></span></h2>
 <div class="sec-cols">
 <p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>A spreadsheet-level analysis became <i>a two-second visual scan</i>.</span></p>
 <div class="sec-body">
@@ -309,7 +318,7 @@ header .bar{border-radius:20px}
 <img alt="Scalr metrics v2 RUM vs execution velocity bubble chart" loading="lazy" src="img/scalr-metrics-v2.png"/>
 </div>
 </div>
-<h2 class="marker"><span data-l="en">Workspace dashboard</span></h2>
+<h2 class="marker"><span data-l="en">Dashboard<br/></span></h2>
 <div class="sec-cols">
 <p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>The dashboard became <i>a single-screen decision point</i>: see the state, understand what happened, and act without leaving the page.</span></p>
 <div class="sec-body">
@@ -354,7 +363,7 @@ header .bar{border-radius:20px}
 <img alt="Scalr observability metrics dashboard" loading="lazy" src="img/scalr-metrics.png"/>
 </div>
 </div>
-<h2 class="marker"><span data-l="en">VCS connection access: bulk assignment</span></h2>
+<h2 class="marker"><span data-l="en">VCS connection access<br/></span></h2>
 <div class="sec-cols">
 <p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>What took minutes of repetitive clicking across 160+ environments <i>now takes seconds</i>.</span></p>
 <div class="sec-body">
@@ -384,7 +393,7 @@ header .bar{border-radius:20px}
 <img alt="Scalr run detail two-panel redesign" loading="lazy" src="img/scalr-run-detail.png"/>
 </div>
 </div>
-<h2 class="marker"><span data-l="en">Access policies: making complexity readable</span></h2>
+<h2 class="marker"><span data-l="en">Access policies<br/></span></h2>
 <div class="sec-cols">
 <p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>A ten-minute audit per user <i>shrank to one click</i>.</span></p>
 <div class="sec-body">
@@ -399,11 +408,11 @@ header .bar{border-radius:20px}
 <img alt="Scalr access policies split-panel view" loading="lazy" src="img/scalr-access-policies.png"/>
 </div>
 </div>
-<h2 class="marker"><span data-l="en">What I took away</span></h2>
+<h2 class="marker"><span data-l="en">Takeaways</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>Terraform workflows can’t be <i>designed from UX principles alone</i>.</span></p>
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>Terraform workflows can’t be <i>designed from UX principles alone</i>. DevOps is a complex domain that demands strong product knowledge&nbsp;</span></p>
 <div class="sec-body">
-<p><span data-l="en">I read the docs, watched how engineers work, and asked questions at engineering standups.</span></p>
+<p><span data-l="en">I read the docs, watched how engineers work, and asked a lot of questions at engineering meetings.</span></p>
 <p class="sec-fine"><span data-l="en">You earn the trust of technical users with domain knowledge. Without it the design only looks good.</span></p>
 </div>
 </div>
@@ -418,7 +427,7 @@ header .bar{border-radius:20px}
 <footer class="dark foot">
 <div class="wrap">
 <h2><span data-l="en">Hiring? <em>Get in touch.</em></span></h2>
-<p class="lede"><span data-l="en">I'm looking for a Senior Product Designer role in a product company.<br/>If you call it Design Engineer, that's me too.<br/>Remote · full-time · I answer fast.</span></p>
+<p class="lede"><span data-l="en">I'm looking for a Senior Product Designer role in a product company. <br/>If you call it Design Engineer, that's me too. <br/>Remote · full-time · I answer fast.</span></p>
 <div class="cta">
 <a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><span data-l="en">Message on Telegram</span></a>
 <a aria-label="LinkedIn" class="ghost gi" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" fill="currentColor"/></svg></a>
@@ -427,7 +436,6 @@ header .bar{border-radius:20px}
 </div>
 </div>
 </footer>
-<script type="module" src="agentation.js"></script>
 <script>
 /* Paging controls for the mockup strips. Built in JS so a no-JS reader still
    gets a plain scrollable row rather than dead buttons. */
