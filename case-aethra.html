@@ -245,22 +245,20 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 /* LinkedIn and GitHub are logo-only, so their pills turn into circles */
 .foot .cta a.gi{width:47px;padding:0}
 .foot .cta a.gi svg{width:20px;height:20px;flex:none}
-@media(max-width:600px){.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:16px}.foot .cta a.gi{width:42px;padding:0}}
+@media(max-width:600px){.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:15px}.foot .cta a.gi{width:42px;padding:0}}
 @media(prefers-reduced-motion:reduce){.foot .cta .btn,.foot .cta .ghost{transition:none}}
 </style>
 <style>/*mobile-type*/
 @media(max-width:600px){
-.chero h1{font-size:1.75rem}
-.cbody .sec-lead,.chero .sec-lead{font-size:1.375rem}
-.cbody{font-size:.9375rem}
-.outcomes .n{font-size:1.25rem}
+.stripbtn{font-size:1.125rem}
 .outcomes .o{border-radius:16px}
 .cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:16px}
 header .bar{border-radius:20px}
 /* footer card and case rhythm shrink with the 16px gutter */
 .foot{margin:16px;padding-block:64px 48px}
-.cbody h2.marker{margin:56px 0 20px}
-.cbody h2.marker:first-child{margin-top:40px}
+.cbody .sec{margin-top:56px}
+.cbody .sec:first-child{margin-top:40px}
+.cbody .sec h2.marker{margin-bottom:20px}
 .cnav{margin-bottom:48px}
 }
 </style>
@@ -311,7 +309,7 @@ header .bar{border-radius:20px}
 <section class="sec">
 <h2 class="marker"><span data-l="uk" lang="uk">Розмиті вимоги</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Бриф описував, що система має робити, <i>але не як вона має працювати</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Бриф описував ідейно, що продукт має робити, без чітких вимог і технічого завдання</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Тому до першого екрана я змапив інформаційну архітектуру обох ролей окремо, знайшов їхні перетини і виписав таблиці jobs-to-be-done на кожен ключовий сценарій.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Структурних рішень у документах не було: ієрархія навігації, які сценарії заслуговують окремих екранів, як ролі стикаються з даними одна одної і де система мусить захищати користувачів від самих себе, тобто подвійні бронювання, протерміновані сертифікати й пропущені дедлайни документів.</span></p>
