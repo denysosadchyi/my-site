@@ -6,7 +6,6 @@ editor lives in the site files and nothing can be deployed by accident.
 
     python3 editor.py [port]
 """
-import base64
 import html as htmllib
 import json
 import os
@@ -74,36 +73,7 @@ class Handler(SimpleHTTPRequestHandler):
             super().log_message(fmt, *args)
 
     # -- serve ---------------------------------------------------------------
-    PROTECTED = {"/case-scalr.html", "/case-scalr-en.html"}
-    PASSWORD = "admin99"
-
-    def _authed(self):
-        auth = self.headers.get("Authorization", "")
-        if not auth.startswith("Basic "):
-            return False
-        try:  # ponytail: any username accepted, only the password is checked
-            return base64.b64decode(auth[6:]).decode("utf-8").split(":", 1)[1] == self.PASSWORD
-        except Exception:                                         # noqa: BLE001
-            return False
-
-    def _guard(self):
-        """True (and 401 sent) when the path is protected and auth is missing/wrong."""
-        if self.path.split("?", 1)[0] not in self.PROTECTED or self._authed():
-            return False
-        self.send_response(401)
-        self.send_header("WWW-Authenticate", 'Basic realm="Scalr case"')
-        self.send_header("Content-Length", "0")
-        self.end_headers()
-        return True
-
-    def do_HEAD(self):
-        if self._guard():
-            return
-        super().do_HEAD()
-
     def do_GET(self):
-        if self._guard():
-            return
         if self.path == "/_edit.js":
             return self._send(EDIT_JS.encode("utf-8"), "application/javascript")
         path = self.translate_path(self.path)
