@@ -44,10 +44,10 @@ body{font-family:var(--font-sans)}
 .hero3 h1 .hand-u::after{content:"";position:absolute;left:0;right:0;bottom:-.08em;height:.06em;background:var(--t-accent);transform:rotate(-1.5deg) scaleX(0);transform-origin:left;animation:handline .4s ease-out 3.6s forwards}
 .hero3 .fitlines>span{white-space:nowrap} /* one line each at every width; fit script shrinks font via scrollWidth check, phones included */
 /* staged entrance: lines 1-3 type in (0/.65/1.3s), hand writes 1.9-3.5s, underline 3.6-4s, CTA fades 4-4.4s */
-.hero3 .fitlines>span:not(.hand){display:inline-block;clip-path:inset(-15% 100% -15% 0);animation:typeline .6s steps(14,end) forwards}
+.hero3 .fitlines>span:not(.hand){display:inline-block;clip-path:inset(-60% 100% -60% 0);animation:typeline .6s steps(14,end) forwards}
 .hero3 .fitlines>span:nth-of-type(2){animation-delay:.65s}
 .hero3 .fitlines>span:nth-of-type(3){animation-delay:1.3s}
-@keyframes typeline{to{clip-path:inset(-15% -2% -15% 0)}}
+@keyframes typeline{to{clip-path:inset(-60% -2% -60% 0)}}
 .cta.hcta{opacity:0;animation:fadein .4s ease-out 4s forwards}
 /* everything below the hero waits for the entrance chain (CTA fade ends ~4.4s) */
 #work,.foot{opacity:0;animation:fadein .5s ease-out 4.5s forwards}
