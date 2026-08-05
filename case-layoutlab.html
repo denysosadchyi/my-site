@@ -41,11 +41,11 @@ body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg
 .cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
 .cbody .cimg>figcaption{max-width:860px;margin-inline:auto;text-align:center}
 .strip-fig:has(.strip>:only-child)>figcaption{max-width:860px;margin-inline:auto;text-align:center}
-@media(max-width:600px){.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin-inline:-24px;padding-inline:24px}}
+@media(max-width:600px){.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin-inline:-16px;padding-inline:16px}}
 /* the cover keeps the treatment it always had: noise band, full bleed, no 860 cap */
 main>.cimg{margin:0 0 28px}
 main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
-@media(max-width:600px){main>.cimg::after{margin:0 -24px}}
+@media(max-width:600px){main>.cimg::after{margin:0 -16px}}
 </style>
 <style>/*single*/
 /* one photo or video on its own: 860 wide, centred */
@@ -148,11 +148,11 @@ figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height
    viewport edge without 100vw and its scrollbar overflow. */
 header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
 .chero,main>.cimg{margin-inline:-48px;padding-inline:48px}
-@media(max-width:600px){.chero,main>.cimg{margin-inline:-24px;padding-inline:24px}}
+@media(max-width:600px){.chero,main>.cimg{margin-inline:-16px;padding-inline:16px}}
 /* cover mockup: capped like the flat shots, closed by a full-bleed hairline.
    Negative margin equals the wrap padding, so the rule reaches the real viewport
    edge without 100vw (which would overflow by the scrollbar width). */
-@media(max-width:600px){main>.cimg::after{margin:0 -24px}}
+@media(max-width:600px){main>.cimg::after{margin:0 -16px}}
 /* native scrollbar hidden; paging is driven by the buttons below */
 .strip{scrollbar-width:none;-ms-overflow-style:none}
 .strip::-webkit-scrollbar{display:none}
@@ -176,7 +176,7 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
 .strip{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;margin-right:-48px;padding:0 48px 6px 0}
 .strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:24px;scroll-snap-align:start}
 .strip:focus-visible{outline:2px solid #145ae0;outline-offset:4px}
-@media(max-width:600px){.strip{margin-right:-24px;padding-right:24px}}
+@media(max-width:600px){.strip{margin-right:-16px;padding-right:16px}}
 /* flat screen mockups: capped measure, retina source, hairline frame.
    Device mockups (the covers, outside .cbody) stay full-bleed. */
 .cbody /* one screen or one video in a block: 860 wide, centred, on a band that spans the page */
@@ -184,12 +184,12 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
 .ia-role{font-family:var(--font-italic);font-style:normal}
 .foot h2 em{font-style:normal}
 .cnav{justify-content:space-between;padding-top:24px}
-@media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
+@media(max-width:600px){.wrap{padding-left:16px;padding-right:16px}}
 </style>
 <style>/*hdr*/
 header{padding:16px 24px 0}
 header .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding:16px 32px;background:rgba(17,17,17,.05);border-radius:999px}
-@media(max-width:600px){header{padding:12px 12px 0}header .bar{padding:14px 20px;border-radius:28px}}
+@media(max-width:600px){header{padding:12px 16px 0}header .bar{padding:14px 20px;border-radius:28px}}
 </style>
 <style>/*lang*/
 /* language switch is an icon button; the language name stays for screen readers */
@@ -263,7 +263,23 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 .outcomes .o{border-radius:16px}
 .cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:16px}
 header .bar{border-radius:20px}
+.foot{margin:16px;padding-block:64px 48px}
+.cbody h2.marker{margin:56px 0 20px}
+.cbody h2.marker:first-child{margin-top:40px}
+.cnav{margin-bottom:48px}
 }
+</style>
+<style>/*totop*/
+/* floating back-to-top: the same flat black circle as the icon pills.
+   Built by JS below; hidden until the first screen is scrolled past. */
+.totop{position:fixed;right:24px;bottom:24px;z-index:60;width:47px;height:47px;display:inline-flex;align-items:center;justify-content:center;padding:0;color:#fff;background:#111;border:none;border-radius:999px;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s ease-out,transform .2s ease-out,background .2s ease-out}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{background:#3d3d3d}
+.totop:active{transform:scale(.95) rotate(1deg)}
+.totop:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
+.totop svg{width:20px;height:20px;flex:none}
+@media(max-width:600px){.totop{width:42px;height:42px;right:16px;bottom:16px}}
+@media(prefers-reduced-motion:reduce){.totop{transition:none}.totop:active{transform:none}}
 </style>
 </head>
 <body>
@@ -302,7 +318,7 @@ header .bar{border-radius:20px}
 </div></figure>
 <div class="cbody">
 <section class="sec">
-<h2 class="marker"><span data-l="uk" lang="uk">Головна ставка</span></h2>
+<h2 class="marker"><span data-l="uk" lang="uk">Головна ставка Е2Е</span></h2>
 <div class="sec-cols">
 <p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Цикл макетів скоротився <i>з тижня до годин</i>: Протестовано на 263 екранах у 15 задачах</span></p>
 <div class="sec-body">
@@ -475,6 +491,23 @@ document.querySelectorAll('.strip').forEach(function(strip){
 var f=location.pathname.split('/').pop();
 if(!/^case-[\w-]+\.html$/.test(f))return;
 location.replace((document.documentElement.lang==='uk'?'index.html':'index-en.html')+'#case='+f);
+})();
+</script>
+<script>
+/* Back to top. Built in JS so a no-JS reader never sees a dead button. */
+(function(){
+var uk=document.documentElement.lang==='uk';
+var calm=matchMedia('(prefers-reduced-motion: reduce)');
+var b=document.createElement('button');
+b.type='button';b.className='totop';
+b.setAttribute('aria-label',uk?'\u041d\u0430\u0433\u043e\u0440\u0443':'Back to top');
+b.innerHTML='<svg aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5m0 0l-6 6m6-6l6 6"/></svg>';
+b.addEventListener('click',function(){scrollTo({top:0,behavior:calm.matches?'auto':'smooth'})});
+document.body.appendChild(b);
+function sync(){b.classList.toggle('on',scrollY>innerHeight)}
+addEventListener('scroll',sync,{passive:true});
+addEventListener('resize',sync);
+sync();
 })();
 </script>
 </body>
