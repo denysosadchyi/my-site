@@ -31,8 +31,8 @@
 }
 
 /* «думає» — індикатор перед лідами */
-.think::before{content:"✻";display:inline-block;width:1.2em;text-align:center;line-height:1;color:var(--t-accent);font-style:normal;animation:think-glyph 2s steps(1,end) infinite,think-pulse 2s ease-in-out infinite}
-@keyframes think-glyph{0%{content:"·"}20%{content:"✢"}40%{content:"✳"}60%{content:"✻"}80%{content:"✽"}}
+.think::before{content:"✻\FE0E";display:inline-block;width:1.2em;text-align:center;line-height:1;color:var(--t-accent);font-style:normal;animation:think-glyph 2s steps(1,end) infinite,think-pulse 2s ease-in-out infinite}
+@keyframes think-glyph{0%{content:"·\FE0E"}20%{content:"✢\FE0E"}40%{content:"✳\FE0E"}60%{content:"✻\FE0E"}80%{content:"✽\FE0E"}}
 @keyframes think-pulse{0%,100%{opacity:.4}50%{opacity:1}}
 .sec-lead:has(.think),.x-lead:has(.think){padding-left:1.2em;text-indent:-1.2em}
 /* мобайл: спінер по центру зверху, текст по центру знизу */
