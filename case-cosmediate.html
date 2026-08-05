@@ -29,7 +29,7 @@ body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg
 /* one photo or video in a block: 860 wide, centred on a grey band that
    spans the page and keeps the same 48px inset as the text */
 .cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:linear-gradient(rgba(17,17,17,0),rgba(17,17,17,.05))}
-.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:16px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
 .cbody .cimg>figcaption{max-width:860px;margin-inline:auto;text-align:center}
 .strip-fig:has(.strip>:only-child)>figcaption{max-width:860px;margin-inline:auto;text-align:center}
 @media(max-width:600px){.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin-inline:-16px;padding-inline:16px}}
@@ -49,7 +49,7 @@ main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:
 .outcomes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:32px 0 0}
 .outcomes .o{padding:32px 28px;background:#fff;border-radius:24px}
 .outcomes .n{margin:0 0 12px}
-.outcomes .t{margin:7px 0 0;max-width:22ch}
+.outcomes .t{margin:0}
 .outcomes .oi{display:block;width:28px;height:28px;margin:0 0 24px;color:#145ae0;box-sizing:content-box;padding:12px;background:rgba(20,90,224,.05);border-radius:14px}
 </style>
 <style>/*sec*/
@@ -166,7 +166,7 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
    continues off-screen instead of pretending it ended */
 .strip-fig{position:relative}
 .strip{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;margin-right:-48px;padding:0 48px 6px 0}
-.strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:24px;scroll-snap-align:start}
+.strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:16px;scroll-snap-align:start}
 .strip:focus-visible{outline:2px solid #145ae0;outline-offset:4px}
 @media(max-width:600px){.strip{margin-right:-16px;padding-right:16px}}
 /* flat screen mockups: capped measure, retina source, hairline frame.
@@ -219,11 +219,23 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 <style>/*mobile-type*/
 @media(max-width:600px){
 .stripbtn{font-size:1.125rem}
-.outcomes .o{border-radius:16px}
-.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:16px}
+.outcomes .o{border-radius:16px;padding:20px 18px}
+.outcomes{grid-template-columns:1fr;gap:10px}
+.outcomes .oi{width:24px;height:24px;padding:10px;margin:0 0 14px}
+.outcomes .n{margin:0 0 8px}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:8px}
 header .bar{border-radius:20px}
 /* 16px gutter card + tighter case rhythm on phones */
-.foot{margin:16px;padding-block:64px 48px}
+.foot{margin:16px;padding-block:56px 40px}
+.foot .wrap{padding-left:24px;padding-right:24px}
+.foot .lede{font-size:1rem;line-height:1.4;max-width:34ch;text-wrap:pretty}
+.foot .lede br{display:none}
+.foot .cta{margin-top:24px;gap:10px;align-items:stretch}
+.foot .cta .btn{flex:1 1 100%}
+/* tighter side padding buys the CV label enough room to stay on one row with the round LinkedIn at 320px; the button still stretches, so nothing looks cramped */
+.foot .cta .ghost:not(.gi){flex:1 1 auto;padding:0 12px}
+.foot .cta a.gi{flex:0 0 auto;order:1;width:48px}
+.foot .cta .btn,.foot .cta .ghost{height:48px}
 .cbody .sec{margin-top:56px}
 .cbody .sec:first-child{margin-top:40px}
 .cbody .sec h2.marker{margin-bottom:20px}
@@ -259,7 +271,7 @@ header .bar{border-radius:20px}
 <h1><span data-l="uk" lang="uk">Cosmediate: аудит і редизайн маркетплейсу</span></h1>
 <div class="orn" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Дизайн трьох ролей продукту був зроблений так, наче це взагалі різні продукти. Я&nbsp;<i>звів їх в одну дизайн систему</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Дизайн трьох ролей продукту до редизайну був зроблений так, наче це взагалі різні продукти. Я&nbsp;<i>звів їх в одну дизайн систему</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Cosmediate це нідерландська платформа, що з'єднує пацієнтів із сертифікованими косметологічними клініками.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Client, Clinic і Admin були збудовані окремо: спільний домен, але жодної спільної дизайн-системи. Бриф був широкий: перебудувати все так, щоб досвід лишався консистентним, а кожна роль отримала рівно те, що їй потрібно.</span></p>
@@ -364,7 +376,7 @@ header .bar{border-radius:20px}
 <footer class="dark foot">
 <div class="wrap">
 <h2><span data-l="uk" lang="uk">Наймаєте? <em>Напишіть.</em></span></h2>
-<p class="lede"><span data-l="uk" lang="uk">Шукаю роль Senior Product Designer у продуктовій компанії.<br/>Якщо у вас це називається Design Engineer, це теж я.<br/>Remote · full-time · відповідаю швидко.</span></p>
+<p class="lede"><span data-l="uk" lang="uk">Шукаю роль Senior Product Designer у продуктовій компанії. <br/>Якщо у вас це називається Design Engineer, це теж я. <br/>Remote · full-time · відповідаю швидко.</span></p>
 <div class="cta">
 <a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><span data-l="uk" lang="uk">Написати в Telegram</span></a>
 <a aria-label="LinkedIn" class="ghost gi" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" fill="currentColor"/></svg></a>
@@ -373,7 +385,6 @@ header .bar{border-radius:20px}
 </div>
 </div>
 </footer>
-<script type="module" src="agentation.js"></script>
 <script>
 /* Paging controls for the mockup strips. Built in JS so a no-JS reader still
    gets a plain scrollable row rather than dead buttons. */
