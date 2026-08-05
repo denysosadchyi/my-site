@@ -7,28 +7,26 @@
 <title>LayoutLab — case study · Denys Osadchyi</title>
 <meta content="An internal tool for generating production-ready mockups, designed and built solo: mockup turnaround cut from a week to hours, 263 screens rendered from real production components." name="description"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..900&family=Charis+SIL:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<link href="fonts/fonts.css" rel="stylesheet"/>
 <style>/*font*/
-body{font-family:'Onest',sans-serif}
+body{font-family:'e-Ukraine',sans-serif}
 h1{font-weight:400}
 </style>
 <style>
 img,video{max-width:100%;height:auto}
 .outcomes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:32px 0 0}
 .outcomes .o{padding:32px 28px;background:#fff;border-radius:24px}
-.outcomes .oi{display:block;width:28px;height:28px;margin:0 0 24px;color:#145ae0}
+.outcomes .oi{display:block;width:28px;height:28px;margin:0 0 24px;color:#145ae0;box-sizing:content-box;padding:12px;background:rgba(20,90,224,.05);border-radius:14px}
 .outcomes .n{margin:0 0 12px;font-size:1.9rem;font-weight:700;line-height:1;letter-spacing:-.02em}
 .outcomes .t{margin:0;font-size:.9rem;line-height:1.5;color:#555;max-width:none}
 </style>
 <style>/*pagebg*/
-body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
 </style>
 <style>/*media*/
 /* one photo or video in a block: 860 wide, centred on a grey band that
    spans the page and keeps the same 48px inset as the text */
-.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:rgba(17,17,17,.05)}
+.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:linear-gradient(rgba(17,17,17,0),rgba(17,17,17,.05))}
 .cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
 .cbody .cimg>figcaption{max-width:860px;margin-inline:auto;text-align:center}
 .strip-fig:has(.strip>:only-child)>figcaption{max-width:860px;margin-inline:auto;text-align:center}
@@ -49,14 +47,15 @@ main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:
 /* Case section: heading, then lead left, expansion + fine print right. */
 .cbody .sec{margin:96px 0 0}
 .cbody .sec:first-child{margin-top:64px}
-.cbody .sec h2.marker{display:inline-block;margin:0 0 28px;max-width:34ch;padding:8px 22px;font-size:1.25rem;font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;border-radius:0 999px 999px 0}
+.cbody .sec h2.marker,.block h2.marker{display:inline-block;margin:0 0 28px;max-width:34ch;padding:8px 36px 8px 22px;font-size:1.25rem;font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 50%,100% 100%,0 100%)}
 .cbody .sec-cols,.chero .sec-cols{margin-top:8px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 56px;align-items:start;margin:0 0 28px}
-.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:'Charis SIL',serif;font-style:italic;font-size:clamp(1.875rem,.63vw + 1.7rem,2.25rem);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
+.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:'Nyght Serif',serif;font-style:italic;font-size:clamp(1.875rem,.63vw + 1.7rem,2.25rem);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
 .cbody .sec-lead i,.chero .sec-lead i{color:#145ae0;font-style:italic}
 .cbody .sec-body>p,.chero .sec-body>p{margin:0 0 14px;max-width:35rem}
 .cbody .sec-body>p:last-child,.chero .sec-body>p:last-child{margin-bottom:0}
 .cbody .sec-body ul{margin:10px 0 0;padding-left:1.2em;max-width:35rem;font-size:.9375rem;line-height:1.6;color:#555}
 .cbody .sec-body li{margin:0 0 8px}
+.cbody .sec-body a{overflow-wrap:anywhere}
 .cbody .sec-fine,.chero .sec-fine{margin:0;max-width:35rem;font-size:.9375rem;line-height:1.6;letter-spacing:0;color:#555}
 @media(max-width:900px){
 .cbody .sec-cols,.chero .sec-cols{grid-template-columns:1fr;gap:12px}
@@ -67,11 +66,11 @@ main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:
 .wrap{padding-left:48px;padding-right:48px;box-sizing:border-box}
 </style>
 <style>/*typescale*/
-/* Onest type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
+/* e-Ukraine type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
 :root{
 --t-caption:.9375rem;
---t-body:1.125rem;
---t-lede:clamp(1.25rem,.21vw + 1.19rem,1.375rem);
+--t-body:1rem;
+--t-lede:clamp(1.125rem,.21vw + 1.0625rem,1.25rem);
 --t-h3:clamp(1.5rem,.42vw + 1.38rem,1.75rem);
 --t-h2:clamp(1.75rem,1.25vw + 1.38rem,2.5rem);
 --t-h1:clamp(2.25rem,2.08vw + 1.63rem,3.5rem);
@@ -96,10 +95,15 @@ header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing
 /* hero-area switcher stays as it was */
 .open,.wordmark{font-weight:500}
 /* case hero */
-.chero{padding-top:56px;padding-bottom:48px}
-.chero .meta{margin:0 0 20px;display:flex;flex-wrap:wrap;gap:6px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.chero{padding-top:28px;padding-bottom:48px}
+.chero .meta{margin:0 0 20px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
 .chero .meta>span{padding:2px 10px;font-size:.8125rem;line-height:1.5;background:rgba(17,17,17,.05);border-radius:999px}
-.chero h1{margin:0 0 24px;max-width:none;font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
+.chero h1{margin:0 auto 20px;max-width:30ch;text-align:center;font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
+.orn{display:flex;align-items:center;justify-content:center;gap:7px;margin:0 auto}
+.chero .orn{margin-bottom:32px;max-width:30ch}
+.orn-b{margin:96px 0 0}
+.orn::before,.orn::after{content:"";flex:1;height:1px;background:rgba(17,17,17,.18);margin-inline:6px}
+.orn span{width:6px;height:6px;background:rgba(17,17,17,.5);transform:rotate(45deg)}
 .lede{margin:0 0 28px;max-width:none;font-size:clamp(1.5rem,1.55vw + .92rem,2.05rem);line-height:1.25;letter-spacing:-.02em;text-wrap:pretty}
 .facts{margin:0;display:flex;flex-wrap:wrap;gap:8px;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
 .facts>span{display:inline-flex;align-items:center;gap:.5em;padding:5px 14px;border:1px solid rgba(0,0,0,.12);border-radius:999px;line-height:1.4}
@@ -108,7 +112,7 @@ header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing
 .outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
 /* case body */
 .cbody p,.cbody ul{max-width:none}
-.cbody{font-size:clamp(1.125rem,.55vw + .96rem,1.5rem);line-height:1.65}
+.cbody{font-size:clamp(1rem,.55vw + .835rem,1.375rem);line-height:1.65}
 .cbody h2.marker{margin:96px 0 24px;max-width:32ch}
 .cbody h2.marker:first-child{margin-top:64px}
 .cbody p{margin:0 0 20px}
@@ -116,7 +120,7 @@ header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing
 .cbody li{margin:0 0 10px}
 .cres .r{font-weight:600}
 figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
-.cnav{margin:96px 0 64px}
+.cnav{margin:0 0 64px}
 /* work cards */
 .pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
 .pv h3{margin:0 0 12px;font-size:var(--t-h3);font-weight:400;line-height:1.2;letter-spacing:-.015em}
@@ -139,7 +143,7 @@ figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height
 /* everything above the hairline reads as one field: header + hero + cover.
    Negative inline margin equals the wrap padding, so the tint reaches the
    viewport edge without 100vw and its scrollbar overflow. */
-header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
 .chero,main>.cimg{margin-inline:-48px;padding-inline:48px}
 @media(max-width:600px){.chero,main>.cimg{margin-inline:-24px;padding-inline:24px}}
 /* cover mockup: capped like the flat shots, closed by a full-bleed hairline.
@@ -173,9 +177,9 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
 /* flat screen mockups: capped measure, retina source, hairline frame.
    Device mockups (the covers, outside .cbody) stay full-bleed. */
 .cbody /* one screen or one video in a block: 860 wide, centred, on a band that spans the page */
-/* the one ornament: Charis SIL italic marks the words carrying the argument */
-.foot h2 em,.ia-role{font-family:'Charis SIL',serif;font-style:italic}
-.cnav{justify-content:space-between;padding-top:24px;border-top:1px solid #e2ddd6}
+/* the one ornament: Nyght Serif italic marks the words carrying the argument */
+.foot h2 em,.ia-role{font-family:'Nyght Serif',serif;font-style:italic}
+.cnav{justify-content:space-between;padding-top:24px}
 @media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
 </style>
 <style>/*hdr*/
@@ -199,11 +203,11 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 </style>
 <style>/*architecture diagram*/
 .cbd{--acc:#145ae0}
+.cbody .strip-fig.cbd{margin-bottom:0;padding-bottom:12px;background:none}
 .cbd .cbd-scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
 .cbd .cbd-scroll::-webkit-scrollbar{display:none}
 .cbd .cbd-scroll:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
 .cbd svg{display:block;width:100%;min-width:900px;max-width:920px;margin-inline:auto}
-.cbd .grid{fill:rgba(17,17,17,.14)}
 .cbd .box{fill:#fdfcfc;stroke:rgba(17,17,17,.85);stroke-width:1}
 .cbd .box-ink{fill:#111}
 .cbd .vol{fill:none;stroke:rgba(17,17,17,.55);stroke-width:1;stroke-dasharray:5 4}
@@ -216,7 +220,7 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 @keyframes cbd-flow{to{stroke-dashoffset:-40}}
 .cbd .fl{animation-name:cbd-flow-l}
 @keyframes cbd-flow-l{to{stroke-dashoffset:-176}}
-.cbd text{font-family:'Onest',sans-serif;fill:#111}
+.cbd text{font-family:'e-Ukraine',sans-serif;fill:#111}
 .cbd .h{font-size:14px;font-weight:700;letter-spacing:-.01em}
 .cbd .s{font-size:12px;fill:#4a4a4a}
 .cbd .lbl{font-size:11px;fill:#555}
@@ -224,7 +228,19 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 .cbd .on-ink-s{font-size:12px;fill:rgba(255,255,255,.82)}
 .cbd .mid{text-anchor:middle}
 .cbd figcaption{max-width:920px;margin-inline:auto}
+.cbody .sec:has(.cbd)+.sec{margin-top:0}
 @media(prefers-reduced-motion:reduce){.cbd .f{animation:none;stroke-dasharray:none;opacity:.5}}
+</style>
+<style>/*mobile-type*/
+@media(max-width:600px){
+.chero h1{font-size:1.75rem}
+.cbody .sec-lead,.chero .sec-lead{font-size:1.375rem}
+.cbody{font-size:.9375rem}
+.outcomes .n{font-size:1.25rem}
+.outcomes .o{border-radius:16px}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:16px}
+header .bar{border-radius:20px}
+}
 </style>
 </head>
 <body>
@@ -241,6 +257,7 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 <section class="chero">
 <p class="meta"><span>2026</span> <span><b><span data-l="uk" lang="uk">Product Designer + Design Engineer, контракт</span></b></span> <span>AI Design Tooling</span></p>
 <h1><span data-l="uk" lang="uk">LayoutLab: зробив генератор макетів, який пришвидшив дизайн в 7 раз</span></h1>
+<div class="orn" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="sec-cols">
 <p class="sec-lead"><span data-l="uk" lang="uk">Що бачить дизайнер у макеті генератора, <i>те і іде в розробку</i>: він рендерить реальні продакшн-компоненти</span></p>
 <div class="sec-body">
@@ -274,10 +291,8 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 <div class="cbd-scroll" role="region" tabindex="0" aria-label="Архітектура: браузер заходить тільки через workbench, той пише page.tsx у спільний том task-data, render-host рендерить ці файли на реальних компонентах продукту, а error sidecar повертає помилки назад у workbench.">
 <svg viewBox="0 0 920 360" role="img" aria-label="Архітектура: браузер заходить тільки через workbench, той пише page.tsx у спільний том task-data, render-host рендерить ці файли на реальних компонентах продукту, а error sidecar повертає помилки назад у workbench." xmlns="http://www.w3.org/2000/svg">
 <defs>
-<pattern id="cbd-dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle class="grid" cx="1" cy="1" r=".9"/></pattern>
 <marker id="cbd-a" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="rgba(17,17,17,.45)"/></marker>
 </defs>
-<rect width="920" height="360" fill="url(#cbd-dots)"/>
 
 <text class="h" x="24" y="134">браузер · SPA + iframe</text>
 <path class="t rule" d="M24 146 H176"/>
@@ -349,9 +364,9 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 </figure>
 <h2 class="marker"><span data-l="uk" lang="uk">Дати AI очі</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Перше ж порівняння <i>впіймало реальний баг у живому продукті</i>, повз який шість раундів людського рев'ю пройшли не помітивши.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk">Перше ж порівняння <i>знайшло справжній баг у живому продукті</i> — той, який люди не побачили за шість раундів рев'ю.</span></p>
 <div class="sec-body">
-<p><span data-l="uk" lang="uk">Я дав агенту очі й руки: він скріншотить власний живий рендер, скріншотить реальний продукт для поелементного порівняння і читає реальні лінки замість вгадувати.</span></p>
+<p><span data-l="uk" lang="uk">Я зробив так, що АІ бачить дизайн, він скріншотить власний живий рендер, скріншотить реальний продукт для поелементного порівняння і читає реальні лінки замість вгадувати.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Один екран пережив шість раундів людських правок, і кожна правка вела до файлу, який агент жодного разу не відкривав.</span></p>
 </div>
 </div>
@@ -374,6 +389,7 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 </div>
 </section>
 </div>
+<div class="orn orn-b" aria-hidden="true"><span></span><span></span><span></span></div>
 <nav class="cnav">
 <a href="case-scalr-ua.html"><span data-l="uk" lang="uk"><svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M14.5 6.5 9 12l5.5 5.5"/></svg>Scalr</span></a>
 <a href="case-splitmart-ua.html"><span data-l="uk" lang="uk">Далі: SplitMart<svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M9.5 6.5 15 12l-5.5 5.5"/></svg></span></a>
