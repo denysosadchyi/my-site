@@ -91,9 +91,6 @@ body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg
 .pv .thumb.mock .mockscreen{position:absolute;left:20.29%;top:21.71%;width:59.4%;height:68.56%;overflow:hidden}
 .pv .thumb.mock .mockscreen video{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:left;display:block;transform-origin:18% 55%;animation:llzoom 16.983s ease-in-out infinite}
 .pv .thumb.mock img{position:absolute;left:0;top:0;width:100%;height:100%;display:block;pointer-events:none}
-.pv .thumb.locked{position:relative}
-.pv .thumb.locked::before{content:"";position:absolute;left:20.29%;top:21.71%;width:59.4%;height:68.56%;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.pv .thumb.locked::after{content:"";position:absolute;top:56%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:rgba(255,255,255,.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23111'%3E%3Cpath d='M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 5a3 3 0 0 1 6 0v3H9V7z'/%3E%3C/svg%3E") center/22px no-repeat;box-shadow:0 4px 16px rgba(0,0,0,.25)}
 .pv .toolicon{display:block;height:144px;width:auto;margin-bottom:12px}
 .pv:has(.toolicon)>div{background:transparent}
 .pv:has(.toolicon):hover>div{background:rgba(0,0,0,.03)}
@@ -127,8 +124,8 @@ header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing
 .pv .open{display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border:1px solid currentColor;border-radius:999px;transition:background .15s,color .15s,border-color .15s}
 .pv .open:hover{background:#145ae0;border-color:#145ae0;color:#fff;text-decoration:none}
 @media(prefers-reduced-motion:reduce){.pv .open{transition:none}}
-.langswitch{display:inline-block;line-height:0}
-.langswitch img{display:block;width:24px;height:auto}
+.langswitch{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-10px}
+.langswitch img{display:block;width:24px;height:24px;border-radius:50%;box-shadow:0 0 0 1px rgba(17,17,17,.12)}
 /* hero-area switcher stays as it was */
 .open,.wordmark{font-weight:500}
 /* case hero */
@@ -253,6 +250,9 @@ body.cd-lock{overflow:hidden}
 <style>/*lang*/
 /* language switch is an icon button; the language name stays for screen readers */
 .langswitch .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* 44x44 touch target, negative margin keeps the 24px icon where it was */
+.langswitch:focus-visible{outline:none}
+.langswitch:focus-visible img{outline:2px solid #145ae0;outline-offset:3px}
 </style>
 <style>/*linkstyle*/
 a{color:var(--t-accent);text-decoration:none}
@@ -382,7 +382,7 @@ header .bar{border-radius:20px}
 </div>
 <div class="dark herowrap">
 <div class="langbar">
-<a class="langswitch" href="index.html" hreflang="uk" aria-label="Українською" title="Українською"><img alt="Українською" src="img/flag-ua.svg" width="24" height="18"/></a>
+<a class="langswitch" href="index.html" hreflang="uk" aria-label="Українською" title="Українською"><img alt="Українською" src="img/flag-ua-round.svg" width="24" height="24"/></a>
 </div>
 <section class="wrap hero3">
 <div class="hleft">
@@ -428,7 +428,7 @@ header .bar{border-radius:20px}
 </div>
 </article>
 <article class="pv rv">
-<a class="thumb locked" href="case-scalr-en.html"><img alt="Scalr product screens" height="2160" loading="lazy" src="img/sc-cover.webp" width="3840"/></a>
+<a class="thumb" href="case-scalr-en.html"><img alt="Scalr product screens" height="2160" loading="lazy" src="img/sc-cover.webp" width="3840"/></a>
 <div>
 <p class="meta pills"><span data-l="en"><span class="tag">Senior Product Designer</span></span></p>
 <h3><a href="case-scalr-en.html"><span data-l="en">Scalr: design system, product work</span></a></h3>
