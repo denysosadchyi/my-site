@@ -244,6 +244,18 @@ header .bar{border-radius:20px}
 .cnav{margin-bottom:48px}
 }
 </style>
+<style>/*totop*/
+/* floating back-to-top: the same flat black circle as the icon pills.
+   Built by JS below; hidden until the first screen is scrolled past. */
+.totop{position:fixed;right:24px;bottom:24px;z-index:60;width:47px;height:47px;display:inline-flex;align-items:center;justify-content:center;padding:0;color:#fff;background:#111;border:none;border-radius:999px;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s ease-out,transform .2s ease-out,background .2s ease-out}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{background:#3d3d3d}
+.totop:active{transform:scale(.95) rotate(1deg)}
+.totop:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
+.totop svg{width:20px;height:20px;flex:none}
+@media(max-width:600px){.totop{width:42px;height:42px;right:16px;bottom:16px}}
+@media(prefers-reduced-motion:reduce){.totop{transition:none}.totop:active{transform:none}}
+</style>
 </head>
 <body>
 <header>
@@ -412,6 +424,23 @@ document.querySelectorAll('.strip').forEach(function(strip){
 var f=location.pathname.split('/').pop();
 if(!/^case-[\w-]+\.html$/.test(f))return;
 location.replace((document.documentElement.lang==='uk'?'index.html':'index-en.html')+'#case='+f);
+})();
+</script>
+<script>
+/* Back to top. Built in JS so a no-JS reader never sees a dead button. */
+(function(){
+var uk=document.documentElement.lang==='uk';
+var calm=matchMedia('(prefers-reduced-motion: reduce)');
+var b=document.createElement('button');
+b.type='button';b.className='totop';
+b.setAttribute('aria-label',uk?'\u041d\u0430\u0433\u043e\u0440\u0443':'Back to top');
+b.innerHTML='<svg aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5m0 0l-6 6m6-6l6 6"/></svg>';
+b.addEventListener('click',function(){scrollTo({top:0,behavior:calm.matches?'auto':'smooth'})});
+document.body.appendChild(b);
+function sync(){b.classList.toggle('on',scrollY>innerHeight)}
+addEventListener('scroll',sync,{passive:true});
+addEventListener('resize',sync);
+sync();
 })();
 </script>
 </body>
