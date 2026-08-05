@@ -36,12 +36,12 @@ body{font-family:var(--font-sans)}
 .hero3 h1 .hero-ava{animation:coinflip 3s ease-in-out 4.6s infinite}
 @keyframes coinflip{0%{transform:perspective(600px) rotateY(0)}40%,100%{transform:perspective(600px) rotateY(360deg)}}
 /* handwritten last line: Caveat runs small next to e-Ukraine, 1.25em compensates; line-height .8 keeps the line box at 1em of h1 so the fit script's 4-line budget holds */
-.hero3 h1 .hand{font-family:'Caveat',cursive;font-weight:600;font-size:1.25em;line-height:.8;display:inline-block;transform:rotate(-3deg);clip-path:inset(-60% 100% -60% 0);animation:handwrite 1.6s ease-out 1.9s forwards}
+.hero3 h1 .hand{font-family:'Caveat',cursive;font-weight:600;font-size:1.25em;line-height:.8;display:inline-block;transform:rotate(-3deg);clip-path:inset(-60% -5% -60% 0);animation:handwrite 1.6s ease-out 1.9s backwards}
 /* -60% vertical: lh .8 leaves the box only .07em below baseline, Caveat descenders reach .22em; -60% of the .8em box clears them plus the underline */
-@keyframes handwrite{to{clip-path:inset(-60% -5% -60% 0)}}
+@keyframes handwrite{from{clip-path:inset(-60% 100% -60% 0)}to{clip-path:inset(-60% -5% -60% 0)}}
 .hero3 h1 .hand-u{position:relative;display:inline-block;color:var(--t-accent)}
 /* inline-block: same lh-.8 box as .hand (bottom ~.07em under baseline), so bottom:-.08em puts the line ~.09-.15em below baseline — clearly under the letters, still inside the -60% clip zone */
-.hero3 h1 .hand-u::after{content:"";position:absolute;left:0;right:0;bottom:-.08em;height:.06em;background:var(--t-accent);transform:rotate(-1.5deg) scaleX(0);transform-origin:left;animation:handline .4s ease-out 3.6s forwards}
+.hero3 h1 .hand-u::after{content:"";position:absolute;left:0;right:0;bottom:-.08em;height:.06em;background:var(--t-accent);transform:rotate(-1.5deg) scaleX(1);transform-origin:left;animation:handline .4s ease-out 3.6s backwards}
 .hero3 .fitlines>span{white-space:nowrap} /* one line each at every width; fit script shrinks font via scrollWidth check, phones included */
 /* staged entrance: lines 1-3 type in (0/.65/1.3s), hand writes 1.9-3.5s, underline 3.6-4s, CTA fades 4-4.4s */
 /* fill:backwards, revealed state lives in the base style: WebKit freezes a steps(N,end)+forwards fill at step N-1/N for some delays (proven: delay 1.3s holds inset right at 5.29% and cuts the line tail), so never rely on the animation's end-fill */
@@ -49,13 +49,13 @@ body{font-family:var(--font-sans)}
 .hero3 .fitlines>span:nth-of-type(2){animation-delay:.65s}
 .hero3 .fitlines>span:nth-of-type(3){animation-delay:1.3s}
 @keyframes typeline{from{clip-path:inset(-60% 100% -60% 0)}to{clip-path:inset(-60% -2% -60% 0)}}
-.cta.hcta{opacity:0;animation:fadein .4s ease-out 4s forwards}
+.cta.hcta{animation:fadein .4s ease-out 4s backwards}
 /* everything below the hero waits for the entrance chain (CTA fade ends ~4.4s) */
-#work,.foot{opacity:0;animation:fadein .5s ease-out 4.5s forwards}
+#work,.foot{animation:fadein .5s ease-out 4.5s backwards}
 .skip-wait #work,.skip-wait .foot{animation:none;opacity:1}
-@keyframes fadein{to{opacity:1}}
-@keyframes handline{to{transform:rotate(-1.5deg) scaleX(1)}}
-.hero3 .sub.chain>span,.ledger .fig{opacity:0;animation:rise .5s ease-out forwards}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes handline{from{transform:rotate(-1.5deg) scaleX(0)}to{transform:rotate(-1.5deg) scaleX(1)}}
+.hero3 .sub.chain>span,.ledger .fig{animation:rise .5s ease-out backwards}
 .hero3 .sub.chain>span:nth-child(1){animation-delay:4s}
 .hero3 .sub.chain>span:nth-child(2){animation-delay:4.1s}
 .hero3 .sub.chain>span:nth-child(3){animation-delay:4.2s}
