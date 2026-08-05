@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Типографіка — специмен</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* Хром сторінки — мінімальний. Специмени стилізуються ТІЛЬКИ через токени. */
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fbfaf8;color:#111;font-family:var(--font-sans);font-weight:400;padding:48px 24px 96px}
+.wrap{max-width:960px;margin:0 auto}
+header.pg{margin-bottom:64px}
+header.pg h1{font-size:var(--t-h2);font-weight:400;line-height:1.1;letter-spacing:-.02em}
+header.pg p{font-size:var(--t-caption);color:var(--t-muted);margin-top:12px;max-width:52ch;line-height:1.6}
+.s{border-top:1px solid #e3e0da;padding:28px 0 44px}
+.lbl{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;margin-bottom:22px;font-size:.8125rem;line-height:1.5;color:var(--t-muted)}
+.lbl .nm{color:#111;font-weight:500}
+.lbl code{font-family:ui-monospace,monospace;font-size:.75rem;background:#f0ede8;padding:2px 6px;border-radius:4px;color:#111}
+.lbl .spec{flex-basis:100%}
+.note{font-size:.8125rem;color:var(--t-muted);margin-top:14px;line-height:1.55;max-width:64ch}
+.sw{display:flex;gap:32px;flex-wrap:wrap}
+.sw .chip{display:flex;align-items:center;gap:12px;font-size:var(--t-caption)}
+.sw .box{width:56px;height:56px;border-radius:8px;border:1px solid #e3e0da}
+table{border-collapse:collapse;font-size:.875rem;line-height:1.5;width:100%;max-width:640px}
+th,td{text-align:left;padding:6px 18px 6px 0;border-bottom:1px solid #eceae5;vertical-align:top}
+th{font-weight:500;font-size:.8125rem;color:var(--t-muted)}
+
+/* ── Специмени: розміри/сім'ї лише з tokens.css ─────────────────── */
+.x-h1{font-family:var(--font-sans);font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;color:#111}
+.x-h2{font-family:var(--font-sans);font-size:var(--t-h2);font-weight:400;line-height:1.1;letter-spacing:-.02em}
+.x-h2 em{font-family:var(--font-italic);font-style:normal;font-weight:700;font-size:1.1em}
+.x-h3{font-family:var(--font-sans);font-size:var(--t-h3);font-weight:400;line-height:1.2;letter-spacing:-.015em}
+.x-h3b{font-family:var(--font-sans);font-size:var(--t-h3);font-weight:600;line-height:1.1;letter-spacing:-.02em;margin-top:14px}
+.x-marker{display:inline-block;font-family:var(--font-sans);font-size:var(--t-marker);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;padding:8px 36px 8px 22px;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 50%,100% 100%,0 100%)}
+.x-lead{font-family:var(--font-lead);font-size:var(--t-lead);font-weight:400;line-height:1.22;letter-spacing:-.01em}
+.x-lead i{color:var(--t-accent);font-style:normal}
+.x-lede-xl{font-family:var(--font-sans);font-size:var(--t-lede-xl);font-weight:400;line-height:1.25;letter-spacing:-.02em}
+.x-lede{font-family:var(--font-sans);font-size:var(--t-lede);font-weight:400;line-height:1.45;letter-spacing:-.01em}
+.x-case{font-family:var(--font-sans);font-size:var(--t-case);font-weight:400;line-height:var(--lh-case);max-width:60ch}
+.x-body{font-family:var(--font-sans);font-size:var(--t-body);font-weight:400;line-height:var(--lh-body);letter-spacing:var(--ls-body);max-width:64ch}
+.x-ui{font-family:var(--font-sans);font-size:var(--t-ui);line-height:1.4}
+.x-ui .wm{font-weight:500}
+.x-ui .yrs{color:var(--t-muted);font-variant-numeric:tabular-nums}
+.x-ui .xco{font-weight:500}
+.x-caption{font-family:var(--font-sans);font-size:var(--t-caption);font-weight:400;line-height:var(--lh-fine);letter-spacing:var(--ls-caption);color:var(--t-muted);max-width:60ch}
+.x-chip{display:inline-block;font-family:var(--font-sans);font-size:var(--t-chip);font-weight:400;line-height:1.5;border:1px solid #d8d4cd;border-radius:999px;padding:4px 14px;margin-right:8px}
+.x-chip.h{font-weight:600;border:0;padding:4px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="pg">
+  <h1>Типографіка сайту</h1>
+  <p>Живий специмен усіх іменованих стилів. Розміри тягнуться напряму з tokens.css — правиш токен, ця сторінка міняється разом із сайтом. Шрифти: e-Ukraine (400/500/600); курсиви — Arial italic.</p>
+</header>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">H1 · Заголовок кейса</span> <code>--t-h1</code>
+    <span class="spec">e-Ukraine · clamp(2.25rem, 2.08vw + 1.63rem, 3.5rem) · 400 · lh 1.05 · ls −.025em · #111 · де: .chero h1 (кейс-сторінки)</span>
+  </div>
+  <p class="x-h1">Розклад, який лікарка веде сама</p>
+</section>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">H2 · Футер</span> <code>--t-h2</code>
+    <span class="spec">e-Ukraine · clamp(1.75rem, 1.25vw + 1.38rem, 2.5rem) · 400 · lh 1.1 · ls −.02em · &lt;em&gt; усередині — Arial italic · 700 (синтезований bold) · 1.1em · де: .foot h2</span>
+  </div>
+  <p class="x-h2">Шукаю команду, де дизайн <em>вирішує</em>, а не прикрашає</p>
+</section>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">H3 · Картки і цифри</span> <code>--t-h3</code>
+    <span class="spec">e-Ukraine · clamp(1.5rem, .42vw + 1.38rem, 1.75rem) · 400 · lh 1.2 · ls −.015em · де: .pv h3, h3 · варіант bold: .outcomes .n — 600 · lh 1.1 · ls −.02em</span>
+  </div>
+  <p class="x-h3">Кабінет спеціаліста за три кліки</p>
+  <p class="x-h3b">−38% часу на запис</p>
+</section>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">Marker · Прапорець секції</span> <code>--t-marker</code>
+    <span class="spec">e-Ukraine · 1.25rem · 600 · lh 1.3 · ls −.01em · білий на #111 · clip-path: polygon(0 0, 100% 0, calc(100% − 14px) 50%, 100% 100%, 0 100%) · padding 8px 36px 8px 22px · position:sticky — липне до верху секції при скролі · де: h2.marker на всіх сторінках</span>
+  </div>
+  <span class="x-marker">Контекст</span>
+</section>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">Lead · Великий лід</span> <code>--t-lead</code>
+    <span class="spec">e-Ukraine (як тексти), без курсиву · var(--font-lead) · clamp(1.875rem, .63vw + 1.7rem, 2.25rem) · 400 · lh 1.22 · ls −.01em · &lt;i&gt; усередині — var(--t-accent), без курсиву · де: .sec-lead</span>
+  </div>
+  <p class="x-lead"><span class="think" aria-hidden="true"></span>Адміністраторка витрачала дві години на день, щоб <i>вручну</i> переносити записи між зошитом і телефоном.</p>
+</section>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">Lede XL · Лід футера (кейси)</span> <code>--t-lede-xl</code>
+    <span class="spec">e-Ukraine · clamp(1.5rem, 1.55vw + .92rem, 2.05rem) · 400 · lh 1.25 · ls −.02em · де: .lede на кейс-сторінках</span>
+  </div>
+  <p class="x-lede-xl">Це був не редизайн екранів, а редизайн робочого дня клініки.</p>
+</section>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">Lede · Лід футера (головна)</span> <code>--t-lede</code>
+    <span class="spec">e-Ukraine · clamp(1.125rem, .21vw + 1.0625rem, 1.25rem) · 400 · lh 1.45 · ls −.01em · де: .foot .lede на index</span>
+  </div>
+  <p class="x-lede">Пишіть — покажу процес за кожним із цих кейсів і розкажу, що не влізло на сторінку.</p>
+  <p class="note">⚠ Два різні розміри ліда (Lede XL на кейсах і Lede на головній) — можлива кандидатура на уніфікацію.</p>
+</section>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">Case body · Текст кейса</span> <code>--t-case</code>
+    <span class="spec">e-Ukraine · clamp(1rem, .55vw + .835rem, 1.375rem) · 400 · lh var(--lh-case) · де: .cbody</span>
+  </div>
+  <p class="x-case">Почали з тіньового спостереження: тиждень сиділи поруч з адміністраторкою і рахували, скільки разів вона перемикається між застосунками. Виявилось — сорок разів на годину. Саме це число, а не «покращити UX», стало метрикою редизайну.</p>
+</section>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">Body · Базовий</span> <code>--t-body</code>
+    <span class="spec">e-Ukraine · 1rem · 400 · lh var(--lh-body) · ls var(--ls-body) · де: body, картки, описи</span>
+  </div>
+  <p class="x-body">Базовий текст сайту: описи в картках, пояснення під прев'ю, службові абзаци. Тримає довгі рядки без втоми — міжряддя var(--lh-body) і легке стискання, щоб e-Ukraine не розповзався.</p>
+</section>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">UI · Службовий 17px</span> <code>--t-ui</code>
+    <span class="spec">e-Ukraine · 1.0625rem · вордмарк 500 · роки .yrs — muted, tabular-nums · компанії .xco — 500</span>
+  </div>
+  <p class="x-ui"><span class="wm">Денис Осадчий</span> &nbsp;·&nbsp; <span class="yrs">2019—2026</span> &nbsp;·&nbsp; <span class="xco">Cosmediate</span></p>
+</section>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">Caption · Підписи</span> <code>--t-caption</code>
+    <span class="spec">e-Ukraine · .9375rem · 400 · lh 1.5 (figcaption) / var(--lh-fine) (fine print) · ls var(--ls-caption) · var(--t-muted) · де: figcaption, .sec-fine, .facts, нав-лінки, .meta, .outcomes .t</span>
+  </div>
+  <p class="x-caption">Головний екран розкладу: день адміністраторки починається тут, а не в зошиті. Дані клініки змінені для публікації.</p>
+</section>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">Chip · Чіпси</span> <code>--t-chip</code>
+    <span class="spec">e-Ukraine · .8125rem · 400 · lh 1.5 · де: .chero .meta&gt;span (пігулки) · варіант .aud-h — 600</span>
+  </div>
+  <span class="x-chip">Продуктовий дизайн</span><span class="x-chip">2024—2025</span><span class="x-chip">B2B SaaS</span><br>
+  <span class="x-chip h">Для кого це</span>
+</section>
+
+<section class="s">
+  <div class="lbl">
+    <span class="nm">Кольори</span> <code>--t-muted</code> <code>--t-accent</code>
+  </div>
+  <div class="sw">
+    <div class="chip"><span class="box" style="background:var(--t-muted)"></span><span>--t-muted<br>#555 — підписи, службовий текст</span></div>
+    <div class="chip"><span class="box" style="background:var(--t-accent)"></span><span>--t-accent<br>#145ae0 — акцент у лідах</span></div>
+  </div>
+</section>
+
+<section class="s">
+  <div class="lbl"><span class="nm">Поза шкалою</span></div>
+  <p class="x-caption">Hero на головній свідомо живе в px і не тягнеться з токенів: h1 — clamp(3.3rem, 8.6vw, 7.4rem) плюс JS-підгонка по ширині; sub 20px; CTA 18px; цифри ledger — 40px Arial italic, підписи 14px. Окремо — SVG-діаграма в кейсі LayoutLab: 11–14px.</p>
+</section>
+
+<section class="s">
+  <div class="lbl"><span class="nm">Мобільні перевизначення · @media (max-width: 600px)</span></div>
+  <table>
+    <tr><th>Стиль</th><th>Мобільне значення</th></tr>
+    <tr><td>.chero h1</td><td>1.75rem</td></tr>
+    <tr><td>.sec-lead</td><td>1.375rem</td></tr>
+    <tr><td>.cbody</td><td>.9375rem</td></tr>
+    <tr><td>.outcomes .n</td><td>1.25rem</td></tr>
+    <tr><td>hero h1 (головна)</td><td>22–28px</td></tr>
+    <tr><td>hero sub</td><td>15px</td></tr>
+    <tr><td>ledger цифри</td><td>34px</td></tr>
+    <tr><td>CTA</td><td>16px</td></tr>
+  </table>
+</section>
+
+</div>
+</body>
+</html>

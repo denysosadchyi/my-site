@@ -4,31 +4,68 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Cosmediate — case study · Denys Osadchyi</title>
-<meta content="Full redesign of a Netherlands-based clinic-booking marketplace: patient, clinic and admin experiences rebuilt on one design system with a trust-first booking flow." name="description"/>
+<title>Cosmediate — three roles brought into one system · Denys Osadchyi</title>
+<meta content="Audit and full redesign of a Netherlands-based clinic-booking marketplace: patient, clinic and admin experiences rebuilt on one design system." name="description"/>
+<link href="https://denys-osadchyi.vercel.app/case-cosmediate.html" rel="canonical"/>
+<link href="https://denys-osadchyi.vercel.app/case-cosmediate.html" hreflang="en" rel="alternate"/>
+<link href="https://denys-osadchyi.vercel.app/case-cosmediate-ua.html" hreflang="uk" rel="alternate"/>
+<link href="https://denys-osadchyi.vercel.app/case-cosmediate.html" hreflang="x-default" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="Cosmediate — three roles brought into one system · Denys Osadchyi" property="og:title"/>
+<meta content="Audit and full redesign of a Netherlands-based clinic-booking marketplace: patient, clinic and admin experiences rebuilt on one design system." property="og:description"/>
+<meta content="https://denys-osadchyi.vercel.app/case-cosmediate.html" property="og:url"/>
+<meta content="https://denys-osadchyi.vercel.app/og.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..900&family=Charis+SIL:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<link href="fonts/fonts.css" rel="stylesheet"/>
+<link href="tokens.css" rel="stylesheet"/>
 <style>/*font*/
-body{font-family:'Onest',sans-serif}
+body{font-family:var(--font-sans)}
 </style>
 <style>/*pagebg*/
-body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
+</style>
+<style>/*media*/
+/* one photo or video in a block: 860 wide, centred on a grey band that
+   spans the page and keeps the same 48px inset as the text */
+.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:linear-gradient(rgba(17,17,17,0),rgba(17,17,17,.05))}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
+.cbody .cimg>figcaption{max-width:860px;margin-inline:auto;text-align:center}
+.strip-fig:has(.strip>:only-child)>figcaption{max-width:860px;margin-inline:auto;text-align:center}
+@media(max-width:600px){.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin-inline:-24px;padding-inline:24px}}
+/* the cover keeps the treatment it always had: noise band, full bleed, no 860 cap */
+main>.cimg{margin:0 0 28px}
+main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
+@media(max-width:600px){main>.cimg::after{margin:0 -24px}}
+</style>
+<style>/*single*/
+/* one photo or video on its own: 860 wide, centred */
+.strip:has(>:only-child){justify-content:center}
+.strip:has(>:only-child)>img,.strip:has(>:only-child)>video{height:auto;width:min(860px,100%);max-width:min(860px,100%)}
+.shots:has(>:only-child){justify-items:center}
+.shots:has(>:only-child) .shot{width:min(860px,100%)}
+</style>
+<style>/*outcomes*/
+.outcomes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:32px 0 0}
+.outcomes .o{padding:32px 28px;background:#fff;border-radius:24px}
+.outcomes .n{margin:0 0 12px}
+.outcomes .t{margin:7px 0 0;max-width:22ch}
+.outcomes .oi{display:block;width:28px;height:28px;margin:0 0 24px;color:#145ae0;box-sizing:content-box;padding:12px;background:rgba(20,90,224,.05);border-radius:14px}
 </style>
 <style>/*sec*/
 /* Case section: heading, then lead left, expansion + fine print right. */
 .cbody .sec{margin:96px 0 0}
 .cbody .sec:first-child{margin-top:64px}
-.cbody .sec h2.marker{display:inline-block;margin:0 0 28px;max-width:34ch;padding:8px 22px;font-size:1.25rem;font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;border-radius:0 999px 999px 0}
+.cbody .sec h2.marker,.block h2.marker{display:inline-block;margin:0 0 28px;max-width:34ch;padding:8px 36px 8px 22px;position:sticky;top:16px;z-index:5;font-size:var(--t-marker);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 50%,100% 100%,0 100%)}
 .cbody .sec-cols,.chero .sec-cols{margin-top:8px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 56px;align-items:start;margin:0 0 28px}
-.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:'Charis SIL',serif;font-style:italic;font-size:clamp(1.875rem,.63vw + 1.7rem,2.25rem);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
-.cbody .sec-lead i,.chero .sec-lead i{color:#0000EE;font-style:italic}
+.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:var(--font-lead);font-weight:400;font-size:var(--t-lead);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
+.cbody .sec-lead i,.chero .sec-lead i{color:var(--t-accent);font-style:normal}
 .cbody .sec-body>p,.chero .sec-body>p{margin:0 0 14px;max-width:35rem}
 .cbody .sec-body>p:last-child,.chero .sec-body>p:last-child{margin-bottom:0}
-.cbody .sec-body ul{margin:10px 0 0;padding-left:1.2em;max-width:35rem;font-size:.9375rem;line-height:1.6;color:#555}
+.cbody .sec-body ul{margin:10px 0 0;padding-left:1.2em;max-width:35rem;font-size:var(--t-caption);line-height:var(--lh-fine);color:var(--t-muted)}
 .cbody .sec-body li{margin:0 0 8px}
-.cbody .sec-fine,.chero .sec-fine{margin:0;max-width:35rem;font-size:.9375rem;line-height:1.6;letter-spacing:0;color:#555}
+.cbody .sec-body a{overflow-wrap:anywhere}
+.cbody .sec-fine,.chero .sec-fine{margin:0;max-width:35rem;font-size:var(--t-caption);line-height:var(--lh-fine);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 @media(max-width:900px){
 .cbody .sec-cols,.chero .sec-cols{grid-template-columns:1fr;gap:12px}
 .cbody .sec-lead,.chero .sec-lead{max-width:none}
@@ -39,17 +76,9 @@ img,video{max-width:100%;height:auto}
 .wrap{padding-left:48px;padding-right:48px;box-sizing:border-box}
 </style>
 <style>/*typescale*/
-/* Onest type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
-:root{
---t-caption:.9375rem;
---t-body:1.125rem;
---t-lede:clamp(1.25rem,.21vw + 1.19rem,1.375rem);
---t-h3:clamp(1.5rem,.42vw + 1.38rem,1.75rem);
---t-h2:clamp(1.75rem,1.25vw + 1.38rem,2.5rem);
---t-h1:clamp(2.25rem,2.08vw + 1.63rem,3.5rem);
---t-muted:#555;
---measure:72ch}
-body{font-size:var(--t-body);line-height:1.6;letter-spacing:-.005em;font-kerning:normal}
+/* e-Ukraine type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
+:root{--measure:72ch}
+body{font-size:var(--t-body);line-height:var(--lh-body);letter-spacing:var(--ls-body);font-kerning:normal}
 .hero3,.ledger,.hcta,.langbar{font-size:1rem;line-height:normal;letter-spacing:normal}
 p{margin:0 0 1.1em;text-wrap:pretty}
 b,strong{font-weight:600}
@@ -61,38 +90,44 @@ h3{font-size:var(--t-h3);line-height:1.2;letter-spacing:-.015em}
 header .bar{padding-block:24px}
 header nav,.cnav,.cta{display:flex;flex-wrap:wrap;align-items:center;gap:24px}
 .cnav{gap:32px}
-.wordmark{font-size:1.0625rem;font-weight:500;letter-spacing:-.01em}
-header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:0}
-.langbar .langswitch{font-size:1rem}/* hero-area switcher stays as it was */
+.wordmark{font-size:var(--t-ui);font-weight:500;letter-spacing:-.01em}
+header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
+.langswitch{display:inline-block;line-height:0}
+.langswitch img{display:block;width:24px;height:auto}
+/* hero-area switcher stays as it was */
 .open,.wordmark{font-weight:500}
 /* case hero */
-.chero{padding-top:56px}
-.chero .meta{margin:0 0 20px;display:flex;flex-wrap:wrap;gap:6px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
-.chero .meta>span{padding:2px 10px;font-size:.8125rem;line-height:1.5;background:rgba(17,17,17,.05);border-radius:999px}
-.chero h1{margin:0 0 24px;max-width:none;font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
-.lede{margin:0 0 28px;max-width:none;font-size:clamp(1.5rem,1.55vw + .92rem,2.05rem);line-height:1.25;letter-spacing:-.02em;text-wrap:pretty}
-.facts{margin:0;display:flex;flex-wrap:wrap;gap:8px;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
+.chero{padding-top:28px}
+.chero .meta{margin:0 0 20px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.chero .meta>span{padding:2px 10px;font-size:var(--t-chip);line-height:1.5;background:rgba(17,17,17,.05);border-radius:999px}
+.chero h1{margin:0 auto 20px;max-width:30ch;text-align:center;font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
+.orn{display:flex;align-items:center;justify-content:center;gap:7px;margin:0 auto}
+.chero .orn{margin-bottom:32px;max-width:30ch}
+.orn-b{margin:96px 0 0}
+.orn::before,.orn::after{content:"";flex:1;height:1px;background:rgba(17,17,17,.18);margin-inline:6px}
+.orn span{width:6px;height:6px;background:rgba(17,17,17,.5);transform:rotate(45deg)}
+.lede{margin:0 0 28px;max-width:none;font-size:var(--t-lede-xl);line-height:1.25;letter-spacing:-.02em;text-wrap:pretty}
+.facts{margin:0;display:flex;flex-wrap:wrap;gap:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .facts>span{display:inline-flex;align-items:center;gap:.5em;padding:5px 14px;border:1px solid rgba(0,0,0,.12);border-radius:999px;line-height:1.4}
-.facts .fi{width:1em;height:1em;flex:0 0 auto}
+.facts .fi{width:auto;height:1.05em;max-width:2em;flex:0 0 auto}
 .outcomes .n{font-size:var(--t-h3);font-weight:600;line-height:1.1;letter-spacing:-.02em}
-.outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 /* case body */
 .cbody p,.cbody ul{max-width:none}
-.cbody{font-size:clamp(1.125rem,.55vw + .96rem,1.5rem);line-height:1.65}
+.cbody{font-size:var(--t-case);line-height:var(--lh-case)}
 .cbody h2.marker{margin:96px 0 24px;max-width:32ch}
 .cbody h2.marker:first-child{margin-top:64px}
 .cbody p{margin:0 0 20px}
 .cbody ul{margin:0 0 20px;padding-left:1.2em}
 .cbody li{margin:0 0 10px}
 .cres .r{font-weight:600}
-.cimg{margin:0 0 28px}
-figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
-.cnav{margin:96px 0 64px}
+figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.cnav{margin:0 0 64px}
 /* work cards */
-.pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .pv h3{margin:0 0 12px;font-size:var(--t-h3);font-weight:400;line-height:1.2;letter-spacing:-.015em}
 .pv .nums{margin:0 0 12px}
-.pv .nums .chip{font-style:normal;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
+.pv .nums .chip{font-style:normal;font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .pv p{max-width:44ch;margin:0 0 16px}
 /* section headings, experience, teaching */
 .block{padding-block:64px}
@@ -101,48 +136,46 @@ figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height
 .foot h2{margin:0 0 20px;max-width:20ch}
 .xp,.list{margin:0;padding:0;list-style:none}
 .xp li,.list li{margin:0 0 32px}
-.yrs{font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted);font-variant-numeric:tabular-nums}
+.yrs{font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted);font-variant-numeric:tabular-nums}
 .xrole,.list .t{margin:0 0 8px;font-size:1.5rem;font-weight:500;line-height:1.35;letter-spacing:-.01em}
 .xco,.tag{font-weight:400;color:var(--t-muted)}
-.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:0}
+.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
 .xnote{margin:0;max-width:46ch}
 .list .s{max-width:48ch}
 /* everything above the hairline reads as one field: header + hero + cover.
    Negative inline margin equals the wrap padding, so the tint reaches the
    viewport edge without 100vw and its scrollbar overflow. */
-header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
 .chero,main>.cimg{margin-inline:-48px;padding-inline:48px}
 @media(max-width:600px){.chero,main>.cimg{margin-inline:-24px;padding-inline:24px}}
 /* cover mockup: capped like the flat shots, closed by a full-bleed hairline.
    Negative margin equals the wrap padding, so the rule reaches the real viewport
    edge without 100vw (which would overflow by the scrollbar width). */
-main>.cimg>img{display:block;max-width:min(860px,100%);margin-inline:auto}
-main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
 @media(max-width:600px){main>.cimg::after{margin:0 -24px}}
 /* native scrollbar hidden; paging is driven by the buttons below */
 .strip{scrollbar-width:none;-ms-overflow-style:none}
 .strip::-webkit-scrollbar{display:none}
 .stripnav{position:absolute;z-index:2;left:16px;right:16px;top:calc(clamp(220px,30vw,460px)/2);transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none}
 .stripnav[hidden]{display:none}
-.stripbtn{pointer-events:auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:1.25rem;line-height:1;color:#111;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:50%;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.12);transition:background .15s ease-out,color .15s ease-out,border-color .15s ease-out,opacity .15s ease-out}
-.stripbtn:hover:not(:disabled){background:#0000EE;border-color:#0000EE;color:#fff}
+.stripbtn{pointer-events:auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:1.25rem;line-height:1;color:#111;background:#fff;border:none;border-radius:50%;cursor:pointer;transition:background .15s ease-out,color .15s ease-out,opacity .15s ease-out}
+.stripbtn:hover:not(:disabled){background:#145ae0;color:#fff}
 .stripbtn:disabled{opacity:0;pointer-events:none}
-.stripbtn:focus-visible{outline:2px solid #0000EE;outline-offset:3px}
+.stripbtn:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.stripbtn{transition:none}}
 /* horizontal mockup strips: bleed past the right gutter so the row visibly
    continues off-screen instead of pretending it ended */
-.strip-fig{position:relative;margin:0 0 28px}
+.strip-fig{position:relative}
 .strip{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;margin-right:-48px;padding:0 48px 6px 0}
 .strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:24px;scroll-snap-align:start}
-.strip:focus-visible{outline:2px solid #0000EE;outline-offset:4px}
+.strip:focus-visible{outline:2px solid #145ae0;outline-offset:4px}
 @media(max-width:600px){.strip{margin-right:-24px;padding-right:24px}}
 /* flat screen mockups: capped measure, retina source, hairline frame.
    Device mockups (the covers, outside .cbody) stay full-bleed. */
-.cbody .cimg:has(>img),.cbody .cimg:has(>video){max-width:860px;margin-inline:auto}
-.cbody .cimg>img,.cbody .cimg>video{width:100%;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1)}
-/* the one ornament: Charis SIL italic marks the words carrying the argument */
-.foot h2 em,.ia-role{font-family:'Charis SIL',serif;font-style:italic}
-.cnav{justify-content:space-between;padding-top:24px;border-top:1px solid #e2ddd6}
+.cbody /* one screen or one video in a block: 860 wide, centred, on a band that spans the page */
+/* the one ornament: Arial italic marks the words carrying the argument */
+.foot h2 em,.ia-role{font-family:var(--font-italic);font-style:normal}
+.foot h2 em{font-weight:700;font-size:1.1em}
+.cnav{justify-content:space-between;padding-top:24px}
 @media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
 </style>
 <style>/*hdr*/
@@ -150,10 +183,30 @@ header{padding:16px 24px 0}
 header .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding:16px 32px;background:rgba(17,17,17,.05);border-radius:999px}
 @media(max-width:600px){header{padding:12px 12px 0}header .bar{padding:14px 20px;border-radius:28px}}
 </style>
+<style>/*lang*/
+/* language switch is an icon button; the language name stays for screen readers */
+.langswitch .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+<style>/*navicon*/
+/* navigation arrows are drawn, not typed, so they align with the text baseline */
+.nav-i{width:1em;height:1em;flex:0 0 auto}
+header nav a,.cnav a{display:inline-flex;align-items:center;gap:6px}
+</style>
 <style>/*linkstyle*/
-a{color:#0000EE;text-decoration:none}
-a:visited{color:#0000EE}
-a:hover{text-decoration:underline}
+a{color:var(--t-accent);text-decoration:none}
+a:visited{color:var(--t-accent)}
+a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(20,90,224,.5);text-underline-offset:3px}
+</style>
+<style>/*mobile-type*/
+@media(max-width:600px){
+.chero h1{font-size:1.75rem}
+.cbody .sec-lead,.chero .sec-lead{font-size:1.375rem}
+.cbody{font-size:.9375rem}
+.outcomes .n{font-size:1.25rem}
+.outcomes .o{border-radius:16px}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:16px}
+header .bar{border-radius:20px}
+}
 </style>
 </head>
 <body>
@@ -161,8 +214,8 @@ a:hover{text-decoration:underline}
 <div class="wrap bar">
 <a class="wordmark" href="index.html">Denys Osadchyi</a>
 <nav>
-<a href="index.html#work"><span data-l="en">← All cases</span></a>
-<a class="langswitch" href="case-cosmediate-ua.html">Українською</a>
+<a href="index.html#work"><span data-l="en"><svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M14.5 6.5 9 12l5.5 5.5"/></svg>All cases</span></a>
+<a class="langswitch" href="case-cosmediate-ua.html" hreflang="uk" aria-label="Українською" title="Українською"><img alt="Українською" src="img/flag-ua.svg" width="24" height="18"/></a>
 </nav>
 </div>
 </header>
@@ -170,92 +223,108 @@ a:hover{text-decoration:underline}
 <section class="chero">
 <p class="meta"><span>Netherlands</span> <span><b>Senior Product Designer</b></span> <span><span data-l="en">B2C Marketplace</span> <span>Healthcare</span> <span>Booking</span></span></p>
 <h1><span data-l="en">Cosmediate: marketplace audit and redesign</span></h1>
+<div class="orn" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="en">Three roles lived as three different products, and I <i>brought them into one system</i>.</span></p>
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>The three roles of the product were designed as if they were entirely different products, and I <i>brought them into one design system</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="en">Cosmediate is a Netherlands-based platform connecting patients with certified cosmetic clinics.</span></p>
-<p class="sec-fine"><span data-l="en">Client, Clinic and Admin had been built independently: a shared domain but no shared design system. The brief was broad: rebuild the whole thing, keeping the experiences internally consistent while each role gets exactly what it needs.</span></p>
+<p class="sec-fine"><span data-l="en">Client, Clinic and Admin had been built independently: a shared domain but no shared design system. The brief was broad: rebuild the whole thing so the experiences stay consistent while each role gets exactly what it needs.</span></p>
 </div>
 </div>
-<p class="facts"><span><b>3</b> <span data-l="en">roles</span></span> <span><span data-l="en">full redesign</span></span> <span><span data-l="en">design system from scratch</span></span> <span>Figma</span></p>
+<p class="facts"><span><b>3</b> <span data-l="en">roles</span></span> <span><span data-l="en">full redesign</span></span> <span><span data-l="en">design system from scratch</span></span> <span><svg class="fi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="0.67em" height="1em" viewBox="0 0 256 384"><path fill="#0acf83" d="M64 384c35.328 0 64-28.672 64-64v-64H64c-35.328 0-64 28.672-64 64s28.672 64 64 64"/><path fill="#a259ff" d="M0 192c0-35.328 28.672-64 64-64h64v128H64c-35.328 0-64-28.672-64-64"/><path fill="#f24e1e" d="M0 64C0 28.672 28.672 0 64 0h64v128H64C28.672 128 0 99.328 0 64"/><path fill="#ff7262" d="M128 0h64c35.328 0 64 28.672 64 64s-28.672 64-64 64h-64z"/><path fill="#1abcfe" d="M256 192c0 35.328-28.672 64-64 64s-64-28.672-64-64s28.672-64 64-64s64 28.672 64 64"/></svg>Figma</span></p>
+<div class="outcomes">
+<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><rect width="18" height="4" x="3" y="4" fill="currentColor" opacity=".4" rx="2"/><rect width="13" height="4" x="3" y="10" fill="currentColor" opacity=".4" rx="2"/><rect width="8" height="4" x="3" y="16" fill="currentColor" rx="2"/></svg><div class="n"><span data-l="en">8 → 5</span></div><p class="t"><span data-l="en">Cut booking from 8 steps to 5. People book faster and stop getting lost on the way.</span></p></div>
+<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c.3 0 .6.07.86.2l6 2.7A2 2 0 0 1 20 6.72v4.6c0 4.4-2.9 8.3-7.4 10.5a1.4 1.4 0 0 1-1.2 0C6.9 19.62 4 15.72 4 11.32v-4.6a2 2 0 0 1 1.14-1.82l6-2.7c.26-.13.56-.2.86-.2" opacity=".4"/><path fill="currentColor" d="M15.53 9.47a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 1 1 1.06-1.06L11 12.94l3.47-3.47a.75.75 0 0 1 1.06 0"/></svg><div class="n"><span data-l="en">Trust</span></div><p class="t"><span data-l="en">People do not book a clinic they do not trust. I moved certifications, practitioners and reviews up front, before the booking button.</span></p></div>
+<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="8" cy="8" r="5" fill="currentColor" opacity=".4"/><circle cx="16" cy="8" r="5" fill="currentColor" opacity=".4"/><circle cx="12" cy="16" r="5" fill="currentColor"/></svg><div class="n"><span data-l="en">3 in 1</span></div><p class="t"><span data-l="en">Built three products on one logic and one style: for clients, clinics and admins. Solo, without a team.</span></p></div>
+</div>
 </section>
 <figure class="cimg"><img alt="Cosmediate product screens" height="2160" src="img/co-cover.webp" width="3840"/></figure>
 <div class="cbody">
 <section class="sec">
 <h2 class="marker"><span data-l="en">One system for three roles</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="en">A component that works in a dense clinic dashboard has to work <i>in a clean, trust-first patient flow</i> too.</span></p>
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>Components in the clinic dashboard have to stay consistent with <i>the patient booking flow</i>.</span></p>
 <div class="sec-body">
-<p><span data-l="en">Before any screen work I mapped the information architecture per role, and then the intersections.</span></p>
-<p class="sec-fine"><span data-l="en">How a clinic's availability surfaces in the client's booking flow, how admin actions affect what clients and clinics see. The design system carried exactly that tension: semantic tokens instead of raw values and every component designed with all its states, because clinics live in edge cases, meaning fully booked slots, pending approvals and expired certifications.</span></p>
+<p><span data-l="en">Before any screen work I mapped the information architecture per role, and then how they connect together.</span></p>
+<p class="sec-fine"><span data-l="en">How a clinic's availability surfaces in the client's booking flow, how admin actions affect what clients and clinics see. The design system was built for exactly this: semantic tokens instead of raw values and every component designed with all its states, because clinics live in edge cases, meaning fully booked slots, pending approvals and expired certifications.</span></p>
 </div>
 </div>
 </section>
 <section class="sec">
 <div class="strip-fig">
 <div class="strip" role="region" tabindex="0" aria-label="Section screens: One system for three roles">
-<img alt="Cosmediate design system" loading="lazy" src="img/co-ds.webp"/>
+<img alt="Cosmediate clinic dashboard" loading="lazy" src="img/co-dash-main.webp"/>
 </div>
 </div>
 <h2 class="marker"><span data-l="en">Client: a trust-first booking flow</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="en">Booking a cosmetic clinic is not a restaurant reservation: <i>what is missing is trust, not slots</i>.</span></p>
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>Booking a cosmetic clinic is not a restaurant reservation: <i>what is missing is trust, not slots</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="en">I designed the flow as a linear, step-by-step process where each step answers one question: clinic, treatment, slot, details, confirmation.</span></p>
-<p class="sec-fine"><span data-l="en">There is a consultation layer and certification requirements that generic booking interfaces do not address. The clinic profile does the trust-building before the user ever reaches booking: certifications, before and after photos, practitioner profiles and verified reviews, structured to put credibility signals first.</span></p>
+<p class="sec-fine"><span data-l="en">There is a consultation layer and certification requirements that generic booking interfaces do not address. The clinic profile does the trust-building before the user ever reaches booking: certifications, before and after photos, practitioner profiles and verified reviews sit above the booking button.</span></p>
 </div>
 </div>
 </section>
 <section class="sec">
 <figure class="strip-fig">
 <div class="strip" role="region" tabindex="0" aria-label="Section screens: Client: a trust-first booking flow">
-<img alt="Cosmediate booking flow" loading="lazy" src="img/co-book2.webp"/>
-<img alt="Clinic profile page with credibility signals" loading="lazy" src="img/co-profile.webp"/>
+<img alt="Cosmediate incoming booking requests" loading="lazy" src="img/co-requests.webp"/>
+<img alt="Cosmediate inbox" loading="lazy" src="img/co-inbox.webp"/>
+<img alt="Cosmediate global search with patients, requests and reviews" loading="lazy" src="img/co-notification.webp"/>
 </div>
-<figcaption><span data-l="en">Each step answers one question: no branching, no dead ends</span></figcaption>
+<figcaption><span data-l="en">Each step answers one question, so the flow has no branching and no dead ends</span></figcaption>
 </figure>
 <h2 class="marker"><span data-l="en">Clinic: operational density</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="en">A clinic <i>should not have to read text</i> to see what needs attention.</span></p>
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>A clinic <i>should not have to read text</i> to see what needs attention.</span></p>
 <div class="sec-body">
 <p><span data-l="en">I structured the interface around three self-contained areas: Calendar, Profile, Settings.</span></p>
-<p class="sec-fine"><span data-l="en">A clinic managing multiple practitioners, treatment types and a high booking volume cannot afford ambiguity. Booking management is built on the states pending, confirmed, completed and cancelled, each with a distinct visual treatment and a clear set of actions.</span></p>
+<p class="sec-fine"><span data-l="en">A clinic managing multiple practitioners, treatment types and a high booking volume has to see the state of every booking at a glance. Booking management is built on the states pending, confirmed, completed and cancelled, each with a distinct visual treatment and a clear set of actions.</span></p>
 </div>
 </div>
 </section>
 <section class="sec">
 <div class="strip-fig">
 <div class="strip" role="region" tabindex="0" aria-label="Section screens: Clinic: operational density">
-<img alt="Clinic availability and booking management" loading="lazy" src="img/co-clinic1.webp"/>
+<img alt="Clinic schedule month view with specialists" loading="lazy" src="img/co-sched-main.webp"/>
+<img alt="Clinic schedule today view" loading="lazy" src="img/co-sched-today.webp"/>
+<img alt="Clinic schedule day view with blocked time" loading="lazy" src="img/co-sched-day.webp"/>
+<img alt="Clinic schedule week view" loading="lazy" src="img/co-sched-week.webp"/>
+<img alt="Clinic schedule month view" loading="lazy" src="img/co-sched-month.webp"/>
+<img alt="Bulk add patients modal" loading="lazy" src="img/co-patients-add.webp"/>
 </div>
 </div>
 <h2 class="marker"><span data-l="en">Admin: a queue, not a dashboard</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="en">The admin side is an internal tool: <i>density over decoration</i>, efficiency over onboarding.</span></p>
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>The admin side is an internal tool: <i>density over decoration</i>.</span></p>
 <div class="sec-body">
-<p><span data-l="en">I designed clinic approvals, certification verification, review moderation and user management each as a focused queue the admin works through, not as a freeform interface.</span></p>
+<p><span data-l="en">I designed clinic approvals, certification verification, review moderation and user management each as a queue the admin works through top to bottom.</span></p>
 </div>
 </div>
 </section>
 <section class="sec">
 <div class="strip-fig">
 <div class="strip" role="region" tabindex="0" aria-label="Section screens: Admin: a queue, not a dashboard">
-<img alt="Cosmediate admin queue" loading="lazy" src="img/co-admin.webp"/>
+<img alt="Clinic settings: treatments" loading="lazy" src="img/co-set-treatments.webp"/>
+<img alt="Clinic settings: working hours" loading="lazy" src="img/co-set-hours.webp"/>
+<img alt="Clinic settings: before and after photos" loading="lazy" src="img/co-set-photos.webp"/>
+<img alt="Clinic settings: appointment acceptance rules" loading="lazy" src="img/co-set-appointments.webp"/>
 </div>
 </div>
 <h2 class="marker"><span data-l="en">What the project required</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="en">Three-role products are hard because every decision has <i>downstream effects</i>.</span></p>
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>Three-role products are hard because every decision <i>echoes in the other roles</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="en">Keeping that coherence from scratch, without a product team, meant holding the full system in mind at every step.</span></p>
-<p class="sec-fine"><span data-l="en">A change in how clinics manage availability changes what patients see in booking. The design system was the tool that made it manageable.</span></p>
+<p class="sec-fine"><span data-l="en">A change in how clinics manage availability changes what patients see in booking. The design system held those links together.</span></p>
 </div>
 </div>
 </section>
 </div>
+<div class="orn orn-b" aria-hidden="true"><span></span><span></span><span></span></div>
 <nav class="cnav">
-<a href="case-aethra.html">← AETHRA Wire</a>
-<a href="index.html#work"><span data-l="en">All cases →</span></a>
+<a href="case-aethra.html"><svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M14.5 6.5 9 12l5.5 5.5"/></svg>AETHRA Wire</a>
+<a href="index.html#work"><span data-l="en">All cases<svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M9.5 6.5 15 12l-5.5 5.5"/></svg></span></a>
 </nav>
 </main>
 <footer class="dark foot">

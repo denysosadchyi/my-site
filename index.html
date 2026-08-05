@@ -4,18 +4,23 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Denys Osadchyi · I build products, not mockups</title>
-<meta content="Senior Product Designer with 15+ years in B2B SaaS, developer tools and fintech. Ships design as working product; builds AI pipelines that cut design-to-production from weeks to hours." name="description"/>
+<title>Denys Osadchyi — Senior Product Designer</title>
+<meta content="Senior Product Designer with 15+ years in B2B SaaS, developer tools and fintech. Designs the product, then ships it as working code." name="description"/>
+<link href="https://denys-osadchyi.vercel.app/" rel="canonical"/>
+<link href="https://denys-osadchyi.vercel.app/" hreflang="en" rel="alternate"/>
+<link href="https://denys-osadchyi.vercel.app/index-ua.html" hreflang="uk" rel="alternate"/>
+<link href="https://denys-osadchyi.vercel.app/" hreflang="x-default" rel="alternate"/>
 <meta content="website" property="og:type"/>
-<meta content="Denys Osadchyi · Senior Product Designer" property="og:title"/>
-<meta content="15+ years in complex B2B products. Designs the product, then ships it as working code. Open to senior roles, remote." property="og:description"/>
+<meta content="Denys Osadchyi — Senior Product Designer" property="og:title"/>
+<meta content="Senior Product Designer with 15+ years in B2B SaaS, developer tools and fintech. Designs the product, then ships it as working code." property="og:description"/>
+<meta content="https://denys-osadchyi.vercel.app/" property="og:url"/>
 <meta content="https://denys-osadchyi.vercel.app/og.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..900&family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+<link href="fonts/fonts.css" rel="stylesheet"/>
+<link href="tokens.css" rel="stylesheet"/>
 <style>/*font*/
-body{font-family:'Onest',sans-serif}
+body{font-family:var(--font-sans)}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Denys Osadchyi","jobTitle":"Senior Product Designer","email":"mailto:theslowcolours@gmail.com","url":"https://denys-osadchyi.vercel.app","sameAs":["https://linkedin.com/in/denys-osadchyi","https://github.com/denysosadchyi","https://md-academy.design"],"knowsLanguage":["en","uk"],"address":{"@type":"PostalAddress","addressCountry":"UA"}}
@@ -24,62 +29,70 @@ body{font-family:'Onest',sans-serif}
 .hero3,.hero3 .hleft,.hero3 h1,.hero3 .sub{text-align:center;width:100%;max-width:none}
 .hero3{margin-top:88px}
 .ledger{margin-top:56px;margin-bottom:128px}
-.hero3 h1,.hero3 h1 *{font-weight:400}
-.hero3 h1{font-size:clamp(3.3rem,9.3vw,8rem);font-weight:400;line-height:100%}
-.hero3 h1 .y{color:#0000EE;font-style:italic;font-family:'Charis SIL',serif}
-.hero3 h1 .line1{font-size:1.5em}
-.hero3 h1 .gray{color:#8a8a8a}
-.hero3 h1 .di{font-weight:400;font-style:italic;font-family:'Charis SIL',serif}
-.roleline{display:inline-block;padding-bottom:2px;white-space:nowrap}
-.rolewrap{position:relative;display:inline-block}
-.rolewrap .roletext{position:absolute;top:100%;left:50%;transform:translateX(-50%);display:block;margin-top:-6px;font-size:19px;line-height:1.5;font-weight:400;white-space:nowrap;text-align:center}
-.rolewrap.rw-left .roletext{top:auto;bottom:100%;margin-top:0;margin-bottom:-42px;transform:translateX(calc(-50% - 128px));color:#fff;background:#8a8a8a;padding:0 12px}
-.rolewrap.rw-right .roletext{margin-top:-22px;transform:translateX(calc(-50% + 72px));color:#fff;background:#000;padding:0 12px}
-.hero3 .sub.chain{font-size:22px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
-.hero3 .sub.chain span:not(:first-child)::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#9b918a;margin-right:16px;vertical-align:middle}
+.hero3 h1,.hero3 h1 *{font-weight:300}
+.hero3 h1{font-size:clamp(2.2rem,5.7vw,4.9rem);font-weight:300;line-height:100%}
+.hero3 h1 .hero-ava{width:1.05em;height:1.05em;border-radius:50%;object-fit:cover;vertical-align:-.12em;margin:0 .12em}
+/* handwritten last line: Caveat runs small next to e-Ukraine, 1.25em compensates; line-height .8 keeps the line box at 1em of h1 so the fit script's 4-line budget holds */
+.hero3 h1 .hand{font-family:'Caveat',cursive;font-weight:600;font-size:1.25em;line-height:.8;display:inline-block;transform:rotate(-3deg);clip-path:inset(-60% 100% -60% 0);animation:handwrite 1.6s ease-out 1.9s forwards}
+/* -60% vertical: lh .8 leaves the box only .07em below baseline, Caveat descenders reach .22em; -60% of the .8em box clears them plus the underline */
+@keyframes handwrite{to{clip-path:inset(-60% -5% -60% 0)}}
+.hero3 h1 .hand-u{position:relative;display:inline-block;color:var(--t-accent)}
+/* inline-block: same lh-.8 box as .hand (bottom ~.07em under baseline), so bottom:-.08em puts the line ~.09-.15em below baseline — clearly under the letters, still inside the -60% clip zone */
+.hero3 h1 .hand-u::after{content:"";position:absolute;left:0;right:0;bottom:-.08em;height:.06em;background:var(--t-accent);transform:rotate(-1.5deg) scaleX(0);transform-origin:left;animation:handline .4s ease-out 3.6s forwards}
+@media(min-width:601px){.hero3 .fitlines>span{white-space:nowrap}} /* one line each; fit script shrinks font via scrollWidth check; phones (<601) wrap by design */
+/* staged entrance: lines 1-3 type in (0/.65/1.3s), hand writes 1.9-3.5s, underline 3.6-4s, CTA fades 4-4.4s */
+.hero3 .fitlines>span:not(.hand){display:inline-block;clip-path:inset(-15% 100% -15% 0);animation:typeline .6s steps(14,end) forwards}
+.hero3 .fitlines>span:nth-of-type(2){animation-delay:.65s}
+.hero3 .fitlines>span:nth-of-type(3){animation-delay:1.3s}
+@keyframes typeline{to{clip-path:inset(-15% -2% -15% 0)}}
+.cta.hcta{opacity:0;animation:fadein .4s ease-out 4s forwards}
+@keyframes fadein{to{opacity:1}}
+@keyframes handline{to{transform:rotate(-1.5deg) scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.hero3 h1 .hand{animation:none;clip-path:none}.hero3 h1 .hand-u::after{animation:none;transform:rotate(-1.5deg)}.hero3 .fitlines>span{animation:none;clip-path:none}.cta.hcta{animation:none;opacity:1}}
+.hero3 .sub.chain{font-size:20px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.hero3 .sub.chain span:not(:first-child)::before{content:"";display:inline-block;width:8px;height:8px;transform:rotate(45deg);background:#9b918a;margin-right:16px;vertical-align:middle}
 .cta.hcta{font-size:24px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px;margin-top:48px}
 .cta.hcta .btn,.cta.hcta .ghost{border:1px solid currentColor;border-radius:999px;padding:0 24px;background:transparent;height:47px;display:inline-flex;align-items:center;justify-content:center;font-size:18px;transition:background .15s,color .15s}
-.cta.hcta .btn:hover,.cta.hcta .ghost:hover{text-decoration:none;background:#0000EE;color:#fff}
-main{position:relative}
-.langbar{position:absolute;top:24px;right:24px}
+.cta.hcta .btn:hover,.cta.hcta .ghost:hover{text-decoration:none;background:#145ae0;color:#fff}
+main{position:static}
+.langbar{position:absolute;top:16px;right:16px;z-index:40}
 .ledger .wrap.grid{display:flex;justify-content:center;flex-wrap:wrap;gap:96px;text-align:center}
 .ledger .fig,.ledger .fig *{white-space:nowrap}
-.ledger .fig .n{font-size:40px;font-style:italic;font-family:'Charis SIL',serif}
+.ledger .fig .n{font-size:40px}
 .ledger .fig .d{font-size:14px}
 </style>
 <style>
-body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
 .workgrid{position:relative}
 .workgrid .pv{position:absolute;top:0;margin:0}
 .pv .thumb{display:block;margin-bottom:0}
 .pv .thumb img,.pv .thumb video{width:100%;height:auto;display:block}
-.pv>div{background:rgba(255,255,255,.5);padding:24px}
+.pv>div{background:rgba(255,255,255,.5);padding:24px;border-radius:32px;transition:background .2s ease-out}
+.pv:hover>div{background:#fff}
+@media(prefers-reduced-motion:reduce){.pv>div{transition:none}}
 .pv h3{font-size:32px;margin:12px 0;font-weight:400}
 .pv .nums span{display:flex;flex-wrap:wrap;gap:12px}
-.pv .nums .chip:not(:first-child)::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#9b918a;margin-right:12px;vertical-align:middle}
+.pv .nums .chip:not(:first-child)::before{content:"";display:inline-block;width:6px;height:6px;transform:rotate(45deg);background:#9b918a;margin-right:12px;vertical-align:middle}
 .pv .thumb.mock{position:relative;aspect-ratio:3840/2160;overflow:hidden}
 .pv .thumb.mock .mockscreen{position:absolute;left:20.29%;top:21.71%;width:59.4%;height:68.56%;overflow:hidden}
 .pv .thumb.mock .mockscreen video{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:left;display:block;transform-origin:18% 55%;animation:llzoom 16.983s ease-in-out infinite}
 .pv .thumb.mock img{position:absolute;left:0;top:0;width:100%;height:100%;display:block;pointer-events:none}
 .pv .toolicon{display:block;height:144px;width:auto;margin-bottom:12px}
 .pv:has(.toolicon)>div{background:transparent}
+.pv:has(.toolicon):hover>div{background:rgba(0,0,0,.03)}
+/* whole tool card is the link: the GitHub anchor stretches over the card,
+   so the title link below it is redundant but harmless */
+.pv:has(.toolicon)>div{position:relative}
+.pv:has(.toolicon) .open::after{content:"";position:absolute;inset:0;border-radius:24px}
 @keyframes llzoom{0%{transform:scale(1)}7.6%{transform:scale(1)}10.6%{transform:scale(1.38) translate(7%,-3%)}100%{transform:scale(1.38) translate(7%,-3%)}}
 </style>
 <style>/*wrappad*/
 .wrap{padding-left:48px;padding-right:48px;box-sizing:border-box}
 </style>
 <style>/*typescale*/
-/* Onest type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
-:root{
---t-caption:.9375rem;
---t-body:1.125rem;
---t-lede:clamp(1.25rem,.21vw + 1.19rem,1.375rem);
---t-h3:clamp(1.5rem,.42vw + 1.38rem,1.75rem);
---t-h2:clamp(1.75rem,1.25vw + 1.38rem,2.5rem);
---t-h1:clamp(2.25rem,2.08vw + 1.63rem,3.5rem);
---t-muted:#555;
---measure:52ch}
-body{font-size:var(--t-body);line-height:1.6;letter-spacing:-.005em;font-kerning:normal}
+/* e-Ukraine type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
+:root{--measure:52ch}
+body{font-size:var(--t-body);line-height:var(--lh-body);letter-spacing:var(--ls-body);font-kerning:normal}
 .hero3,.ledger,.hcta,.langbar{font-size:1rem;line-height:normal;letter-spacing:normal}
 p{margin:0 0 1.1em;text-wrap:pretty}
 b,strong{font-weight:600}
@@ -91,18 +104,24 @@ h3{font-size:var(--t-h3);line-height:1.2;letter-spacing:-.015em}
 header .bar{padding-block:24px}
 header nav,.cnav,.cta{display:flex;flex-wrap:wrap;align-items:center;gap:24px}
 .cnav{gap:32px}
-.wordmark{font-size:1.0625rem;font-weight:500;letter-spacing:-.01em}
-header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:0}
-.langbar .langswitch{font-size:1rem}/* hero-area switcher stays as it was */
+.wordmark{font-size:var(--t-ui);font-weight:500;letter-spacing:-.01em}
+header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
+/* small outlined button, same idiom as the hero buttons at a smaller size */
+.pv .open{display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border:1px solid currentColor;border-radius:999px;transition:background .15s,color .15s,border-color .15s}
+.pv .open:hover{background:#145ae0;border-color:#145ae0;color:#fff;text-decoration:none}
+@media(prefers-reduced-motion:reduce){.pv .open{transition:none}}
+.langswitch{display:inline-block;line-height:0}
+.langswitch img{display:block;width:24px;height:auto}
+/* hero-area switcher stays as it was */
 .open,.wordmark{font-weight:500}
 /* case hero */
 .chero{padding-top:56px}
-.chero .meta{margin:0 0 20px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.chero .meta{margin:0 0 20px;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .chero h1{margin:0 0 24px;max-width:24ch;font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
 .lede{margin:0 0 20px;max-width:48ch;font-size:var(--t-lede);line-height:1.45;letter-spacing:-.01em}
-.facts{margin:0;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
+.facts{margin:0;font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .outcomes .n{font-size:var(--t-h3);font-weight:600;line-height:1.1;letter-spacing:-.02em}
-.outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 /* case body */
 .cbody p,.cbody ul{max-width:var(--measure)}
 .cbody h2.marker{margin:96px 0 24px;max-width:22ch}
@@ -112,28 +131,29 @@ header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing
 .cbody li{margin:0 0 10px}
 .cres .r{font-weight:600}
 .cimg{margin:0 0 28px}
-figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .cnav{margin:96px 0 64px}
 /* work cards */
-.pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .pv h3{margin:0 0 12px;font-size:var(--t-h3);font-weight:400;line-height:1.2;letter-spacing:-.015em}
 .pv .nums{margin:0 0 12px}
-.pv .nums .chip{font-style:normal;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
-.pv p{max-width:44ch;margin:0 0 16px}
+.pv .nums .chip{font-style:normal;font-size:.8125rem;letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.pv p{max-width:44ch;margin:0 0 16px;font-size:.875rem}
 /* section headings, experience, teaching */
 .block{padding-block:64px}
+.cbody .sec h2.marker,.block h2.marker{display:inline-block;position:sticky;top:16px;z-index:5;margin:0 0 28px;max-width:34ch;padding:8px 36px 8px 22px;font-size:var(--t-marker);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 50%,100% 100%,0 100%)}
 .block h2.marker{margin:0 0 32px}
 .foot{padding-block:96px 64px}
 .foot h2{margin:0 0 20px;max-width:20ch}
 .xp,.list{margin:0;padding:0;list-style:none}
 .xp li,.list li{margin:0 0 32px}
-.yrs{font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted);font-variant-numeric:tabular-nums}
+.yrs{font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted);font-variant-numeric:tabular-nums}
 .xrole,.list .t{margin:0 0 8px;font-size:1.5rem;font-weight:500;line-height:1.35;letter-spacing:-.01em}
 .xco,.tag{font-weight:400;color:var(--t-muted)}
-.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:0}
+.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
 .xnote{margin:0;max-width:46ch}
 .list .s{max-width:48ch}
-.foot h2 em{font-family:'Charis SIL',serif;font-style:italic}
+.foot h2 em{font-family:var(--font-italic);font-style:normal;font-weight:700;font-size:1.1em}
 @media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
 </style>
 <style>/*xp*/
@@ -141,9 +161,9 @@ figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height
 #xp h2.marker{margin-bottom:48px}
 .xp{border-top:1px solid #e2ddd6}
 .xp li{display:grid;grid-template-columns:minmax(0,108px) minmax(0,1.15fr) minmax(0,1fr);gap:8px 56px;align-items:baseline;margin:0;padding:32px 0;border-bottom:1px solid #e2ddd6}
-.xp>li>.yrs{margin:0;font-size:1.0625rem;line-height:1.45;color:var(--t-muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.xp>li>.yrs{margin:0;font-size:var(--t-ui);line-height:1.45;color:var(--t-muted);font-variant-numeric:tabular-nums;white-space:nowrap}
 .xrole{margin:0 0 6px;max-width:32ch;font-size:var(--t-h3);font-weight:400;line-height:1.25;letter-spacing:-.02em;text-wrap:balance}
-.xco{margin:0;font-size:1.0625rem;font-weight:500;line-height:1.45;color:inherit}
+.xco{margin:0;font-size:var(--t-ui);font-weight:500;line-height:1.45;color:inherit}
 .xnote{margin:0;max-width:44ch;color:var(--t-muted)}
 @media(max-width:900px){
 .xp li{grid-template-columns:1fr;gap:6px;padding:28px 0;align-items:start}
@@ -152,29 +172,53 @@ figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height
 }
 </style>
 <style>/*drawer*/
-.cd-ov{position:fixed;inset:0;z-index:80;background:rgba(17,17,17,.42);opacity:0;transition:opacity .3s ease-out}
-.cd-ov.on{opacity:1}
+.cd-ov{position:fixed;inset:0;z-index:80;background:rgba(17,17,17,.42);opacity:0;-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0);transition:opacity .3s ease-out,-webkit-backdrop-filter .5s ease-out,backdrop-filter .5s ease-out}
+.cd-ov.on{opacity:1;-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
 .cd{position:fixed;inset:8px;z-index:90;display:flex;flex-direction:column;background:#fbfaf8;border:1px solid #e2ddd6;border-radius:32px;overflow:hidden;opacity:0;transform:scale(.985);transition:opacity .24s ease-out,transform .32s cubic-bezier(.22,1,.36,1)}
-.cd.on{opacity:1;transform:none}
+.cd.on{opacity:1;transform:none;pointer-events:auto}
+/* opening from a card: the panel is clipped to that card's rectangle and
+   unfolds to full size with a soft spring, so the case grows out of the thing
+   you clicked; the content settles in a top-down stagger */
+.cd.grow{animation:cdgrow .62s cubic-bezier(.16,1,.3,1) both}
+@keyframes cdgrow{
+0%{clip-path:inset(var(--gt,40%) var(--gr,40%) var(--gb,40%) var(--gl,40%) round 24px);transform:scale(.97)}
+70%{clip-path:inset(0 round 32px);transform:scale(1.004)}
+100%{clip-path:inset(0 round 32px);transform:none}}
+.cd.grow .cd-body main>*{animation:cdrise .55s cubic-bezier(.16,1,.3,1) both}
+.cd.grow .cd-body main>*:nth-child(1){animation-delay:.1s}
+.cd.grow .cd-body main>*:nth-child(2){animation-delay:.18s}
+.cd.grow .cd-body main>*:nth-child(3){animation-delay:.26s}
+.cd.grow .cd-body main>*:nth-child(n+4){animation-delay:.32s}
+@keyframes cdrise{from{opacity:0;transform:translateY(22px) scale(.995)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+.cd-ov,.cd-ov.on{-webkit-backdrop-filter:none;backdrop-filter:none}
+.cd.grow,.cd.grow .cd-body main>*{animation:none}}
+/* .cd{display:flex} beats the UA [hidden]{display:none}, so the invisible
+   panel used to sit over the page and swallow every click */
+.cd[hidden]{display:none}
+.cd:not(.on){pointer-events:none}
+.cd-ov[hidden]{display:none}
 .cd-body{flex:1;overflow-y:auto;overscroll-behavior:contain}
 /* Chrome ignores ::-webkit-scrollbar as soon as scrollbar-width is set,
    so the standard properties are fenced off for engines without the pseudo */
-@supports not selector(::-webkit-scrollbar){.cd-body{scrollbar-width:thin;scrollbar-color:rgba(17,17,17,.25) transparent}}
+/* the native bar would take layout width, so it is hidden and a thumb is
+   drawn over the panel instead: it floats, the content keeps the full width */
+.cd-body{scrollbar-width:none;-ms-overflow-style:none}
+.cd-sb{position:absolute;top:10px;right:6px;bottom:10px;width:6px;z-index:3;pointer-events:none;opacity:0;transition:opacity .3s ease-out}
+.cd-sb.on{opacity:1}
+.cd-sb>i{position:absolute;left:0;width:100%;min-height:32px;background:rgba(17,17,17,.28);border-radius:999px}
+@media(prefers-reduced-motion:reduce){.cd-sb{transition:none}}
 /* the 3px transparent border is what gives the thumb its inset pill shape;
    background-clip keeps the paint inside that border */
-.cd-body::-webkit-scrollbar{width:12px}
-.cd-body::-webkit-scrollbar-track{background:transparent}
-.cd-body::-webkit-scrollbar-thumb{background:rgba(17,17,17,.22);background-clip:content-box;border:3px solid transparent;border-radius:999px}
-.cd-body::-webkit-scrollbar-thumb:hover{background:rgba(17,17,17,.42);background-clip:content-box}
-.cd-x{position:absolute;top:20px;right:24px;z-index:95;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:22px;line-height:1;color:#111;background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:999px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.1);transition:background .15s,color .15s,border-color .15s}
-.cd-x:hover{background:#0000EE;border-color:#0000EE;color:#fff}
-.cd-x:focus-visible{outline:2px solid #0000EE;outline-offset:3px}
+.cd-x{position:absolute;top:20px;right:24px;z-index:95;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:22px;line-height:1;color:#111;background:#fff;border:none;border-radius:999px;cursor:pointer;transition:background .15s,color .15s}
+.cd-x:hover{background:#145ae0;color:#fff}
+.cd-x:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
 .cd .chero{padding-top:88px}
 /* section headings run to the popup's own left edge; the panel is square
    on that side so the type and the container share one vertical line */
 .cd .cbody h2.marker,.cd .cbody .sec h2.marker{margin-left:-48px}
 .cd main{padding-bottom:64px}
-.cd-load{padding:88px 48px;color:#555}
+.cd-load{padding:88px 48px;color:var(--t-muted)}
 body.cd-lock{overflow:hidden}
 @media(max-width:600px){.cd{border-radius:24px}.cd-x{top:12px;right:16px}.cd .chero{padding-top:72px}.cd .cbody h2.marker,.cd .cbody .sec h2.marker{margin-left:-24px}}
 @media(prefers-reduced-motion:reduce){.cd,.cd-ov{transition:opacity .01s}.cd{transform:none}.cd.on{transform:none}}
@@ -188,6 +232,9 @@ body.cd-lock{overflow:hidden}
 .list .s{grid-column:3}
 .list .t{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0;max-width:26ch;font-size:var(--t-h3);font-weight:400;line-height:1.25;letter-spacing:-.02em}
 .list .tag{margin:0;padding:3px 12px;font-size:var(--t-caption);line-height:1.4;font-weight:400;color:var(--t-muted);background:rgba(17,17,17,.05);border:1px solid #e2ddd6;border-radius:999px;white-space:nowrap}
+.pills .tag{margin:0;padding:2px 10px;font-size:var(--t-chip);line-height:1.5;background:rgba(17,17,17,.05);border-radius:999px;white-space:nowrap}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pills>span{display:contents}
 .list .s{margin:0;max-width:46ch;color:var(--t-muted)}
 @media(max-width:900px){
 .list li{grid-template-columns:1fr;gap:10px;padding:28px 0}
@@ -195,32 +242,117 @@ body.cd-lock{overflow:hidden}
 .list .t{max-width:none}
 }
 </style>
+<style>/*chrome*/
+/* section separators, previously empty divs */
+.fullrule{height:1px;margin:0;background:#e2ddd6}
+/* the two social links carried an aria-label but no content, so nothing rendered */
+.ic{display:inline-flex;align-items:center;justify-content:center;width:47px;height:47px;color:inherit;border:1px solid currentColor;border-radius:999px;transition:background .15s,color .15s,border-color .15s}
+.ic:hover{background:#145ae0;border-color:#145ae0;color:#fff;text-decoration:none}
+.ic svg{width:20px;height:20px}
+/* closing band: the markup always carried .dark, it just never had a rule */
+.foot{background-color:#1c1c1a;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.10 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px;color:#fbfaf8}
+.foot h2{color:#fbfaf8}
+.foot .lede{color:rgba(251,250,248,.72)}
+.foot a,.foot a:visited{color:#fbfaf8}
+.foot .cta{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.foot .cta .btn,.foot .cta .ghost{display:inline-flex;align-items:center;justify-content:center;height:47px;padding:0 24px;font-size:18px;border:1px solid #fbfaf8;border-radius:999px;transition:background .15s,color .15s}
+.foot .cta .btn{background:#fbfaf8;color:#111}
+.foot .cta .btn:hover{background:transparent;color:#fbfaf8;text-decoration:none}
+.foot .cta .ghost:hover{background:#fbfaf8;color:#111;text-decoration:none}
+@media(prefers-reduced-motion:reduce){.ic,.foot .cta .btn,.foot .cta .ghost{transition:none}}
+</style>
+<style>/*lang*/
+/* language switch is an icon button; the language name stays for screen readers */
+.langswitch .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
 <style>/*linkstyle*/
-a{color:#0000EE;text-decoration:none}
-a:visited{color:#0000EE}
-a:hover{text-decoration:underline}
+a{color:var(--t-accent);text-decoration:none}
+a:visited{color:var(--t-accent)}
+a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(20,90,224,.5);text-underline-offset:3px}
+</style>
+<style>/*candy*/
+/* flat buttons on our own geometry: heights, 999px pills and
+   paddings all stay as they were, only the surface changes.
+   Black is the default; the telegram buttons are the blue one. */
+.cta.hcta .btn,.cta.hcta .ghost,.cta.hcta .ic,.foot .cta .btn,.foot .cta .ghost,.pv .open{
+position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+color:#fff;font-weight:500;letter-spacing:.02em;
+border:none;
+background:#111;
+transition:background .2s ease-out,transform .2s ease-out}
+.cta.hcta .btn:hover,.cta.hcta .ghost:hover,.cta.hcta .ic:hover,.foot .cta .btn:hover,.foot .cta .ghost:hover,.pv .open:hover{
+color:#fff;text-decoration:none;
+background:#3d3d3d}
+.cta.hcta .btn:active,.cta.hcta .ghost:active,.cta.hcta .ic:active,.foot .cta .btn:active,.foot .cta .ghost:active,.pv .open:active{transform:scale(.95) rotate(1deg)}
+.cta.hcta .btn:focus-visible,.cta.hcta .ghost:focus-visible,.cta.hcta .ic:focus-visible,.foot .cta .btn:focus-visible,.foot .cta .ghost:focus-visible,.pv .open:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
+/* only the telegram button is blue; everything else stays black */
+.cta.hcta .btn,.foot .cta .btn{background:#145ae0}
+.cta.hcta .btn:hover,.foot .cta .btn:hover{background:#005fd6}
+.cta .btn svg,.cta .ghost svg{width:18px;height:18px;flex:none}
+@media(prefers-reduced-motion:reduce){
+.cta.hcta .btn,.cta.hcta .ghost,.cta.hcta .ic,.foot .cta .btn,.foot .cta .ghost,.pv .open{transition:none}
+.cta.hcta .btn:active,.cta.hcta .ghost:active,.cta.hcta .ic:active,.foot .cta .btn:active,.foot .cta .ghost:active,.pv .open:active{transform:none}}
+</style>
+<style>/*liquid*/
+/* liquid text on hover over the blue phrase in the hero.
+   ponytail: the original is a three.js shader that renders the words into a
+   canvas texture and bends a mesh toward the pointer. That would mean a WebGL
+   dependency plus replacing real text with a canvas, which kills the font
+   fitting, selection and SEO. Same wobble here from an SVG displacement map,
+   no dependency, the text stays text. Tune with scale= on feDisplacementMap. */
+.foot h2 em{display:inline-block}
+@media(hover:hover){.foot h2 em:hover{filter:url(#liquid)}}
+</style>
+<style>/*footcenter*/
+/* closing band centred: the two measures keep their max-width, they just get
+   auto margins so the ragged edges sit either side of the middle */
+.foot .wrap{text-align:center}
+.foot h2,.foot .lede{margin-left:auto;margin-right:auto}
+.foot .cta{justify-content:center}
+.foot h2{font-size:clamp(2rem,10vw,calc(var(--t-h2)*2))}
+</style>
+<style>/*mobile*/
+/* 390px pass: the desktop air between hero figures and around the CTA row is
+   dead scroll on a phone; tighten rhythm, keep the type scale intact */
+@media(max-width:600px){
+.cta.hcta{gap:12px;margin-top:36px}
+.hero3{margin-top:56px}
+.hero3 h1{font-size:clamp(22px,6.6vw,28px);line-height:1.14}
+header .bar{border-radius:20px}
+.pv>div,.outcomes .o{border-radius:16px}
+.cd{border-radius:16px}
+.cta.hcta .btn,.cta.hcta .ghost,.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:16px}
+.ic{width:42px;height:42px}
+.hero3 .sub.chain{font-size:15px;gap:10px 14px}
+.hero3 .sub.chain span:not(:first-child)::before{width:6px;height:6px;margin-right:14px}
+.ledger{margin-top:44px;margin-bottom:72px}
+.ledger .wrap.grid{gap:36px}
+.ledger .fig .n{font-size:34px}
+.block{padding-block:48px}
+}
 </style>
 </head>
 <body>
 <main>
 <div class="cta hcta">
-<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><span data-l="en">Message me</span></a>
-<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank">Download CV</a>
+<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.42 15.18l-.4 5.58c.57 0 .82-.24 1.11-.53l2.66-2.55l5.52 4.04c1.01.56 1.73.27 2-.93L23.93 3.82c.32-1.5-.54-2.08-1.53-1.71L1.11 10.26c-1.45.56-1.43 1.37-.25 1.74l5.44 1.69L18.56 5.79c.59-.39 1.12-.17.68.22z" fill="currentColor"/></svg><span data-l="en">Message me</span></a>
+<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Download CV</a>
 
-<a aria-label="LinkedIn" class="ic" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"></a>
-<a aria-label="GitHub" class="ic" href="https://github.com/denysosadchyi" rel="noopener" target="_blank"></a>
+<a aria-label="LinkedIn" class="ic" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 5a2 2 0 1 1-4-.002a2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg></a>
+<a aria-label="GitHub" class="ic" href="https://github.com/denysosadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg></a>
 </div>
 <div class="dark herowrap">
 <div class="langbar">
-<a class="langswitch" href="index-ua.html">Українською</a>
+<a class="langswitch" href="index-ua.html" hreflang="uk" aria-label="Українською" title="Українською"><img alt="Українською" src="img/flag-ua.svg" width="24" height="18"/></a>
 </div>
 <section class="wrap hero3">
 <div class="hleft">
 <h1>
 <span class="fitlines">
-<span class="line1" data-l="en">Hi, I'm Denys,</span><br/>
-<span class="roleline" data-l="en">a <span class="rolewrap rw-left"><span class="gray">product designer</span></span> & <span class="rolewrap rw-right"><span class="di">design engineer</span></span>,</span><br/>
-<span data-l="en">and I <i class="y">build products,</i> not mockups</span>
+<span data-l="en"><span class="think" aria-hidden="true"></span>Hi, I'm <img class="hero-ava" src="img/denys.webp" alt=""/>Denys,</span><br/>
+<span data-l="en">a product designer</span><br/>
+<span data-l="en">and design engineer,</span><br/>
+<span class="hand" data-l="en">and I <span class="hand-u">build products</span>, not mockups!</span>
 </span>
 </h1>
 <div class="sub chain" data-l="en"><span>Research</span><span>UX</span><span>Design systems</span><span>Production-ready code</span></div>
@@ -239,8 +371,8 @@ a:hover{text-decoration:underline}
 <div class="workgrid"><article class="pv rv">
 <a class="thumb mock" href="case-layoutlab.html"><div class="mockscreen"><video autoplay="" loop="" muted="" playsinline="" poster="" preload="metadata" src="vid/ll-demo5.mp4?v=2"></video></div><img alt="" src="img/ll-mockup.webp"/></a>
 <div>
-<p class="meta"><b><span data-l="en">Product Designer + Design Engineer, contract</span></b></p>
-<h3><a href="case-layoutlab.html"><span data-l="en">LayoutLab: a tool for generating production-ready mockups</span></a></h3>
+<p class="meta pills"><span data-l="en"><span class="tag">Product Designer</span><span class="tag">Design Engineer</span><span class="tag">contract</span></span></p>
+<h3><a href="case-layoutlab.html"><span data-l="en">LayoutLab: I built a mockup generator that made design 7&#215; faster</span></a></h3>
 <p class="nums"><span data-l="en"><i class="chip">a week → hours</i><i class="chip">263 screens in 2 months</i></span></p>
 <p><span data-l="en">I designed and built it solo. A brief goes in; editable screens built on the company's real production components come out, so what stakeholders approve is what ships.</span></p>
 <a class="open" href="case-layoutlab.html"><span data-l="en">View details</span></a>
@@ -251,7 +383,7 @@ a:hover{text-decoration:underline}
 <div>
 <p class="meta"><b>Product Designer + Design Engineer</b></p>
 <h3><a href="case-splitmart.html"><span data-l="en">SplitMart: a redesign in code after a UX audit</span></a></h3>
-<p class="nums"><span data-l="en"><i class="chip">38 audit findings</i><i class="chip">303 screens</i></span></p>
+<p class="nums"><span data-l="en"><i class="chip">37 audit findings</i><i class="chip">303 screens</i></span></p>
 <p><span data-l="en">A fitness marketplace where clients pay per session. I started with a UX audit that showed where bookings leak, then redesigned web and native iOS and built the production React version. I designed everything directly in code.</span></p>
 <a class="open" href="case-splitmart.html"><span data-l="en">View details</span></a>
 </div>
@@ -260,7 +392,7 @@ a:hover{text-decoration:underline}
 <a class="thumb" href="case-scalr.html"><img alt="Scalr product screens" height="2160" loading="lazy" src="img/sc-cover.webp" width="3840"/></a>
 <div>
 <p class="meta"><b>Senior Product Designer</b></p>
-<h3><a href="case-scalr.html"><span data-l="en">Scalr: product work and the design system</span></a></h3>
+<h3><a href="case-scalr.html"><span data-l="en">Scalr: design system, product work</span></a></h3>
 <p class="nums"><span data-l="en"><i class="chip">design system from scratch</i><i class="chip">1,499→72 tokens</i><i class="chip">metrics from zero</i></span></p>
 <p><span data-l="en">I worked on staff at a DevOps automation platform. I ran product tasks across the platform — dashboards, observability, access, run detail — and assembled the design system from scratch alongside engineers.</span></p>
 <a class="open" href="case-scalr.html"><span data-l="en">View details</span></a>
@@ -292,7 +424,7 @@ a:hover{text-decoration:underline}
 <p class="meta"><span data-l="en">I built this</span></p>
 <h3><a href="https://github.com/denysosadchyi/figmosha2" rel="noopener" target="_blank">figmosha2</a></h3>
 <p class="nums"><span data-l="en"><i class="chip">Python</i><i class="chip">CLI</i><i class="chip">WebSocket bridge</i></span></p>
-<p><span data-l="en">Drives Figma from the CLI / Claude Code via a local WebSocket bridge to a custom plugin — the Claude Code ↔ Figma bridge that powers MD Academy's courses and is used by designers across every cohort.</span></p>
+<p><span data-l="en">A tool that lets you build design in Figma straight from an AI agent: components, design system, pages. It can also audit design systems and change finished mockups.</span></p>
 <a class="open" href="https://github.com/denysosadchyi/figmosha2" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
 </div>
 </article>
@@ -312,7 +444,7 @@ a:hover{text-decoration:underline}
 <p class="meta"><span data-l="en">I built this</span></p>
 <h3><a href="https://github.com/denysosadchyi/styles-to-token-migration" rel="noopener" target="_blank">styles-to-token-migration</a></h3>
 <p class="nums"><span data-l="en"><i class="chip">Figma API</i><i class="chip">Variables</i></span></p>
-<p><span data-l="en">A pipeline for migrating Figma components from Paint Styles to semantic Variables — automating one of the most tedious, error-prone steps of design-system modernization.</span></p>
+<p><span data-l="en">A pipeline for migrating Figma components from Paint Styles to semantic Variables. It automates one of the most tedious and error-prone steps of design-system modernization.</span></p>
 <a class="open" href="https://github.com/denysosadchyi/styles-to-token-migration" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
 </div>
 </article>
@@ -322,7 +454,7 @@ a:hover{text-decoration:underline}
 <p class="meta"><span data-l="en">I built this</span></p>
 <h3><a href="https://github.com/denysosadchyi/yamleer" rel="noopener" target="_blank">yamleer</a></h3>
 <p class="nums"><span data-l="en"><i class="chip">YAML</i><i class="chip">no build step</i></span></p>
-<p><span data-l="en">A YAML-first design pipeline — tokens, blocks, primitives, and screens compile into standalone HTML and a storyboard. A layout/screen generator that turns a spec into rendered pages with no build step.</span></p>
+<p><span data-l="en">An SDD design pipeline: tokens, blocks, primitives and screens compile into standalone HTML and a storyboard. A mockup generator that turns a spec into finished pages</span></p>
 <a class="open" href="https://github.com/denysosadchyi/yamleer" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
 </div>
 </article>
@@ -332,7 +464,7 @@ a:hover{text-decoration:underline}
 <p class="meta"><span data-l="en">I built this</span></p>
 <h3><a href="https://github.com/denysosadchyi/job-searcher" rel="noopener" target="_blank">job-searcher</a></h3>
 <p class="nums"><span data-l="en"><i class="chip">Python</i><i class="chip">Flask</i><i class="chip">autonomous agent</i></span></p>
-<p><span data-l="en">Automated job-board monitoring (Djinni, DOU, Work.ua) where AI scores each vacancy 1–10 against the user profile and surfaces results in a Flask dashboard. Claude Code runs as an autonomous agent that adds features overnight — I code-review every change before merge.</span></p>
+<p><span data-l="en">Automated job-board monitoring (Djinni, DOU, Work.ua): AI scores each vacancy 1 to 10 against the user profile and shows the result in a dashboard.</span></p>
 <a class="open" href="https://github.com/denysosadchyi/job-searcher" rel="noopener" target="_blank"><span data-l="en">View on GitHub</span></a>
 </div>
 </article>
@@ -385,12 +517,11 @@ a:hover{text-decoration:underline}
 </main>
 <footer class="dark foot" id="contact">
 <div class="wrap">
-<h2><span data-l="en">Hiring? <em>Let's talk.</em></span></h2>
+<h2><span data-l="en">Hiring? <em>Message me!</em></span></h2>
 <p class="lede"><span data-l="en">I'm looking for a Senior Product Designer role in a product company.<br/>If you call it Design Engineer, that's me too.<br/>Remote · full-time · I answer fast.</span></p>
 <div class="cta">
-<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><span data-l="en">Message me</span></a>
-<a class="ghost" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank">LinkedIn</a>
-<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank">CV (PDF)</a>
+<a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.42 15.18l-.4 5.58c.57 0 .82-.24 1.11-.53l2.66-2.55l5.52 4.04c1.01.56 1.73.27 2-.93L23.93 3.82c.32-1.5-.54-2.08-1.53-1.71L1.11 10.26c-1.45.56-1.43 1.37-.25 1.74l5.44 1.69L18.56 5.79c.59-.39 1.12-.17.68.22z" fill="currentColor"/></svg><span data-l="en">Message me</span></a>
+<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>CV (PDF)</a>
 
 </div>
 </div>
@@ -400,18 +531,19 @@ a:hover{text-decoration:underline}
 var h1=document.querySelector('.hero3 h1');
 if(!h1)return;
 var fitlines=h1.querySelector('.fitlines')||h1;
-var roleline=h1.querySelector('.roleline');
 function fit(){
 h1.style.fontSize='';
+if(innerWidth<601)return; /* phones: CSS sizes the hero, lines may wrap */
 var cs=getComputedStyle(h1),lh=parseFloat(cs.lineHeight)||parseFloat(cs.fontSize)*1.2;
-var maxH=lh*3+2,size=parseFloat(cs.fontSize),guard=0;
+var maxH=lh*4+2,size=parseFloat(cs.fontSize),guard=0;
 var reserved=2,maxW=h1.parentElement.clientWidth;
 function overflows(){
-return (fitlines.scrollHeight-reserved)>maxH||(roleline&&roleline.scrollWidth>maxW)||fitlines.scrollWidth>maxW;
+return (fitlines.scrollHeight-reserved)>maxH||fitlines.scrollWidth>maxW;
 }
 while(overflows()&&size>16&&guard<80){size-=1;h1.style.fontSize=size+'px';guard++}
 }
 fit();
+if(document.fonts)document.fonts.ready.then(fit);
 window.addEventListener('resize',fit);
 })();
 (function(){
@@ -441,10 +573,11 @@ window.addEventListener('load',masonry);
 <aside aria-label="Case study" aria-modal="true" class="cd" hidden id="cd" role="dialog" tabindex="-1">
 <button class="cd-x" id="cdX" type="button"><span aria-hidden="true">×</span><span class="vh" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Close</span></button>
 <div class="cd-body" id="cdBody"></div>
+<div aria-hidden="true" class="cd-sb" id="cdSb"><i></i></div>
 </aside>
 <script>
 (function(){
-var ov=document.getElementById('cdOv'),cd=document.getElementById('cd'),
+var ov=document.getElementById('cdOv'),cd=document.getElementById('cd'),sb=document.getElementById('cdSb'),
     box=document.getElementById('cdBody'),x=document.getElementById('cdX'),
     seen=null,last=null,cur=null,home=location.pathname;
 var FOCUS='a[href],button,[tabindex]:not([tabindex="-1"])';
@@ -458,20 +591,38 @@ function styles(doc){                       // pull in style blocks the host pag
   });
 }
 
-function show(){
+function origin(el){
+  if(!el||!el.getBoundingClientRect)return;
+  var r=el.getBoundingClientRect(),W=innerWidth,H=innerHeight,pad=8;
+  if(!r.width||!r.height)return;
+  // an off-screen origin would unfold from nowhere, so fall back to a plain fade
+  if(r.bottom<40||r.top>H-40||r.right<40||r.left>W-40)return;
+  cd.style.setProperty('--gt',Math.max(0,r.top-pad)+'px');
+  cd.style.setProperty('--gl',Math.max(0,r.left-pad)+'px');
+  cd.style.setProperty('--gr',Math.max(0,(W-pad)-r.right)+'px');
+  cd.style.setProperty('--gb',Math.max(0,(H-pad)-r.bottom)+'px');
+  return 1;
+}
+
+function show(from){
   if(cur)return;
   cur=1;last=document.activeElement;
+  cd.classList.remove('grow');
+  var grow=origin(from);
   var sb=window.innerWidth-document.documentElement.clientWidth;
   if(sb>0)document.body.style.paddingRight=sb+'px';
   document.body.classList.add('cd-lock');
   ov.hidden=cd.hidden=false;
-  requestAnimationFrame(function(){ov.classList.add('on');cd.classList.add('on')});
+  requestAnimationFrame(function(){
+    ov.classList.add('on');cd.classList.add('on');
+    if(grow){void cd.offsetWidth;cd.classList.add('grow')}
+  });
 }
 
 function hide(pop){
   if(!cur)return;
   cur=null;
-  ov.classList.remove('on');cd.classList.remove('on');
+  ov.classList.remove('on');cd.classList.remove('on');cd.classList.remove('grow');
   setTimeout(function(){
     ov.hidden=cd.hidden=true;box.innerHTML='';
     document.body.classList.remove('cd-lock');document.body.style.paddingRight='';
@@ -480,8 +631,8 @@ function hide(pop){
   if(!pop&&location.hash)history.pushState({cd:0},'',home);
 }
 
-function load(url,push){
-  show();
+function load(url,push,from){
+  show(from);
   box.innerHTML='<div class="cd-load">…</div>';
   box.scrollTop=0;
   fetch(url).then(function(r){
@@ -493,7 +644,7 @@ function load(url,push){
     styles(doc);
     box.innerHTML='';box.appendChild(document.importNode(main,true));
     box.setAttribute('data-src',url);
-    box.scrollTop=0;
+    box.scrollTop=0;sync();
     if(doc.title)document.title=doc.title;
     if(push)history.pushState({cd:url},'',home+'#case='+url);
     x.focus();
@@ -504,7 +655,7 @@ document.addEventListener('click',function(e){
   var a=e.target.closest?e.target.closest('a[href]'):null;
   if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
   var href=a.getAttribute('href')||'';
-  if(/^case-[\w-]+\.html$/.test(href)){e.preventDefault();load(href,1);return}
+  if(/^case-[\w-]+\.html$/.test(href)){e.preventDefault();load(href,1,a.closest('.pv')||a);return}
   if(cur&&/^index(-ua)?\.html(#.*)?$/.test(href)){e.preventDefault();hide();}
 });
 
@@ -528,6 +679,22 @@ window.addEventListener('popstate',function(){
   var u=fromHash();
   if(u)load(u,0);else hide(1);
 });
+
+var sbHide;
+function sync(){
+  if(!sb)return;
+  var h=box.clientHeight, sh=box.scrollHeight;
+  if(sh<=h+1){sb.classList.remove('on');return}
+  var track=sb.clientHeight, thumb=Math.max(32,track*h/sh);
+  var top=(track-thumb)*(box.scrollTop/(sh-h));
+  var i=sb.firstElementChild;
+  i.style.height=thumb+'px'; i.style.top=top+'px';
+  sb.classList.add('on');
+  clearTimeout(sbHide);
+  sbHide=setTimeout(function(){sb.classList.remove('on')},900);
+}
+box.addEventListener('scroll',sync,{passive:true});
+window.addEventListener('resize',sync);
 window.openCase=function(u){load(u,1)};
 if(fromHash())load(fromHash(),0);
 })();
@@ -575,5 +742,13 @@ new MutationObserver(scan).observe(document.body, {childList:true, subtree:true}
 scan();
 })();
 </script>
+<svg aria-hidden="true" focusable="false" height="0" style="position:absolute" width="0">
+<filter color-interpolation-filters="sRGB" height="140%" id="liquid" width="140%" x="-20%" y="-20%">
+<feTurbulence baseFrequency="0.04 0.06" numOctaves="3" result="noise" seed="7" type="fractalNoise">
+<animate attributeName="baseFrequency" dur="3s" repeatCount="indefinite" values="0.04 0.06;0.07 0.03;0.04 0.06"/>
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="noise" scale="26" xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+</svg>
 </body>
 </html>

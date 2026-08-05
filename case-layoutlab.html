@@ -4,32 +4,69 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>LayoutLab — case study · Denys Osadchyi</title>
-<meta content="An internal tool for generating production-ready mockups, designed and built solo: mockup turnaround cut from a week to hours, 263 screens rendered from real production components." name="description"/>
+<title>LayoutLab — a mockup generator that made design 7× faster · Denys Osadchyi</title>
+<meta content="An internal mockup generator designed and built solo: it renders real production components, cutting mockup turnaround from a week to hours." name="description"/>
+<link href="https://denys-osadchyi.vercel.app/case-layoutlab.html" rel="canonical"/>
+<link href="https://denys-osadchyi.vercel.app/case-layoutlab.html" hreflang="en" rel="alternate"/>
+<link href="https://denys-osadchyi.vercel.app/case-layoutlab-ua.html" hreflang="uk" rel="alternate"/>
+<link href="https://denys-osadchyi.vercel.app/case-layoutlab.html" hreflang="x-default" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="LayoutLab — a mockup generator that made design 7× faster · Denys Osadchyi" property="og:title"/>
+<meta content="An internal mockup generator designed and built solo: it renders real production components, cutting mockup turnaround from a week to hours." property="og:description"/>
+<meta content="https://denys-osadchyi.vercel.app/case-layoutlab.html" property="og:url"/>
+<meta content="https://denys-osadchyi.vercel.app/og.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..900&family=Charis+SIL:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<link href="fonts/fonts.css" rel="stylesheet"/>
+<link href="tokens.css" rel="stylesheet"/>
 <style>/*font*/
-body{font-family:'Onest',sans-serif}
+body{font-family:var(--font-sans)}
 h1{font-weight:400}
 </style>
+<style>/*outcomes*/
+.outcomes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:32px 0 0}
+.outcomes .o{padding:32px 28px;background:#fff;border-radius:24px}
+.outcomes .oi{display:block;width:28px;height:28px;margin:0 0 24px;color:#145ae0;box-sizing:content-box;padding:12px;background:rgba(20,90,224,.05);border-radius:14px}
+.outcomes .n{margin:0 0 12px}
+.outcomes .t{margin:0;max-width:none}
+</style>
 <style>/*pagebg*/
-body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
+</style>
+<style>/*media*/
+/* one photo or video in a block: 860 wide, centred on a grey band that
+   spans the page and keeps the same 48px inset as the text */
+.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:linear-gradient(rgba(17,17,17,0),rgba(17,17,17,.05))}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
+.cbody .cimg>figcaption{max-width:860px;margin-inline:auto;text-align:center}
+.strip-fig:has(.strip>:only-child)>figcaption{max-width:860px;margin-inline:auto;text-align:center}
+@media(max-width:600px){.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin-inline:-24px;padding-inline:24px}}
+/* the cover keeps the treatment it always had: noise band, full bleed, no 860 cap */
+main>.cimg{margin:0 0 28px}
+main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
+@media(max-width:600px){main>.cimg::after{margin:0 -24px}}
+</style>
+<style>/*single*/
+/* one photo or video on its own: 860 wide, centred */
+.strip:has(>:only-child){justify-content:center}
+.strip:has(>:only-child)>img,.strip:has(>:only-child)>video{height:auto;width:min(860px,100%);max-width:min(860px,100%)}
+.shots:has(>:only-child){justify-items:center}
+.shots:has(>:only-child) .shot{width:min(860px,100%)}
 </style>
 <style>/*sec*/
 /* Case section: heading, then lead left, expansion + fine print right. */
 .cbody .sec{margin:96px 0 0}
 .cbody .sec:first-child{margin-top:64px}
-.cbody .sec h2.marker{display:inline-block;margin:0 0 28px;max-width:34ch;padding:8px 22px;font-size:1.25rem;font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;border-radius:0 999px 999px 0}
+.cbody .sec h2.marker,.block h2.marker{display:inline-block;margin:0 0 28px;max-width:34ch;padding:8px 36px 8px 22px;font-size:var(--t-marker);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 50%,100% 100%,0 100%);position:sticky;top:16px;z-index:5}
 .cbody .sec-cols,.chero .sec-cols{margin-top:8px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 56px;align-items:start;margin:0 0 28px}
-.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:'Charis SIL',serif;font-style:italic;font-size:clamp(1.875rem,.63vw + 1.7rem,2.25rem);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
-.cbody .sec-lead i,.chero .sec-lead i{color:#0000EE;font-style:italic}
+.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:var(--font-lead);font-weight:400;font-size:var(--t-lead);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
+.cbody .sec-lead i,.chero .sec-lead i{color:var(--t-accent);font-style:normal}
 .cbody .sec-body>p,.chero .sec-body>p{margin:0 0 14px;max-width:35rem}
 .cbody .sec-body>p:last-child,.chero .sec-body>p:last-child{margin-bottom:0}
-.cbody .sec-body ul{margin:10px 0 0;padding-left:1.2em;max-width:35rem;font-size:.9375rem;line-height:1.6;color:#555}
+.cbody .sec-body ul{margin:10px 0 0;padding-left:1.2em;max-width:35rem;font-size:var(--t-caption);line-height:var(--lh-fine);color:var(--t-muted)}
 .cbody .sec-body li{margin:0 0 8px}
-.cbody .sec-fine,.chero .sec-fine{margin:0;max-width:35rem;font-size:.9375rem;line-height:1.6;letter-spacing:0;color:#555}
+.cbody .sec-body a{overflow-wrap:anywhere}
+.cbody .sec-fine,.chero .sec-fine{margin:0;max-width:35rem;font-size:var(--t-caption);line-height:var(--lh-fine);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 @media(max-width:900px){
 .cbody .sec-cols,.chero .sec-cols{grid-template-columns:1fr;gap:12px}
 .cbody .sec-lead,.chero .sec-lead{max-width:none}
@@ -40,17 +77,9 @@ img,video{max-width:100%;height:auto}
 .wrap{padding-left:48px;padding-right:48px;box-sizing:border-box}
 </style>
 <style>/*typescale*/
-/* Onest type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
-:root{
---t-caption:.9375rem;
---t-body:1.125rem;
---t-lede:clamp(1.25rem,.21vw + 1.19rem,1.375rem);
---t-h3:clamp(1.5rem,.42vw + 1.38rem,1.75rem);
---t-h2:clamp(1.75rem,1.25vw + 1.38rem,2.5rem);
---t-h1:clamp(2.25rem,2.08vw + 1.63rem,3.5rem);
---t-muted:#555;
---measure:72ch}
-body{font-size:var(--t-body);line-height:1.6;letter-spacing:-.005em;font-kerning:normal}
+/* e-Ukraine type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
+:root{--measure:72ch}
+body{font-size:var(--t-body);line-height:var(--lh-body);letter-spacing:var(--ls-body);font-kerning:normal}
 .hero3,.ledger,.hcta,.langbar{font-size:1rem;line-height:normal;letter-spacing:normal}
 p{margin:0 0 1.1em;text-wrap:pretty}
 b,strong{font-weight:600}
@@ -62,38 +91,44 @@ h3{font-size:var(--t-h3);line-height:1.2;letter-spacing:-.015em}
 header .bar{padding-block:24px}
 header nav,.cnav,.cta{display:flex;flex-wrap:wrap;align-items:center;gap:24px}
 .cnav{gap:32px}
-.wordmark{font-size:1.0625rem;font-weight:500;letter-spacing:-.01em}
-header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:0}
-.langbar .langswitch{font-size:1rem}/* hero-area switcher stays as it was */
+.wordmark{font-size:var(--t-ui);font-weight:500;letter-spacing:-.01em}
+header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
+.langswitch{display:inline-block;line-height:0}
+.langswitch img{display:block;width:24px;height:auto}
+/* hero-area switcher stays as it was */
 .open,.wordmark{font-weight:500}
 /* case hero */
-.chero{padding-top:56px}
-.chero .meta{margin:0 0 20px;display:flex;flex-wrap:wrap;gap:6px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
-.chero .meta>span{padding:2px 10px;font-size:.8125rem;line-height:1.5;background:rgba(17,17,17,.05);border-radius:999px}
-.chero h1{margin:0 0 24px;max-width:none;font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
-.lede{margin:0 0 28px;max-width:none;font-size:clamp(1.5rem,1.55vw + .92rem,2.05rem);line-height:1.25;letter-spacing:-.02em;text-wrap:pretty}
-.facts{margin:0;display:flex;flex-wrap:wrap;gap:8px;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
+.chero{padding-top:28px;padding-bottom:48px}
+.chero .meta{margin:0 0 20px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.chero .meta>span{padding:2px 10px;font-size:var(--t-chip);line-height:1.5;background:rgba(17,17,17,.05);border-radius:999px}
+.chero h1{margin:0 auto 20px;max-width:30ch;text-align:center;font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
+.orn{display:flex;align-items:center;justify-content:center;gap:7px;margin:0 auto}
+.chero .orn{margin-bottom:32px;max-width:30ch}
+.orn-b{margin:96px 0 0}
+.orn::before,.orn::after{content:"";flex:1;height:1px;background:rgba(17,17,17,.18);margin-inline:6px}
+.orn span{width:6px;height:6px;background:rgba(17,17,17,.5);transform:rotate(45deg)}
+.lede{margin:0 0 28px;max-width:none;font-size:var(--t-lede-xl);line-height:1.25;letter-spacing:-.02em;text-wrap:pretty}
+.facts{margin:0;display:flex;flex-wrap:wrap;gap:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .facts>span{display:inline-flex;align-items:center;gap:.5em;padding:5px 14px;border:1px solid rgba(0,0,0,.12);border-radius:999px;line-height:1.4}
-.facts .fi{width:1em;height:1em;flex:0 0 auto}
+.facts .fi{width:auto;height:1.05em;max-width:2em;flex:0 0 auto}
 .outcomes .n{font-size:var(--t-h3);font-weight:600;line-height:1.1;letter-spacing:-.02em}
-.outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 /* case body */
 .cbody p,.cbody ul{max-width:none}
-.cbody{font-size:clamp(1.125rem,.55vw + .96rem,1.5rem);line-height:1.65}
+.cbody{font-size:var(--t-case);line-height:var(--lh-case)}
 .cbody h2.marker{margin:96px 0 24px;max-width:32ch}
 .cbody h2.marker:first-child{margin-top:64px}
 .cbody p{margin:0 0 20px}
 .cbody ul{margin:0 0 20px;padding-left:1.2em}
 .cbody li{margin:0 0 10px}
 .cres .r{font-weight:600}
-.cimg{margin:0 0 28px}
-figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
-.cnav{margin:96px 0 64px}
+figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.cnav{margin:0 0 64px}
 /* work cards */
-.pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .pv h3{margin:0 0 12px;font-size:var(--t-h3);font-weight:400;line-height:1.2;letter-spacing:-.015em}
 .pv .nums{margin:0 0 12px}
-.pv .nums .chip{font-style:normal;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
+.pv .nums .chip{font-style:normal;font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .pv p{max-width:44ch;margin:0 0 16px}
 /* section headings, experience, teaching */
 .block{padding-block:64px}
@@ -102,48 +137,53 @@ figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height
 .foot h2{margin:0 0 20px;max-width:20ch}
 .xp,.list{margin:0;padding:0;list-style:none}
 .xp li,.list li{margin:0 0 32px}
-.yrs{font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted);font-variant-numeric:tabular-nums}
+.yrs{font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted);font-variant-numeric:tabular-nums}
 .xrole,.list .t{margin:0 0 8px;font-size:1.5rem;font-weight:500;line-height:1.35;letter-spacing:-.01em}
 .xco,.tag{font-weight:400;color:var(--t-muted)}
-.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:0}
+.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
 .xnote{margin:0;max-width:46ch}
 .list .s{max-width:48ch}
 /* everything above the hairline reads as one field: header + hero + cover.
    Negative inline margin equals the wrap padding, so the tint reaches the
    viewport edge without 100vw and its scrollbar overflow. */
-header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
 .chero,main>.cimg{margin-inline:-48px;padding-inline:48px}
 @media(max-width:600px){.chero,main>.cimg{margin-inline:-24px;padding-inline:24px}}
 /* cover mockup: capped like the flat shots, closed by a full-bleed hairline.
    Negative margin equals the wrap padding, so the rule reaches the real viewport
    edge without 100vw (which would overflow by the scrollbar width). */
-main>.cimg>img{display:block;max-width:min(860px,100%);margin-inline:auto}
-main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
 @media(max-width:600px){main>.cimg::after{margin:0 -24px}}
 /* native scrollbar hidden; paging is driven by the buttons below */
 .strip{scrollbar-width:none;-ms-overflow-style:none}
 .strip::-webkit-scrollbar{display:none}
 .stripnav{position:absolute;z-index:2;left:16px;right:16px;top:calc(clamp(220px,30vw,460px)/2);transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none}
 .stripnav[hidden]{display:none}
-.stripbtn{pointer-events:auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:1.25rem;line-height:1;color:#111;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:50%;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.12);transition:background .15s ease-out,color .15s ease-out,border-color .15s ease-out,opacity .15s ease-out}
-.stripbtn:hover:not(:disabled){background:#0000EE;border-color:#0000EE;color:#fff}
+.stripbtn{pointer-events:auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:1.25rem;line-height:1;color:#111;background:#fff;border:none;border-radius:50%;cursor:pointer;transition:background .15s ease-out,color .15s ease-out,opacity .15s ease-out}
+.stripbtn:hover:not(:disabled){background:#145ae0;color:#fff}
 .stripbtn:disabled{opacity:0;pointer-events:none}
-.stripbtn:focus-visible{outline:2px solid #0000EE;outline-offset:3px}
+.stripbtn:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.stripbtn{transition:none}}
 /* horizontal mockup strips: bleed past the right gutter so the row visibly
    continues off-screen instead of pretending it ended */
-.strip-fig{position:relative;margin:0 0 28px}
+/* iPad shell drawn in CSS: bezel, screen, camera. No image asset, so it
+   scales with the video and stays crisp at any density. */
+.ipad{position:relative;display:block;max-width:860px;margin:0 auto clamp(32px,4vw,56px);padding:1.8%;box-sizing:border-box;background:linear-gradient(160deg,#3a3d42,#1b1d20 42%,#26282c);border-radius:34px;box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 18px 40px rgba(0,0,0,.18)}
+.ipad-screen{position:relative;overflow:hidden;line-height:0;background:#000;border-radius:18px;box-shadow:0 0 0 1px rgba(0,0,0,.55) inset}
+.ipad-screen>video,.ipad-screen>img{display:block;width:100%;height:auto;border:0;border-radius:0}
+.ipad::before{content:"";position:absolute;top:1.05%;left:50%;width:7px;height:7px;margin-left:-3.5px;background:#0d0e10;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,.09)}
+@media(max-width:600px){.ipad{border-radius:22px}.ipad-screen{border-radius:12px}}
+.strip-fig{position:relative}
 .strip{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;margin-right:-48px;padding:0 48px 6px 0}
 .strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:24px;scroll-snap-align:start}
-.strip:focus-visible{outline:2px solid #0000EE;outline-offset:4px}
+.strip:focus-visible{outline:2px solid #145ae0;outline-offset:4px}
 @media(max-width:600px){.strip{margin-right:-24px;padding-right:24px}}
 /* flat screen mockups: capped measure, retina source, hairline frame.
    Device mockups (the covers, outside .cbody) stay full-bleed. */
-.cbody .cimg:has(>img),.cbody .cimg:has(>video){max-width:860px;margin-inline:auto}
-.cbody .cimg>img,.cbody .cimg>video{width:100%;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1)}
-/* the one ornament: Charis SIL italic marks the words carrying the argument */
-.foot h2 em,.ia-role{font-family:'Charis SIL',serif;font-style:italic}
-.cnav{justify-content:space-between;padding-top:24px;border-top:1px solid #e2ddd6}
+.cbody /* one screen or one video in a block: 860 wide, centred, on a band that spans the page */
+/* the one ornament: Arial italic marks the words carrying the argument */
+.foot h2 em,.ia-role{font-family:var(--font-italic);font-style:normal}
+.foot h2 em{font-weight:700;font-size:1.1em}
+.cnav{justify-content:space-between;padding-top:24px}
 @media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
 </style>
 <style>/*hdr*/
@@ -151,10 +191,60 @@ header{padding:16px 24px 0}
 header .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding:16px 32px;background:rgba(17,17,17,.05);border-radius:999px}
 @media(max-width:600px){header{padding:12px 12px 0}header .bar{padding:14px 20px;border-radius:28px}}
 </style>
+<style>/*lang*/
+/* language switch is an icon button; the language name stays for screen readers */
+.langswitch .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+<style>/*navicon*/
+/* navigation arrows are drawn, not typed, so they align with the text baseline */
+.nav-i{width:1em;height:1em;flex:0 0 auto}
+header nav a,.cnav a{display:inline-flex;align-items:center;gap:6px}
+</style>
 <style>/*linkstyle*/
-a{color:#0000EE;text-decoration:none}
-a:visited{color:#0000EE}
-a:hover{text-decoration:underline}
+a{color:var(--t-accent);text-decoration:none}
+a:visited{color:var(--t-accent)}
+a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(20,90,224,.5);text-underline-offset:3px}
+</style>
+<style>/*architecture diagram*/
+.cbd{--acc:#145ae0}
+.cbody .strip-fig.cbd{margin-bottom:0;padding-bottom:12px;background:none}
+.cbd .cbd-scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
+.cbd .cbd-scroll::-webkit-scrollbar{display:none}
+.cbd .cbd-scroll:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+.cbd svg{display:block;width:100%;min-width:900px;max-width:920px;margin-inline:auto}
+.cbd .box{fill:#fdfcfc;stroke:rgba(17,17,17,.85);stroke-width:1}
+.cbd .box-ink{fill:#111}
+.cbd .vol{fill:none;stroke:rgba(17,17,17,.55);stroke-width:1;stroke-dasharray:5 4}
+.cbd .t{fill:none;stroke:rgba(17,17,17,.3);stroke-width:1}
+.cbd .rule{stroke:rgba(17,17,17,.45)}
+.cbd .f{fill:none;stroke:var(--acc);stroke-width:2;stroke-linecap:round;stroke-dasharray:14 26;animation:cbd-flow 1.1s linear infinite}
+.cbd .f2{animation-delay:-.36s}
+.cbd .f3{animation-delay:-.72s}
+.cbd .fl{stroke-dasharray:26 150;animation-duration:2.6s}
+@keyframes cbd-flow{to{stroke-dashoffset:-40}}
+.cbd .fl{animation-name:cbd-flow-l}
+@keyframes cbd-flow-l{to{stroke-dashoffset:-176}}
+.cbd text{font-family:'e-Ukraine',sans-serif;fill:#111}
+.cbd .h{font-size:14px;font-weight:700;letter-spacing:-.01em}
+.cbd .s{font-size:12px;fill:#4a4a4a}
+.cbd .lbl{font-size:11px;fill:#555}
+.cbd .on-ink{fill:#fff}
+.cbd .on-ink-s{font-size:12px;fill:rgba(255,255,255,.82)}
+.cbd .mid{text-anchor:middle}
+.cbd figcaption{max-width:920px;margin-inline:auto}
+.cbody .sec:has(.cbd)+.sec{margin-top:0}
+@media(prefers-reduced-motion:reduce){.cbd .f{animation:none;stroke-dasharray:none;opacity:.5}}
+</style>
+<style>/*mobile-type*/
+@media(max-width:600px){
+.chero h1{font-size:1.75rem}
+.cbody .sec-lead,.chero .sec-lead{font-size:1.375rem}
+.cbody{font-size:.9375rem}
+.outcomes .n{font-size:1.25rem}
+.outcomes .o{border-radius:16px}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:16px}
+header .bar{border-radius:20px}
+}
 </style>
 </head>
 <body>
@@ -162,35 +252,95 @@ a:hover{text-decoration:underline}
 <div class="wrap bar">
 <a class="wordmark" href="index.html">Denys Osadchyi</a>
 <nav>
-<a href="index.html#work"><span data-l="en">← All cases</span></a>
-<a class="langswitch" href="case-layoutlab-ua.html">Українською</a>
+<a href="index.html#work"><span data-l="en"><svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M14.5 6.5 9 12l5.5 5.5"/></svg>All cases</span></a>
+<a class="langswitch" href="case-layoutlab-ua.html" hreflang="uk" aria-label="Українською" title="Українською"><img alt="Українською" src="img/flag-ua.svg" width="24" height="18"/></a>
 </nav>
 </div>
 </header>
 <main class="wrap">
 <section class="chero">
 <p class="meta"><span>2026</span> <span><b><span data-l="en">Product Designer + Design Engineer, contract</span></b></span> <span>AI Design Tooling</span></p>
-<h1><span data-l="en">LayoutLab: a tool for generating production-ready mockups</span></h1>
+<h1><span data-l="en">LayoutLab: I built a mockup generator that made design 7&#215; faster</span></h1>
+<div class="orn" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="en">What you see in the mockup <i>is literally what ships</i>: it renders the real production components.</span></p>
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>What the designer sees in the generator's mockup <i>is what goes into development</i>: it renders the real production components.</span></p>
 <div class="sec-body">
 <p><span data-l="en">Records Marine contracted me to design and build the tool end-to-end, solo.</span></p>
 <p class="sec-fine"><span data-l="en">That covered the product thinking, the system, the architecture and the code. LayoutLab closes the oldest gap in product design, the one between the mockup and the shipped code: instead of drawing screens that approximate the product, it generates live pages on the real theme.</span></p>
 </div>
 </div>
-<p class="facts"><span><b><span data-l="en">a week → hours</span></b></span> <span><b>263</b> <span data-l="en">screens</span></span> <span><b>1,293</b> <span data-l="en">real components</span></span> <span><b>2</b> <span data-l="en">months, solo</span></span> <span>Next.js · Chakra UI · Playwright · Claude</span></p>
+<p class="facts"><span><svg class="fi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><defs><linearGradient id="nxSVGrDou6dwg" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="nxSVG9onTObtB" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient><circle id="nxSVGN5eQqeMK" cx="128" cy="128" r="128"/></defs><mask id="nxSVGMX2wGdvm" fill="#fff"><use href="#nxSVGN5eQqeMK"/></mask><g mask="url(#nxSVGMX2wGdvm)"><circle cx="128" cy="128" r="128"/><path fill="url(#nxSVGrDou6dwg)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#nxSVG9onTObtB)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg>Next.js</span><span><svg class="fi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M7.678 1.583a3.49 3.49 0 0 0-3.03 1.76L.265 10.997a2.04 2.04 0 0 0-.064 1.886l4.486 7.784a3.49 3.49 0 0 0 3.03 1.751l8.602-.01a3.5 3.5 0 0 0 3.026-1.759l4.39-7.655a2.03 2.03 0 0 0-.002-2.008L19.339 3.34a3.5 3.5 0 0 0-3.028-1.756Zm4.365 1.244V9.11c0 .32.226.595.54.656l6.089 1.187q-3.006 5.2-6.008 10.4c-.17.296-.62.176-.62-.166v-6.286a.67.67 0 0 0-.538-.656l-6.072-1.193l5.988-10.393c.168-.29.621-.178.621.168"/></svg>Chakra UI</span><span><svg class="fi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1.34em" height="1em" viewBox="0 0 256 192"><path fill="#2d4552" d="M84.38 108.352c-9.556 2.712-15.826 7.467-19.956 12.218c3.956-3.461 9.255-6.639 16.402-8.665c7.311-2.072 13.548-2.057 18.702-1.062v-4.03c-4.397-.402-9.437-.082-15.148 1.539M63.987 74.475l-35.49 9.35s.646.914 1.844 2.133l30.092-7.93s-.427 5.495-4.13 10.41c7.005-5.299 7.684-13.963 7.684-13.963m29.709 83.41c-49.946 13.452-76.37-44.43-84.37-74.472c-3.696-13.868-5.31-24.37-5.74-31.148a11.5 11.5 0 0 1 .025-1.84C1.021 50.58-.22 51.927.032 55.82c.43 6.773 2.044 17.275 5.74 31.147c7.997 30.038 34.424 87.92 84.37 74.468c10.871-2.929 19.038-8.263 25.17-15.073c-5.652 5.104-12.724 9.123-21.616 11.523M103.08 39.05v3.555h19.59c-.401-1.259-.806-2.393-1.208-3.555z"/><path fill="#2d4552" d="M127.05 68.325c8.81 2.503 13.47 8.68 15.933 14.146l9.824 2.79s-1.34-19.132-18.645-24.047c-16.189-4.6-26.151 8.995-27.363 10.754c4.71-3.355 11.586-6.102 20.251-3.643m78.197 14.234c-16.204-4.62-26.162 9.003-27.356 10.737c4.713-3.351 11.586-6.099 20.247-3.629c8.797 2.506 13.452 8.676 15.923 14.146l9.837 2.8s-1.361-19.135-18.651-24.054m-9.76 50.443l-81.718-22.845s.885 4.485 4.279 10.293l68.803 19.234c5.664-3.277 8.636-6.682 8.636-6.682m-56.655 49.174C74.127 164.828 81.949 82.386 92.419 43.32c4.311-16.1 8.743-28.066 12.419-36.088c-2.193-.451-4.01.704-5.804 4.354C95.13 19.5 90.14 32.387 85.312 50.427c-10.467 39.066-18.29 121.506 46.412 138.854c30.497 8.17 54.256-4.247 71.966-23.749c-16.81 15.226-38.274 23.763-64.858 16.644"/><path fill="#e2574c" d="M103.081 138.565v-16.637l-46.223 13.108s3.415-19.846 27.522-26.684c7.311-2.072 13.549-2.058 18.701-1.063V39.05h23.145c-2.52-7.787-4.958-13.782-7.006-17.948c-3.387-6.895-6.859-2.324-14.741 4.269c-5.552 4.638-19.583 14.533-40.698 20.222c-21.114 5.694-38.185 4.184-45.307 2.95c-10.097-1.742-15.378-3.96-14.884 3.721c.43 6.774 2.043 17.277 5.74 31.148c7.996 30.039 34.424 87.92 84.37 74.468c13.046-3.515 22.254-10.464 28.637-19.32h-19.256zm-74.588-54.74l35.494-9.35s-1.034 13.654-14.34 17.162c-13.31 3.504-21.154-7.812-21.154-7.812"/><path fill="#2ead33" d="M236.664 39.84c-9.226 1.617-31.361 3.632-58.716-3.7c-27.363-7.328-45.517-20.144-52.71-26.168c-10.197-8.54-14.682-14.476-19.096-5.498c-3.902 7.918-8.893 20.805-13.723 38.846c-10.466 39.066-18.289 121.505 46.413 138.853c64.687 17.333 99.126-57.978 109.593-97.047c4.83-18.037 6.948-31.695 7.53-40.502c.665-9.976-6.187-7.08-19.29-4.784M106.668 72.161s10.196-15.859 27.49-10.943c17.305 4.915 18.645 24.046 18.645 24.046zm42.215 71.163c-30.419-8.91-35.11-33.167-35.11-33.167l81.714 22.846c0-.004-16.494 19.12-46.604 10.32m28.89-49.85s10.183-15.847 27.474-10.918c17.29 4.923 18.651 24.054 18.651 24.054z"/><path fill="#d65348" d="m86.928 126.51l-30.07 8.522s3.266-18.609 25.418-25.983L65.25 45.147l-1.471.447c-21.115 5.694-38.185 4.184-45.307 2.95c-10.097-1.741-15.379-3.96-14.885 3.722c.43 6.774 2.044 17.276 5.74 31.147c7.997 30.039 34.425 87.92 84.37 74.468l1.471-.462zM28.493 83.825l35.494-9.351s-1.034 13.654-14.34 17.162c-13.31 3.504-21.154-7.811-21.154-7.811"/><path fill="#1d8d22" d="m150.255 143.658l-1.376-.335c-30.419-8.91-35.11-33.166-35.11-33.166l42.137 11.778l22.308-85.724l-.27-.07c-27.362-7.329-45.516-20.145-52.71-26.17c-10.196-8.54-14.682-14.475-19.096-5.497c-3.898 7.918-8.889 20.805-13.719 38.846c-10.466 39.066-18.289 121.505 46.413 138.852l1.326.3zM106.668 72.16s10.196-15.859 27.49-10.943c17.305 4.915 18.645 24.046 18.645 24.046z"/><path fill="#c04b41" d="m88.46 126.072l-8.064 2.289c1.906 10.74 5.264 21.047 10.534 30.152c.918-.202 1.828-.376 2.762-.632c2.449-.66 4.72-1.479 6.906-2.371c-5.89-8.74-9.785-18.804-12.137-29.438m-3.148-75.644c-4.144 15.467-7.852 37.73-6.831 60.06c1.826-.793 3.756-1.532 5.9-2.14l1.492-.334c-1.82-23.852 2.114-48.157 6.546-64.694a323 323 0 0 1 3.373-11.704a105 105 0 0 1-5.974 3.547a307 307 0 0 0-4.506 15.265"/></svg>Playwright</span><span><svg class="fi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m4.714 15.956l4.718-2.648l.079-.23l-.08-.128h-.23l-.79-.048l-2.695-.073l-2.337-.097l-2.265-.122l-.57-.121l-.535-.704l.055-.353l.48-.321l.685.06l1.518.104l2.277.157l1.651.098l2.447.255h.389l.054-.158l-.133-.097l-.103-.098l-2.356-1.596l-2.55-1.688l-1.336-.972l-.722-.491L2 6.223l-.158-1.008l.656-.722l.88.06l.224.061l.893.686l1.906 1.476l2.49 1.833l.364.304l.146-.104l.018-.072l-.164-.274l-1.354-2.446l-1.445-2.49l-.644-1.032l-.17-.619a3 3 0 0 1-.103-.729L6.287.133L6.7 0l.995.134l.42.364l.619 1.415L9.735 4.14l1.555 3.03l.455.898l.243.832l.09.255h.159V9.01l.127-1.706l.237-2.095l.23-2.695l.08-.76l.376-.91l.747-.492l.583.28l.48.685l-.067.444l-.286 1.851l-.558 2.903l-.365 1.942h.213l.243-.242l.983-1.306l1.652-2.064l.728-.82l.85-.904l.547-.431h1.032l.759 1.129l-.34 1.166l-1.063 1.347l-.88 1.142l-1.263 1.7l-.79 1.36l.074.11l.188-.02l2.853-.606l1.542-.28l1.84-.315l.832.388l.09.395l-.327.807l-1.967.486l-2.307.462l-3.436.813l-.043.03l.049.061l1.548.146l.662.036h1.62l3.018.225l.79.522l.473.638l-.08.485l-1.213.62l-1.64-.389l-3.825-.91l-1.31-.329h-.183v.11l1.093 1.068l2.003 1.81l2.508 2.33l.127.578l-.321.455l-.34-.049l-2.204-1.657l-.85-.747l-1.925-1.62h-.127v.17l.443.649l2.343 3.521l.122 1.08l-.17.353l-.607.213l-.668-.122l-1.372-1.924l-1.415-2.168l-1.141-1.943l-.14.08l-.674 7.254l-.316.37l-.728.28l-.607-.461l-.322-.747l.322-1.476l.388-1.924l.316-1.53l.285-1.9l.17-.632l-.012-.042l-.14.018l-1.432 1.967l-2.18 2.945l-1.724 1.845l-.413.164l-.716-.37l.066-.662l.401-.589l2.386-3.036l1.439-1.882l.929-1.086l-.006-.158h-.055L4.138 18.56l-1.13.146l-.485-.456l.06-.746l.231-.243l1.907-1.312Z"/></svg>Claude</span></p>
+<div class="outcomes">
+<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M8.732 5.771L5.67 9.914c-1.285 1.739-1.928 2.608-1.574 3.291l.018.034c.375.673 1.485.673 3.704.673c1.233 0 1.85 0 2.236.363l.02.02l3.872-4.57l-.02-.02c-.379-.371-.379-.963-.379-2.148v-.31c0-3.285 0-4.927-.923-5.21s-1.913 1.056-3.892 3.734" clip-rule="evenodd"/><path fill="currentColor" d="M10.453 16.443v.31c0 3.284 0 4.927.923 5.21s1.913-1.056 3.893-3.734l3.062-4.143c1.284-1.739 1.927-2.608 1.573-3.291l-.018-.034c-.375-.673-1.485-.673-3.704-.673c-1.233 0-1.85 0-2.236-.363l-3.872 4.57c.379.371.379.963.379 2.148" opacity=".5"/></svg><div class="n"><span data-l="en">Design in a couple of hours</span></div><p class="t"><span data-l="en">Mockups that used to take a week to draw are ready in hours. The business iterates cheaply when requirements change.</span></p></div>
+<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M18.512 10.077c0 .738-.625 1.337-1.396 1.337s-1.395-.599-1.395-1.337c0-.739.625-1.338 1.395-1.338s1.396.599 1.396 1.338"/><path fill="currentColor" fill-rule="evenodd" d="M18.036 5.532c-1.06-.137-2.414-.137-4.123-.136h-3.826c-1.71 0-3.064 0-4.123.136c-1.09.14-1.974.437-2.67 1.104S2.29 8.149 2.142 9.195C2 10.21 2 11.508 2 13.147v.1c0 1.64 0 2.937.142 3.953c.147 1.046.456 1.892 1.152 2.559s1.58.963 2.67 1.104c1.06.136 2.414.136 4.123.136h3.826c1.71 0 3.064 0 4.123-.136c1.09-.14 1.974-.437 2.67-1.104s1.005-1.514 1.152-2.559C22 16.184 22 14.886 22 13.248v-.1c0-1.64 0-2.937-.142-3.953c-.147-1.046-.456-1.892-1.152-2.559s-1.58-.963-2.67-1.104M6.15 6.858c-.936.12-1.475.346-1.87.724c-.393.377-.629.894-.755 1.791c-.1.72-.123 1.619-.128 2.795l.47-.395c1.125-.942 2.819-.888 3.875.124l3.99 3.825a1.2 1.2 0 0 0 1.491.124l.278-.187a3.606 3.606 0 0 1 4.34.25l2.407 2.077c.098-.264.173-.579.227-.964c.128-.916.13-2.124.13-3.824s-.002-2.909-.13-3.825c-.126-.897-.362-1.414-.756-1.791c-.393-.378-.933-.604-1.869-.724c-.956-.124-2.216-.125-3.99-.125h-3.72c-1.774 0-3.034.001-3.99.125" clip-rule="evenodd"/><path fill="currentColor" d="M17.087 2.61c-.86-.11-1.955-.11-3.32-.11h-3.09c-1.364 0-2.459 0-3.318.11c-.89.115-1.633.358-2.222.92a2.9 2.9 0 0 0-.724 1.12c.504-.23 1.074-.366 1.714-.45c1.085-.14 2.47-.14 4.22-.14h3.915c1.749 0 3.134 0 4.219.14c.559.073 1.064.186 1.52.366a2.9 2.9 0 0 0-.693-1.035c-.589-.563-1.331-.806-2.221-.92" opacity=".5"/></svg><div class="n"><span data-l="en">Design optimization</span></div><p class="t"><span data-l="en">Improved the design process: fewer handoff errors, faster development, less mockup drift.</span></p></div>
+<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M1.818 5.272a.75.75 0 0 1 .91.546l.382 1.528a6.71 6.71 0 0 0 4.975 4.904H16a4.124 4.124 0 0 1 4.096 3.642l.649 5.52a.75.75 0 1 1-1.49.176l-.65-5.52A2.624 2.624 0 0 0 16 13.75H7.918l-.08-.018A8.21 8.21 0 0 1 1.654 7.71l-.382-1.528a.75.75 0 0 1 .545-.91" clip-rule="evenodd"/><path fill="currentColor" d="M8 13.75V18c0 1.886 0 2.828.586 3.414S10.114 22 12 22s2.828 0 3.414-.586S16 19.886 16 18v-4.25z" opacity=".5"/><circle cx="12" cy="6" r="4" fill="currentColor"/></svg><div class="n"><span data-l="en">Did it all myself</span></div><p class="t"><span data-l="en">Designed and built the tool alone in 2 months: the product, the design system, the architecture and the code.</span></p></div>
+</div>
 </section>
-<figure class="cimg"><video src="vid/ll-demo1.mp4?v=2" autoplay muted loop playsinline preload="metadata"></video><figcaption>LayoutLab: the task list and the generated Records Marine screens, side by side.</figcaption></figure>
+<figure class="cimg"><div class="ipad">
+<div class="ipad-screen">
+<video src="vid/ll-demo1.mp4?v=2" autoplay muted loop playsinline preload="metadata"></video>
+</div>
+</div></figure>
 <div class="cbody">
 <section class="sec">
 <h2 class="marker"><span data-l="en">The core bet</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="en">Mockup turnaround dropped <i>from a week to hours</i>: 263 screens across 33 task folders, assembled from 1,293 real product components.</span></p>
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>The mockup cycle shrank <i>from a week to hours</i>: tested on 263 screens across 15 tasks</span></p>
 <div class="sec-body">
 <p><span data-l="en">I made a mockup a real thing: each screen is a live Next.js page that imports the actual product components from the read-only production source and renders them on the real theme.</span></p>
 <p class="sec-fine"><span data-l="en">The business needed mockups fast and cheap iteration as requirements changed, and waiting a week for hand-drawn screens was the bottleneck. AI-generated mockups had their own trap: they looked fine until a developer rebuilt them in code and got something else. Now fidelity is not an act of care but a property of construction, and iteration runs by prompt instead of redrawing.</span></p>
 </div>
 </div>
+<figure class="strip-fig cbd">
+<div class="cbd-scroll" role="region" tabindex="0" aria-label="Architecture: the browser reaches the stack only through the workbench, which writes page.tsx into the shared task-data volume; the render-host serves those files on the product's real components, and the error sidecar feeds errors back to the workbench.">
+<svg viewBox="0 0 920 360" role="img" aria-label="Architecture: the browser reaches the stack only through the workbench, which writes page.tsx into the shared task-data volume; the render-host serves those files on the product's real components, and the error sidecar feeds errors back to the workbench." xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="cbd-a" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="rgba(17,17,17,.45)"/></marker>
+</defs>
+
+<text class="h" x="24" y="134">browser · SPA + iframe</text>
+<path class="t rule" d="M24 146 H176"/>
+<text class="lbl" x="24" y="172">single ingress · one published port</text>
+
+<path class="t" d="M176 146 H225" marker-end="url(#cbd-a)"/>
+<path class="t" d="M438 146 H487" marker-end="url(#cbd-a)"/>
+<path class="t" d="M606 146 H655" marker-end="url(#cbd-a)"/>
+<path class="t" d="M783 252 V300 H342 V259" marker-end="url(#cbd-a)"/>
+<path class="f" d="M176 146 H230"/>
+<path class="f f2" d="M438 146 H492"/>
+<path class="f f3" d="M606 146 H660"/>
+<path class="f fl" d="M783 252 V300 H342 V264"/>
+
+<rect class="box" x="232" y="40" width="206" height="212" rx="14"/>
+<text class="h" x="254" y="74">workbench</text>
+<text class="s" x="254" y="96">Express + SPA · auth</text>
+<path class="t" d="M254 112 H416"/>
+<text class="s" x="254" y="134">in-app chat · CLI</text>
+<text class="s" x="254" y="156">plan ▸ build ▸ verify</text>
+<text class="s" x="254" y="178">14 gates · 2 human</text>
+<text class="s" x="254" y="200">/render/* proxy + WS</text>
+<text class="s" x="254" y="222">writes page.tsx</text>
+
+<rect class="vol" x="494" y="110" width="112" height="72" rx="10"/>
+<text class="h mid" x="550" y="142">task-data</text>
+<text class="s mid" x="550" y="164">shared volume</text>
+
+<rect class="box-ink" x="662" y="40" width="242" height="212" rx="14"/>
+<text class="h on-ink" x="684" y="74">render-host</text>
+<path class="t" d="M684 112 H882" stroke="rgba(255,255,255,.35)"/>
+<text class="on-ink-s" x="684" y="96">next dev :3000 · never exposed</text>
+<text class="on-ink-s" x="684" y="134">mockups = routes from the volume</text>
+<text class="on-ink-s" x="684" y="156">@/ alias → /source (read-only)</text>
+<text class="on-ink-s" x="684" y="178">1,293 real components</text>
+<text class="on-ink-s" x="684" y="200">error sidecar :3001 outside Next</text>
+<text class="on-ink-s" x="684" y="222">HMR + stdout → errors</text>
+
+<text class="lbl" x="440" y="291">compile + runtime errors</text>
+<text class="lbl" x="24" y="338">mockups are data: one task-data directory mounted into both containers, so a write is instantly renderable</text>
+</svg>
+</div>
+<figcaption>Generator architecture: a single ingress through the workbench, mockups as data, a read-only production source, errors fed back into the loop.</figcaption>
+</figure>
 </section>
 <section class="sec">
 <figure class="strip-fig">
@@ -201,9 +351,9 @@ a:hover{text-decoration:underline}
 </figure>
 <h2 class="marker"><span data-l="en">A pipeline, not a prompt</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="en">The builder <i>never grades its own work</i>.</span></p>
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>The mockup generator <i>never grades its own work</i>. That is why it lets no errors through.</span></p>
 <div class="sec-body">
-<p><span data-l="en">I turned generation into a disciplined process with two blocking human gates bracketing the automation.</span></p>
+<p><span data-l="en">I made generation a strict, controlled process with two designer checks across the whole cycle.</span></p>
 <p class="sec-fine"><span data-l="en">Left to itself, the model optimizes whatever proxy it can see, meaning «renders 200» or «typecheck green», and quietly builds from imagination. A brief normalizes to a README as the single source of truth, passes a coverage check and a human Flow gate; each screen then runs Plan, Build, Verify, independent Critique and 14 deterministic gates, and ends at a decisive human Visual gate.</span></p>
 </div>
 </div>
@@ -218,9 +368,9 @@ a:hover{text-decoration:underline}
 </figure>
 <h2 class="marker"><span data-l="en">Giving the AI eyes</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="en">The very first side-by-side <i>caught a real shipped defect</i> in the live product that six rounds of human review had walked straight past.</span></p>
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>The very first side-by-side <i>found a real bug in the live product</i> — one that people had missed across six rounds of review.</span></p>
 <div class="sec-body">
-<p><span data-l="en">I gave the agent eyes and hands: it screenshots its own live render, screenshots the real product for an element-by-element comparison, and reads real links instead of guessing.</span></p>
+<p><span data-l="en">I made the AI see the design: it screenshots its own live render, screenshots the real product for an element-by-element comparison, and reads real links instead of guessing.</span></p>
 <p class="sec-fine"><span data-l="en">One screen needed six rounds of human fixes, and every fix mapped to a source file the agent had never opened.</span></p>
 </div>
 </div>
@@ -235,7 +385,7 @@ a:hover{text-decoration:underline}
 </figure>
 <h2 class="marker"><span data-l="en">What I learned</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="en">Fidelity is <i>an architecture, not carefulness</i>.</span></p>
+<p class="sec-lead"><span data-l="en"><span class="think" aria-hidden="true"></span>Design fidelity is determined first of all by <i>the architecture, not carefulness or the skills of the generation model</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="en">The moment a mockup imports the real components, resemblance happens by construction, and AI scales your discipline or your sloppiness.</span></p>
 <p class="sec-fine"><span data-l="en">Most of LayoutLab's value is in what I took away from the model: the ability to self-certify, to build ungrounded, to look at the result last. Taste that stays in your head does not survive a tired afternoon; taste compiled into a gate does.</span></p>
@@ -243,9 +393,10 @@ a:hover{text-decoration:underline}
 </div>
 </section>
 </div>
+<div class="orn orn-b" aria-hidden="true"><span></span><span></span><span></span></div>
 <nav class="cnav">
-<a href="case-scalr.html"><span data-l="en">← Scalr</span></a>
-<a href="case-splitmart.html"><span data-l="en">Next: SplitMart →</span></a>
+<a href="case-scalr.html"><span data-l="en"><svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M14.5 6.5 9 12l5.5 5.5"/></svg>Scalr</span></a>
+<a href="case-splitmart.html"><span data-l="en">Next: SplitMart<svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M9.5 6.5 15 12l-5.5 5.5"/></svg></span></a>
 </nav>
 </main>
 <footer class="dark foot">

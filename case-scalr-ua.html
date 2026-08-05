@@ -4,14 +4,23 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Scalr — case study · Denys Osadchyi</title>
-<meta content="Product design work on the Scalr Terraform platform: workspace dashboards, observability metrics, IAM and access policies, run detail — eight product tasks plus a design system built from scratch." name="description"/>
+<title>Scalr — чотири роки дизайн-системи й продуктових задач · Денис Осадчий</title>
+<meta content="Чотири роки на Terraform-платформі Scalr: дизайн-система з нуля і вісім продуктових задач — дашборди, спостережуваність, доступи, деталі запусків." name="description"/>
+<link href="https://denys-osadchyi.vercel.app/case-scalr-ua.html" rel="canonical"/>
+<link href="https://denys-osadchyi.vercel.app/case-scalr.html" hreflang="en" rel="alternate"/>
+<link href="https://denys-osadchyi.vercel.app/case-scalr-ua.html" hreflang="uk" rel="alternate"/>
+<link href="https://denys-osadchyi.vercel.app/case-scalr.html" hreflang="x-default" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="Scalr — чотири роки дизайн-системи й продуктових задач · Денис Осадчий" property="og:title"/>
+<meta content="Чотири роки на Terraform-платформі Scalr: дизайн-система з нуля і вісім продуктових задач — дашборди, спостережуваність, доступи, деталі запусків." property="og:description"/>
+<meta content="https://denys-osadchyi.vercel.app/case-scalr-ua.html" property="og:url"/>
+<meta content="https://denys-osadchyi.vercel.app/og.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..900&family=Charis+SIL:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<link href="fonts/fonts.css" rel="stylesheet"/>
+<link href="tokens.css" rel="stylesheet"/>
 <style>/*font*/
-body{font-family:'Onest',sans-serif}
+body{font-family:var(--font-sans)}
 </style>
 <style>
 img,video{max-width:100%;height:auto}
@@ -19,24 +28,45 @@ img,video{max-width:100%;height:auto}
 .outcomes .o{padding:32px 28px;background:#fff;border-radius:24px}
 .outcomes .n{margin:0 0 12px}
 .outcomes .t{margin:0}
-.outcomes .oi{display:block;width:28px;height:28px;margin:0 0 24px;color:#0000EE}
+.outcomes .oi{display:block;width:28px;height:28px;margin:0 0 24px;color:#145ae0;box-sizing:content-box;padding:12px;background:rgba(20,90,224,.05);border-radius:14px}
 </style>
 <style>/*pagebg*/
-body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
+</style>
+<style>/*media*/
+/* one photo or video in a block: 860 wide, centred on a grey band that
+   spans the page and keeps the same 48px inset as the text */
+.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin:0 -48px 28px;padding:24px 48px;background:linear-gradient(rgba(17,17,17,0),rgba(17,17,17,.05))}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
+.cbody .cimg>figcaption{max-width:860px;margin-inline:auto;text-align:center}
+.strip-fig:has(.strip>:only-child)>figcaption{max-width:860px;margin-inline:auto;text-align:center}
+@media(max-width:600px){.cbody .cimg,.cbody .shots,.cbody .strip-fig{margin-inline:-24px;padding-inline:24px}}
+/* the cover keeps the treatment it always had: noise band, full bleed, no 860 cap */
+main>.cimg{margin:0 0 28px}
+main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
+@media(max-width:600px){main>.cimg::after{margin:0 -24px}}
+</style>
+<style>/*single*/
+/* one photo or video on its own: 860 wide, centred */
+.strip:has(>:only-child){justify-content:center}
+.strip:has(>:only-child)>img,.strip:has(>:only-child)>video{height:auto;width:min(860px,100%);max-width:min(860px,100%)}
+.shots:has(>:only-child){justify-items:center}
+.shots:has(>:only-child) .shot{width:min(860px,100%)}
 </style>
 <style>/*sec*/
 /* Case section: heading, then lead left, expansion + fine print right. */
 .cbody .sec{margin:96px 0 0}
 .cbody .sec:first-child{margin-top:64px}
-.cbody .sec h2.marker{display:inline-block;margin:0 0 28px;max-width:34ch;padding:8px 22px;font-size:1.25rem;font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;border-radius:0 999px 999px 0}
+.cbody .sec h2.marker,.block h2.marker{display:inline-block;margin:0 0 28px;max-width:34ch;padding:8px 36px 8px 22px;font-size:var(--t-marker);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 50%,100% 100%,0 100%);position:sticky;top:16px;z-index:5}
 .cbody .sec-cols,.chero .sec-cols{margin-top:8px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 56px;align-items:start;margin:0 0 28px}
-.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:'Charis SIL',serif;font-style:italic;font-size:clamp(1.875rem,.63vw + 1.7rem,2.25rem);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
-.cbody .sec-lead i,.chero .sec-lead i{color:#0000EE;font-style:italic}
+.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:var(--font-lead);font-weight:400;font-size:var(--t-lead);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
+.cbody .sec-lead i,.chero .sec-lead i{color:var(--t-accent);font-style:normal}
 .cbody .sec-body>p,.chero .sec-body>p{margin:0 0 14px;max-width:35rem}
 .cbody .sec-body>p:last-child,.chero .sec-body>p:last-child{margin-bottom:0}
-.cbody .sec-body ul{margin:10px 0 0;padding-left:1.2em;max-width:35rem;font-size:.9375rem;line-height:1.6;color:#555}
+.cbody .sec-body ul{margin:10px 0 0;padding-left:1.2em;max-width:35rem;font-size:var(--t-caption);line-height:var(--lh-fine);color:var(--t-muted)}
 .cbody .sec-body li{margin:0 0 8px}
-.cbody .sec-fine,.chero .sec-fine{margin:0;max-width:35rem;font-size:.9375rem;line-height:1.6;letter-spacing:0;color:#555}
+.cbody .sec-body a{overflow-wrap:anywhere}
+.cbody .sec-fine,.chero .sec-fine{margin:0;max-width:35rem;font-size:var(--t-caption);line-height:var(--lh-fine);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 @media(max-width:900px){
 .cbody .sec-cols,.chero .sec-cols{grid-template-columns:1fr;gap:12px}
 .cbody .sec-lead,.chero .sec-lead{max-width:none}
@@ -46,17 +76,9 @@ body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg
 .wrap{padding-left:48px;padding-right:48px;box-sizing:border-box}
 </style>
 <style>/*typescale*/
-/* Onest type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
-:root{
---t-caption:.9375rem;
---t-body:1.125rem;
---t-lede:clamp(1.25rem,.21vw + 1.19rem,1.375rem);
---t-h3:clamp(1.5rem,.42vw + 1.38rem,1.75rem);
---t-h2:clamp(1.75rem,1.25vw + 1.38rem,2.5rem);
---t-h1:clamp(2.25rem,2.08vw + 1.63rem,3.5rem);
---t-muted:#555;
---measure:72ch}
-body{font-size:var(--t-body);line-height:1.6;letter-spacing:-.005em;font-kerning:normal}
+/* e-Ukraine type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
+:root{--measure:72ch}
+body{font-size:var(--t-body);line-height:var(--lh-body);letter-spacing:var(--ls-body);font-kerning:normal}
 .hero3,.ledger,.hcta,.langbar{font-size:1rem;line-height:normal;letter-spacing:normal}
 p{margin:0 0 1.1em;text-wrap:pretty}
 b,strong{font-weight:600}
@@ -68,38 +90,44 @@ h3{font-size:var(--t-h3);line-height:1.2;letter-spacing:-.015em}
 header .bar{padding-block:24px}
 header nav,.cnav,.cta{display:flex;flex-wrap:wrap;align-items:center;gap:24px}
 .cnav{gap:32px}
-.wordmark{font-size:1.0625rem;font-weight:500;letter-spacing:-.01em}
-header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:0}
-.langbar .langswitch{font-size:1rem}/* hero-area switcher stays as it was */
+.wordmark{font-size:var(--t-ui);font-weight:500;letter-spacing:-.01em}
+header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
+.langswitch{display:inline-block;line-height:0}
+.langswitch img{display:block;width:24px;height:auto}
+/* hero-area switcher stays as it was */
 .open,.wordmark{font-weight:500}
 /* case hero */
-.chero{padding-top:56px}
-.chero .meta{margin:0 0 20px;display:flex;flex-wrap:wrap;gap:6px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
-.chero .meta>span{padding:2px 10px;font-size:.8125rem;line-height:1.5;background:rgba(17,17,17,.05);border-radius:999px}
-.chero h1{margin:0 0 24px;max-width:none;font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
-.lede{margin:0 0 28px;max-width:none;font-size:clamp(1.5rem,1.55vw + .92rem,2.05rem);line-height:1.25;letter-spacing:-.02em;text-wrap:pretty}
-.facts{margin:0;display:flex;flex-wrap:wrap;gap:8px;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
+.chero{padding-top:28px}
+.chero .meta{margin:0 0 20px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.chero .meta>span{padding:2px 10px;font-size:var(--t-chip);line-height:1.5;background:rgba(17,17,17,.05);border-radius:999px}
+.chero h1{margin:0 auto 20px;max-width:30ch;text-align:center;font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
+.orn{display:flex;align-items:center;justify-content:center;gap:7px;margin:0 auto}
+.chero .orn{margin-bottom:32px;max-width:30ch}
+.orn-b{margin:96px 0 0}
+.orn::before,.orn::after{content:"";flex:1;height:1px;background:rgba(17,17,17,.18);margin-inline:6px}
+.orn span{width:6px;height:6px;background:rgba(17,17,17,.5);transform:rotate(45deg)}
+.lede{margin:0 0 28px;max-width:none;font-size:var(--t-lede-xl);line-height:1.25;letter-spacing:-.02em;text-wrap:pretty}
+.facts{margin:0;display:flex;flex-wrap:wrap;gap:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .facts>span{display:inline-flex;align-items:center;gap:.5em;padding:5px 14px;border:1px solid rgba(0,0,0,.12);border-radius:999px;line-height:1.4}
-.facts .fi{width:1em;height:1em;flex:0 0 auto}
+.facts .fi{width:auto;height:1.05em;max-width:2em;flex:0 0 auto}
 .outcomes .n{font-size:var(--t-h3);font-weight:600;line-height:1.1;letter-spacing:-.02em}
-.outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 /* case body */
 .cbody p,.cbody ul{max-width:none}
-.cbody{font-size:clamp(1.125rem,.55vw + .96rem,1.5rem);line-height:1.65}
+.cbody{font-size:var(--t-case);line-height:var(--lh-case)}
 .cbody h2.marker{margin:96px 0 24px;max-width:32ch}
 .cbody h2.marker:first-child{margin-top:64px}
 .cbody p{margin:0 0 20px}
 .cbody ul{margin:0 0 20px;padding-left:1.2em}
 .cbody li{margin:0 0 10px}
 .cres .r{font-weight:600}
-.cimg{margin:0 0 28px}
-figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
-.cnav{margin:96px 0 64px}
+figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.cnav{margin:0 0 64px}
 /* work cards */
-.pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .pv h3{margin:0 0 12px;font-size:var(--t-h3);font-weight:400;line-height:1.2;letter-spacing:-.015em}
 .pv .nums{margin:0 0 12px}
-.pv .nums .chip{font-style:normal;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
+.pv .nums .chip{font-style:normal;font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .pv p{max-width:44ch;margin:0 0 16px}
 /* section headings, experience, teaching */
 .block{padding-block:64px}
@@ -108,49 +136,46 @@ figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height
 .foot h2{margin:0 0 20px;max-width:20ch}
 .xp,.list{margin:0;padding:0;list-style:none}
 .xp li,.list li{margin:0 0 32px}
-.yrs{font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted);font-variant-numeric:tabular-nums}
+.yrs{font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted);font-variant-numeric:tabular-nums}
 .xrole,.list .t{margin:0 0 8px;font-size:1.5rem;font-weight:500;line-height:1.35;letter-spacing:-.01em}
 .xco,.tag{font-weight:400;color:var(--t-muted)}
-.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:0}
+.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
 .xnote{margin:0;max-width:46ch}
 .list .s{max-width:48ch}
 /* everything above the hairline reads as one field: header + hero + cover.
    Negative inline margin equals the wrap padding, so the tint reaches the
    viewport edge without 100vw and its scrollbar overflow. */
-header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
 .chero,main>.cimg{margin-inline:-48px;padding-inline:48px}
 @media(max-width:600px){.chero,main>.cimg{margin-inline:-24px;padding-inline:24px}}
 /* cover mockup: capped like the flat shots, closed by a full-bleed hairline.
    Negative margin equals the wrap padding, so the rule reaches the real viewport
    edge without 100vw (which would overflow by the scrollbar width). */
-main>main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:0 -48px}
 @media(max-width:600px){main>.cimg::after{margin:0 -24px}}
 /* native scrollbar hidden; paging is driven by the buttons below */
 .strip{scrollbar-width:none;-ms-overflow-style:none}
 .strip::-webkit-scrollbar{display:none}
 .stripnav{position:absolute;z-index:2;left:16px;right:16px;top:calc(clamp(220px,30vw,460px)/2);transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none}
 .stripnav[hidden]{display:none}
-.stripbtn{pointer-events:auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:1.25rem;line-height:1;color:#111;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:50%;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.12);transition:background .15s ease-out,color .15s ease-out,border-color .15s ease-out,opacity .15s ease-out}
-.stripbtn:hover:not(:disabled){background:#0000EE;border-color:#0000EE;color:#fff}
+.stripbtn{pointer-events:auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:1.25rem;line-height:1;color:#111;background:#fff;border:none;border-radius:50%;cursor:pointer;transition:background .15s ease-out,color .15s ease-out,opacity .15s ease-out}
+.stripbtn:hover:not(:disabled){background:#145ae0;color:#fff}
 .stripbtn:disabled{opacity:0;pointer-events:none}
-.stripbtn:focus-visible{outline:2px solid #0000EE;outline-offset:3px}
+.stripbtn:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.stripbtn{transition:none}}
 /* horizontal mockup strips: bleed past the right gutter so the row visibly
    continues off-screen instead of pretending it ended */
-.strip-fig{position:relative;margin:0 0 28px}
+.strip-fig{position:relative}
 .strip{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;margin-right:-48px;padding:0 48px 6px 0}
 .strip>img,.strip>video{flex:0 0 auto;height:clamp(220px,30vw,460px);width:auto;max-width:min(860px,86vw);box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:24px;scroll-snap-align:start}
-.strip:focus-visible{outline:2px solid #0000EE;outline-offset:4px}
+.strip:focus-visible{outline:2px solid #145ae0;outline-offset:4px}
 @media(max-width:600px){.strip{margin-right:-24px;padding-right:24px}}
 /* flat screen mockups: capped measure, retina source, hairline frame.
    Device mockups (the covers, outside .cbody) stay full-bleed. */
 .cbody /* one screen or one video in a block: 860 wide, centred, on a band that spans the page */
-.cbody .cimg{padding-block:24px}
-.cbody .cbody .cimg>img,.cimg>video,.cimg>.cmp-imgs{display:block;width:min(860px,100%);margin-inline:auto;box-sizing:border-box;border-radius:24px;border:1px solid rgba(0,0,0,.1);overflow:hidden}
-.cbody .cimg>figcaption{max-width:860px;margin-inline:auto}
-/* the one ornament: Charis SIL italic marks the words carrying the argument */
-.foot h2 em,.ia-role{font-family:'Charis SIL',serif;font-style:italic}
-.cnav{justify-content:space-between;padding-top:24px;border-top:1px solid #e2ddd6}
+/* the one ornament: Arial italic marks the words carrying the argument */
+.foot h2 em,.ia-role{font-family:var(--font-italic);font-style:normal}
+.foot h2 em{font-weight:700;font-size:1.1em}
+.cnav{justify-content:space-between;padding-top:24px}
 @media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
 </style>
 <style>/*hdr*/
@@ -158,10 +183,30 @@ header{padding:16px 24px 0}
 header .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding:16px 32px;background:rgba(17,17,17,.05);border-radius:999px}
 @media(max-width:600px){header{padding:12px 12px 0}header .bar{padding:14px 20px;border-radius:28px}}
 </style>
+<style>/*lang*/
+/* language switch is an icon button; the language name stays for screen readers */
+.langswitch .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+<style>/*navicon*/
+/* navigation arrows are drawn, not typed, so they align with the text baseline */
+.nav-i{width:1em;height:1em;flex:0 0 auto}
+header nav a,.cnav a{display:inline-flex;align-items:center;gap:6px}
+</style>
 <style>/*linkstyle*/
-a{color:#0000EE;text-decoration:none}
-a:visited{color:#0000EE}
-a:hover{text-decoration:underline}
+a{color:var(--t-accent);text-decoration:none}
+a:visited{color:var(--t-accent)}
+a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(20,90,224,.5);text-underline-offset:3px}
+</style>
+<style>/*mobile-type*/
+@media(max-width:600px){
+.chero h1{font-size:1.75rem}
+.cbody .sec-lead,.chero .sec-lead{font-size:1.375rem}
+.cbody{font-size:.9375rem}
+.outcomes .n{font-size:1.25rem}
+.outcomes .o{border-radius:16px}
+.cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:16px}
+header .bar{border-radius:20px}
+}
 </style>
 </head>
 <body>
@@ -169,8 +214,8 @@ a:hover{text-decoration:underline}
 <div class="wrap bar">
 <a class="wordmark" href="index-ua.html">Denys Osadchyi</a>
 <nav>
-<a href="index-ua.html#work"><span data-l="uk" lang="uk">← Всі кейси</span></a>
-<a class="langswitch" href="case-scalr.html">English</a>
+<a href="index-ua.html#work"><span data-l="uk" lang="uk"><svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M14.5 6.5 9 12l5.5 5.5"/></svg>Всі кейси</span></a>
+<a class="langswitch" href="case-scalr.html" hreflang="en" aria-label="English" title="English"><img alt="English" src="img/flag-us.svg" width="24" height="18"/></a>
 </nav>
 </div>
 </header>
@@ -178,18 +223,19 @@ a:hover{text-decoration:underline}
 <section class="chero">
 <p class="meta"><span>2022–2026</span> <span><b>Senior Product Designer</b></span> <span>DevOps / Infrastructure-as-Code</span></p>
 <h1><span data-l="uk" lang="uk">Scalr: дизайн система, продуктові задачі&nbsp;</span></h1>
+<div class="orn" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Будував і підтримував&nbsp;<i>дизайн-систему з нуля, вів продуктові задачі&nbsp;</i>чотири роки.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Будував і підтримував&nbsp;<i>дизайн-систему з нуля, вів продуктові задачі&nbsp;</i>чотири роки.</span></p>
 <div class="sec-body">
-<p><span data-l="uk" lang="uk">Scalr це enterprise-платформа автоматизації Terraform, якою DevOps-команди керують інфраструктурою.</span></p>
+<p><span data-l="uk" lang="uk">Scalr це enterprise-платформа для Terraform і OpenTofu: через неї DevOps-команди запускають зміни інфраструктури, перевіряють їх політиками OPA і бачать вартість ще до застосування.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Щодня працював з інженерами та PM. Нижче вісім продуктових задач, кожна від проблеми до рішення: дашборди, спостережуваність, доступи й деталі запусків.</span></p>
 </div>
 </div>
-<p class="facts"><span>Figma</span> <span>Ant Design</span> <span>Mixpanel</span></p>
+<p class="facts"><span><svg class="fi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="0.67em" height="1em" viewBox="0 0 256 384"><path fill="#0acf83" d="M64 384c35.328 0 64-28.672 64-64v-64H64c-35.328 0-64 28.672-64 64s28.672 64 64 64"/><path fill="#a259ff" d="M0 192c0-35.328 28.672-64 64-64h64v128H64c-35.328 0-64-28.672-64-64"/><path fill="#f24e1e" d="M0 64C0 28.672 28.672 0 64 0h64v128H64C28.672 128 0 99.328 0 64"/><path fill="#ff7262" d="M128 0h64c35.328 0 64 28.672 64 64s-28.672 64-64 64h-64z"/><path fill="#1abcfe" d="M256 192c0 35.328-28.672 64-64 64s-64-28.672-64-64s28.672-64 64-64s64 28.672 64 64"/></svg>Figma</span> <span><svg class="fi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><defs><linearGradient id="adSVGLtho8dDK" x1="62.102%" x2="108.197%" y1="0%" y2="37.864%"><stop offset="0%" stop-color="#4285eb"/><stop offset="100%" stop-color="#2ec7ff"/></linearGradient><linearGradient id="adSVGN6GESbiL" x1="69.644%" x2="54.043%" y1="0%" y2="108.457%"><stop offset="0%" stop-color="#29cdff"/><stop offset="37.86%" stop-color="#148eff"/><stop offset="100%" stop-color="#0a60ff"/></linearGradient><linearGradient id="adSVGAM3vtM4q" x1="69.691%" x2="16.723%" y1="-12.974%" y2="117.391%"><stop offset="0%" stop-color="#fa816e"/><stop offset="41.473%" stop-color="#f74a5c"/><stop offset="100%" stop-color="#f51d2c"/></linearGradient><linearGradient id="adSVGcuaZ2bVd" x1="68.128%" x2="30.44%" y1="-35.691%" y2="114.943%"><stop offset="0%" stop-color="#fa8e7d"/><stop offset="51.264%" stop-color="#f74a5c"/><stop offset="100%" stop-color="#f51d2c"/></linearGradient></defs><g fill="none"><path fill="url(#adSVGLtho8dDK)" d="M116.85 4.545L4.53 116.775a15.396 15.396 0 0 0 0 21.812l112.32 112.229c6.039 6.033 15.792 6.033 21.83 0l47.095-47.056c5.408-5.404 5.408-14.165 0-19.568s-14.176-5.404-19.584 0l-35.702 35.672c-1.503 1.502-3.784 1.502-5.287 0l-89.696-89.622c-1.503-1.502-1.503-3.781 0-5.283l89.696-89.623c1.503-1.501 3.784-1.501 5.287 0l35.702 35.673c5.408 5.404 14.176 5.404 19.584 0s5.408-14.164 0-19.568l-47.09-47.05c-6.063-5.904-15.82-5.856-21.835.154"/><path fill="url(#adSVGN6GESbiL)" d="M116.85 4.545L4.53 116.775a15.396 15.396 0 0 0 0 21.812l112.32 112.229c6.039 6.033 15.792 6.033 21.83 0l47.095-47.056c5.408-5.404 5.408-14.165 0-19.568s-14.176-5.404-19.584 0l-35.702 35.672c-1.503 1.502-3.784 1.502-5.287 0l-89.696-89.622c-1.503-1.502-1.503-3.781 0-5.283l89.696-89.623c3.742-3.226 9.849-9.76 18.815-11.29q9.996-1.703 21.857 7.5L138.686 4.39c-6.064-5.903-15.82-5.855-21.836.155"/><path fill="url(#adSVGAM3vtM4q)" d="M196.647 173.754c5.408 5.404 14.176 5.404 19.584 0l34.739-34.71a15.396 15.396 0 0 0 0-21.812l-35.041-34.89c-5.421-5.397-14.192-5.389-19.603.018c-5.408 5.404-5.408 14.164 0 19.568l23.667 23.648c1.503 1.502 1.503 3.781 0 5.283l-23.346 23.327c-5.408 5.404-5.408 14.165 0 19.568"/><ellipse cx="128.327" cy="128.242" fill="url(#adSVGcuaZ2bVd)" rx="30.327" ry="30.302"/></g></svg>Ant Design</span> <span><svg class="fi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M6.967 9.996h3.053c-.763-.477-1.048-1.145-1.431-2.384L7.443 3.366C6.919 1.458 6.49.551 4.39.551H.004v1.145h.621c1.286 0 1.431.477 1.814 1.908L3.44 7.326c.524 1.814 1.337 2.67 3.53 2.67zm7.06 0h3.053c2.194 0 2.956-.86 3.484-2.67l1.001-3.722c.382-1.431.57-1.908 1.814-1.908H24V.551h-4.34c-2.146 0-2.576.86-3.053 2.815l-1.145 4.246c-.384 1.286-.673 1.907-1.435 2.384m-4.007 4.008h4.007V9.996H10.02zM0 23.449h4.39c2.1 0 2.529-.907 3.053-2.815l1.146-4.246c.383-1.239.668-1.907 1.431-2.384H6.967c-2.194 0-3.007.86-3.531 2.67l-1.001 3.722c-.383 1.431-.524 1.907-1.814 1.907H0zm19.65 0h4.343v-1.146h-.622c-1.239 0-1.431-.476-1.814-1.907l-1.001-3.722c-.524-1.814-1.286-2.67-3.483-2.67h-3.046c.762.477 1.041 1.098 1.424 2.384l1.145 4.246c.477 1.955.907 2.815 3.054 2.815"/></svg>Mixpanel</span></p>
 <div class="outcomes">
-<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><rect width="9" height="9" x="2" y="2" fill="currentColor" opacity=".4" rx="2.5"/><rect width="9" height="9" x="13" y="2" fill="currentColor" opacity=".4" rx="2.5"/><rect width="9" height="9" x="2" y="13" fill="currentColor" opacity=".4" rx="2.5"/><rect width="9" height="9" x="13" y="13" fill="currentColor" rx="2.5"/></svg><div class="n">1,499 → 72</div><p class="t"><span data-l="uk" lang="uk">Стиснув токени Ant Design до 72 семантичних. Світла й темна теми з однієї основи, без дублювання.</span></p></div>
+<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><rect width="9" height="9" x="2" y="2" fill="currentColor" opacity=".4" rx="2.5"/><rect width="9" height="9" x="13" y="2" fill="currentColor" opacity=".4" rx="2.5"/><rect width="9" height="9" x="2" y="13" fill="currentColor" opacity=".4" rx="2.5"/><rect width="9" height="9" x="13" y="13" fill="currentColor" rx="2.5"/></svg><div class="n">1,499 → 72</div><p class="t"><span data-l="uk" lang="uk">Стиснув токени Ant Design до 72 семантичних. Світла й темна теми ростуть з однієї основи.</span></p></div>
 <div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><rect width="4" height="8" x="3" y="13" fill="currentColor" opacity=".4" rx="1.5"/><rect width="4" height="13" x="10" y="8" fill="currentColor" opacity=".4" rx="1.5"/><rect width="4" height="18" x="17" y="3" fill="currentColor" rx="1.5"/></svg><div class="n"><span data-l="uk" lang="uk">Метрики з нуля</span></div><p class="t"><span data-l="uk" lang="uk">Спроєктував спостережуваність, якої в продукті не було. Команди перестали гасити інциденти наосліп.</span></p></div>
-<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 23a9 9 0 1 0 0-18a9 9 0 0 0 0 18" opacity=".5"/><path fill="currentColor" d="M12 9.25a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75"/><path fill="currentColor" fill-rule="evenodd" d="M9.25 2.75A.75.75 0 0 1 10 2h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg><div class="n"><span data-l="uk" lang="uk">2 роки, end-to-end</span></div><p class="t"><span data-l="uk" lang="uk">Дизайн-система плюс продуктовий дизайн у команді з інженерами та PM.</span></p></div>
+<div class="o"><svg class="oi" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 23a9 9 0 1 0 0-18a9 9 0 0 0 0 18" opacity=".5"/><path fill="currentColor" d="M12 9.25a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75"/><path fill="currentColor" fill-rule="evenodd" d="M9.25 2.75A.75.75 0 0 1 10 2h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg><div class="n"><span data-l="uk" lang="uk">4 роки, end-to-end</span></div><p class="t"><span data-l="uk" lang="uk">Дизайн-система плюс продуктовий дизайн у команді з інженерами та PM.</span></p></div>
 </div>
 </section>
 <figure class="cimg"><img alt="Scalr product screens" height="2160" src="img/sc-cover.webp" width="3840"/></figure>
@@ -197,10 +243,10 @@ a:hover{text-decoration:underline}
 <section class="sec">
 <h2 class="marker"><span data-l="uk" lang="uk">Дашборд v2: пайплайн у центрі</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Користувачі перестали лізти в документацію, щоб зрозуміти життєвий цикл run: тепер вони <i>редагують його прямо на екрані</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Користувачі перестали лізти в документацію, щоб зрозуміти життєвий цикл run: тепер вони <i>редагують його прямо на екрані</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Переробив верх дашборда так, щоб показати весь пайплайн візуально: Init, Plan, Apply і State Storage, з кожним хуком на своєму етапі.</span></p>
-<p class="sec-fine"><span data-l="uk" lang="uk">Перша ітерація закрила питання «який стан», але пайплайн лишався чорною скринькою: не було видно, які хуки спрацьовують на якому етапі й де це кастомізувати. Діаграму зробив інтерактивною, тому хуки, інтеграції, Infracost, нотифікації й апрували додаються прямо з неї, а не крізь налаштування. Робочі частини v1, тобто Latest run, Outputs, Runs activity і Resources, лишились унизу без регресій.</span></p>
+<p class="sec-fine"><span data-l="uk" lang="uk">Перша ітерація закрила питання «який стан», але пайплайн лишався чорною скринькою: не було видно, які хуки спрацьовують на якому етапі й де це кастомізувати. Діаграму зробив інтерактивною: хуки на pre-init, pre-plan, post-plan, pre-apply і post-apply, апрували, OPA-політики, Infracost-оцінка вартості й нотифікації додаються прямо з неї, а не крізь налаштування. Робочі частини v1, тобто Latest run, Outputs, Runs activity і Resources, лишились унизу і працюють як раніше.</span></p>
 </div>
 </div>
 </section>
@@ -212,10 +258,10 @@ a:hover{text-decoration:underline}
 </div>
 <h2 class="marker"><span data-l="uk" lang="uk">Метрики v2: bubble chart RUM × швидкість</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Аналіз рівня «експортуй усе в таблицю і зроби зведену» став <i>двосекундним поглядом</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Аналіз рівня «експортуй усе в таблицю і зроби зведену» став <i>двосекундним поглядом</i>.</span></p>
 <div class="sec-body">
-<p><span data-l="uk" lang="uk">Зв'язав обсяг запусків зі швидкістю виконання у bubble chart: по осях RUM і швидкість, розмір бульбашки це кількість запусків, три виміри в одному вью.</span></p>
-<p class="sec-fine"><span data-l="uk" lang="uk">Перші метрики показували тренди і найповільніші простори, але не відповідали, які простори потребують уваги і чому: 500 запусків по 2 хвилини це норма, 500 по 10 хвилин це діра в бюджеті. Розклав семантичні квадранти, що розповідають історію: Busy Bees, Critical Monoliths, Sweet Spot і Ghost Sandboxes. Кожна бульбашка пронумерована й клікабельна, тому платформний лід показує на квадрант і називає три проблемні простори, спираючись на дані, а не на здогад.</span></p>
+<p><span data-l="uk" lang="uk">Зв'язав три виміри в одному bubble chart: кількість запусків, RUM (resources under management, скільки ресурсів реально веде workspace) і швидкість виконання, яку кодує колір бульбашки.</span></p>
+<p class="sec-fine"><span data-l="uk" lang="uk">Перші метрики показували тренди і найповільніші простори, але не відповідали, які простори потребують уваги і чому: 500 запусків по 2 хвилини це норма, 500 по 10 хвилин це діра в бюджеті. Розклав чарт на семантичні зони: Busy Bees, Critical Monoliths, Frozen Giants і Ghost Sandboxes, зі Sweet Spot по центру. Кожна бульбашка пронумерована й клікабельна, тому платформний лід показує на зону і одразу називає три проблемні простори.</span></p>
 </div>
 </div>
 </section>
@@ -227,7 +273,7 @@ a:hover{text-decoration:underline}
 </div>
 <h2 class="marker"><span data-l="uk" lang="uk">Дашборд робочого простору</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Дашборд став <i>точкою рішення на одному екрані</i>: видно стан, зрозуміло що сталося, і можна діяти, не йдучи зі сторінки.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Дашборд став <i>точкою рішення на одному екрані</i>: видно стан, зрозуміло що сталося, і можна діяти, не йдучи зі сторінки.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Опитав досвідчених користувачів, які дані важливі й коли, і зібрав екран у контекстні блоки, де кожен відповідає на одне питання.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Старий дашборд був плоским списком даних без контексту, тож щоб зрозуміти стан простору, доводилось стрибати між кількома вкладками. Блоки це Summary, Latest run, Outputs, Runs activity і Resources. Додав дії прямо з дашборда, тобто Queue new run і Show all, графік активності запусків, і виніс наперед результати policy-перевірок та оцінку вартості, які раніше ховались на два-три кліки вглиб.</span></p>
@@ -242,10 +288,10 @@ a:hover{text-decoration:underline}
 </div>
 <h2 class="marker"><span data-l="uk" lang="uk">IAM: керування доступом</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Питання «хто має доступ і коли заходив востаннє» скоротилось <i>із ~15 хвилин клікання до 5-секундного погляду</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Питання «хто має доступ і коли заходив востаннє» скоротилось <i>із ~15 хвилин клікання до 5-секундного погляду</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Розклав IAM на вкладки і додав колонку Last activity з кольоровими прапорцями для акаунтів, неактивних 5+ місяців.</span></p>
-<p class="sec-fine"><span data-l="uk" lang="uk">Стара сторінка була простим списком імен і пошти, тож адмін не міг оцінити структуру команди чи знайти неактивні акаунти, не клікаючи в кожного окремо. Вкладки це Users, Service Accounts, Workload Identity, Teams, Roles і Access Policies. Додав колонку Teams прямо в списку, дію Login as для дебагу прав і розумний пошук, що поєднує пошту, ім'я і статус в одному полі.</span></p>
+<p class="sec-fine"><span data-l="uk" lang="uk">Стара сторінка була простим списком імен і пошти, тож адмін не міг оцінити структуру команди чи знайти неактивні акаунти, не клікаючи в кожного окремо. Вкладки це Users, Service accounts, Workload identity providers, Teams, Roles і Access policies: від живих людей до CI/CD-акаунтів і безключової автентифікації. Додав колонку Teams прямо в списку, дію Login as для дебагу прав і пошук, що поєднує пошту, ім'я і статус в одному полі.</span></p>
 </div>
 </div>
 </section>
@@ -257,9 +303,9 @@ a:hover{text-decoration:underline}
 </div>
 <h2 class="marker"><span data-l="uk" lang="uk">Спостережуваність: метрики з нуля</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Платформні команди отримали <i>проактивний моніторинг</i> там, де його не було зовсім.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Платформні команди отримали <i>проактивний моніторинг</i> там, де його не було зовсім.</span></p>
 <div class="sec-body">
-<p><span data-l="uk" lang="uk">Спроєктував сторінку метрик з нуля навколо двох моделей мислення: «що відбувається зараз» і «який тренд».</span></p>
+<p><span data-l="uk" lang="uk">Спроєктував сторінку метрик з нуля навколо двох питань: «що відбувається зараз» і «який тренд».</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Централізованого моніторингу продуктивності в Scalr не було: команди не бачили ні черг, ні тривалості запусків, ні деградації просторів, і знаходили проблеми вже після поломки. «Зараз» це статус і латентність черги, «тренд» це Daily runs, Plans і Applies. У кожен графік вбудував порівняння з попереднім періодом і дельту у відсотках, а вью Slowest workspaces ранжує простори за P95, тому розмите «щось гальмує» стає конкретним списком, що лагодити першим.</span></p>
 </div>
 </div>
@@ -270,27 +316,27 @@ a:hover{text-decoration:underline}
 <img alt="Scalr observability metrics dashboard" loading="lazy" src="img/scalr-metrics.png"/>
 </div>
 </div>
-<h2 class="marker"><span data-l="uk" lang="uk">Доступ до середовищ: масове призначення</span></h2>
+<h2 class="marker"><span data-l="uk" lang="uk">Доступ до VCS-з'єднання: масове призначення</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Те, що займало хвилини клікання по 160+ середовищах, <i>тепер робиться за секунди</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Те, що займало хвилини клікання по 160+ середовищах, <i>тепер робиться за секунди</i>.</span></p>
 <div class="sec-body">
-<p><span data-l="uk" lang="uk">Замінив модалки на двопанельний picker: доступні середовища ліворуч, призначені праворуч, стрілки між ними.</span></p>
-<p class="sec-fine"><span data-l="uk" lang="uk">Видача доступу йшла через попапи і багатокрокові дії, а масове призначення було майже неможливим без клікання по кожному середовищу. Патерн знайомий із файлових менеджерів. Додав пошук і пагінацію для масштабу і перемикач Allow all current and future, тобто один клік замість ста шістдесяти.</span></p>
+<p><span data-l="uk" lang="uk">Замінив модалки на двопанельний picker: середовища без доступу ліворуч, з доступом праворуч, стрілки між ними.</span></p>
+<p class="sec-fine"><span data-l="uk" lang="uk">VCS-з'єднання (GitHub, GitLab) це канал, через який Scalr тягне Terraform-код і вебхуки, і адмін вирішує, які середовища можуть ним користуватись. Раніше видача йшла через попапи і багатокрокові дії, а масове призначення було майже неможливим без клікання по кожному середовищу. Патерн знайомий із файлових менеджерів. Додав пошук і пагінацію для масштабу і перемикач Allow all current and future environments, тобто один клік замість ста шістдесяти.</span></p>
 </div>
 </div>
 </section>
 <section class="sec">
 <div class="strip-fig">
-<div class="strip" role="region" tabindex="0" aria-label="Екрани розділу: Доступ до середовищ: масове призначення">
+<div class="strip" role="region" tabindex="0" aria-label="Екрани розділу: Доступ до VCS-з'єднання: масове призначення">
 <img alt="Scalr environments dual-pane access picker" loading="lazy" src="img/scalr-environments.png"/>
 </div>
 </div>
 <h2 class="marker"><span data-l="uk" lang="uk">Деталі запуску: читати як pull request</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Інженери читають run так само, як рев'ють pull request: знайомий патерн, <i>нульова крива навчання</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Інженери читають run так само, як рев'ють pull request: знайомий патерн, <i>вчитися нічого не треба</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Згорнув пайплайн у компактний вертикальний таймлайн ліворуч, а праворуч віддав головне: diff коду і зміни ресурсів.</span></p>
-<p class="sec-fine"><span data-l="uk" lang="uk">Стара сторінка деталей була роздутою: етапи пайплайна, ресурси і зміни коду лежали без ієрархії, тож щоб зрозуміти, що змінилось, доводилось скролити й клікати. Таймлайн це Source, Plan, Cost, Policy і Apply. Зробив GitHub-подібний diff-в'ювер із червоно-зеленим підсвічуванням, акордеон по кожному ресурсу і пошук за адресою ресурсу.</span></p>
+<p class="sec-fine"><span data-l="uk" lang="uk">Стара сторінка деталей була роздутою: етапи пайплайна, ресурси і зміни коду лежали без ієрархії, тож щоб зрозуміти, що змінилось, доводилось скролити й клікати. Таймлайн це Source, Plan, Cost estimate, Policy check, Apply approval і Apply. Зробив GitHub-подібний diff-в'ювер із червоно-зеленим підсвічуванням, акордеон по кожному ресурсу і пошук за адресою ресурсу.</span></p>
 </div>
 </div>
 </section>
@@ -302,10 +348,10 @@ a:hover{text-decoration:underline}
 </div>
 <h2 class="marker"><span data-l="uk" lang="uk">Політики доступу: складне стає читабельним</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Десятихвилинний аудит на користувача <i>став клік-і-погляд</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Десятихвилинний аудит на користувача <i>стиснувся до одного кліка</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Зробив split-panel: список ліворуч, повна розкладка доступу праворуч, з ієрархією Account, Environment і Workspace.</span></p>
-<p class="sec-fine"><span data-l="uk" lang="uk">Система політик складна за природою: користувачі й команди мають кілька скоупів, кожен зі своїми ролями, тож питання «що саме цей користувач може і де» вимагало клікати крізь кілька екранів і складати картину в голові. Ієрархічний вигляд показує рівень доступу і кількість прав, дозволи розкриваються, фільтр за роллю в пошуку відповідає на зворотне питання «хто має цю роль», а користувачі й команди лежать в одному списку з різними іконками.</span></p>
+<p class="sec-fine"><span data-l="uk" lang="uk">Система політик складна за природою: користувачі й команди мають кілька скоупів, кожен зі своїми ролями, тож питання «що саме цей користувач може і де» вимагало клікати крізь кілька екранів і складати картину в голові. Ієрархічний вигляд показує рівень доступу (Full access, Read-only, Limited) і кількість прав, дозволи розкриваються, фільтр за роллю в пошуку відповідає на зворотне питання «хто має цю роль», а користувачі й команди лежать в одному списку з різними іконками.</span></p>
 </div>
 </div>
 </section>
@@ -317,17 +363,18 @@ a:hover{text-decoration:underline}
 </div>
 <h2 class="marker"><span data-l="uk" lang="uk">Що я виніс</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Terraform-сценарії <i>не спроєктуєш із самих UX-принципів</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Terraform-сценарії <i>не спроєктуєш із самих UX-принципів</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Я читав документацію, дивився, як працюють інженери, і питав на інженерних стендапах.</span></p>
-<p class="sec-fine"><span data-l="uk" lang="uk">Володіння доменом це те, чим заробляєш довіру технічних користувачів, і те, що робить дизайн робочим, а не гарним.</span></p>
+<p class="sec-fine"><span data-l="uk" lang="uk">Довіру технічних користувачів заробляєш знанням домену. Без нього дизайн лише виглядає добре.</span></p>
 </div>
 </div>
 </section>
 </div>
+<div class="orn orn-b" aria-hidden="true"><span></span><span></span><span></span></div>
 <nav class="cnav">
-<a href="index-ua.html#work"><span data-l="uk" lang="uk">← Всі кейси</span></a>
-<a href="case-layoutlab-ua.html"><span data-l="uk" lang="uk">Далі: LayoutLab →</span></a>
+<a href="index-ua.html#work"><span data-l="uk" lang="uk"><svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M14.5 6.5 9 12l5.5 5.5"/></svg>Всі кейси</span></a>
+<a href="case-layoutlab-ua.html"><span data-l="uk" lang="uk">Далі: LayoutLab<svg class="nav-i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M9.5 6.5 15 12l-5.5 5.5"/></svg></span></a>
 </nav>
 </main>
 <footer class="dark foot">

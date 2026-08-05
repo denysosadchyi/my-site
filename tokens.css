@@ -1,0 +1,37 @@
+/* Типографіка — єдине джерело правди для всіх сторінок.
+   Правиш значення тут — міняється скрізь (EN і UA).
+   Специмен з назвами: /typography.html */
+:root{
+  --font-sans:'e-Ukraine',sans-serif;
+  --font-italic:'Nyght Serif',serif; /* серифні акценти по сайту (прямий, без курсиву) */
+  --font-lead:var(--font-sans); /* Lead — шрифт ліда (звичайний, як тексти) */
+
+  --t-h1:clamp(2.25rem,2.08vw + 1.63rem,3.5rem);      /* H1 — заголовок кейса */
+  --t-h2:clamp(1.75rem,1.25vw + 1.38rem,2.5rem);      /* H2 — заголовок футера */
+  --t-h3:clamp(1.5rem,.42vw + 1.38rem,1.75rem);       /* H3 — цифри outcomes, назви карток */
+  --t-marker:1.25rem;                                  /* Marker — чорний прапорець секції */
+  --t-lead:clamp(1.875rem,.63vw + 1.7rem,2.25rem);    /* Lead — великий лід */
+  --t-lede-xl:clamp(1.5rem,1.55vw + .92rem,2.05rem);  /* Lede XL — лід футера на кейсах */
+  --t-lede:clamp(1.125rem,.21vw + 1.0625rem,1.25rem); /* Lede — лід футера на головній */
+  --t-case:clamp(1rem,.55vw + .835rem,1.375rem);      /* Case body — основний текст кейса */
+  --t-body:1rem;                                       /* Body — базовий текст */
+  --t-ui:1.0625rem;                                    /* UI — вордмарк, роки, компанії */
+  --t-caption:.9375rem;                                /* Caption — підписи, fine print, нав */
+  --t-chip:.8125rem;                                   /* Chip — чіпси мета-рядка */
+
+  --lh-body:1.5;                                       /* Міжряддя — базовий текст */
+  --lh-case:1.55;                                      /* Міжряддя — основний текст кейса */
+  --lh-fine:1.5;                                       /* Міжряддя — fine print і списки */
+
+  --ls-body:-.01em;                                    /* Трекінг — базовий текст */
+  --ls-caption:-.005em;                                /* Трекінг — підписи, fine print, нав, чіпси */
+
+  --t-muted:#555;
+  --t-accent:#145ae0;
+}
+
+/* «думає» — індикатор перед лідами */
+.think::before{content:"✻";display:inline-block;width:1.2em;text-align:center;line-height:1;color:var(--t-accent);font-style:normal;animation:think-glyph 2s steps(1,end) infinite,think-pulse 2s ease-in-out infinite}
+@keyframes think-glyph{0%{content:"·"}20%{content:"✢"}40%{content:"✳"}60%{content:"✻"}80%{content:"✽"}}
+@keyframes think-pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.sec-lead:has(.think),.x-lead:has(.think){padding-left:1.2em;text-indent:-1.2em}

@@ -4,14 +4,23 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>AETHRA Wire — case study · Denys Osadchyi</title>
-<meta content="A two-role workforce-management platform designed from scratch out of requirement documents: information architecture, Tailwind-ready design system, and every screen." name="description"/>
+<title>AETHRA Wire — HR-платформа, спроєктована з нуля · Денис Осадчий</title>
+<meta content="Двохрольова платформа управління персоналом, спроєктована з нуля з набору вимог: інформаційна архітектура, дизайн-система і всі екрани для обох ролей." name="description"/>
+<link href="https://denys-osadchyi.vercel.app/case-aethra-ua.html" rel="canonical"/>
+<link href="https://denys-osadchyi.vercel.app/case-aethra.html" hreflang="en" rel="alternate"/>
+<link href="https://denys-osadchyi.vercel.app/case-aethra-ua.html" hreflang="uk" rel="alternate"/>
+<link href="https://denys-osadchyi.vercel.app/case-aethra.html" hreflang="x-default" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="AETHRA Wire — HR-платформа, спроєктована з нуля · Денис Осадчий" property="og:title"/>
+<meta content="Двохрольова платформа управління персоналом, спроєктована з нуля з набору вимог: інформаційна архітектура, дизайн-система і всі екрани для обох ролей." property="og:description"/>
+<meta content="https://denys-osadchyi.vercel.app/case-aethra-ua.html" property="og:url"/>
+<meta content="https://denys-osadchyi.vercel.app/og.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..900&family=Charis+SIL:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<link href="fonts/fonts.css" rel="stylesheet"/>
+<link href="tokens.css" rel="stylesheet"/>
 <style>/*font*/
-body{font-family:'Onest',sans-serif}
+body{font-family:var(--font-sans)}
 </style>
 <style>/*compare*/
 .cmp{position:relative;display:block;margin:0 0 28px;--cmp:50%}
@@ -34,11 +43,11 @@ body{font-family:'Onest',sans-serif}
 .shot{margin:0}
 .shot img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border:1px solid #e2ddd6;border-radius:12px;background:#fff}
 .shots-flow .shot img{aspect-ratio:3/4}
-.shot figcaption{margin:8px 0 0;max-width:none;font-size:.9375rem;line-height:1.4;letter-spacing:0;color:#555}
+.shot figcaption{margin:8px 0 0;max-width:none;font-size:var(--t-caption);line-height:1.4;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .cimg.wide img{border:1px solid #e2ddd6;border-radius:12px}
 </style>
 <style>/*pagebg*/
-body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+body{background-color:#fbfaf8;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
 </style>
 <style>/*media*/
 /* one photo or video in a block: 860 wide, centred on a grey band that
@@ -64,15 +73,16 @@ main>.cimg::after{content:"";display:block;height:1px;background:#d8d2ca;margin:
 /* Case section: heading, then lead left, expansion + fine print right. */
 .cbody .sec{margin:96px 0 0}
 .cbody .sec:first-child{margin-top:64px}
-.cbody .sec h2.marker{display:inline-block;margin:0 0 28px;max-width:34ch;padding:8px 22px;font-size:1.25rem;font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;border-radius:0 999px 999px 0}
+.cbody .sec h2.marker,.block h2.marker{display:inline-block;margin:0 0 28px;max-width:34ch;padding:8px 36px 8px 22px;position:sticky;top:16px;z-index:5;font-size:var(--t-marker);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 50%,100% 100%,0 100%)}
 .cbody .sec-cols,.chero .sec-cols{margin-top:8px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 56px;align-items:start;margin:0 0 28px}
-.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:'Charis SIL',serif;font-style:italic;font-size:clamp(1.875rem,.63vw + 1.7rem,2.25rem);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
-.cbody .sec-lead i,.chero .sec-lead i{color:#145ae0;font-style:italic}
+.cbody .sec-lead,.chero .sec-lead{margin:0;font-family:var(--font-lead);font-weight:400;font-size:var(--t-lead);line-height:1.22;letter-spacing:-.01em;text-wrap:wrap}
+.cbody .sec-lead i,.chero .sec-lead i{color:var(--t-accent);font-style:normal}
 .cbody .sec-body>p,.chero .sec-body>p{margin:0 0 14px;max-width:35rem}
 .cbody .sec-body>p:last-child,.chero .sec-body>p:last-child{margin-bottom:0}
-.cbody .sec-body ul{margin:10px 0 0;padding-left:1.2em;max-width:35rem;font-size:.9375rem;line-height:1.6;color:#555}
+.cbody .sec-body ul{margin:10px 0 0;padding-left:1.2em;max-width:35rem;font-size:var(--t-caption);line-height:var(--lh-fine);color:var(--t-muted)}
 .cbody .sec-body li{margin:0 0 8px}
-.cbody .sec-fine,.chero .sec-fine{margin:0;max-width:35rem;font-size:.9375rem;line-height:1.6;letter-spacing:0;color:#555}
+.cbody .sec-body a{overflow-wrap:anywhere}
+.cbody .sec-fine,.chero .sec-fine{margin:0;max-width:35rem;font-size:var(--t-caption);line-height:var(--lh-fine);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 @media(max-width:900px){
 .cbody .sec-cols,.chero .sec-cols{grid-template-columns:1fr;gap:12px}
 .cbody .sec-lead,.chero .sec-lead{max-width:none}
@@ -88,17 +98,9 @@ img,video{max-width:100%;height:auto}
 .wrap{padding-left:48px;padding-right:48px;box-sizing:border-box}
 </style>
 <style>/*typescale*/
-/* Onest type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
-:root{
---t-caption:.9375rem;
---t-body:1.125rem;
---t-lede:clamp(1.25rem,.21vw + 1.19rem,1.375rem);
---t-h3:clamp(1.5rem,.42vw + 1.38rem,1.75rem);
---t-h2:clamp(1.75rem,1.25vw + 1.38rem,2.5rem);
---t-h1:clamp(2.25rem,2.08vw + 1.63rem,3.5rem);
---t-muted:#555;
---measure:72ch}
-body{font-size:var(--t-body);line-height:1.6;letter-spacing:-.005em;font-kerning:normal}
+/* e-Ukraine type scale. 480->1440 fluid. Hero (.hero3/.ledger/.hcta) deliberately excluded. */
+:root{--measure:72ch}
+body{font-size:var(--t-body);line-height:var(--lh-body);letter-spacing:var(--ls-body);font-kerning:normal}
 .hero3,.ledger,.hcta,.langbar{font-size:1rem;line-height:normal;letter-spacing:normal}
 p{margin:0 0 1.1em;text-wrap:pretty}
 b,strong{font-weight:600}
@@ -110,54 +112,54 @@ h3{font-size:var(--t-h3);line-height:1.2;letter-spacing:-.015em}
 header .bar{padding-block:24px}
 header nav,.cnav,.cta{display:flex;flex-wrap:wrap;align-items:center;gap:24px}
 .cnav{gap:32px}
-.wordmark{font-size:1.0625rem;font-weight:500;letter-spacing:-.01em}
-header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:0}
+.wordmark{font-size:var(--t-ui);font-weight:500;letter-spacing:-.01em}
+header nav a,.langswitch,.cnav a,.open{font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
 .langswitch{display:inline-block;line-height:0}
 .langswitch img{display:block;width:24px;height:auto}
 /* hero-area switcher stays as it was */
 .open,.wordmark{font-weight:500}
 /* case hero */
 .chero{padding-top:28px}
-.chero .meta{margin:0 0 20px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
-.chero .meta>span{padding:2px 10px;font-size:.8125rem;line-height:1.5;background:rgba(17,17,17,.05);border-radius:999px}
+.chero .meta{margin:0 0 20px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
+.chero .meta>span{padding:2px 10px;font-size:var(--t-chip);line-height:1.5;background:rgba(17,17,17,.05);border-radius:999px}
 .chero h1{margin:0 auto 20px;max-width:30ch;text-align:center;font-size:var(--t-h1);font-weight:400;line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
 .orn{display:flex;align-items:center;justify-content:center;gap:7px;margin:0 auto}
 .chero .orn{margin-bottom:32px;max-width:30ch}
 .orn-b{margin:96px 0 0}
 .orn::before,.orn::after{content:"";flex:1;height:1px;background:rgba(17,17,17,.18);margin-inline:6px}
 .orn span{width:6px;height:6px;background:rgba(17,17,17,.5);transform:rotate(45deg)}
-.lede{margin:0 0 28px;max-width:none;font-size:clamp(1.5rem,1.55vw + .92rem,2.05rem);line-height:1.25;letter-spacing:-.02em;text-wrap:pretty}
-.facts{margin:0;display:flex;flex-wrap:wrap;gap:8px;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
+.lede{margin:0 0 28px;max-width:none;font-size:var(--t-lede-xl);line-height:1.25;letter-spacing:-.02em;text-wrap:pretty}
+.facts{margin:0;display:flex;flex-wrap:wrap;gap:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .facts>span{display:inline-flex;align-items:center;gap:.5em;padding:5px 14px;border:1px solid rgba(0,0,0,.12);border-radius:999px;line-height:1.4}
 .facts .fi{width:auto;height:1.05em;max-width:2em;flex:0 0 auto}
 .outcomes .n{font-size:var(--t-h3);font-weight:600;line-height:1.1;letter-spacing:-.02em}
-.outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.outcomes .t{font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 /* case body */
 .cbody p,.cbody ul{max-width:none}
-.cbody{font-size:clamp(1.125rem,.55vw + .96rem,1.5rem);line-height:1.65}
+.cbody{font-size:var(--t-case);line-height:var(--lh-case)}
 .cbody h2.marker{margin:96px 0 24px;max-width:32ch}
 .cbody h2.marker:first-child{margin-top:64px}
 .cbody p{margin:0 0 20px}
 .cbody ul{margin:0 0 20px;padding-left:1.2em}
 .cbody li{margin:0 0 10px}
 .cres .r{font-weight:600}
-.iagrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px 72px;align-items:start;margin:0 0 8px;padding:clamp(24px,3vw,44px)}
-.ia-role{margin:0 0 18px;font-size:1.375rem;font-weight:400;line-height:1.2;letter-spacing:0;color:#145ae0}
+.iagrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:40px 72px;align-items:start;margin:0 0 8px;padding:clamp(24px,3vw,44px)}
+.ia-role{margin:0 0 18px;font-size:1.375rem;font-weight:400;line-height:1.2;letter-spacing:var(--ls-caption);color:var(--t-accent)}
 .cbody .ia-list{margin:0;padding:0 0 0 22px;list-style:none}
 .cbody .ia-list li{position:relative;margin:0 0 18px;max-width:38ch}
 .cbody .ia-list li:last-child{margin-bottom:0}
 .cbody .ia-list li::after{content:"";position:absolute;left:-22px;top:0;bottom:-18px;width:1px;background:#d8d2ca}
 .cbody .ia-list li:last-child::after{bottom:auto;height:.66em}
 .cbody .ia-list li::before{content:"";position:absolute;left:-22px;top:.66em;width:14px;height:1px;background:#d8d2ca}
-.cbody .ia-list b{display:block;font-size:1.0625rem;font-weight:500;line-height:1.35}
+.cbody .ia-list b{display:block;font-size:var(--t-ui);font-weight:500;line-height:1.35}
 .cbody .ia-list span{display:block;font-size:var(--t-caption);line-height:1.5;color:var(--t-muted)}
-figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .cnav{margin:0 0 64px}
 /* work cards */
-.pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:0;color:var(--t-muted)}
+.pv .meta{margin:0 0 8px;font-size:var(--t-caption);line-height:1.5;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .pv h3{margin:0 0 12px;font-size:var(--t-h3);font-weight:400;line-height:1.2;letter-spacing:-.015em}
 .pv .nums{margin:0 0 12px}
-.pv .nums .chip{font-style:normal;font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted)}
+.pv .nums .chip{font-style:normal;font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .pv p{max-width:44ch;margin:0 0 16px}
 /* section headings, experience, teaching */
 .block{padding-block:64px}
@@ -166,16 +168,16 @@ figcaption{margin:10px 0 0;max-width:62ch;font-size:var(--t-caption);line-height
 .foot h2{margin:0 0 20px;max-width:20ch}
 .xp,.list{margin:0;padding:0;list-style:none}
 .xp li,.list li{margin:0 0 32px}
-.yrs{font-size:var(--t-caption);letter-spacing:0;color:var(--t-muted);font-variant-numeric:tabular-nums}
+.yrs{font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted);font-variant-numeric:tabular-nums}
 .xrole,.list .t{margin:0 0 8px;font-size:1.5rem;font-weight:500;line-height:1.35;letter-spacing:-.01em}
 .xco,.tag{font-weight:400;color:var(--t-muted)}
-.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:0}
+.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
 .xnote{margin:0;max-width:46ch}
 .list .s{max-width:48ch}
 /* everything above the hairline reads as one field: header + hero + cover.
    Negative inline margin equals the wrap padding, so the tint reaches the
    viewport edge without 100vw and its scrollbar overflow. */
-header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px}
 .chero,main>.cimg{margin-inline:-48px;padding-inline:48px}
 @media(max-width:600px){.chero,main>.cimg{margin-inline:-24px;padding-inline:24px}}
 /* cover mockup: capped like the flat shots, closed by a full-bleed hairline.
@@ -187,8 +189,8 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
 .strip::-webkit-scrollbar{display:none}
 .stripnav{position:absolute;z-index:2;left:16px;right:16px;top:calc(clamp(220px,30vw,460px)/2);transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none}
 .stripnav[hidden]{display:none}
-.stripbtn{pointer-events:auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:1.25rem;line-height:1;color:#111;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:50%;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.12);transition:background .15s ease-out,color .15s ease-out,border-color .15s ease-out,opacity .15s ease-out}
-.stripbtn:hover:not(:disabled){background:#145ae0;border-color:#145ae0;color:#fff}
+.stripbtn{pointer-events:auto;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0;font:inherit;font-size:1.25rem;line-height:1;color:#111;background:#fff;border:none;border-radius:50%;cursor:pointer;transition:background .15s ease-out,color .15s ease-out,opacity .15s ease-out}
+.stripbtn:hover:not(:disabled){background:#145ae0;color:#fff}
 .stripbtn:disabled{opacity:0;pointer-events:none}
 .stripbtn:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.stripbtn{transition:none}}
@@ -202,8 +204,9 @@ header,.chero,main>.cimg{background-color:#fdfcfc;background-image:url("data:ima
 /* flat screen mockups: capped measure, retina source, hairline frame.
    Device mockups (the covers, outside .cbody) stay full-bleed. */
 .cbody /* one screen or one video in a block: 860 wide, centred, on a band that spans the page */
-/* the one ornament: Charis SIL italic marks the words carrying the argument */
-.foot h2 em,.ia-role{font-family:'Charis SIL',serif;font-style:italic}
+/* the one ornament: Arial italic marks the words carrying the argument */
+.foot h2 em,.ia-role{font-family:var(--font-italic);font-style:normal}
+.foot h2 em{font-weight:700;font-size:1.1em}
 .cnav{justify-content:space-between;padding-top:24px}
 @media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
 </style>
@@ -222,15 +225,15 @@ header .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space
 header nav a,.cnav a{display:inline-flex;align-items:center;gap:6px}
 </style>
 <style>/*linkstyle*/
-a{color:#145ae0;text-decoration:none}
-a:visited{color:#145ae0}
+a{color:var(--t-accent);text-decoration:none}
+a:visited{color:var(--t-accent)}
 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(20,90,224,.5);text-underline-offset:3px}
 </style>
 <style>/*mobile-type*/
 @media(max-width:600px){
 .chero h1{font-size:1.75rem}
 .cbody .sec-lead,.chero .sec-lead{font-size:1.375rem}
-.cbody{font-size:1.0625rem}
+.cbody{font-size:.9375rem}
 .outcomes .n{font-size:1.25rem}
 .outcomes .o{border-radius:16px}
 .cbody .cimg>img,.cbody .cimg>video,.cbody .cimg>.cmp-imgs,.strip>img,.strip>video{border-radius:16px}
@@ -254,7 +257,7 @@ header .bar{border-radius:20px}
 <h1><span data-l="uk" lang="uk">AETHRA Wire: спроєктував з нуля HR-платформу</span></h1>
 <div class="orn" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Я отримав простий бриф про продукт, як набір вимог, без чіткого ТЗ і <i>спроєктував продукт із нуля</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Я отримав простий бриф про продукт, як набір вимог, без чіткого ТЗ і <i>спроєктував продукт із нуля</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">AETHRA Wire це B2B-платформа, що з'єднує аутсорсингові компанії з партнерами для управління персоналом.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Розробив бізнес-вимоги, user stories й функціональні специфікації. Запроектував інформаційну архітектуру, дизайн-систему і всі екрани для обох ролей: Provider, який керує працівниками по клієнтах, і Worker, який керує власним графіком.</span></p>
@@ -272,7 +275,7 @@ header .bar{border-radius:20px}
 <section class="sec">
 <h2 class="marker"><span data-l="uk" lang="uk">Розмиті вимоги</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Бриф описував, що система має робити, <i>але не як вона має працювати</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Бриф описував, що система має робити, <i>але не як вона має працювати</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Тому до першого екрана я змапив інформаційну архітектуру обох ролей окремо, знайшов їхні перетини і виписав таблиці jobs-to-be-done на кожен ключовий сценарій.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Структурних рішень у документах не було: ієрархія навігації, які сценарії заслуговують окремих екранів, як ролі стикаються з даними одна одної і де система мусить захищати користувачів від самих себе, тобто подвійні бронювання, протерміновані сертифікати й пропущені дедлайни документів.</span></p>
@@ -309,7 +312,7 @@ header .bar{border-radius:20px}
 <section class="sec">
 <h2 class="marker"><span data-l="uk" lang="uk">Дизайн-система</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Погодив з розробниками дизайн систему ще до старту макетів, тому <i>розробка пішла паралельно з дизайном</i>, а не після нього.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Погодив з розробниками дизайн систему ще до старту макетів, тому <i>розробка пішла паралельно з дизайном</i>, а не після нього.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Клієнт хотів кодову базу на Tailwind-сумісному фреймворку, тож дизайн-система у Figma мала віддзеркалювати, як Tailwind реально працює, а TailGrids дав обом сторонам ті самі блоки.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Це означає без довільних значень, без разових відступів і без кольору, що не мапиться на токен. Розробники читали Figma-екран і одразу знали, які класи брати, тому хендоф перестав бути перекладом з макета в компоненти.</span></p>
@@ -323,7 +326,7 @@ header .bar{border-radius:20px}
 <section class="sec">
 <h2 class="marker"><span data-l="uk" lang="uk">Роль Provider</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Менеджер із 50+ працівниками у 5 клієнтів має бачити проблему, <i>не провалюючись у картки</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Менеджер із 50+ працівниками у 5 клієнтів має бачити проблему, <i>не провалюючись у картки</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Центральним екраном стала матриця працівників: усі люди, згруповані по клієнтах, з кольоровим статусом на кожен день місяця.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">Найскладніша логіка сиділа у призначенні змін: матчинг кваліфікацій, захист від подвійного бронювання і видимість, чому конкретного працівника не можна призначити. Помилка тут дає реальні комплаєнс-проблеми, тож інтерфейс мав робити правильну дію очевидною, а неправильну важкою.</span></p>
@@ -342,7 +345,7 @@ header .bar{border-radius:20px}
 </figure>
 <h2 class="marker"><span data-l="uk" lang="uk">Роль Worker</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Робітник має знати, що розпорядок дня на сьогодні, і <i>повідомити, коли щось пішло не так</i>.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Робітник має знати, що розпорядок дня на сьогодні, і <i>повідомити, коли щось пішло не так</i>.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Найбільш процесна частина це репортинг відсутності, і він тягне за собою реальні комплаєнс-наслідки.</span></p>
 <p class="sec-fine"><span data-l="uk" lang="uk">48-годинний таймер на завантаження медичних документів лишається видимим і постійним, щоб його неможливо було пропустити, терміновий, але не тривожний. Решта потреб вужчі: побачити графік, керувати документами, тримати профіль в порядку.</span></p>
@@ -360,7 +363,7 @@ header .bar{border-radius:20px}
 </div>
 <h2 class="marker"><span data-l="uk" lang="uk">Чого вимагав проєкт</span></h2>
 <div class="sec-cols">
-<p class="sec-lead"><span data-l="uk" lang="uk">Робота із невизначеніюстю означає <i>ухвалювати продуктові рішення</i>, <br/>а не лише дизайнерські.</span></p>
+<p class="sec-lead"><span data-l="uk" lang="uk"><span class="think" aria-hidden="true"></span>Робота із невизначеніюстю означає <i>ухвалювати продуктові рішення</i>, <br/>а не лише дизайнерські.</span></p>
 <div class="sec-body">
 <p><span data-l="uk" lang="uk">Результатом був не набір гарних екранів, а цілісний, внутрішньо консистентний дизайн, з якого інженерна команда може будувати.</span></p>
 </div>
