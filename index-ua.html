@@ -48,7 +48,16 @@ body{font-family:var(--font-sans)}
 .cta.hcta{opacity:0;animation:fadein .4s ease-out 4s forwards}
 @keyframes fadein{to{opacity:1}}
 @keyframes handline{to{transform:rotate(-1.5deg) scaleX(1)}}
-@media(prefers-reduced-motion:reduce){.hero3 h1 .hand{animation:none;clip-path:none}.hero3 h1 .hand-u::after{animation:none;transform:rotate(-1.5deg)}.hero3 .fitlines>span{animation:none;clip-path:none}.cta.hcta{animation:none;opacity:1}}
+.hero3 .sub.chain>span,.ledger .fig{opacity:0;animation:rise .5s ease-out forwards}
+.hero3 .sub.chain>span:nth-child(1){animation-delay:4s}
+.hero3 .sub.chain>span:nth-child(2){animation-delay:4.1s}
+.hero3 .sub.chain>span:nth-child(3){animation-delay:4.2s}
+.hero3 .sub.chain>span:nth-child(4){animation-delay:4.3s}
+.ledger .fig:nth-child(1){animation-delay:4.45s}
+.ledger .fig:nth-child(2){animation-delay:4.55s}
+.ledger .fig:nth-child(3){animation-delay:4.65s}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.hero3 h1 .hand{animation:none;clip-path:none}.hero3 h1 .hand-u::after{animation:none;transform:rotate(-1.5deg)}.hero3 .fitlines>span{animation:none;clip-path:none}.cta.hcta{animation:none;opacity:1}.hero3 .sub.chain>span,.ledger .fig{animation:none;opacity:1}}
 .hero3 .sub.chain{font-size:20px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
 .hero3 .sub.chain span:not(:first-child)::before{content:"";display:inline-block;width:8px;height:8px;transform:rotate(45deg);background:#9b918a;margin-right:16px;vertical-align:middle}
 .cta.hcta{font-size:24px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px;margin-top:48px}
@@ -153,11 +162,13 @@ figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height
 .tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
 .xnote{margin:0;max-width:46ch}
 .list .s{max-width:48ch}
-.foot h2 em{font-family:var(--font-italic);font-style:normal;font-weight:700;font-size:1.1em}
+.foot h2 em{font-style:normal}
 @media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
 </style>
 <style>/*xp*/
 /* Experience: year | role over company | what I did. First baselines aligned. */
+/* #xp and #oss sit in white cards, same surface idiom as the .pv work cards */
+#xp .split,#oss .split{background:#fff;border-radius:32px;padding:48px}
 #xp h2.marker{margin-bottom:48px}
 .xp{border-top:1px solid #e2ddd6}
 .xp li{display:grid;grid-template-columns:minmax(0,108px) minmax(0,1.15fr) minmax(0,1fr);gap:8px 56px;align-items:baseline;margin:0;padding:32px 0;border-bottom:1px solid #e2ddd6}
@@ -243,12 +254,6 @@ body.cd-lock{overflow:hidden}
 }
 </style>
 <style>/*chrome*/
-/* section separators, previously empty divs */
-.fullrule{height:1px;margin:0;background:#e2ddd6}
-/* the two social links carried an aria-label but no content, so nothing rendered */
-.ic{display:inline-flex;align-items:center;justify-content:center;width:47px;height:47px;color:inherit;border:1px solid currentColor;border-radius:999px;transition:background .15s,color .15s,border-color .15s}
-.ic:hover{background:#145ae0;border-color:#145ae0;color:#fff;text-decoration:none}
-.ic svg{width:20px;height:20px}
 /* closing band: the markup always carried .dark, it just never had a rule */
 .foot{background-color:#1c1c1a;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.10 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px;color:#fbfaf8}
 .foot h2{color:#fbfaf8}
@@ -259,7 +264,7 @@ body.cd-lock{overflow:hidden}
 .foot .cta .btn{background:#fbfaf8;color:#111}
 .foot .cta .btn:hover{background:transparent;color:#fbfaf8;text-decoration:none}
 .foot .cta .ghost:hover{background:#fbfaf8;color:#111;text-decoration:none}
-@media(prefers-reduced-motion:reduce){.ic,.foot .cta .btn,.foot .cta .ghost{transition:none}}
+@media(prefers-reduced-motion:reduce){.foot .cta .btn,.foot .cta .ghost{transition:none}}
 </style>
 <style>/*lang*/
 /* language switch is an icon button; the language name stays for screen readers */
@@ -274,24 +279,24 @@ a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-
 /* flat buttons on our own geometry: heights, 999px pills and
    paddings all stay as they were, only the surface changes.
    Black is the default; the telegram buttons are the blue one. */
-.cta.hcta .btn,.cta.hcta .ghost,.cta.hcta .ic,.foot .cta .btn,.foot .cta .ghost,.pv .open{
+.cta.hcta .btn,.cta.hcta .ghost,.foot .cta .btn,.foot .cta .ghost,.pv .open{
 position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;
 color:#fff;font-weight:500;letter-spacing:.02em;
 border:none;
 background:#111;
 transition:background .2s ease-out,transform .2s ease-out}
-.cta.hcta .btn:hover,.cta.hcta .ghost:hover,.cta.hcta .ic:hover,.foot .cta .btn:hover,.foot .cta .ghost:hover,.pv .open:hover{
+.cta.hcta .btn:hover,.cta.hcta .ghost:hover,.foot .cta .btn:hover,.foot .cta .ghost:hover,.pv .open:hover{
 color:#fff;text-decoration:none;
 background:#3d3d3d}
-.cta.hcta .btn:active,.cta.hcta .ghost:active,.cta.hcta .ic:active,.foot .cta .btn:active,.foot .cta .ghost:active,.pv .open:active{transform:scale(.95) rotate(1deg)}
-.cta.hcta .btn:focus-visible,.cta.hcta .ghost:focus-visible,.cta.hcta .ic:focus-visible,.foot .cta .btn:focus-visible,.foot .cta .ghost:focus-visible,.pv .open:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
+.cta.hcta .btn:active,.cta.hcta .ghost:active,.foot .cta .btn:active,.foot .cta .ghost:active,.pv .open:active{transform:scale(.95) rotate(1deg)}
+.cta.hcta .btn:focus-visible,.cta.hcta .ghost:focus-visible,.foot .cta .btn:focus-visible,.foot .cta .ghost:focus-visible,.pv .open:focus-visible{outline:2px solid #145ae0;outline-offset:3px}
 /* only the telegram button is blue; everything else stays black */
 .cta.hcta .btn,.foot .cta .btn{background:#145ae0}
 .cta.hcta .btn:hover,.foot .cta .btn:hover{background:#005fd6}
 .cta .btn svg,.cta .ghost svg{width:18px;height:18px;flex:none}
 @media(prefers-reduced-motion:reduce){
-.cta.hcta .btn,.cta.hcta .ghost,.cta.hcta .ic,.foot .cta .btn,.foot .cta .ghost,.pv .open{transition:none}
-.cta.hcta .btn:active,.cta.hcta .ghost:active,.cta.hcta .ic:active,.foot .cta .btn:active,.foot .cta .ghost:active,.pv .open:active{transform:none}}
+.cta.hcta .btn,.cta.hcta .ghost,.foot .cta .btn,.foot .cta .ghost,.pv .open{transition:none}
+.cta.hcta .btn:active,.cta.hcta .ghost:active,.foot .cta .btn:active,.foot .cta .ghost:active,.pv .open:active{transform:none}}
 </style>
 <style>/*liquid*/
 /* liquid text on hover over the blue phrase in the hero.
@@ -320,9 +325,9 @@ background:#3d3d3d}
 .hero3 h1{font-size:clamp(22px,6.6vw,28px);line-height:1.14}
 header .bar{border-radius:20px}
 .pv>div,.outcomes .o{border-radius:16px}
+#xp .split,#oss .split{border-radius:16px;padding:32px 24px}
 .cd{border-radius:16px}
 .cta.hcta .btn,.cta.hcta .ghost,.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:16px}
-.ic{width:42px;height:42px}
 .hero3 .sub.chain{font-size:15px;gap:10px 14px}
 .hero3 .sub.chain span:not(:first-child)::before{width:6px;height:6px;margin-right:14px}
 .ledger{margin-top:44px;margin-bottom:72px}
@@ -338,8 +343,6 @@ header .bar{border-radius:20px}
 <a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.42 15.18l-.4 5.58c.57 0 .82-.24 1.11-.53l2.66-2.55l5.52 4.04c1.01.56 1.73.27 2-.93L23.93 3.82c.32-1.5-.54-2.08-1.53-1.71L1.11 10.26c-1.45.56-1.43 1.37-.25 1.74l5.44 1.69L18.56 5.79c.59-.39 1.12-.17.68.22z" fill="currentColor"/></svg><span data-l="uk" lang="uk">Написати</span></a>
 
 <a class="ghost" data-l="uk" href="cv-ua.pdf" lang="uk" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Скачати CV</a>
-<a aria-label="LinkedIn" class="ic" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 5a2 2 0 1 1-4-.002a2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"/></svg></a>
-<a aria-label="GitHub" class="ic" href="https://github.com/denysosadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg></a>
 </div>
 <div class="dark herowrap">
 <div class="langbar">
@@ -381,7 +384,7 @@ header .bar{border-radius:20px}
 <article class="pv rv">
 <a class="thumb" href="case-splitmart-ua.html"><img alt="SplitMart client landing, shipped" height="2160" loading="lazy" src="img/sm-cover.webp" width="3840"/></a>
 <div>
-<p class="meta"><b>Product Designer + Design Engineer</b></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Product Designer</span><span class="tag">Design Engineer</span></span></p>
 <h3><a href="case-splitmart-ua.html"><span data-l="uk" lang="uk">SplitMart: редизайн у коді після UX-аудиту</span></a></h3>
 <p class="nums"><span data-l="uk" lang="uk"><i class="chip">37 знахідок аудиту</i><i class="chip">303 екрани</i></span></p>
 <p><span data-l="uk" lang="uk">Фітнес-маркетплейс з оплатою за сесію. Почав з UX-аудиту, який показав, де губляться бронювання. Потім переробив web і нативний iOS та зібрав продакшн-версію на React. Усе спроєктував прямо в коді.</span></p>
@@ -391,7 +394,7 @@ header .bar{border-radius:20px}
 <article class="pv rv">
 <a class="thumb" href="case-scalr-ua.html"><img alt="Scalr product screens" height="2160" loading="lazy" src="img/sc-cover.webp" width="3840"/></a>
 <div>
-<p class="meta"><b>Senior Product Designer</b></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Senior Product Designer</span></span></p>
 <h3><a href="case-scalr-ua.html"><span data-l="uk" lang="uk">Scalr: дизайн система, продуктові задачі</span></a></h3>
 <p class="nums"><span data-l="uk" lang="uk"><i class="chip">дизайн-система з нуля</i><i class="chip">1,499→72 токени</i><i class="chip">метрики з нуля</i></span></p>
 <p><span data-l="uk" lang="uk">Працював у штаті платформи автоматизації DevOps. Вів продуктові задачі по всій платформі — дашборди, спостережуваність, доступи, деталі запусків — і зібрав дизайн-систему з нуля поруч з інженерами.</span></p>
@@ -401,7 +404,7 @@ header .bar{border-radius:20px}
 <article class="pv rv">
 <a class="thumb" href="case-aethra-ua.html"><img alt="AETHRA Wire product screens" height="2080" loading="lazy" src="img/ae-cover.webp" width="2600"/></a>
 <div>
-<p class="meta"><b>Senior Product Designer</b></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Senior Product Designer</span></span></p>
 <h3><a href="case-aethra-ua.html"><span data-l="uk" lang="uk">AETHRA Wire: спроєктував з нуля HR-платформу</span></a></h3>
 <p class="nums"><span data-l="uk" lang="uk"><i class="chip">2 ролі</i><i class="chip">0→1</i><i class="chip">дизайн-система під Tailwind</i></span></p>
 <p><span data-l="uk" lang="uk">Отримав стос документів з бізнес-вимогами і перетворив їх на робочий продукт: змапив інформаційну архітектуру, зібрав дизайн-систему і намалював усі екрани для обох ролей.</span></p>
@@ -411,7 +414,7 @@ header .bar{border-radius:20px}
 <article class="pv rv">
 <a class="thumb" href="case-cosmediate-ua.html"><img alt="Cosmediate product screens" height="2160" loading="lazy" src="img/co-cover.webp" width="3840"/></a>
 <div>
-<p class="meta"><b>Senior Product Designer</b></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Senior Product Designer</span></span></p>
 <h3><a href="case-cosmediate-ua.html"><span data-l="uk" lang="uk">Cosmediate: аудит і редизайн маркетплейсу</span></a></h3>
 <p class="nums"><span data-l="uk" lang="uk"><i class="chip">3 ролі</i><i class="chip">повний редизайн</i><i class="chip">booking-флоу</i></span></p>
 <p><span data-l="uk" lang="uk">Повністю переробив маркетплейс запису до клінік. Три ролі жили як три різні продукти, тож я звів їх на одну дизайн-систему і перебудував booking-флоу так, щоб він заробляв довіру пацієнта.</span></p>
@@ -421,7 +424,7 @@ header .bar{border-radius:20px}
 <article class="pv rv">
 <div>
 <img alt="" class="toolicon" height="72" loading="lazy" src="img/figmosha-icon.webp"/>
-<p class="meta"><span data-l="uk" lang="uk">Я зробив</span></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Я зробив</span></span></p>
 <h3><a href="https://github.com/denysosadchyi/figmosha2" rel="noopener" target="_blank">figmosha2</a></h3>
 <p class="nums"><span data-l="uk" lang="uk"><i class="chip">Python</i><i class="chip">CLI</i><i class="chip">WebSocket-міст</i></span></p>
 <p><span data-l="uk" lang="uk">Тулза, що дозволяє будувати напряму із АІ агента дизайн в Figma: компоненти, дизайн система, сторінки. Також може робити аудит дизайн-систем, вносити зміни на готові макети</span></p>
@@ -431,7 +434,7 @@ header .bar{border-radius:20px}
 <article class="pv rv">
 <div>
 <img alt="" class="toolicon" height="72" loading="lazy" src="img/ux-auditor-icon.webp"/>
-<p class="meta"><span data-l="uk" lang="uk">Я зробив</span></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Я зробив</span></span></p>
 <h3><a href="https://github.com/denysosadchyi/ux-auditor" rel="noopener" target="_blank">ux-auditor</a></h3>
 <p class="nums"><span data-l="uk" lang="uk"><i class="chip">Claude Code skills</i><i class="chip">Playwright</i></span></p>
 <p><span data-l="uk" lang="uk">Відтворюваний тулкіт для UX-аудиту: двомовний плейбук, скіли Claude Code і захоплення екранів через Playwright — перетворює UX-рев'ю на відтворюваний, AI-асистований процес.</span></p>
@@ -441,7 +444,7 @@ header .bar{border-radius:20px}
 <article class="pv rv">
 <div>
 <img alt="" class="toolicon" height="72" loading="lazy" src="img/styles-to-token-migration-icon.webp"/>
-<p class="meta"><span data-l="uk" lang="uk">Я зробив</span></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Я зробив</span></span></p>
 <h3><a href="https://github.com/denysosadchyi/styles-to-token-migration" rel="noopener" target="_blank">styles-to-token-migration</a></h3>
 <p class="nums"><span data-l="uk" lang="uk"><i class="chip">Figma API</i><i class="chip">Variables</i></span></p>
 <p><span data-l="uk" lang="uk">Пайплайн для міграції компонентів Figma з Paint Styles на семантичні Variables. Автоматизує один із найнудніших і найризикованіших кроків модернізації дизайн-системи.</span></p>
@@ -451,7 +454,7 @@ header .bar{border-radius:20px}
 <article class="pv rv">
 <div>
 <img alt="" class="toolicon" height="72" loading="lazy" src="img/yamleer-icon.webp"/>
-<p class="meta"><span data-l="uk" lang="uk">Я зробив</span></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Я зробив</span></span></p>
 <h3><a href="https://github.com/denysosadchyi/yamleer" rel="noopener" target="_blank">yamleer</a></h3>
 <p class="nums"><span data-l="uk" lang="uk"><i class="chip">YAML</i><i class="chip">без білда</i></span></p>
 <p><span data-l="uk" lang="uk">SDD дизайн-пайплайн: токени, блоки, примітиви й екрани компілюються у самодостатній HTML і сторіборд. Генератор макетів, що перетворює специфікацію на готові сторінки</span></p>
@@ -461,7 +464,7 @@ header .bar{border-radius:20px}
 <article class="pv rv">
 <div>
 <img alt="" class="toolicon" height="72" loading="lazy" src="img/job-searcher-icon.webp"/>
-<p class="meta"><span data-l="uk" lang="uk">Я зробив</span></p>
+<p class="meta pills"><span data-l="uk" lang="uk"><span class="tag">Я зробив</span></span></p>
 <h3><a href="https://github.com/denysosadchyi/job-searcher" rel="noopener" target="_blank">job-searcher</a></h3>
 <p class="nums"><span data-l="uk" lang="uk"><i class="chip">Python</i><i class="chip">Flask</i><i class="chip">автономний агент</i></span></p>
 <p><span data-l="uk" lang="uk">Автоматичний моніторинг job-бордів (Djinni, DOU, Work.ua): AI оцінює кожну вакансію від 1 до 10 під профіль користувача і показує результат у дашборді.&nbsp;</span></p>
@@ -470,7 +473,6 @@ header .bar{border-radius:20px}
 </article>
 </div>
 </section>
-<div aria-hidden="true" class="fullrule"></div>
 <section class="wrap block" id="xp">
 <div class="split">
 <h2 class="marker"><span data-l="uk" lang="uk">Досвід</span></h2>
@@ -502,7 +504,6 @@ header .bar{border-radius:20px}
 </ul>
 </div>
 </section>
-<div aria-hidden="true" class="fullrule"></div>
 <section class="wrap block" id="oss">
 <div class="split">
 <h2 class="marker"><span data-l="uk" lang="uk">Вчу дизайнерів і виступаю</span></h2>
@@ -523,6 +524,8 @@ header .bar{border-radius:20px}
 <a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.42 15.18l-.4 5.58c.57 0 .82-.24 1.11-.53l2.66-2.55l5.52 4.04c1.01.56 1.73.27 2-.93L23.93 3.82c.32-1.5-.54-2.08-1.53-1.71L1.11 10.26c-1.45.56-1.43 1.37-.25 1.74l5.44 1.69L18.56 5.79c.59-.39 1.12-.17.68.22z" fill="currentColor"/></svg><span data-l="uk" lang="uk">Написати</span></a>
 
 <a class="ghost" data-l="uk" href="cv-ua.pdf" lang="uk" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>CV (PDF)</a>
+<a class="ghost" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank">LinkedIn</a>
+<a class="ghost" href="https://github.com/denysosadchyi" rel="noopener" target="_blank">GitHub</a>
 </div>
 </div>
 </footer>

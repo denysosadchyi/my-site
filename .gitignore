@@ -4,3 +4,4 @@ __pycache__/
 .DS_Store
 _probe*.html
 .vercel
+.env*
