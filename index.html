@@ -155,7 +155,7 @@ figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height
 .foot{padding-block:96px 64px}
 .foot h2{margin:0 0 20px;max-width:20ch}
 .foot h2 em{font-style:normal}
-@media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
+@media(max-width:600px){.wrap{padding-left:16px;padding-right:16px}}
 </style>
 <style>/*drawer*/
 .cd-ov{position:fixed;inset:0;z-index:80;background:rgba(17,17,17,.42);opacity:0;-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0);transition:opacity .3s ease-out,-webkit-backdrop-filter .5s ease-out,backdrop-filter .5s ease-out}
@@ -170,6 +170,11 @@ figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height
 0%{clip-path:inset(var(--gt,40%) var(--gr,40%) var(--gb,40%) var(--gl,40%) round 24px);transform:scale(.97)}
 70%{clip-path:inset(0 round 32px);transform:scale(1.004)}
 100%{clip-path:inset(0 round 32px);transform:none}}
+/* phone: the panel is full-screen and square, so the unfold must not round */
+@keyframes cdgrowflat{
+0%{clip-path:inset(var(--gt,40%) var(--gr,40%) var(--gb,40%) var(--gl,40%));transform:scale(.97)}
+70%{clip-path:inset(0);transform:scale(1.004)}
+100%{clip-path:inset(0);transform:none}}
 .cd.grow .cd-body main>*{animation:cdrise .55s cubic-bezier(.16,1,.3,1) both}
 .cd.grow .cd-body main>*:nth-child(1){animation-delay:.1s}
 .cd.grow .cd-body main>*:nth-child(2){animation-delay:.18s}
@@ -206,7 +211,7 @@ figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height
 .cd main{padding-bottom:64px}
 .cd-load{padding:88px 48px;color:var(--t-muted)}
 body.cd-lock{overflow:hidden}
-@media(max-width:600px){.cd{border-radius:24px}.cd-x{top:12px;right:16px}.cd .chero{padding-top:72px}.cd .cbody h2.marker,.cd .cbody .sec h2.marker{margin-left:-24px}}
+@media(max-width:600px){.cd-x{top:12px;right:16px}.cd .chero{padding-top:72px}.cd .cbody h2.marker,.cd .cbody .sec h2.marker{margin-left:-16px}}
 @media(prefers-reduced-motion:reduce){.cd,.cd-ov{transition:opacity .01s}.cd{transform:none}.cd.on{transform:none}}
 </style>
 <style>/*pills*/
@@ -299,7 +304,12 @@ background:#3d3d3d}
 .hero3 h1{font-size:clamp(22px,6.6vw,28px);line-height:1.14}
 header .bar{border-radius:20px}
 .pv>div,.outcomes .o{border-radius:16px}
-.cd{border-radius:16px}
+.pv>div{padding:16px}
+/* case popup goes full-screen: no gap from the edges, no corners */
+.cd{inset:0;border:none;border-radius:0}
+.cd.grow{animation-name:cdgrowflat}
+.cd-load{padding:72px 16px}
+.foot{margin:16px;padding-block:64px 48px}
 .cta.hcta .btn,.cta.hcta .ghost,.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:16px}
 .hero3 .sub.chain{font-size:15px;gap:10px 14px}
 .hero3 .sub.chain span:not(:first-child)::before{width:6px;height:6px;margin-right:14px}
@@ -485,7 +495,7 @@ var grid=document.querySelector('.workgrid');
 if(!grid)return;
 function masonry(){
 var items=Array.prototype.slice.call(grid.children);
-var gapX=32,gapY=96,cols=window.innerWidth<720?1:2;
+var gapX=32,cols=window.innerWidth<720?1:2,gapY=cols===1?48:96;
 var colW=(grid.clientWidth-gapX*(cols-1))/cols;
 var colH=new Array(cols).fill(0);
 items.forEach(function(item){
@@ -527,7 +537,7 @@ function styles(doc){                       // pull in style blocks the host pag
 
 function origin(el){
   if(!el||!el.getBoundingClientRect)return;
-  var r=el.getBoundingClientRect(),W=innerWidth,H=innerHeight,pad=8;
+  var r=el.getBoundingClientRect(),W=innerWidth,H=innerHeight,pad=innerWidth<=600?0:8;
   if(!r.width||!r.height)return;
   // an off-screen origin would unfold from nowhere, so fall back to a plain fade
   if(r.bottom<40||r.top>H-40||r.right<40||r.left>W-40)return;
