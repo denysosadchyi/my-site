@@ -197,6 +197,25 @@ a{color:var(--t-accent);text-decoration:none}
 a:visited{color:var(--t-accent)}
 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:rgba(20,90,224,.5);text-underline-offset:3px}
 </style>
+<style>/*chrome*/
+/* closing band: the markup always carried .dark, it just never had a rule.
+   Now a floating card: 24px off every edge, the same 32px radius as the case
+   dialog; overflow:hidden keeps the noise and the children inside the rounding. */
+.foot{margin:24px;border-radius:32px;overflow:hidden;background-color:#1c1c1a;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.10 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px;color:#fbfaf8}
+.foot h2{color:#fbfaf8}
+.foot .lede{color:rgba(251,250,248,.72)}
+.foot a,.foot a:visited{color:#fbfaf8}
+.foot .cta{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.foot .cta .btn,.foot .cta .ghost{display:inline-flex;align-items:center;justify-content:center;height:47px;padding:0 24px;font-size:18px;border:1px solid #fbfaf8;border-radius:999px;transition:background .15s,color .15s}
+.foot .cta .btn{background:#fbfaf8;color:#111}
+.foot .cta .btn:hover{background:transparent;color:#fbfaf8;text-decoration:none}
+.foot .cta .ghost:hover{background:#fbfaf8;color:#111;text-decoration:none}
+/* LinkedIn and GitHub are logo-only, so their pills turn into circles */
+.foot .cta a.gi{width:47px;padding:0}
+.foot .cta a.gi svg{width:20px;height:20px;flex:none}
+@media(max-width:600px){.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:16px}.foot .cta a.gi{width:42px;padding:0}}
+@media(prefers-reduced-motion:reduce){.foot .cta .btn,.foot .cta .ghost{transition:none}}
+</style>
 <style>/*mobile-type*/
 @media(max-width:600px){
 .chero h1{font-size:1.75rem}
@@ -333,8 +352,8 @@ header .bar{border-radius:20px}
 <p class="lede"><span data-l="en">I'm looking for a Senior Product Designer role in a product company.<br/>If you call it Design Engineer, that's me too.<br/>Remote · full-time · I answer fast.</span></p>
 <div class="cta">
 <a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><span data-l="en">Message on Telegram</span></a>
-<a class="ghost" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank">LinkedIn</a>
-<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank">CV (PDF)</a>
+<a aria-label="LinkedIn" class="ghost gi" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" fill="currentColor"/></svg></a>
+<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank">Download CV</a>
 
 </div>
 </div>

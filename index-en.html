@@ -148,43 +148,14 @@ figcaption{margin:10px 0 0;max-width:48ch;font-size:var(--t-caption);line-height
 .pv .nums{margin:0 0 12px}
 .pv .nums .chip{font-style:normal;font-size:.8125rem;letter-spacing:var(--ls-caption);color:var(--t-muted)}
 .pv p{max-width:44ch;margin:0 0 16px;font-size:.875rem}
-/* section headings, experience, teaching */
+/* section headings */
 .block{padding-block:64px}
 .cbody .sec h2.marker,.block h2.marker{display:inline-block;position:sticky;top:16px;z-index:5;margin:0 0 28px;max-width:34ch;padding:8px 36px 8px 22px;font-size:var(--t-marker);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:#fff;background:#111;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 50%,100% 100%,0 100%)}
 .block h2.marker{margin:0 0 32px}
 .foot{padding-block:96px 64px}
 .foot h2{margin:0 0 20px;max-width:20ch}
-.xp,.list{margin:0;padding:0;list-style:none}
-.xp li,.list li{margin:0 0 32px}
-.yrs{font-size:var(--t-caption);letter-spacing:var(--ls-caption);color:var(--t-muted);font-variant-numeric:tabular-nums}
-.xrole,.list .t{margin:0 0 8px;font-size:1.5rem;font-weight:500;line-height:1.35;letter-spacing:-.01em}
-.xco,.tag{font-weight:400;color:var(--t-muted)}
-.tag{margin-left:8px;font-size:var(--t-caption);letter-spacing:var(--ls-caption)}
-.xnote{margin:0;max-width:46ch}
-.list .s{max-width:48ch}
 .foot h2 em{font-style:normal}
 @media(max-width:600px){.wrap{padding-left:24px;padding-right:24px}}
-</style>
-<style>/*xp*/
-/* Experience: year | role over company | what I did. First baselines aligned. */
-/* #xp and #oss sit in white cards, same surface idiom as the .pv work cards */
-#xp .split,#oss .split{background:#fff;border-radius:32px;padding:48px}
-/* the two white cards sit 8px apart */
-#xp{padding-bottom:4px}
-#oss{padding-top:4px}
-/* marker flag starts flush at the card's left edge */
-#xp h2.marker{margin-bottom:48px;margin-left:-48px}
-.xp li{display:grid;grid-template-columns:minmax(0,108px) minmax(0,1.15fr) minmax(0,1fr);gap:8px 56px;align-items:baseline;margin:0;padding:32px 0;border-bottom:1px solid #e2ddd6}
-.xp li:last-child{border-bottom:0}
-.xp>li>.yrs{margin:0;font-size:var(--t-ui);line-height:1.45;color:var(--t-muted);font-variant-numeric:tabular-nums;white-space:nowrap}
-.xrole{margin:0 0 6px;max-width:32ch;font-size:var(--t-h3);font-weight:400;line-height:1.25;letter-spacing:-.02em;text-wrap:balance}
-.xco{margin:0;font-size:var(--t-ui);font-weight:500;line-height:1.45;color:inherit}
-.xnote{margin:0;max-width:44ch;color:var(--t-muted)}
-@media(max-width:900px){
-.xp li{grid-template-columns:1fr;gap:6px;padding:28px 0;align-items:start}
-.xp>li>.yrs{order:-1}
-.xnote{margin-top:10px}
-}
 </style>
 <style>/*drawer*/
 .cd-ov{position:fixed;inset:0;z-index:80;background:rgba(17,17,17,.42);opacity:0;-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0);transition:opacity .3s ease-out,-webkit-backdrop-filter .5s ease-out,backdrop-filter .5s ease-out}
@@ -238,28 +209,17 @@ body.cd-lock{overflow:hidden}
 @media(max-width:600px){.cd{border-radius:24px}.cd-x{top:12px;right:16px}.cd .chero{padding-top:72px}.cd .cbody h2.marker,.cd .cbody .sec h2.marker{margin-left:-24px}}
 @media(prefers-reduced-motion:reduce){.cd,.cd-ov{transition:opacity .01s}.cd{transform:none}.cd.on{transform:none}}
 </style>
-<style>/*oss*/
-/* Teaching list on the same ruled-row mechanic as #xp: title (+label) left, description right. */
-#oss h2.marker{margin-bottom:48px;margin-left:-48px}
-.list li{display:grid;grid-template-columns:minmax(0,108px) minmax(0,1.15fr) minmax(0,1fr);gap:8px 56px;align-items:baseline;margin:0;padding:32px 0;border-bottom:1px solid #e2ddd6}
-.list li:last-child{border-bottom:0}
-.list .t{grid-column:1/3}
-.list .s{grid-column:3}
-.list .t{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0;max-width:26ch;font-size:var(--t-h3);font-weight:400;line-height:1.25;letter-spacing:-.02em}
-.list .tag{margin:0;padding:3px 12px;font-size:var(--t-caption);line-height:1.4;font-weight:400;color:var(--t-muted);background:rgba(17,17,17,.05);border:1px solid #e2ddd6;border-radius:999px;white-space:nowrap}
-.pills .tag{margin:0;padding:2px 10px;font-size:var(--t-chip);line-height:1.5;background:rgba(17,17,17,.05);border-radius:999px;white-space:nowrap}
+<style>/*pills*/
+/* work-card role chips; font-weight/color/letter-spacing folded in from the old base .tag rule */
+.pills .tag{margin:0;padding:2px 10px;font-size:var(--t-chip);line-height:1.5;font-weight:400;letter-spacing:var(--ls-caption);color:var(--t-muted);background:rgba(17,17,17,.05);border-radius:999px;white-space:nowrap}
 .pills{display:flex;flex-wrap:wrap;gap:6px}
 .pills>span{display:contents}
-.list .s{margin:0;max-width:46ch;color:var(--t-muted)}
-@media(max-width:900px){
-.list li{grid-template-columns:1fr;gap:10px;padding:28px 0}
-.list .t,.list .s{grid-column:auto}
-.list .t{max-width:none}
-}
 </style>
 <style>/*chrome*/
-/* closing band: the markup always carried .dark, it just never had a rule */
-.foot{background-color:#1c1c1a;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.10 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px;color:#fbfaf8}
+/* closing band: the markup always carried .dark, it just never had a rule.
+   Now a floating card: 24px off every edge, the same 32px radius as the case
+   dialog; overflow:hidden keeps the noise and the children inside the rounding. */
+.foot{margin:24px;border-radius:32px;overflow:hidden;background-color:#1c1c1a;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.10 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");background-size:300px 300px;color:#fbfaf8}
 .foot h2{color:#fbfaf8}
 .foot .lede{color:rgba(251,250,248,.72)}
 .foot a,.foot a:visited{color:#fbfaf8}
@@ -268,6 +228,10 @@ body.cd-lock{overflow:hidden}
 .foot .cta .btn{background:#fbfaf8;color:#111}
 .foot .cta .btn:hover{background:transparent;color:#fbfaf8;text-decoration:none}
 .foot .cta .ghost:hover{background:#fbfaf8;color:#111;text-decoration:none}
+/* LinkedIn and GitHub are logo-only, so their pills turn into circles */
+.foot .cta a.gi{width:47px;padding:0}
+.foot .cta a.gi svg{width:20px;height:20px;flex:none}
+@media(max-width:600px){.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:16px}.foot .cta a.gi{width:42px;padding:0}}
 @media(prefers-reduced-motion:reduce){.foot .cta .btn,.foot .cta .ghost{transition:none}}
 </style>
 <style>/*lang*/
@@ -335,8 +299,6 @@ background:#3d3d3d}
 .hero3 h1{font-size:clamp(22px,6.6vw,28px);line-height:1.14}
 header .bar{border-radius:20px}
 .pv>div,.outcomes .o{border-radius:16px}
-#xp .split,#oss .split{border-radius:16px;padding:32px 24px}
-#xp h2.marker,#oss h2.marker{margin-left:-24px}
 .cd{border-radius:16px}
 .cta.hcta .btn,.cta.hcta .ghost,.foot .cta .btn,.foot .cta .ghost{height:42px;padding:0 18px;font-size:16px}
 .hero3 .sub.chain{font-size:15px;gap:10px 14px}
@@ -484,48 +446,6 @@ header .bar{border-radius:20px}
 </article>
 </div>
 </section>
-<section class="wrap block" id="xp">
-<div class="split">
-<h2 class="marker"><span data-l="en">Experience</span></h2>
-<ul class="xp rv">
-<li>
-<p class="yrs">2026</p>
-<div class="xr">
-<p class="xrole">Product Designer + Design Engineer</p>
-<p class="xco">Records Marine</p>
-</div>
-<p class="xnote"><span data-l="en">A 3-month contract: I built a mockup-generation tool and improved design processes in the design team.</span></p>
-</li>
-<li>
-<p class="yrs">2022–2026</p>
-<div class="xr">
-<p class="xrole">Senior Product Designer</p>
-<p class="xco">Scalr</p>
-</div>
-<p class="xnote"><span data-l="en">Staff, full-time. I held the design system of a Terraform automation platform for four years: I built it from scratch in Figma on tokens, moved it from a custom framework to Ant Design, wrote the documentation and supported frontend engineers through integration. I designed product features end-to-end in a team of 2–3 designers: from JTBD analysis and user feedback to concepts for complex DevOps workflows (workspaces, run pipelines, policies, environment structures).</span></p>
-</li>
-<li>
-<p class="yrs">2018–2023</p>
-<div class="xr">
-<p class="xrole"><span data-l="en">Founder &amp; Design Director</span></p>
-<p class="xco">Nerdfox Design</p>
-</div>
-<p class="xnote"><span data-l="en">My own agency: a team of 5 shipped 10+ products from zero for clients across the EU, UK and UAE. I closed it myself in 2023: I want to design products, not run a vendor.</span></p>
-</li>
-</ul>
-</div>
-</section>
-<section class="wrap block" id="oss">
-<div class="split">
-<h2 class="marker"><span data-l="en">I teach designers</span></h2>
-<ul class="list">
-<li><div class="t"><a href="https://md-academy.design" rel="noopener" target="_blank">MD Academy</a><span class="tag"><span data-l="en">founder</span></span></div><div class="s"><span data-l="en">Live cohort courses that train experienced designers to run the full product pipeline with AI. Two sold-out cohorts; the Pro Max course is on its second run. The format is fixed, a set number of live lessons per cohort: it runs alongside a full-time role, not instead of one.</span></div></li>
-<li><div class="t"><span class="tt"><span data-l="en">Corporate mentoring</span></span></div><div class="s"><span data-l="en">I train the in-house design team of a large Ukrainian retailer 1:1 in AI-assisted design engineering.</span></div></li>
-<li><div class="t"><span class="tt"><span data-l="en">Conference talks</span></span></div><div class="s"><span data-l="en">I gave ~5 talks on design systems and AI-assisted development: UNIED / Planet of Design, SHIFT'26, TIRED community.</span></div></li>
-<li><div class="t"><span class="tt"><span data-l="en">Press</span></span></div><div class="s"><span data-l="en"><a href="https://dev.ua/news/vaibkodynh-1753770208" rel="noopener" target="_blank">dev.ua interviewed me</a> about AI-assisted development, and <a href="https://activecollab.com/blog/customer-stories/wonderful-software-solution-nerdfox-design" rel="noopener" target="_blank">ActiveCollab wrote a case study</a> about my agency's workflow.</span></div></li>
-</ul>
-</div>
-</section>
 </main>
 <footer class="dark foot" id="contact">
 <div class="wrap">
@@ -533,9 +453,9 @@ header .bar{border-radius:20px}
 <p class="lede"><span data-l="en">I'm looking for a Senior Product Designer role in a product company.<br/>If you call it Design Engineer, that's me too.<br/>Remote · full-time · I answer fast.</span></p>
 <div class="cta">
 <a class="btn" href="https://t.me/denys_osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.42 15.18l-.4 5.58c.57 0 .82-.24 1.11-.53l2.66-2.55l5.52 4.04c1.01.56 1.73.27 2-.93L23.93 3.82c.32-1.5-.54-2.08-1.53-1.71L1.11 10.26c-1.45.56-1.43 1.37-.25 1.74l5.44 1.69L18.56 5.79c.59-.39 1.12-.17.68.22z" fill="currentColor"/></svg><span data-l="en">Message me</span></a>
-<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>CV (PDF)</a>
-<a class="ghost" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank">LinkedIn</a>
-<a class="ghost" href="https://github.com/denysosadchyi" rel="noopener" target="_blank">GitHub</a>
+<a class="ghost" data-l="en" href="cv-en.pdf" rel="noopener" target="_blank"><svg aria-hidden="true" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Download CV</a>
+<a aria-label="LinkedIn" class="ghost gi" href="https://linkedin.com/in/denys-osadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" fill="currentColor"/></svg></a>
+<a aria-label="GitHub" class="ghost gi" href="https://github.com/denysosadchyi" rel="noopener" target="_blank"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" fill="currentColor"/></svg></a>
 
 </div>
 </div>
@@ -670,7 +590,7 @@ document.addEventListener('click',function(e){
   if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
   var href=a.getAttribute('href')||'';
   if(/^case-[\w-]+\.html$/.test(href)){e.preventDefault();load(href,1,a.closest('.pv')||a);return}
-  if(cur&&/^index(-ua)?\.html(#.*)?$/.test(href)){e.preventDefault();hide();}
+  if(cur&&/^index(-en|-ua)?\.html(#.*)?$/.test(href)){e.preventDefault();hide();}
 });
 
 x.addEventListener('click',function(){hide()});
